@@ -94,34 +94,6 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 //clay
 //sand
 
-//clay
-//geodes
-//copper ore
-//tin ore
-//iron ore
-//coal
-//silver ore
-//gold ore
-//limestone
-//platinum ore
-//mithril ore
-//adamantite ore
-//runite ore
-
-////Gems
-//ruby
-//sapphire
-//emerald
-//topaz
-//diamond
-//amethyst
-//opal
-//garnet
-//pearl
-//onyx
-//quartz
-//agate
-//jade
 
 
 ////Knives
