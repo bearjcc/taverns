@@ -6,23 +6,7 @@
 // Owner: Ursa Minor Inc.
 // ============================================================================
 
-enum Source {
-    Farming = "Farming",
-    Fishing = "Fishing",
-    Foraging = "Foraging",
-    Questing = "Questing",
-    Trading = "Trading",
-    Milling = "Milling",
-    Crafting = "Crafting",
-    Cooking = "Cooking",
-    Distilling = "Distilling",
-    Brewing = "Brewing",
-    Water = "Water",
-    Potions = "Potions",
-    Hunting = "Hunting",
-    ReligiousCeremony = "Religious Ceremony",
-}
-
+export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading" | "Milling" | "Crafting" | "Cooking" | "Distilling" | "Brewing" | "Water" | "Potions" | "Hunting" | "Religious Ceremony";
 
 export class Ingredient {
     name: string;

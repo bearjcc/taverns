@@ -13,15 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.Onion = exports.cucumbers_prototype = exports.Cucumbers = exports.vanillaBean_prototype = exports.VanillaBean = exports.acorns_prototype = exports.Acorns = exports.mapleSap_prototype = exports.MapleSap = exports.wasabi_prototype = exports.Wasabi = exports.sprouts_prototype = exports.Sprouts = exports.venison_prototype = exports.Venison = exports.humanoidFlesh_prototype = exports.HumanoidFlesh = exports.glowworm_prototype = exports.Glowworm = exports.oozePurple_prototype = exports.oozeSuperior_prototype = exports.oozeGreen_prototype = exports.oozeGray_prototype = exports.Ooze = exports.antsFire_prototype = exports.antsBlack_prototype = exports.antsRed_prototype = exports.Ants = exports.beetles_prototype = exports.Beetles = exports.mealworms_prototype = exports.Mealworms = exports.brains_prototype = exports.Brains = exports.grubs_prototype = exports.Grubs = exports.dragonmeat_prototype = exports.Dragonmeat = exports.questionableMeat_prototype = exports.QuestionableMeat = exports.rancidMeat_prototype = exports.RancidMeat = exports.broccoli_prototype = exports.Broccoli = exports.cauliflower_prototype = exports.Cauliflower = exports.cabbage_prototype = exports.Cabbage = exports.lettuce_prototype = exports.Lettuce = exports.tomatoes_prototype = exports.Tomatoes = exports.basil_prototype = exports.Basil = exports.sage_prototype = exports.Sage = exports.chives_prototype = exports.Chives = exports.turmeric_prototype = exports.Turmeric = exports.thyme_prototype = exports.Thyme = exports.rosemary_prototype = exports.Rosemary = exports.parsley_prototype = exports.Parsley = exports.oregano_prototype = exports.Oregano = exports.ginger_prototype = exports.Ginger = exports.garlic_prototype = exports.Garlic = exports.fennel_prototype = exports.Fennel = exports.dill_prototype = exports.Dill = exports.cumin_prototype = exports.Cumin = exports.cilantro_prototype = exports.Cilantro = exports.coriander_prototype = exports.Coriander = exports.pepperChili_prototype = exports.pepperCayenne_prototype = exports.pepperJalapeno_prototype = exports.pepperBell_prototype = exports.pepperWhite_prototype = exports.pepperBlack_prototype = exports.Pepper = exports.pineapple_prototype = exports.Pineapple = exports.banana_prototype = exports.Banana = exports.berryBlackCurrant_prototype = exports.berryBlueCurrant_prototype = exports.berryRasp_prototype = exports.berryStraw_prototype = exports.berryCherry_prototype = exports.berrySnozz_prototype = exports.berryBlack_prototype = exports.berryBlue_prototype = exports.berryRed_prototype = exports.Berry = exports.eggplant_prototype = exports.Eggplant = exports.beet_prototype = exports.Beet = exports.potato_prototype = exports.Potato = exports.carrot_prototype = exports.Carrot = exports.coconut_prototype = exports.Coconut = exports.chestnut_prototype = exports.Chestnut = exports.brazilNut_prototype = exports.BrazilNut = exports.almond_prototype = exports.Almond = exports.walnut_prototype = exports.Walnut = exports.peanut_prototype = exports.Peanut = exports.citrusTangerine_prototype = exports.citrusGrapefruit_prototype = exports.citrusLime_prototype = exports.citrusLemon_prototype = exports.citrusOrange_prototype = exports.Citrus = exports.avocado_prototype = exports.Avocado = exports.grapeMuscadine_prototype = exports.grapePurple_prototype = exports.grapeWhite_prototype = exports.grapeRed_prototype = exports.Grape = exports.pear_prototype = exports.Pear = exports.appleGolden_prototype = exports.appleGreen_prototype = exports.appleRed_prototype = exports.Apple = exports.mushroomRed_prototype = exports.mushroomMorel_prototype = exports.mushroomGlowing_prototype = exports.mushroomPurple_prototype = exports.mushroomBrown_prototype = exports.mushroomWhite_prototype = exports.Mushroom = exports.beansSoy_prototype = exports.beansJack_prototype = exports.beansGarbanzo_prototype = exports.beansMung_prototype = exports.beansLima_prototype = exports.beansGreen_prototype = exports.beansBlack_prototype = exports.beansPinto_prototype = exports.beansKidney_prototype = exports.Beans = exports.asparagus_prototype = exports.Asparagus = exports.cornOnOheCob_prototype = exports.CornOnTheCob = exports.corn_prototype = exports.Corn = exports.rice_prototype = exports.Rice = exports.seaweedBrown_prototype = exports.seaweedGreen_prototype = exports.seaweedRed_prototype = exports.Seaweed = exports.sugar_prototype = exports.Sugar = exports.pig_feet_prototype = exports.PigFeet = exports.pig_skin_prototype = exports.PigSkin = exports.pork_prototype = exports.Pork = exports.beef_prototype = exports.Beef = exports.shark_meat_prototype = exports.SharkMeat = exports.shrimp_prototype = exports.Shrimp = exports.clam_meat_prototype = exports.ClamMeat = exports.lobster_prototype = exports.Lobster = exports.catfish_prototype = exports.Catfish = exports.crayfish_prototype = exports.Crayfish = exports.carp_prototype = exports.Carp = exports.pike_prototype = exports.Pike = exports.rainbowTrout_prototype = exports.RainbowTrout = exports.trout_prototype = exports.Trout = exports.salmon_prototype = exports.Salmon = exports.foods = exports.Food = void 0;
-// ============================================================================
-// Language: TypeScript
-// Path: ts\itm_food.ts
-// Author: Joseph C. Caswell
-// All rights reserved.
-// Owner: Ursa Minor Inc.
-// ============================================================================
-var itm_consumables_1 = require("././itm_consumables");
+exports.buckwheatFlour_prototype = exports.ryeFlour_prototype = exports.oatFlour_prototype = exports.barleyFlour_prototype = exports.wheatFlour_prototype = exports.riceFlour_prototype = exports.Flour = exports.beets_prototype = exports.Beets = exports.goldenCurry_prototype = exports.yellowCurry_prototype = exports.greenCurry_prototype = exports.redCurry_prototype = exports.Curry = exports.roseWine_prototype = exports.muscadineWine_prototype = exports.redWine_prototype = exports.whiteWine_prototype = exports.Wine = exports.dragonessence_prototype = exports.stickyOil_prototype = exports.peanutOil_prototype = exports.avocadoOil_prototype = exports.oliveOil_prototype = exports.grapeseedOil_prototype = exports.vegetableOil_prototype = exports.Oil = exports.barley_prototype = exports.Barley = exports.oats_prototype = exports.Oats = exports.wheat_prototype = exports.Wheat = exports.teaLeaves_prototype = exports.TeaLeaves = exports.coffeeBeans_prototype = exports.CoffeeBeans = exports.cocoaBeans_prototype = exports.CocoaBeans = exports.milkOfThePoppy_prototype = exports.MilkOfThePoppy = exports.goatMilk_prototype = exports.cowMilk_prototype = exports.Milk = exports.soySauce_prototype = exports.SoySauce = exports.dragonEgg_prototype = exports.lizardEgg_prototype = exports.snakeEgg_prototype = exports.fishEgg_prototype = exports.chickenEgg_prototype = exports.Egg = exports.redOnion_prototype = exports.greenOnion_prototype = exports.whiteOnion_prototype = exports.purpleOnion_prototype = exports.Onion = exports.cucumbers_prototype = exports.Cucumbers = exports.vanillaBean_prototype = exports.VanillaBean = exports.acorns_prototype = exports.Acorns = exports.mapleSap_prototype = exports.MapleSap = exports.wasabi_prototype = exports.Wasabi = exports.sprouts_prototype = exports.Sprouts = exports.venison_prototype = exports.Venison = exports.humanoidFlesh_prototype = exports.HumanoidFlesh = exports.glowworm_prototype = exports.Glowworm = exports.oozePurple_prototype = exports.oozeSuperior_prototype = exports.oozeGreen_prototype = exports.oozeGray_prototype = exports.Ooze = exports.antsFire_prototype = exports.antsBlack_prototype = exports.antsRed_prototype = exports.Ants = exports.beetles_prototype = exports.Beetles = exports.mealworms_prototype = exports.Mealworms = exports.brains_prototype = exports.Brains = exports.grubs_prototype = exports.Grubs = exports.dragonmeat_prototype = exports.Dragonmeat = exports.questionableMeat_prototype = exports.QuestionableMeat = exports.rancidMeat_prototype = exports.RancidMeat = exports.broccoli_prototype = exports.Broccoli = exports.cauliflower_prototype = exports.Cauliflower = exports.cabbage_prototype = exports.Cabbage = exports.lettuce_prototype = exports.Lettuce = exports.tomatoes_prototype = exports.Tomatoes = exports.basil_prototype = exports.Basil = exports.sage_prototype = exports.Sage = exports.chives_prototype = exports.Chives = exports.turmeric_prototype = exports.Turmeric = exports.thyme_prototype = exports.Thyme = exports.rosemary_prototype = exports.Rosemary = exports.parsley_prototype = exports.Parsley = exports.oregano_prototype = exports.Oregano = exports.ginger_prototype = exports.Ginger = exports.garlic_prototype = exports.Garlic = exports.fennel_prototype = exports.Fennel = exports.dill_prototype = exports.Dill = exports.cumin_prototype = exports.Cumin = exports.cilantro_prototype = exports.Cilantro = exports.coriander_prototype = exports.Coriander = exports.pepperChili_prototype = exports.pepperCayenne_prototype = exports.pepperJalapeno_prototype = exports.pepperBell_prototype = exports.pepperWhite_prototype = exports.pepperBlack_prototype = exports.Pepper = exports.pineapple_prototype = exports.Pineapple = exports.banana_prototype = exports.Banana = exports.berryBlackCurrant_prototype = exports.berryBlueCurrant_prototype = exports.berryRasp_prototype = exports.berryStraw_prototype = exports.berryCherry_prototype = exports.berrySnozz_prototype = exports.berryBlack_prototype = exports.berryBlue_prototype = exports.berryRed_prototype = exports.Berry = exports.eggplant_prototype = exports.Eggplant = exports.beet_prototype = exports.Beet = exports.potato_prototype = exports.Potato = exports.carrot_prototype = exports.Carrot = exports.coconut_prototype = exports.Coconut = exports.chestnut_prototype = exports.Chestnut = exports.brazilNut_prototype = exports.BrazilNut = exports.almond_prototype = exports.Almond = exports.walnut_prototype = exports.Walnut = exports.peanut_prototype = exports.Peanut = exports.citrusTangerine_prototype = exports.citrusGrapefruit_prototype = exports.citrusLime_prototype = exports.citrusLemon_prototype = exports.citrusOrange_prototype = exports.Citrus = exports.avocado_prototype = exports.Avocado = exports.grapeMuscadine_prototype = exports.grapePurple_prototype = exports.grapeWhite_prototype = exports.grapeRed_prototype = exports.Grape = exports.pear_prototype = exports.Pear = exports.appleGolden_prototype = exports.appleGreen_prototype = exports.appleRed_prototype = exports.Apple = exports.mushroomRed_prototype = exports.mushroomMorel_prototype = exports.mushroomGlowing_prototype = exports.mushroomPurple_prototype = exports.mushroomBrown_prototype = exports.mushroomWhite_prototype = exports.Mushroom = exports.beansSoy_prototype = exports.beansJack_prototype = exports.beansGarbanzo_prototype = exports.beansMung_prototype = exports.beansLima_prototype = exports.beansGreen_prototype = exports.beansBlack_prototype = exports.beansPinto_prototype = exports.beansKidney_prototype = exports.Beans = exports.asparagus_prototype = exports.Asparagus = exports.cornOnOheCob_prototype = exports.CornOnTheCob = exports.corn_prototype = exports.Corn = exports.rice_prototype = exports.Rice = exports.seaweedBrown_prototype = exports.seaweedGreen_prototype = exports.seaweedRed_prototype = exports.Seaweed = exports.sugar_prototype = exports.Sugar = exports.pig_feet_prototype = exports.PigFeet = exports.pig_skin_prototype = exports.PigSkin = exports.pork_prototype = exports.Pork = exports.beef_prototype = exports.Beef = exports.shark_meat_prototype = exports.SharkMeat = exports.shrimp_prototype = exports.Shrimp = exports.clam_meat_prototype = exports.ClamMeat = exports.lobster_prototype = exports.Lobster = exports.catfish_prototype = exports.Catfish = exports.crayfish_prototype = exports.Crayfish = exports.carp_prototype = exports.Carp = exports.pike_prototype = exports.Pike = exports.rainbowTrout_prototype = exports.RainbowTrout = exports.trout_prototype = exports.Trout = exports.salmon_prototype = exports.Salmon = exports.foods = exports.Food = void 0;
+var itm_consumables_1 = require("./itm_consumables");
 var Food = /** @class */ (function (_super) {
     __extends(Food, _super);
     function Food() {
@@ -132,6 +125,7 @@ var Salmon = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Salmon;
@@ -152,6 +146,7 @@ var Trout = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Trout;
@@ -182,6 +177,7 @@ var Pike = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Pike;
@@ -202,6 +198,7 @@ var Carp = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Carp;
@@ -222,6 +219,7 @@ var Crayfish = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Crayfish;
@@ -242,6 +240,7 @@ var Catfish = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Catfish;
@@ -262,6 +261,7 @@ var Lobster = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Lobster;
@@ -282,6 +282,7 @@ var ClamMeat = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return ClamMeat;
@@ -302,6 +303,7 @@ var Shrimp = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return Shrimp;
@@ -322,6 +324,7 @@ var SharkMeat = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Fishing"];
         return _this;
     }
     return SharkMeat;
@@ -342,6 +345,7 @@ var Beef = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Beef;
@@ -362,6 +366,7 @@ var Pork = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Pork;
@@ -383,6 +388,7 @@ var PigSkin = /** @class */ (function (_super) {
         _this.hp = 0;
         _this.weight = 1;
         _this.mustBeDry = true;
+        _this.sources = ["Farming"];
         return _this;
     }
     return PigSkin;
@@ -403,6 +409,7 @@ var PigFeet = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return PigFeet;
@@ -425,6 +432,7 @@ var Sugar = /** @class */ (function (_super) {
         _this.weight = 1;
         _this.mustBeDry = true;
         _this.canBeCooked = false;
+        _this.sources = ["Milling"];
         return _this;
     }
     return Sugar;
@@ -447,6 +455,7 @@ var Seaweed = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Seaweed;
@@ -469,6 +478,7 @@ var Rice = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Rice;
@@ -489,6 +499,7 @@ var Corn = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Corn;
@@ -508,6 +519,7 @@ var CornOnTheCob = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return CornOnTheCob;
@@ -528,6 +540,7 @@ var Asparagus = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Asparagus;
@@ -550,6 +563,7 @@ var Beans = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Beans;
@@ -585,6 +599,7 @@ var Mushroom = /** @class */ (function (_super) {
         _this.thirst = 0;
         _this.hp = 0;
         _this.weight = weight; // weight defined on the objet itself instead of globally
+        _this.sources = ["Foraging", "Farming"];
         return _this;
     }
     return Mushroom;
@@ -611,6 +626,8 @@ var Apple = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming", "Foraging"];
         return _this;
     }
     return Apple;
@@ -632,6 +649,8 @@ var Pear = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Pear;
@@ -653,6 +672,8 @@ var Grape = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Grape;
@@ -675,6 +696,8 @@ var Avocado = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Avocado;
@@ -696,6 +719,8 @@ var Citrus = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Citrus;
@@ -719,6 +744,8 @@ var Peanut = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Peanut;
@@ -738,6 +765,8 @@ var Walnut = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Walnut;
@@ -757,6 +786,8 @@ var Almond = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Almond;
@@ -776,6 +807,8 @@ var BrazilNut = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return BrazilNut;
@@ -795,6 +828,8 @@ var Chestnut = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Questing"];
         return _this;
     }
     return Chestnut;
@@ -814,6 +849,8 @@ var Coconut = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Coconut;
@@ -833,6 +870,8 @@ var Carrot = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Carrot;
@@ -852,6 +891,8 @@ var Potato = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming", "Foraging"];
         return _this;
     }
     return Potato;
@@ -871,6 +912,8 @@ var Beet = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Beet;
@@ -890,6 +933,8 @@ var Eggplant = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Eggplant;
@@ -930,6 +975,8 @@ var Berry = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Berry;
@@ -957,6 +1004,8 @@ var Banana = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Banana;
@@ -976,6 +1025,8 @@ var Pineapple = /** @class */ (function (_super) {
         _this.hunger = 10;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Pineapple;
@@ -1002,6 +1053,8 @@ var Pepper = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Pepper;
@@ -1026,6 +1079,8 @@ var Coriander = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Coriander;
@@ -1045,6 +1100,8 @@ var Cilantro = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Cilantro;
@@ -1064,6 +1121,8 @@ var Cumin = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Cumin;
@@ -1083,6 +1142,8 @@ var Dill = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Dill;
@@ -1102,6 +1163,8 @@ var Fennel = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Fennel;
@@ -1121,6 +1184,8 @@ var Garlic = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Garlic;
@@ -1140,6 +1205,8 @@ var Ginger = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Ginger;
@@ -1159,6 +1226,8 @@ var Oregano = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Oregano;
@@ -1178,6 +1247,8 @@ var Parsley = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Parsley;
@@ -1197,6 +1268,8 @@ var Rosemary = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Rosemary;
@@ -1216,6 +1289,8 @@ var Thyme = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Thyme;
@@ -1235,6 +1310,8 @@ var Turmeric = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Turmeric;
@@ -1254,6 +1331,8 @@ var Chives = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Chives;
@@ -1273,6 +1352,8 @@ var Sage = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Sage;
@@ -1292,6 +1373,8 @@ var Basil = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Basil;
@@ -1311,6 +1394,8 @@ var Tomatoes = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Tomatoes;
@@ -1330,6 +1415,8 @@ var Lettuce = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Lettuce;
@@ -1349,6 +1436,8 @@ var Cabbage = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Cabbage;
@@ -1368,6 +1457,8 @@ var Cauliflower = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Cauliflower;
@@ -1387,6 +1478,8 @@ var Broccoli = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Broccoli;
@@ -1406,6 +1499,8 @@ var RancidMeat = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Questing"];
         return _this;
     }
     return RancidMeat;
@@ -1425,6 +1520,8 @@ var QuestionableMeat = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Questing"];
         return _this;
     }
     return QuestionableMeat;
@@ -1444,6 +1541,8 @@ var Dragonmeat = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Questing"];
         return _this;
     }
     return Dragonmeat;
@@ -1463,6 +1562,8 @@ var Grubs = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Grubs;
@@ -1482,6 +1583,8 @@ var Brains = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Brains;
@@ -1501,6 +1604,8 @@ var Mealworms = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Mealworms;
@@ -1520,6 +1625,8 @@ var Beetles = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Beetles;
@@ -1541,6 +1648,8 @@ var Ants = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Ants;
@@ -1567,6 +1676,8 @@ var Ooze = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging", "Questing"];
         return _this;
     }
     return Ooze;
@@ -1589,6 +1700,8 @@ var Glowworm = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Glowworm;
@@ -1608,6 +1721,8 @@ var HumanoidFlesh = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Religious Ceremony"];
         return _this;
     }
     return HumanoidFlesh;
@@ -1627,6 +1742,8 @@ var Venison = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Hunting"];
         return _this;
     }
     return Venison;
@@ -1646,6 +1763,8 @@ var Sprouts = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Sprouts;
@@ -1665,6 +1784,8 @@ var Wasabi = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
         return _this;
     }
     return Wasabi;
@@ -1684,6 +1805,8 @@ var MapleSap = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return MapleSap;
@@ -1703,6 +1826,8 @@ var Acorns = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
         return _this;
     }
     return Acorns;
@@ -1722,6 +1847,8 @@ var VanillaBean = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return VanillaBean;
@@ -1741,6 +1868,8 @@ var Cucumbers = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Cucumbers;
@@ -1765,8 +1894,395 @@ var Onion = /** @class */ (function (_super) {
         _this.hunger = 0;
         _this.thirst = 0;
         _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
         return _this;
     }
     return Onion;
 }(Food));
 exports.Onion = Onion;
+exports.purpleOnion_prototype = new Onion("purple");
+exports.whiteOnion_prototype = new Onion("white");
+exports.greenOnion_prototype = new Onion("green");
+exports.redOnion_prototype = new Onion("red");
+exports.foods.push(exports.purpleOnion_prototype, exports.whiteOnion_prototype, exports.greenOnion_prototype, exports.redOnion_prototype);
+// var chickenEgg = new CookingIngredient("Chicken Egg", egg, [Source.Farming], false);
+// var fishEgg = new CookingIngredient("Fish Egg", egg, [Source.Fishing], true);
+// var snakeEgg = new CookingIngredient("Snake Egg", egg, [Source.Foraging], false);
+// var lizardEgg = new CookingIngredient("Lizard Egg", egg, [Source.Foraging], false);
+// var dragonEgg = new CookingIngredient("Dragon Egg", egg, [Source.Questing], true);
+var Egg = /** @class */ (function (_super) {
+    __extends(Egg, _super);
+    function Egg(type) {
+        var _this = _super.call(this) || this;
+        _this.hasType = true;
+        _this.type = type;
+        _this.categories.push("Egg");
+        _this.singular = _this.type + " egg";
+        _this.plural = _this.singular + "s";
+        _this.description = "unborn animal in a shell";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming", "Fishing", "Foraging", "Questing"];
+        return _this;
+    }
+    return Egg;
+}(Food));
+exports.Egg = Egg;
+exports.chickenEgg_prototype = new Egg("chicken");
+exports.fishEgg_prototype = new Egg("fish");
+exports.snakeEgg_prototype = new Egg("snake");
+exports.lizardEgg_prototype = new Egg("lizard");
+exports.dragonEgg_prototype = new Egg("dragon");
+exports.foods.push(exports.chickenEgg_prototype, exports.fishEgg_prototype, exports.snakeEgg_prototype, exports.lizardEgg_prototype, exports.dragonEgg_prototype);
+// var soySauce = new CookingIngredient("Soy Sauce", spice, [Source.Trading], false);
+var SoySauce = /** @class */ (function (_super) {
+    __extends(SoySauce, _super);
+    function SoySauce() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Spice", "Soy Sauce");
+        _this.singular = "Soy Sauce";
+        _this.plural = "Soy Sauce";
+        _this.description = "Soy Sauce";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
+        return _this;
+    }
+    return SoySauce;
+}(Food));
+exports.SoySauce = SoySauce;
+exports.soySauce_prototype = new SoySauce();
+exports.foods.push(exports.soySauce_prototype);
+// var cowMilk = new CookingIngredient("Cow Milk", dairy, [Source.Farming], false);
+// var goatMilk = new CookingIngredient("Goat Milk", dairy, [Source.Farming], true);
+var Milk = /** @class */ (function (_super) {
+    __extends(Milk, _super);
+    function Milk(type) {
+        var _this = _super.call(this) || this;
+        _this.hasType = true;
+        _this.type = type;
+        _this.categories.push("Dairy", "Milk");
+        _this.singular = _this.type + " milk";
+        _this.plural = _this.singular;
+        _this.description = "milk";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Milk;
+}(Food));
+exports.Milk = Milk;
+exports.cowMilk_prototype = new Milk("cow");
+exports.goatMilk_prototype = new Milk("goat");
+exports.foods.push(exports.cowMilk_prototype, exports.goatMilk_prototype);
+// var milkOfThePoppy = new CookingIngredient("Milk of the Poppy", spice, [Source.Foraging], true);
+var MilkOfThePoppy = /** @class */ (function (_super) {
+    __extends(MilkOfThePoppy, _super);
+    function MilkOfThePoppy() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Spice", "Milk of the Poppy");
+        _this.singular = "Milk of the Poppy";
+        _this.plural = "Milk of the Poppy";
+        _this.description = "Milk of the Poppy";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Foraging"];
+        return _this;
+    }
+    return MilkOfThePoppy;
+}(Food));
+exports.MilkOfThePoppy = MilkOfThePoppy;
+exports.milkOfThePoppy_prototype = new MilkOfThePoppy();
+exports.foods.push(exports.milkOfThePoppy_prototype);
+// var cocoaBeans = new CookingIngredient("Cocoa Beans", spice, [Source.Farming], true);
+var CocoaBeans = /** @class */ (function (_super) {
+    __extends(CocoaBeans, _super);
+    function CocoaBeans() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Spice", "Cocoa Beans");
+        _this.singular = "Cocoa Beans";
+        _this.plural = "Cocoa Beans";
+        _this.description = "Cocoa Beans";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CocoaBeans;
+}(Food));
+exports.CocoaBeans = CocoaBeans;
+exports.cocoaBeans_prototype = new CocoaBeans();
+exports.foods.push(exports.cocoaBeans_prototype);
+// var coffeeBeans = new CookingIngredient("Coffee Beans", tea, [Source.Farming], true);
+var CoffeeBeans = /** @class */ (function (_super) {
+    __extends(CoffeeBeans, _super);
+    function CoffeeBeans() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Tea", "Coffee Beans");
+        _this.singular = "Coffee Beans";
+        _this.plural = "Coffee Beans";
+        _this.description = "Coffee Beans";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CoffeeBeans;
+}(Food));
+exports.CoffeeBeans = CoffeeBeans;
+exports.coffeeBeans_prototype = new CoffeeBeans();
+exports.foods.push(exports.coffeeBeans_prototype);
+// var teaLeaves = new CookingIngredient("Tea Leaves", tea, [Source.Farming], false);
+var TeaLeaves = /** @class */ (function (_super) {
+    __extends(TeaLeaves, _super);
+    function TeaLeaves() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Tea", "Tea Leaves");
+        _this.singular = "Tea Leaves";
+        _this.plural = "Tea Leaves";
+        _this.description = "Tea Leaves";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return TeaLeaves;
+}(Food));
+exports.TeaLeaves = TeaLeaves;
+exports.teaLeaves_prototype = new TeaLeaves();
+exports.foods.push(exports.teaLeaves_prototype);
+// var wheat = new CookingIngredient("Wheat", grain, [Source.Farming], false);
+var Wheat = /** @class */ (function (_super) {
+    __extends(Wheat, _super);
+    function Wheat() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Grain", "Wheat");
+        _this.singular = "Wheat";
+        _this.plural = "Wheat";
+        _this.description = "Wheat";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Wheat;
+}(Food));
+exports.Wheat = Wheat;
+exports.wheat_prototype = new Wheat();
+exports.foods.push(exports.wheat_prototype);
+// var oats = new CookingIngredient("Oats", grain, [Source.Farming], false);
+var Oats = /** @class */ (function (_super) {
+    __extends(Oats, _super);
+    function Oats() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Grain", "Oats");
+        _this.singular = "Oats";
+        _this.plural = "Oats";
+        _this.description = "Oats";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Oats;
+}(Food));
+exports.Oats = Oats;
+exports.oats_prototype = new Oats();
+exports.foods.push(exports.oats_prototype);
+// var barley = new CookingIngredient("Barley", grain, [Source.Farming], true);
+var Barley = /** @class */ (function (_super) {
+    __extends(Barley, _super);
+    function Barley() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Grain", "Barley");
+        _this.singular = "Barley";
+        _this.plural = "Barley";
+        _this.description = "Barley";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Barley;
+}(Food));
+exports.Barley = Barley;
+exports.barley_prototype = new Barley();
+exports.foods.push(exports.barley_prototype);
+// var vegetableOil = new CookingIngredient("Vegetable Oil", oil, [Source.Distilling], false);
+// var grapeseedOil = new CookingIngredient("Grapeseed Oil", oil, [Source.Distilling], true);
+// var oliveOil = new CookingIngredient("Olive Oil", oil, [Source.Distilling], true);
+// var avocadoOil = new CookingIngredient("Avocado Oil", oil, [Source.Distilling], true);
+// var peanutOil = new CookingIngredient("Peanut Oil", oil, [Source.Distilling], true);
+// var stickyOil = new CookingIngredient("Sticky Oil", oil, [Source.Questing], false);
+// var dragonessence = new CookingIngredient("Dragonessence", oil, [Source.Questing], true);
+var Oil = /** @class */ (function (_super) {
+    __extends(Oil, _super);
+    function Oil(type) {
+        var _this = _super.call(this) || this;
+        _this.hasType = true;
+        _this.type = type;
+        _this.categories.push("Oil");
+        _this.singular = _this.type + " oil";
+        _this.plural = _this.singular;
+        if (type === "dragonessence") {
+            _this.singular = "Dragonessence";
+            _this.plural = "Dragonessence";
+        }
+        _this.description = "oil";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Distilling"];
+        return _this;
+    }
+    return Oil;
+}(Food));
+exports.Oil = Oil;
+exports.vegetableOil_prototype = new Oil("vegetable");
+exports.grapeseedOil_prototype = new Oil("grapeseed");
+exports.oliveOil_prototype = new Oil("olive");
+exports.avocadoOil_prototype = new Oil("avocado");
+exports.peanutOil_prototype = new Oil("peanut");
+exports.stickyOil_prototype = new Oil("sticky");
+exports.dragonessence_prototype = new Oil("dragonessence");
+exports.foods.push(exports.vegetableOil_prototype, exports.grapeseedOil_prototype, exports.oliveOil_prototype, exports.avocadoOil_prototype, exports.peanutOil_prototype, exports.stickyOil_prototype, exports.dragonessence_prototype);
+var Wine = /** @class */ (function (_super) {
+    __extends(Wine, _super);
+    function Wine(type) {
+        var _this = _super.call(this) || this;
+        _this.hasType = true;
+        _this.type = type;
+        _this.categories.push("Alcohol");
+        _this.singular = _this.type + " wine";
+        _this.plural = _this.singular;
+        if (type === "rosé") {
+            _this.singular = "Rosé";
+            _this.plural = "Rosé";
+        }
+        _this.description = "wine";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Distilling"];
+        return _this;
+    }
+    return Wine;
+}(Food));
+exports.Wine = Wine;
+exports.whiteWine_prototype = new Wine("white");
+exports.redWine_prototype = new Wine("red");
+exports.muscadineWine_prototype = new Wine("muscadine");
+exports.roseWine_prototype = new Wine("rosé");
+exports.foods.push(exports.whiteWine_prototype, exports.redWine_prototype, exports.muscadineWine_prototype, exports.roseWine_prototype);
+// var redCurry = new CookingIngredient("Red Curry", spice, [Source.Trading], false);
+// var greenCurry = new CookingIngredient("Green Curry", spice, [Source.Trading], false);
+// var yellowCurry = new CookingIngredient("Yellow Curry", spice, [Source.Trading], false);
+// var goldenCurry = new CookingIngredient("Golden Curry", spice, [Source.Trading], true);
+var Curry = /** @class */ (function (_super) {
+    __extends(Curry, _super);
+    function Curry(type) {
+        var _this = _super.call(this) || this;
+        _this.hasType = true;
+        _this.type = type;
+        _this.categories.push("Spice");
+        _this.singular = _this.type + " curry";
+        _this.plural = _this.singular;
+        if (type === "golden") {
+            _this.singular = "Golden Curry";
+            _this.plural = "Golden Curry";
+        }
+        _this.description = "curry";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Trading"];
+        return _this;
+    }
+    return Curry;
+}(Food));
+exports.Curry = Curry;
+exports.redCurry_prototype = new Curry("red");
+exports.greenCurry_prototype = new Curry("green");
+exports.yellowCurry_prototype = new Curry("yellow");
+exports.goldenCurry_prototype = new Curry("golden");
+exports.foods.push(exports.redCurry_prototype, exports.greenCurry_prototype, exports.yellowCurry_prototype, exports.goldenCurry_prototype);
+// var beets = new CookingIngredient("Beets", vegetable, [Source.Farming], true);
+var Beets = /** @class */ (function (_super) {
+    __extends(Beets, _super);
+    function Beets() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Vegetable", "Beets");
+        _this.singular = "Beets";
+        _this.plural = "Beets";
+        _this.description = "Beets";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Beets;
+}(Food));
+exports.Beets = Beets;
+exports.beets_prototype = new Beets();
+exports.foods.push(exports.beets_prototype);
+// var water = new CookingIngredient("Water", water, [Source.Water], false);
+// var cleanWater = new CookingIngredient("Clean Water", water, [Source.Potions], true);
+// var purifiedWater = new CookingIngredient("Purified Water", water, [Source.Potions], false);
+var Flour = /** @class */ (function (_super) {
+    __extends(Flour, _super);
+    function Flour(type) {
+        var _this = _super.call(this) || this;
+        _this.hasType = true;
+        _this.type = type;
+        _this.categories.push("Pasta");
+        _this.singular = _this.type + " flour";
+        _this.plural = _this.singular;
+        if (type === "buckwheat") {
+            _this.singular = "Buckwheat Flour";
+            _this.plural = "Buckwheat Flour";
+        }
+        _this.description = "flour";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Flour;
+}(Food));
+exports.Flour = Flour;
+exports.riceFlour_prototype = new Flour("rice");
+exports.wheatFlour_prototype = new Flour("wheat");
+exports.barleyFlour_prototype = new Flour("barley");
+exports.oatFlour_prototype = new Flour("oat");
+exports.ryeFlour_prototype = new Flour("rye");
+exports.buckwheatFlour_prototype = new Flour("buckwheat");
+exports.foods.push(exports.riceFlour_prototype, exports.wheatFlour_prototype, exports.barleyFlour_prototype, exports.oatFlour_prototype, exports.ryeFlour_prototype, exports.buckwheatFlour_prototype);

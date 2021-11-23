@@ -5,11 +5,14 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import {Consumable} from "././itm_consumables"
+import {Source} from "./ingredients"
+import {Consumable} from "./itm_consumables"
 
 
 
 export class Food extends Consumable {
+    sources: Source[]; // where a user can obtain the food
+    
     hunger: number; // positive number makes eater more full, less hungry
     thirst: number; // positive number makes eater less thirsty
     hp: number; // positive number heals, negative number damages
@@ -118,6 +121,7 @@ export class Salmon extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const salmon_prototype: Salmon = new Salmon();
@@ -135,6 +139,7 @@ export class Trout extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const trout_prototype: Trout = new Trout();
@@ -156,6 +161,7 @@ export class Pike extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const pike_prototype: Pike = new Pike();
@@ -173,6 +179,7 @@ export class Carp extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const carp_prototype: Carp = new Carp();
@@ -190,6 +197,7 @@ export class Crayfish extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const crayfish_prototype: Crayfish = new Crayfish();
@@ -207,6 +215,7 @@ export class Catfish extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const catfish_prototype: Catfish = new Catfish();
@@ -224,6 +233,7 @@ export class Lobster extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const lobster_prototype: Lobster = new Lobster();
@@ -241,6 +251,7 @@ export class ClamMeat extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const clam_meat_prototype: ClamMeat = new ClamMeat();
@@ -258,6 +269,7 @@ export class Shrimp extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const shrimp_prototype: Shrimp = new Shrimp();
@@ -275,6 +287,7 @@ export class SharkMeat extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Fishing"];
     }
 }
 export const shark_meat_prototype: SharkMeat = new SharkMeat();
@@ -292,6 +305,7 @@ export class Beef extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const beef_prototype: Beef = new Beef();
@@ -309,6 +323,7 @@ export class Pork extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const pork_prototype: Pork = new Pork();
@@ -327,6 +342,7 @@ export class PigSkin extends Food {
         this.hp = 0;
         this.weight = 1;
         this.mustBeDry = true;
+        this.sources = ["Farming"];
     }
 }
 export const pig_skin_prototype: PigSkin = new PigSkin();
@@ -344,6 +360,7 @@ export class PigFeet extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const pig_feet_prototype: PigFeet = new PigFeet();
@@ -363,6 +380,7 @@ export class Sugar extends Food {
         this.weight = 1;
         this.mustBeDry = true;
         this.canBeCooked = false;
+        this.sources = ["Milling"];
     }
 }
 export const sugar_prototype: Sugar = new Sugar();
@@ -384,6 +402,7 @@ export class Seaweed extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const seaweedRed_prototype: Seaweed = new Seaweed("red");
@@ -403,6 +422,7 @@ export class Rice extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const rice_prototype: Rice = new Rice();
@@ -420,6 +440,7 @@ export class Corn extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const corn_prototype: Corn = new Corn();
@@ -436,6 +457,7 @@ export class CornOnTheCob extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const cornOnOheCob_prototype: CornOnTheCob = new CornOnTheCob();
@@ -453,6 +475,7 @@ export class Asparagus extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const asparagus_prototype: Asparagus = new Asparagus();
@@ -474,6 +497,7 @@ export class Beans extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const beansKidney_prototype: Beans = new Beans("kidney");
@@ -508,6 +532,7 @@ export class Mushroom extends Food {
         this.thirst = 0;
         this.hp = 0;
         this.weight = weight // weight defined on the objet itself instead of globally
+        this.sources = ["Foraging", "Farming"];
     }
 }
 export const mushroomWhite_prototype: Mushroom = new Mushroom("white", 0);
@@ -519,8 +544,6 @@ export const mushroomRed_prototype: Mushroom = new Mushroom("red", 0);
 foods.push(mushroomWhite_prototype, mushroomBrown_prototype, mushroomPurple_prototype, mushroomGlowing_prototype, mushroomMorel_prototype, mushroomRed_prototype);
 
 // var apples = new CookingIngredient("Apples", fruit, [Source.Farming, Source.Foraging], false);
-
-
 export class Apple extends Food {
     type: "red" | "green" | "golden";
 
@@ -535,6 +558,8 @@ export class Apple extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming", "Foraging"];
     }
 }
 export const appleRed_prototype: Apple = new Apple("red");
@@ -553,6 +578,8 @@ export class Pear extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const pear_prototype: Pear = new Pear();
@@ -575,6 +602,8 @@ export class Grape extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const grapeRed_prototype: Grape = new Grape("red");
@@ -594,6 +623,8 @@ export class Avocado extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const avocado_prototype: Avocado = new Avocado();
@@ -614,6 +645,8 @@ export class Citrus extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const citrusOrange_prototype: Citrus = new Citrus("orange");
@@ -634,6 +667,8 @@ export class Peanut extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const peanut_prototype: Peanut = new Peanut();
@@ -650,6 +685,8 @@ export class Walnut extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const walnut_prototype: Walnut = new Walnut();
@@ -666,6 +703,8 @@ export class Almond extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const almond_prototype: Almond = new Almond();
@@ -682,6 +721,8 @@ export class BrazilNut extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const brazilNut_prototype: BrazilNut = new BrazilNut();
@@ -698,6 +739,8 @@ export class Chestnut extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Questing"];
     }
 }
 export const chestnut_prototype: Chestnut = new Chestnut();
@@ -714,6 +757,8 @@ export class Coconut extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const coconut_prototype: Coconut = new Coconut();
@@ -730,6 +775,8 @@ export class Carrot extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const carrot_prototype: Carrot = new Carrot();
@@ -746,6 +793,8 @@ export class Potato extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming", "Foraging"];
     }
 }
 export const potato_prototype: Potato = new Potato();
@@ -762,6 +811,8 @@ export class Beet extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const beet_prototype: Beet = new Beet();
@@ -778,6 +829,8 @@ export class Eggplant extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const eggplant_prototype: Eggplant = new Eggplant();
@@ -814,6 +867,8 @@ export class Berry extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const berryRed_prototype: Berry = new Berry("red");
@@ -838,6 +893,8 @@ export class Banana extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const banana_prototype: Banana = new Banana();
@@ -854,6 +911,8 @@ export class Pineapple extends Food {
         this.hunger = 10;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const pineapple_prototype: Pineapple = new Pineapple();
@@ -878,6 +937,8 @@ export class Pepper extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const pepperBlack_prototype: Pepper = new Pepper("black");
@@ -899,6 +960,8 @@ export class Coriander extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const coriander_prototype: Coriander = new Coriander();
@@ -915,6 +978,8 @@ export class Cilantro extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const cilantro_prototype: Cilantro = new Cilantro();
@@ -931,6 +996,8 @@ export class Cumin extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const cumin_prototype: Cumin = new Cumin();
@@ -947,6 +1014,8 @@ export class Dill extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const dill_prototype: Dill = new Dill();
@@ -963,6 +1032,8 @@ export class Fennel extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const fennel_prototype: Fennel = new Fennel();
@@ -979,6 +1050,8 @@ export class Garlic extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const garlic_prototype: Garlic = new Garlic();
@@ -995,6 +1068,8 @@ export class Ginger extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const ginger_prototype: Ginger = new Ginger();
@@ -1011,6 +1086,8 @@ export class Oregano extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const oregano_prototype: Oregano = new Oregano();
@@ -1027,6 +1104,8 @@ export class Parsley extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const parsley_prototype: Parsley = new Parsley();
@@ -1043,6 +1122,8 @@ export class Rosemary extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const rosemary_prototype: Rosemary = new Rosemary();
@@ -1059,6 +1140,8 @@ export class Thyme extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const thyme_prototype: Thyme = new Thyme();
@@ -1075,6 +1158,8 @@ export class Turmeric extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const turmeric_prototype: Turmeric = new Turmeric();
@@ -1090,7 +1175,9 @@ export class Chives extends Food {
         this.description = "Chives";
         this.hunger = 0;
         this.thirst = 0;
-        this.hp = 0;
+        this.hp = 0;    
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const chives_prototype: Chives = new Chives();
@@ -1107,6 +1194,8 @@ export class Sage extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const sage_prototype: Sage = new Sage();
@@ -1123,6 +1212,8 @@ export class Basil extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const basil_prototype: Basil = new Basil();
@@ -1139,6 +1230,8 @@ export class Tomatoes extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const tomatoes_prototype: Tomatoes = new Tomatoes();
@@ -1155,6 +1248,8 @@ export class Lettuce extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const lettuce_prototype: Lettuce = new Lettuce();
@@ -1171,6 +1266,8 @@ export class Cabbage extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const cabbage_prototype: Cabbage = new Cabbage();
@@ -1187,6 +1284,8 @@ export class Cauliflower extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const cauliflower_prototype: Cauliflower = new Cauliflower();
@@ -1203,6 +1302,8 @@ export class Broccoli extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const broccoli_prototype: Broccoli = new Broccoli();
@@ -1219,6 +1320,8 @@ export class RancidMeat extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Questing"];
     }
 }
 export const rancidMeat_prototype: RancidMeat = new RancidMeat();
@@ -1235,6 +1338,8 @@ export class QuestionableMeat extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Questing"];
     }
 }
 export const questionableMeat_prototype: QuestionableMeat = new QuestionableMeat();
@@ -1251,6 +1356,8 @@ export class Dragonmeat extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Questing"];
     }
 }
 export const dragonmeat_prototype: Dragonmeat = new Dragonmeat();
@@ -1267,6 +1374,8 @@ export class Grubs extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const grubs_prototype: Grubs = new Grubs();
@@ -1283,6 +1392,8 @@ export class Brains extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const brains_prototype: Brains = new Brains();
@@ -1299,6 +1410,8 @@ export class Mealworms extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const mealworms_prototype: Mealworms = new Mealworms();
@@ -1315,6 +1428,8 @@ export class Beetles extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const beetles_prototype: Beetles = new Beetles();
@@ -1334,6 +1449,8 @@ export class Ants extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const antsRed_prototype: Ants = new Ants("red");
@@ -1358,6 +1475,8 @@ export class Ooze extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging", "Questing"];
     }
 }
 export const oozeGray_prototype: Ooze = new Ooze("gray");
@@ -1377,6 +1496,8 @@ export class Glowworm extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const glowworm_prototype: Glowworm = new Glowworm();
@@ -1393,6 +1514,8 @@ export class HumanoidFlesh extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Religious Ceremony"];
     }
 }
 export const humanoidFlesh_prototype: HumanoidFlesh = new HumanoidFlesh();
@@ -1409,6 +1532,8 @@ export class Venison extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Hunting"];
     }
 }
 export const venison_prototype: Venison = new Venison();
@@ -1425,6 +1550,8 @@ export class Sprouts extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const sprouts_prototype: Sprouts = new Sprouts();
@@ -1441,6 +1568,8 @@ export class Wasabi extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
     }
 }
 export const wasabi_prototype: Wasabi = new Wasabi();
@@ -1457,6 +1586,8 @@ export class MapleSap extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const mapleSap_prototype: MapleSap = new MapleSap();
@@ -1473,6 +1604,8 @@ export class Acorns extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
     }
 }
 export const acorns_prototype: Acorns = new Acorns();
@@ -1489,6 +1622,8 @@ export class VanillaBean extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const vanillaBean_prototype: VanillaBean = new VanillaBean();
@@ -1505,6 +1640,8 @@ export class Cucumbers extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
 export const cucumbers_prototype: Cucumbers = new Cucumbers();
@@ -1527,5 +1664,355 @@ export class Onion extends Food {
         this.hunger = 0;
         this.thirst = 0;
         this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
     }
 }
+export const purpleOnion_prototype: Onion = new Onion("purple");
+export const whiteOnion_prototype: Onion = new Onion("white");
+export const greenOnion_prototype: Onion = new Onion("green");
+export const redOnion_prototype: Onion = new Onion("red");
+foods.push(purpleOnion_prototype, whiteOnion_prototype, greenOnion_prototype, redOnion_prototype);
+
+// var chickenEgg = new CookingIngredient("Chicken Egg", egg, [Source.Farming], false);
+// var fishEgg = new CookingIngredient("Fish Egg", egg, [Source.Fishing], true);
+// var snakeEgg = new CookingIngredient("Snake Egg", egg, [Source.Foraging], false);
+// var lizardEgg = new CookingIngredient("Lizard Egg", egg, [Source.Foraging], false);
+// var dragonEgg = new CookingIngredient("Dragon Egg", egg, [Source.Questing], true);
+export class Egg extends Food {
+    type: "chicken"| "fish"| "snake"| "lizard"| "dragon";
+    constructor(type: "chicken"| "fish"| "snake"| "lizard"| "dragon") {
+        super();
+        this.hasType = true;
+        this.type = type;
+        this.categories.push("Egg");
+        this.singular = this.type + " egg";
+        this.plural = this.singular + "s";
+        this.description = "unborn animal in a shell";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming", "Fishing", "Foraging", "Questing"];
+    }
+}
+export const chickenEgg_prototype: Egg = new Egg("chicken");
+export const fishEgg_prototype: Egg = new Egg("fish");
+export const snakeEgg_prototype: Egg = new Egg("snake");
+export const lizardEgg_prototype: Egg = new Egg("lizard");
+export const dragonEgg_prototype: Egg = new Egg("dragon");
+foods.push(chickenEgg_prototype, fishEgg_prototype, snakeEgg_prototype, lizardEgg_prototype, dragonEgg_prototype);
+
+// var soySauce = new CookingIngredient("Soy Sauce", spice, [Source.Trading], false);
+export class SoySauce extends Food {
+    constructor() {
+        super();
+        this.categories.push("Spice", "Soy Sauce");
+        this.singular = "Soy Sauce";
+        this.plural = "Soy Sauce";
+        this.description = "Soy Sauce";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
+    }
+}
+export const soySauce_prototype: SoySauce = new SoySauce();
+foods.push(soySauce_prototype);
+
+// var cowMilk = new CookingIngredient("Cow Milk", dairy, [Source.Farming], false);
+// var goatMilk = new CookingIngredient("Goat Milk", dairy, [Source.Farming], true);
+export class Milk extends Food {
+    type: "cow"| "goat";
+    constructor(type: "cow"| "goat") {
+        super();
+        this.hasType = true;
+        this.type = type;
+        this.categories.push("Dairy", "Milk");
+        this.singular = this.type + " milk";
+        this.plural = this.singular;
+        this.description = "milk";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cowMilk_prototype: Milk = new Milk("cow");
+export const goatMilk_prototype: Milk = new Milk("goat");
+foods.push(cowMilk_prototype, goatMilk_prototype);
+
+// var milkOfThePoppy = new CookingIngredient("Milk of the Poppy", spice, [Source.Foraging], true);
+export class MilkOfThePoppy extends Food {
+    constructor() {
+        super();
+        this.categories.push("Spice", "Milk of the Poppy");
+        this.singular = "Milk of the Poppy";
+        this.plural = "Milk of the Poppy";
+        this.description = "Milk of the Poppy";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
+    }
+}
+export const milkOfThePoppy_prototype: MilkOfThePoppy = new MilkOfThePoppy();
+foods.push(milkOfThePoppy_prototype);
+
+// var cocoaBeans = new CookingIngredient("Cocoa Beans", spice, [Source.Farming], true);
+export class CocoaBeans extends Food {
+    constructor() {
+        super();
+        this.categories.push("Spice", "Cocoa Beans");
+        this.singular = "Cocoa Beans";
+        this.plural = "Cocoa Beans";
+        this.description = "Cocoa Beans";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cocoaBeans_prototype: CocoaBeans = new CocoaBeans();
+foods.push(cocoaBeans_prototype);
+
+// var coffeeBeans = new CookingIngredient("Coffee Beans", tea, [Source.Farming], true);
+export class CoffeeBeans extends Food {
+    constructor() {
+        super();
+        this.categories.push("Tea", "Coffee Beans");
+        this.singular = "Coffee Beans";
+        this.plural = "Coffee Beans";
+        this.description = "Coffee Beans";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const coffeeBeans_prototype: CoffeeBeans = new CoffeeBeans();
+foods.push(coffeeBeans_prototype);
+
+// var teaLeaves = new CookingIngredient("Tea Leaves", tea, [Source.Farming], false);
+export class TeaLeaves extends Food {
+    constructor() {
+        super();
+        this.categories.push("Tea", "Tea Leaves");
+        this.singular = "Tea Leaves";
+        this.plural = "Tea Leaves";
+        this.description = "Tea Leaves";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const teaLeaves_prototype: TeaLeaves = new TeaLeaves();
+foods.push(teaLeaves_prototype);
+
+// var wheat = new CookingIngredient("Wheat", grain, [Source.Farming], false);
+export class Wheat extends Food {
+    constructor() {
+        super();
+        this.categories.push("Grain", "Wheat");
+        this.singular = "Wheat";
+        this.plural = "Wheat";
+        this.description = "Wheat";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const wheat_prototype: Wheat = new Wheat();
+foods.push(wheat_prototype);
+
+// var oats = new CookingIngredient("Oats", grain, [Source.Farming], false);
+export class Oats extends Food {
+    constructor() {
+        super();
+        this.categories.push("Grain", "Oats");
+        this.singular = "Oats";
+        this.plural = "Oats";
+        this.description = "Oats";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const oats_prototype: Oats = new Oats();
+foods.push(oats_prototype);
+
+// var barley = new CookingIngredient("Barley", grain, [Source.Farming], true);
+export class Barley extends Food {
+    constructor() {
+        super();
+        this.categories.push("Grain", "Barley");
+        this.singular = "Barley";
+        this.plural = "Barley";
+        this.description = "Barley";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const barley_prototype: Barley = new Barley();
+foods.push(barley_prototype);
+
+// var vegetableOil = new CookingIngredient("Vegetable Oil", oil, [Source.Distilling], false);
+// var grapeseedOil = new CookingIngredient("Grapeseed Oil", oil, [Source.Distilling], true);
+// var oliveOil = new CookingIngredient("Olive Oil", oil, [Source.Distilling], true);
+// var avocadoOil = new CookingIngredient("Avocado Oil", oil, [Source.Distilling], true);
+// var peanutOil = new CookingIngredient("Peanut Oil", oil, [Source.Distilling], true);
+// var stickyOil = new CookingIngredient("Sticky Oil", oil, [Source.Questing], false);
+// var dragonessence = new CookingIngredient("Dragonessence", oil, [Source.Questing], true);
+export class Oil extends Food {
+    type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence";
+    constructor(type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence") {
+        super();
+        this.hasType = true;
+        this.type = type;
+        this.categories.push("Oil");
+        this.singular = this.type + " oil";
+        this.plural = this.singular;
+        if(type === "dragonessence") {
+            this.singular = "Dragonessence";
+            this.plural = "Dragonessence";
+        }
+        this.description = "oil";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Distilling"];
+    }
+}
+export const vegetableOil_prototype: Oil = new Oil("vegetable");
+export const grapeseedOil_prototype: Oil = new Oil("grapeseed");
+export const oliveOil_prototype: Oil = new Oil("olive");
+export const avocadoOil_prototype: Oil = new Oil("avocado");
+export const peanutOil_prototype: Oil = new Oil("peanut");
+export const stickyOil_prototype: Oil = new Oil("sticky");
+export const dragonessence_prototype: Oil = new Oil("dragonessence");
+foods.push(vegetableOil_prototype, grapeseedOil_prototype, oliveOil_prototype, avocadoOil_prototype, peanutOil_prototype, stickyOil_prototype, dragonessence_prototype);
+
+export class Wine extends Food {
+    type: "white"| "red" | "muscadine" | "rosé";
+    constructor(type: "white"| "red" | "muscadine" | "rosé") {
+        super();
+        this.hasType = true;
+        this.type = type;
+        this.categories.push("Alcohol");
+        this.singular = this.type + " wine";
+        this.plural = this.singular;
+        if(type === "rosé") {
+            this.singular = "Rosé";
+            this.plural = "Rosé";
+        }
+        this.description = "wine";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Distilling"];
+    }
+}
+export const whiteWine_prototype: Wine = new Wine("white");
+export const redWine_prototype: Wine = new Wine("red");
+export const muscadineWine_prototype: Wine = new Wine("muscadine");
+export const roseWine_prototype: Wine = new Wine("rosé");
+foods.push(whiteWine_prototype, redWine_prototype, muscadineWine_prototype, roseWine_prototype);
+
+// var redCurry = new CookingIngredient("Red Curry", spice, [Source.Trading], false);
+// var greenCurry = new CookingIngredient("Green Curry", spice, [Source.Trading], false);
+// var yellowCurry = new CookingIngredient("Yellow Curry", spice, [Source.Trading], false);
+// var goldenCurry = new CookingIngredient("Golden Curry", spice, [Source.Trading], true);
+export class Curry extends Food {
+    type: "red"| "green"| "yellow"| "golden";
+    constructor(type: "red"| "green"| "yellow"| "golden") {
+        super();
+        this.hasType = true;
+        this.type = type;
+        this.categories.push("Spice");
+        this.singular = this.type + " curry";
+        this.plural = this.singular;
+        if(type === "golden") {
+            this.singular = "Golden Curry";
+            this.plural = "Golden Curry";
+        }
+        this.description = "curry";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Trading"];
+    }
+}
+export const redCurry_prototype: Curry = new Curry("red");
+export const greenCurry_prototype: Curry = new Curry("green");
+export const yellowCurry_prototype: Curry = new Curry("yellow");
+export const goldenCurry_prototype: Curry = new Curry("golden");
+foods.push(redCurry_prototype, greenCurry_prototype, yellowCurry_prototype, goldenCurry_prototype);
+
+// var beets = new CookingIngredient("Beets", vegetable, [Source.Farming], true);
+export class Beets extends Food {
+    constructor() {
+        super();
+        this.categories.push("Vegetable", "Beets");
+        this.singular = "Beets";
+        this.plural = "Beets";
+        this.description = "Beets";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const beets_prototype: Beets = new Beets();
+foods.push(beets_prototype);
+
+// var water = new CookingIngredient("Water", water, [Source.Water], false);
+// var cleanWater = new CookingIngredient("Clean Water", water, [Source.Potions], true);
+// var purifiedWater = new CookingIngredient("Purified Water", water, [Source.Potions], false);
+
+
+export class Flour extends Food {
+    type: "rice"| "wheat"| "barley"| "oat"| "rye"| "buckwheat";
+    constructor(type: "rice"| "wheat"| "barley"| "oat"| "rye"| "buckwheat") {
+        super();
+        this.hasType = true;
+        this.type = type;
+        this.categories.push("Pasta");
+        this.singular = this.type + " flour";
+        this.plural = this.singular;
+        if(type === "buckwheat") {
+            this.singular = "Buckwheat Flour";
+            this.plural = "Buckwheat Flour";
+        }
+        this.description = "flour";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const riceFlour_prototype: Flour = new Flour("rice");
+export const wheatFlour_prototype: Flour = new Flour("wheat");
+export const barleyFlour_prototype: Flour = new Flour("barley");
+export const oatFlour_prototype: Flour = new Flour("oat");
+export const ryeFlour_prototype: Flour = new Flour("rye");
+export const buckwheatFlour_prototype: Flour = new Flour("buckwheat");
+foods.push(riceFlour_prototype, wheatFlour_prototype, barleyFlour_prototype, oatFlour_prototype, ryeFlour_prototype, buckwheatFlour_prototype);

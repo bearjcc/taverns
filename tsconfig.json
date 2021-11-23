@@ -1,12 +1,9 @@
 {
-    "compilerOptions": {
-      "module": "es6",
-      "noImplicitAny": false,
-      "removeComments": false,
-      "preserveConstEnums": false,
-      "sourceMap": true,
-      "allowUnreachableCode": true,
-      "allowUnusedLabels": true,
-
-    }
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+    "outDir": "./js",
+    "rootDir": "./ts",
+    "baseUrl": "./"
   }
+}
