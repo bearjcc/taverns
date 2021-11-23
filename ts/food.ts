@@ -6,9 +6,10 @@
 // Owner: Ursa Minor Inc.
 // ============================================================================
 import {Source} from "./ingredients"
+import {Interactable} from "./interactables"
+import {Item} from "./items"
 import {Consumable} from "./itm_consumables"
-
-
+import {Recipe} from "./recipes"
 
 export class Food extends Consumable {
     sources: Source[]; // where a user can obtain the food
@@ -108,8 +109,17 @@ export class Food extends Consumable {
 
 }
 export var foods: Food[] = [];
+export var proteins: Food[] = [];
+export var meats: Food[] = [];
+export var crustaceans: Food[] = [];
+export var seafoods: Food[] = [];
+export var vegetables: Food[] = [];
+export var fruits: Food[] = [];
+export var grains: Food[] = [];
+export var oils: Food[] = [];
+export var nuts: Food[] = [];
+export var fishes: Food[] = [];
 
-// var salmon = new CookingIngredient("Salmon", fish, [Source.Fishing], false);
 export class Salmon extends Food {
     constructor() {
         super();
@@ -125,9 +135,8 @@ export class Salmon extends Food {
     }
 }
 export const salmon_prototype: Salmon = new Salmon();
-foods.push(salmon_prototype);
+fishes.push(salmon_prototype);
 
-// var trout = new CookingIngredient("Trout", fish, [Source.Fishing], false);
 export class Trout extends Food {
     constructor() {
         super();
@@ -143,13 +152,12 @@ export class Trout extends Food {
     }
 }
 export const trout_prototype: Trout = new Trout();
-foods.push(trout_prototype);
+fishes.push(trout_prototype);
 
 export class RainbowTrout extends Trout {}
 export const rainbowTrout_prototype: RainbowTrout = new RainbowTrout();
-foods.push(rainbowTrout_prototype);
+fishes.push(rainbowTrout_prototype);
 
-// var pike = new CookingIngredient("Pike", fish, [Source.Fishing], true);
 export class Pike extends Food {
     constructor() {
         super();
@@ -165,9 +173,8 @@ export class Pike extends Food {
     }
 }
 export const pike_prototype: Pike = new Pike();
-foods.push(pike_prototype);
+fishes.push(pike_prototype);
 
-// var carp = new CookingIngredient("Carp", fish, [Source.Fishing], false);
 export class Carp extends Food {
     constructor() {
         super();
@@ -183,9 +190,8 @@ export class Carp extends Food {
     }
 }
 export const carp_prototype: Carp = new Carp();
-foods.push(carp_prototype);
+fishes.push(carp_prototype);
 
-// var crayfish = new CookingIngredient("Crayfish", fish, [Source.Fishing], false);
 export class Crayfish extends Food {
     constructor() {
         super();
@@ -201,9 +207,8 @@ export class Crayfish extends Food {
     }
 }
 export const crayfish_prototype: Crayfish = new Crayfish();
-foods.push(crayfish_prototype);
+crustaceans.push(crayfish_prototype);
 
-// var catfish = new CookingIngredient("Catfish", fish, [Source.Fishing], false);
 export class Catfish extends Food {
     constructor() {
         super();
@@ -219,9 +224,8 @@ export class Catfish extends Food {
     }
 }
 export const catfish_prototype: Catfish = new Catfish();
-foods.push(catfish_prototype);
+fishes.push(catfish_prototype);
 
-// var lobster = new CookingIngredient("Lobster", fish, [Source.Fishing], false);
 export class Lobster extends Food {
     constructor() {
         super();
@@ -237,9 +241,8 @@ export class Lobster extends Food {
     }
 }
 export const lobster_prototype: Lobster = new Lobster();
-foods.push(lobster_prototype);
+crustaceans.push(lobster_prototype);
 
-// var clamMeat = new CookingIngredient("Clam Meat", fish, [Source.Fishing], false);
 export class ClamMeat extends Food {
     constructor() {
         super();
@@ -255,9 +258,8 @@ export class ClamMeat extends Food {
     }
 }
 export const clam_meat_prototype: ClamMeat = new ClamMeat();
-foods.push(clam_meat_prototype);
+seafoods.push(clam_meat_prototype);
 
-// var shrimp = new CookingIngredient("Shrimp", fish, [Source.Fishing], false);
 export class Shrimp extends Food {
     constructor() {
         super();
@@ -273,9 +275,8 @@ export class Shrimp extends Food {
     }
 }
 export const shrimp_prototype: Shrimp = new Shrimp();
-foods.push(shrimp_prototype);
+fishes.push(shrimp_prototype);
 
-// var sharkMeat = new CookingIngredient("Shark Meat", fish, [Source.Fishing], true);
 export class SharkMeat extends Food {
     constructor() {
         super();
@@ -291,9 +292,8 @@ export class SharkMeat extends Food {
     }
 }
 export const shark_meat_prototype: SharkMeat = new SharkMeat();
-foods.push(shark_meat_prototype);
+fishes.push(shark_meat_prototype);
 
-// var beef = new CookingIngredient("Beef", meat, [Source.Farming], false);
 export class Beef extends Food {
     constructor() {
         super();
@@ -309,9 +309,8 @@ export class Beef extends Food {
     }
 }
 export const beef_prototype: Beef = new Beef();
-foods.push(beef_prototype);
+meats.push(beef_prototype);
 
-// var pork = new CookingIngredient("Pork", meat, [Source.Farming], false);
 export class Pork extends Food {
     constructor() {
         super();
@@ -327,9 +326,8 @@ export class Pork extends Food {
     }
 }
 export const pork_prototype: Pork = new Pork();
-foods.push(pork_prototype);
+meats.push(pork_prototype);
 
-// var pigSkin = new CookingIngredient("Pig Skin", other, [Source.Farming], true);
 export class PigSkin extends Food {
     constructor() {
         super();
@@ -346,9 +344,8 @@ export class PigSkin extends Food {
     }
 }
 export const pig_skin_prototype: PigSkin = new PigSkin();
-foods.push(pig_skin_prototype);
+meats.push(pig_skin_prototype);
 
-// var pigFeet = new CookingIngredient("Pig's Feet", other, [Source.Farming], true);
 export class PigFeet extends Food {
     constructor() {
         super();
@@ -364,9 +361,7 @@ export class PigFeet extends Food {
     }
 }
 export const pig_feet_prototype: PigFeet = new PigFeet();
-foods.push(pig_feet_prototype);
 
-// var sugar = new CookingIngredient("Sugar", baking, [Source.Milling], false);
 export class Sugar extends Food {
     constructor() {
         super();
@@ -384,9 +379,7 @@ export class Sugar extends Food {
     }
 }
 export const sugar_prototype: Sugar = new Sugar();
-foods.push(sugar_prototype);
 
-// var seaweed = new CookingIngredient("Seaweed", sushi, [Source.Foraging], true);
 export class Seaweed extends Food {
     type: "red" | "green" | "brown";
 
@@ -408,9 +401,7 @@ export class Seaweed extends Food {
 export const seaweedRed_prototype: Seaweed = new Seaweed("red");
 export const seaweedGreen_prototype: Seaweed = new Seaweed("green");
 export const seaweedBrown_prototype: Seaweed = new Seaweed("brown");
-foods.push(seaweedRed_prototype, seaweedGreen_prototype, seaweedBrown_prototype);
 
-// var rice = new CookingIngredient("Rice", grain, [Source.Farming], false);
 export class Rice extends Food {
     constructor() {
         super();
@@ -426,9 +417,7 @@ export class Rice extends Food {
     }
 }
 export const rice_prototype: Rice = new Rice();
-foods.push(rice_prototype);
 
-// var corn = new CookingIngredient("Corn", grain, [Source.Farming], false);
 export class Corn extends Food {
     constructor() {
         super();
@@ -444,7 +433,6 @@ export class Corn extends Food {
     }
 }
 export const corn_prototype: Corn = new Corn();
-foods.push(corn_prototype);
 
 export class CornOnTheCob extends Food {
     constructor() {
@@ -461,9 +449,7 @@ export class CornOnTheCob extends Food {
     }
 }
 export const cornOnOheCob_prototype: CornOnTheCob = new CornOnTheCob();
-foods.push(cornOnOheCob_prototype);
 
-// var asparagus = new CookingIngredient("Asparagus", vegetable, [Source.Farming], false);
 export class Asparagus extends Food {
     constructor() {
         super();
@@ -479,9 +465,7 @@ export class Asparagus extends Food {
     }
 }
 export const asparagus_prototype: Asparagus = new Asparagus();
-foods.push(asparagus_prototype);
 
-// var redBeans = new CookingIngredient("Red Beans", protein, [Source.Foraging], false);
 export class Beans extends Food {
     type: "kidney" | "pinto" | "black" | "green" | "lima" | "mung" | "garbanzo" | "jack" | "soy";
 
@@ -509,14 +493,7 @@ export const beansMung_prototype: Beans = new Beans("mung");
 export const beansGarbanzo_prototype: Beans = new Beans("garbanzo");
 export const beansJack_prototype: Beans = new Beans("jack");
 export const beansSoy_prototype: Beans = new Beans("soy");
-foods.push(beansKidney_prototype, beansPinto_prototype, beansBlack_prototype, beansGreen_prototype, beansLima_prototype, beansMung_prototype, beansGarbanzo_prototype, beansJack_prototype, beansSoy_prototype);
 
-// var whiteMushroom = new CookingIngredient("White Mushroom", protein, [Source.Foraging, Source.Farming], false);
-// var brownMushroom = new CookingIngredient("Brown Mushroom", fungi, [Source.Foraging, Source.Farming], false);
-// var purpleMushroom = new CookingIngredient("Purple Mushroom", fungi, [Source.Foraging, Source.Farming], true);
-// var glowingMushrooms = new CookingIngredient("Glowing Mushrooms", fungi, [Source.Foraging, Source.Farming], true);
-// var morels = new CookingIngredient("Morels", protein, [Source.Foraging, Source.Farming], false);
-// var redMushrooms = new CookingIngredient("Red Mushrooms", poison, [Source.Foraging], false);
 export class Mushroom extends Food {
     type: "white" | "brown" | "purple" | "glowing" | "morel" | "red";
 
@@ -541,9 +518,7 @@ export const mushroomPurple_prototype: Mushroom = new Mushroom("purple", 0);
 export const mushroomGlowing_prototype: Mushroom = new Mushroom("glowing", 0);
 export const mushroomMorel_prototype: Mushroom = new Mushroom("morel", 0);
 export const mushroomRed_prototype: Mushroom = new Mushroom("red", 0);
-foods.push(mushroomWhite_prototype, mushroomBrown_prototype, mushroomPurple_prototype, mushroomGlowing_prototype, mushroomMorel_prototype, mushroomRed_prototype);
 
-// var apples = new CookingIngredient("Apples", fruit, [Source.Farming, Source.Foraging], false);
 export class Apple extends Food {
     type: "red" | "green" | "golden";
 
@@ -565,9 +540,7 @@ export class Apple extends Food {
 export const appleRed_prototype: Apple = new Apple("red");
 export const appleGreen_prototype: Apple = new Apple("green");
 export const appleGolden_prototype: Apple = new Apple("golden");
-foods.push(appleRed_prototype, appleGreen_prototype, appleGolden_prototype);
 
-// var pears = new CookingIngredient("Pears", fruit, [Source.Farming], true);
 export class Pear extends Food {
     constructor() {
         super();
@@ -583,10 +556,6 @@ export class Pear extends Food {
     }
 }
 export const pear_prototype: Pear = new Pear();
-foods.push(pear_prototype);
-
-// var grapes = new CookingIngredient("Grapes", fruit, [Source.Farming], false);
-
 
 export class Grape extends Food {
     type: "red" | "white" | "purple" | "muscadine";
@@ -610,9 +579,7 @@ export const grapeRed_prototype: Grape = new Grape("red");
 export const grapeWhite_prototype: Grape = new Grape("white");
 export const grapePurple_prototype: Grape = new Grape("purple");
 export const grapeMuscadine_prototype: Grape = new Grape("muscadine");
-foods.push(grapeRed_prototype, grapeWhite_prototype, grapePurple_prototype, grapeMuscadine_prototype);
 
-// var avocados = new CookingIngredient("Avocados", fruit, [Source.Farming], true);
 export class Avocado extends Food {
     constructor() {
         super();
@@ -628,9 +595,7 @@ export class Avocado extends Food {
     }
 }
 export const avocado_prototype: Avocado = new Avocado();
-foods.push(avocado_prototype);
 
-// var citrus = new CookingIngredient("Citrus", fruit, [Source.Farming], true);
 export class Citrus extends Food {
     type: "orange" | "lemon" | "lime" | "grapefruit" | "tangerine";
 
@@ -654,9 +619,7 @@ export const citrusLemon_prototype: Citrus = new Citrus("lemon");
 export const citrusLime_prototype: Citrus = new Citrus("lime");
 export const citrusGrapefruit_prototype: Citrus = new Citrus("grapefruit");
 export const citrusTangerine_prototype: Citrus = new Citrus("tangerine");
-foods.push(citrusOrange_prototype, citrusLemon_prototype, citrusLime_prototype, citrusGrapefruit_prototype, citrusTangerine_prototype);
 
-// var peanuts = new CookingIngredient("Peanuts", nut, [Source.Farming], false);
 export class Peanut extends Food {
     constructor() {
         super();
@@ -672,9 +635,7 @@ export class Peanut extends Food {
     }
 }
 export const peanut_prototype: Peanut = new Peanut();
-foods.push(peanut_prototype);
 
-// var walnuts = new CookingIngredient("Walnuts", nut, [Source.Foraging], false);
 export class Walnut extends Food {
     constructor() {
         super();
@@ -690,9 +651,7 @@ export class Walnut extends Food {
     }
 }
 export const walnut_prototype: Walnut = new Walnut();
-foods.push(walnut_prototype);
 
-// var almonds = new CookingIngredient("Almonds", nut, [Source.Farming], true);
 export class Almond extends Food {
     constructor() {
         super();
@@ -708,9 +667,7 @@ export class Almond extends Food {
     }
 }
 export const almond_prototype: Almond = new Almond();
-foods.push(almond_prototype);
 
-// var brazilNuts = new CookingIngredient("Brazil Nuts", nut, [Source.Foraging], true);
 export class BrazilNut extends Food {
     constructor() {
         super();
@@ -726,9 +683,7 @@ export class BrazilNut extends Food {
     }
 }
 export const brazilNut_prototype: BrazilNut = new BrazilNut();
-foods.push(brazilNut_prototype);
 
-// var chestnuts = new CookingIngredient("Chestnuts", nut, [Source.Questing], false);
 export class Chestnut extends Food {
     constructor() {
         super();
@@ -744,9 +699,7 @@ export class Chestnut extends Food {
     }
 }
 export const chestnut_prototype: Chestnut = new Chestnut();
-foods.push(chestnut_prototype);
 
-// var coconut = new CookingIngredient("Coconut", fruit, [Source.Foraging], false);
 export class Coconut extends Food {
     constructor() {
         super();
@@ -762,9 +715,7 @@ export class Coconut extends Food {
     }
 }
 export const coconut_prototype: Coconut = new Coconut();
-foods.push(coconut_prototype);
 
-// var carrots = new CookingIngredient("Carrots", vegetable, [Source.Farming], false);
 export class Carrot extends Food {
     constructor() {
         super();
@@ -780,9 +731,7 @@ export class Carrot extends Food {
     }
 }
 export const carrot_prototype: Carrot = new Carrot();
-foods.push(carrot_prototype);
 
-// var potatoes = new CookingIngredient("Potatoes", starch, [Source.Farming, Source.Foraging], false);
 export class Potato extends Food {
     constructor() {
         super();
@@ -798,9 +747,7 @@ export class Potato extends Food {
     }
 }
 export const potato_prototype: Potato = new Potato();
-foods.push(potato_prototype);
 
-// var beets = new CookingIngredient("Beets", vegetable, [Source.Farming], true);
 export class Beet extends Food {
     constructor() {
         super();
@@ -816,9 +763,7 @@ export class Beet extends Food {
     }
 }
 export const beet_prototype: Beet = new Beet();
-foods.push(beet_prototype);
 
-// var eggplant = new CookingIngredient("Eggplant", vegetable, [Source.Farming], true);
 export class Eggplant extends Food {
     constructor() {
         super();
@@ -834,18 +779,7 @@ export class Eggplant extends Food {
     }
 }
 export const eggplant_prototype: Eggplant = new Eggplant();
-foods.push(eggplant_prototype);
 
-// var redBerries = new CookingIngredient("Red Berries", berry, [Source.Foraging], false);
-// var blueberries = new CookingIngredient("Blueberries", berry, [Source.Foraging], false);
-// var boysenberries = new CookingIngredient("Boysenberries", berry, [Source.Foraging], true);
-// var snozzberries = new CookingIngredient("Snozzberries", berry, [Source.Foraging], false);
-// var cherries = new CookingIngredient("Cherries", fruit, [Source.Questing], false);
-// var strawberries = new CookingIngredient("Strawberries", fruit, [Source.Foraging], false);
-// var blackberries = new CookingIngredient("Blackberries", berry, [Source.Foraging], false);
-// var raspberries = new CookingIngredient("Raspberries", berry, [Source.Foraging], false);
-// var blueCurrants = new CookingIngredient("Blue Currants", berry, [Source.Foraging], false);
-// var blackCurrants = new CookingIngredient("Black Currants", berry, [Source.Foraging], false);
 export class Berry extends Food {
     type: "red" | "blue" | "black" | "snozz" | "cherry" | "straw" | "rasp" | "blue currant" | "black currant";
     constructor(type: "red" | "blue" | "black" | "snozz" | "cherry" | "straw" | "rasp" | "blue currant" | "black currant") {
@@ -880,9 +814,7 @@ export const berryStraw_prototype: Berry = new Berry("straw");
 export const berryRasp_prototype: Berry = new Berry("rasp");
 export const berryBlueCurrant_prototype: Berry = new Berry("blue currant");
 export const berryBlackCurrant_prototype: Berry = new Berry("black currant");
-foods.push(berryRed_prototype, berryBlue_prototype, berryBlack_prototype, berrySnozz_prototype, berryCherry_prototype, berryStraw_prototype, berryRasp_prototype, berryBlueCurrant_prototype, berryBlackCurrant_prototype);
 
-// var bananas = new CookingIngredient("Bananas", fruit, [Source.Farming], false);
 export class Banana extends Food {
     constructor() {
         super();
@@ -898,9 +830,7 @@ export class Banana extends Food {
     }
 }
 export const banana_prototype: Banana = new Banana();
-foods.push(banana_prototype);
 
-// var pineapples = new CookingIngredient("Pineapples", fruit, [Source.Foraging], false);
 export class Pineapple extends Food {
     constructor() {
         super();
@@ -916,14 +846,7 @@ export class Pineapple extends Food {
     }
 }
 export const pineapple_prototype: Pineapple = new Pineapple();
-foods.push(pineapple_prototype);
 
-// var blackPepper = new CookingIngredient("Black Pepper", spice, [Source.Trading], false);
-// var whitePepper = new CookingIngredient("White Pepper", spice, [Source.Trading], false);
-// var bellPepper = new CookingIngredient("Bell Pepper", vegetable, [Source.Farming], false);
-// var jalapenos = new CookingIngredient("Jalapenos", vegetable, [Source.Farming], false);
-// var cayennePepper = new CookingIngredient("Cayenne Pepper", spice, [Source.Trading], false);
-// var chiliPepper = new CookingIngredient("Chili Pepper", spice, [Source.Trading], false);
 export class Pepper extends Food {
     type: "black" | "white" | "bell" | "jalapeno" | "cayenne" | "chili";
     constructor(type: "black" | "white" | "bell" | "jalapeno" | "cayenne" | "chili") {
@@ -947,9 +870,7 @@ export const pepperBell_prototype: Pepper = new Pepper("bell");
 export const pepperJalapeno_prototype: Pepper = new Pepper("jalapeno");
 export const pepperCayenne_prototype: Pepper = new Pepper("cayenne");
 export const pepperChili_prototype: Pepper = new Pepper("chili");
-foods.push(pepperBlack_prototype, pepperWhite_prototype, pepperBell_prototype, pepperJalapeno_prototype, pepperCayenne_prototype, pepperChili_prototype);
 
-// var coriander = new CookingIngredient("Coriander", herb, [Source.Trading], false);
 export class Coriander extends Food {
     constructor() {
         super();
@@ -965,9 +886,7 @@ export class Coriander extends Food {
     }
 }
 export const coriander_prototype: Coriander = new Coriander();
-foods.push(coriander_prototype);
 
-// var cilantro = new CookingIngredient("Cilantro", herb, [Source.Trading], false);
 export class Cilantro extends Food {
     constructor() {
         super();
@@ -983,9 +902,7 @@ export class Cilantro extends Food {
     }
 }
 export const cilantro_prototype: Cilantro = new Cilantro();
-foods.push(cilantro_prototype);
 
-// var cumin = new CookingIngredient("Cumin", spice, [Source.Trading], false);
 export class Cumin extends Food {
     constructor() {
         super();
@@ -1001,9 +918,7 @@ export class Cumin extends Food {
     }
 }
 export const cumin_prototype: Cumin = new Cumin();
-foods.push(cumin_prototype);
 
-// var dill = new CookingIngredient("Dill", herb, [Source.Trading], false);
 export class Dill extends Food {
     constructor() {
         super();
@@ -1019,9 +934,7 @@ export class Dill extends Food {
     }
 }
 export const dill_prototype: Dill = new Dill();
-foods.push(dill_prototype);
 
-// var fennel = new CookingIngredient("Fennel", herb, [Source.Trading], false);
 export class Fennel extends Food {
     constructor() {
         super();
@@ -1037,9 +950,7 @@ export class Fennel extends Food {
     }
 }
 export const fennel_prototype: Fennel = new Fennel();
-foods.push(fennel_prototype);
 
-// var garlic = new CookingIngredient("Garlic", herb, [Source.Trading], false);
 export class Garlic extends Food {
     constructor() {
         super();
@@ -1055,9 +966,7 @@ export class Garlic extends Food {
     }
 }
 export const garlic_prototype: Garlic = new Garlic();
-foods.push(garlic_prototype);
 
-// var ginger = new CookingIngredient("Ginger", herb, [Source.Trading], false);
 export class Ginger extends Food {
     constructor() {
         super();
@@ -1073,9 +982,7 @@ export class Ginger extends Food {
     }
 }
 export const ginger_prototype: Ginger = new Ginger();
-foods.push(ginger_prototype);
 
-// var oregano = new CookingIngredient("Oregano", herb, [Source.Trading], false);
 export class Oregano extends Food {
     constructor() {
         super();
@@ -1091,9 +998,7 @@ export class Oregano extends Food {
     }
 }
 export const oregano_prototype: Oregano = new Oregano();
-foods.push(oregano_prototype);
 
-// var parsley = new CookingIngredient("Parsley", herb, [Source.Trading], false);
 export class Parsley extends Food {
     constructor() {
         super();
@@ -1109,9 +1014,7 @@ export class Parsley extends Food {
     }
 }
 export const parsley_prototype: Parsley = new Parsley();
-foods.push(parsley_prototype);
 
-// var rosemary = new CookingIngredient("Rosemary", herb, [Source.Trading], false);
 export class Rosemary extends Food {
     constructor() {
         super();
@@ -1127,9 +1030,7 @@ export class Rosemary extends Food {
     }
 }
 export const rosemary_prototype: Rosemary = new Rosemary();
-foods.push(rosemary_prototype);
 
-// var thyme = new CookingIngredient("Thyme", herb, [Source.Trading], false);
 export class Thyme extends Food {
     constructor() {
         super();
@@ -1145,9 +1046,7 @@ export class Thyme extends Food {
     }
 }
 export const thyme_prototype: Thyme = new Thyme();
-foods.push(thyme_prototype);
 
-// var turmeric = new CookingIngredient("Turmeric", spice, [Source.Trading], false);
 export class Turmeric extends Food {
     constructor() {
         super();
@@ -1163,9 +1062,7 @@ export class Turmeric extends Food {
     }
 }
 export const turmeric_prototype: Turmeric = new Turmeric();
-foods.push(turmeric_prototype);
 
-// var chives = new CookingIngredient("Chives", herb, [Source.Trading], false);
 export class Chives extends Food {
     constructor() {
         super();
@@ -1181,9 +1078,7 @@ export class Chives extends Food {
     }
 }
 export const chives_prototype: Chives = new Chives();
-foods.push(chives_prototype);
 
-// var sage = new CookingIngredient("Sage", herb, [Source.Trading], false);
 export class Sage extends Food {
     constructor() {
         super();
@@ -1199,9 +1094,7 @@ export class Sage extends Food {
     }
 }
 export const sage_prototype: Sage = new Sage();
-foods.push(sage_prototype);
 
-// var basil = new CookingIngredient("Basil", herb, [Source.Trading], false);
 export class Basil extends Food {
     constructor() {
         super();
@@ -1217,9 +1110,7 @@ export class Basil extends Food {
     }
 }
 export const basil_prototype: Basil = new Basil();
-foods.push(basil_prototype);
 
-// var tomatoes = new CookingIngredient("Tomatoes", fruit, [Source.Farming], false);
 export class Tomatoes extends Food {
     constructor() {
         super();
@@ -1235,9 +1126,7 @@ export class Tomatoes extends Food {
     }
 }
 export const tomatoes_prototype: Tomatoes = new Tomatoes();
-foods.push(tomatoes_prototype);
 
-// var lettuce = new CookingIngredient("Lettuce", vegetable, [Source.Farming], false);
 export class Lettuce extends Food {
     constructor() {
         super();
@@ -1253,9 +1142,7 @@ export class Lettuce extends Food {
     }
 }
 export const lettuce_prototype: Lettuce = new Lettuce();
-foods.push(lettuce_prototype);
 
-// var cabbage = new CookingIngredient("Cabbage", vegetable, [Source.Farming], true);
 export class Cabbage extends Food {
     constructor() {
         super();
@@ -1271,9 +1158,7 @@ export class Cabbage extends Food {
     }
 }
 export const cabbage_prototype: Cabbage = new Cabbage();
-foods.push(cabbage_prototype);
 
-// var cauliflower = new CookingIngredient("Cauliflower", vegetable, [Source.Farming], true);
 export class Cauliflower extends Food {
     constructor() {
         super();
@@ -1289,9 +1174,7 @@ export class Cauliflower extends Food {
     }
 }
 export const cauliflower_prototype: Cauliflower = new Cauliflower();
-foods.push(cauliflower_prototype);
 
-// var broccoli = new CookingIngredient("Broccoli", vegetable, [Source.Farming], false);
 export class Broccoli extends Food {
     constructor() {
         super();
@@ -1307,9 +1190,7 @@ export class Broccoli extends Food {
     }
 }
 export const broccoli_prototype: Broccoli = new Broccoli();
-foods.push(broccoli_prototype);
 
-// var rancidMeat = new CookingIngredient("Rancid Meat", protein, [Source.Questing], false);
 export class RancidMeat extends Food {
     constructor() {
         super();
@@ -1325,9 +1206,7 @@ export class RancidMeat extends Food {
     }
 }
 export const rancidMeat_prototype: RancidMeat = new RancidMeat();
-foods.push(rancidMeat_prototype);
 
-// var questionableMeat = new CookingIngredient("Questionable Meat", protein, [Source.Questing], false);
 export class QuestionableMeat extends Food {
     constructor() {
         super();
@@ -1343,9 +1222,7 @@ export class QuestionableMeat extends Food {
     }
 }
 export const questionableMeat_prototype: QuestionableMeat = new QuestionableMeat();
-foods.push(questionableMeat_prototype);
 
-// var dragonmeat = new CookingIngredient("Dragonmeat", protein, [Source.Questing], true);
 export class Dragonmeat extends Food {
     constructor() {
         super();
@@ -1361,9 +1238,7 @@ export class Dragonmeat extends Food {
     }
 }
 export const dragonmeat_prototype: Dragonmeat = new Dragonmeat();
-foods.push(dragonmeat_prototype);
 
-// var grubs = new CookingIngredient("Grubs", protein, [Source.Foraging], false);
 export class Grubs extends Food {
     constructor() {
         super();
@@ -1379,9 +1254,7 @@ export class Grubs extends Food {
     }
 }
 export const grubs_prototype: Grubs = new Grubs();
-foods.push(grubs_prototype);
 
-// var brains = new CookingIngredient("Brains", other, [Source.Foraging], true);
 export class Brains extends Food {
     constructor() {
         super();
@@ -1397,9 +1270,7 @@ export class Brains extends Food {
     }
 }
 export const brains_prototype: Brains = new Brains();
-foods.push(brains_prototype);
 
-// var mealworms = new CookingIngredient("Mealworms", protein, [Source.Foraging], false);
 export class Mealworms extends Food {
     constructor() {
         super();
@@ -1415,9 +1286,7 @@ export class Mealworms extends Food {
     }
 }
 export const mealworms_prototype: Mealworms = new Mealworms();
-foods.push(mealworms_prototype);
 
-// var beetles = new CookingIngredient("Beetles", protein, [Source.Foraging], false);
 export class Beetles extends Food {
     constructor() {
         super();
@@ -1433,9 +1302,7 @@ export class Beetles extends Food {
     }
 }
 export const beetles_prototype: Beetles = new Beetles();
-foods.push(beetles_prototype);
 
-// var fireAnts = new CookingIngredient("Fire Ants", protein, [Source.Foraging], true);
 export class Ants extends Food {
     type : "red" | "black"| "fire";
     constructor(type: "red" | "black"| "fire") {
@@ -1456,12 +1323,7 @@ export class Ants extends Food {
 export const antsRed_prototype: Ants = new Ants("red");
 export const antsBlack_prototype: Ants = new Ants("black");
 export const antsFire_prototype: Ants = new Ants("fire");
-foods.push(antsRed_prototype, antsBlack_prototype, antsFire_prototype);
 
-// var grayOoze = new CookingIngredient("Gray Ooze", other, [Source.Foraging, Source.Questing], false);
-// var greenOoze = new CookingIngredient("Green Ooze", other, [Source.Questing], false);
-// var superiorOoze = new CookingIngredient("Superior Ooze", other, [Source.Questing], true);
-// var purpleOoze = new CookingIngredient("Purple Ooze", other, [Source.Questing], true);
 export class Ooze extends Food {
     type : "gray" | "green" | "superior" | "purple";
     constructor(type: "gray" | "green" | "superior" | "purple") {
@@ -1483,9 +1345,7 @@ export const oozeGray_prototype: Ooze = new Ooze("gray");
 export const oozeGreen_prototype: Ooze = new Ooze("green");
 export const oozeSuperior_prototype: Ooze = new Ooze("superior");
 export const oozePurple_prototype: Ooze = new Ooze("purple");
-foods.push(oozeGray_prototype, oozeGreen_prototype, oozeSuperior_prototype, oozePurple_prototype);
 
-// var glowworm = new CookingIngredient("Glowworm", protein, [Source.Foraging], false);
 export class Glowworm extends Food {
     constructor() {
         super();
@@ -1501,9 +1361,7 @@ export class Glowworm extends Food {
     }
 }
 export const glowworm_prototype: Glowworm = new Glowworm();
-foods.push(glowworm_prototype);
 
-// var humanoidFlesh = new CookingIngredient("Humanoid Flesh", protein, [Source.ReligiousCeremony], true);
 export class HumanoidFlesh extends Food {
     constructor() {
         super();
@@ -1519,9 +1377,7 @@ export class HumanoidFlesh extends Food {
     }
 }
 export const humanoidFlesh_prototype: HumanoidFlesh = new HumanoidFlesh();
-foods.push(humanoidFlesh_prototype);
 
-// var deerMeat = new CookingIngredient("Deer Meat", protein, [Source.Hunting], false);
 export class Venison extends Food {
     constructor() {
         super();
@@ -1537,9 +1393,7 @@ export class Venison extends Food {
     }
 }
 export const venison_prototype: Venison = new Venison();
-foods.push(venison_prototype);
 
-// var sprouts = new CookingIngredient("Sprouts", spice, [Source.Foraging], true);
 export class Sprouts extends Food {
     constructor() {
         super();
@@ -1555,9 +1409,7 @@ export class Sprouts extends Food {
     }
 }
 export const sprouts_prototype: Sprouts = new Sprouts();
-foods.push(sprouts_prototype);
 
-// var wasabi = new CookingIngredient("Wasabi", spice, [Source.Trading], true);
 export class Wasabi extends Food {
     constructor() {
         super();
@@ -1573,9 +1425,7 @@ export class Wasabi extends Food {
     }
 }
 export const wasabi_prototype: Wasabi = new Wasabi();
-foods.push(wasabi_prototype);
 
-// var mapleSap = new CookingIngredient("Maple Sap", other, [Source.Foraging], false);
 export class MapleSap extends Food {
     constructor() {
         super();
@@ -1591,9 +1441,7 @@ export class MapleSap extends Food {
     }
 }
 export const mapleSap_prototype: MapleSap = new MapleSap();
-foods.push(mapleSap_prototype);
 
-// var acorns = new CookingIngredient("Acorns", other, [Source.Foraging], false);
 export class Acorns extends Food {
     constructor() {
         super();
@@ -1609,9 +1457,7 @@ export class Acorns extends Food {
     }
 }
 export const acorns_prototype: Acorns = new Acorns();
-foods.push(acorns_prototype);
 
-// var vanillaBean = new CookingIngredient("Vanilla Bean", spice, [Source.Farming], true);
 export class VanillaBean extends Food {
     constructor() {
         super();
@@ -1627,9 +1473,7 @@ export class VanillaBean extends Food {
     }
 }
 export const vanillaBean_prototype: VanillaBean = new VanillaBean();
-foods.push(vanillaBean_prototype);
 
-// var cucumbers = new CookingIngredient("Cucumbers", vegetable, [Source.Farming], false);
 export class Cucumbers extends Food {
     constructor() {
         super();
@@ -1645,12 +1489,7 @@ export class Cucumbers extends Food {
     }
 }
 export const cucumbers_prototype: Cucumbers = new Cucumbers();
-foods.push(cucumbers_prototype);
 
-// var purpleOnion = new CookingIngredient("Purple Onion", vegetable, [Source.Farming], true);
-// var whiteOnion = new CookingIngredient("White Onion", vegetable, [Source.Farming], false);
-// var greenOnion = new CookingIngredient("Green Onion", vegetable, [Source.Foraging], false);
-// var redOnion = new CookingIngredient("Red Onion", vegetable, [Source.Foraging], false);
 export class Onion extends Food {
     type: "purple"| "white"| "green"| "red";
     constructor(type: "purple"| "white"| "green"| "red") {
@@ -1672,13 +1511,7 @@ export const purpleOnion_prototype: Onion = new Onion("purple");
 export const whiteOnion_prototype: Onion = new Onion("white");
 export const greenOnion_prototype: Onion = new Onion("green");
 export const redOnion_prototype: Onion = new Onion("red");
-foods.push(purpleOnion_prototype, whiteOnion_prototype, greenOnion_prototype, redOnion_prototype);
 
-// var chickenEgg = new CookingIngredient("Chicken Egg", egg, [Source.Farming], false);
-// var fishEgg = new CookingIngredient("Fish Egg", egg, [Source.Fishing], true);
-// var snakeEgg = new CookingIngredient("Snake Egg", egg, [Source.Foraging], false);
-// var lizardEgg = new CookingIngredient("Lizard Egg", egg, [Source.Foraging], false);
-// var dragonEgg = new CookingIngredient("Dragon Egg", egg, [Source.Questing], true);
 export class Egg extends Food {
     type: "chicken"| "fish"| "snake"| "lizard"| "dragon";
     constructor(type: "chicken"| "fish"| "snake"| "lizard"| "dragon") {
@@ -1701,9 +1534,7 @@ export const fishEgg_prototype: Egg = new Egg("fish");
 export const snakeEgg_prototype: Egg = new Egg("snake");
 export const lizardEgg_prototype: Egg = new Egg("lizard");
 export const dragonEgg_prototype: Egg = new Egg("dragon");
-foods.push(chickenEgg_prototype, fishEgg_prototype, snakeEgg_prototype, lizardEgg_prototype, dragonEgg_prototype);
 
-// var soySauce = new CookingIngredient("Soy Sauce", spice, [Source.Trading], false);
 export class SoySauce extends Food {
     constructor() {
         super();
@@ -1719,10 +1550,7 @@ export class SoySauce extends Food {
     }
 }
 export const soySauce_prototype: SoySauce = new SoySauce();
-foods.push(soySauce_prototype);
 
-// var cowMilk = new CookingIngredient("Cow Milk", dairy, [Source.Farming], false);
-// var goatMilk = new CookingIngredient("Goat Milk", dairy, [Source.Farming], true);
 export class Milk extends Food {
     type: "cow"| "goat";
     constructor(type: "cow"| "goat") {
@@ -1742,9 +1570,7 @@ export class Milk extends Food {
 }
 export const cowMilk_prototype: Milk = new Milk("cow");
 export const goatMilk_prototype: Milk = new Milk("goat");
-foods.push(cowMilk_prototype, goatMilk_prototype);
 
-// var milkOfThePoppy = new CookingIngredient("Milk of the Poppy", spice, [Source.Foraging], true);
 export class MilkOfThePoppy extends Food {
     constructor() {
         super();
@@ -1760,9 +1586,7 @@ export class MilkOfThePoppy extends Food {
     }
 }
 export const milkOfThePoppy_prototype: MilkOfThePoppy = new MilkOfThePoppy();
-foods.push(milkOfThePoppy_prototype);
 
-// var cocoaBeans = new CookingIngredient("Cocoa Beans", spice, [Source.Farming], true);
 export class CocoaBeans extends Food {
     constructor() {
         super();
@@ -1778,9 +1602,7 @@ export class CocoaBeans extends Food {
     }
 }
 export const cocoaBeans_prototype: CocoaBeans = new CocoaBeans();
-foods.push(cocoaBeans_prototype);
 
-// var coffeeBeans = new CookingIngredient("Coffee Beans", tea, [Source.Farming], true);
 export class CoffeeBeans extends Food {
     constructor() {
         super();
@@ -1796,9 +1618,7 @@ export class CoffeeBeans extends Food {
     }
 }
 export const coffeeBeans_prototype: CoffeeBeans = new CoffeeBeans();
-foods.push(coffeeBeans_prototype);
 
-// var teaLeaves = new CookingIngredient("Tea Leaves", tea, [Source.Farming], false);
 export class TeaLeaves extends Food {
     constructor() {
         super();
@@ -1814,9 +1634,7 @@ export class TeaLeaves extends Food {
     }
 }
 export const teaLeaves_prototype: TeaLeaves = new TeaLeaves();
-foods.push(teaLeaves_prototype);
 
-// var wheat = new CookingIngredient("Wheat", grain, [Source.Farming], false);
 export class Wheat extends Food {
     constructor() {
         super();
@@ -1832,9 +1650,7 @@ export class Wheat extends Food {
     }
 }
 export const wheat_prototype: Wheat = new Wheat();
-foods.push(wheat_prototype);
 
-// var oats = new CookingIngredient("Oats", grain, [Source.Farming], false);
 export class Oats extends Food {
     constructor() {
         super();
@@ -1850,9 +1666,7 @@ export class Oats extends Food {
     }
 }
 export const oats_prototype: Oats = new Oats();
-foods.push(oats_prototype);
 
-// var barley = new CookingIngredient("Barley", grain, [Source.Farming], true);
 export class Barley extends Food {
     constructor() {
         super();
@@ -1868,15 +1682,7 @@ export class Barley extends Food {
     }
 }
 export const barley_prototype: Barley = new Barley();
-foods.push(barley_prototype);
 
-// var vegetableOil = new CookingIngredient("Vegetable Oil", oil, [Source.Distilling], false);
-// var grapeseedOil = new CookingIngredient("Grapeseed Oil", oil, [Source.Distilling], true);
-// var oliveOil = new CookingIngredient("Olive Oil", oil, [Source.Distilling], true);
-// var avocadoOil = new CookingIngredient("Avocado Oil", oil, [Source.Distilling], true);
-// var peanutOil = new CookingIngredient("Peanut Oil", oil, [Source.Distilling], true);
-// var stickyOil = new CookingIngredient("Sticky Oil", oil, [Source.Questing], false);
-// var dragonessence = new CookingIngredient("Dragonessence", oil, [Source.Questing], true);
 export class Oil extends Food {
     type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence";
     constructor(type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence") {
@@ -1905,7 +1711,6 @@ export const avocadoOil_prototype: Oil = new Oil("avocado");
 export const peanutOil_prototype: Oil = new Oil("peanut");
 export const stickyOil_prototype: Oil = new Oil("sticky");
 export const dragonessence_prototype: Oil = new Oil("dragonessence");
-foods.push(vegetableOil_prototype, grapeseedOil_prototype, oliveOil_prototype, avocadoOil_prototype, peanutOil_prototype, stickyOil_prototype, dragonessence_prototype);
 
 export class Wine extends Food {
     type: "white"| "red" | "muscadine" | "rosé";
@@ -1932,12 +1737,7 @@ export const whiteWine_prototype: Wine = new Wine("white");
 export const redWine_prototype: Wine = new Wine("red");
 export const muscadineWine_prototype: Wine = new Wine("muscadine");
 export const roseWine_prototype: Wine = new Wine("rosé");
-foods.push(whiteWine_prototype, redWine_prototype, muscadineWine_prototype, roseWine_prototype);
 
-// var redCurry = new CookingIngredient("Red Curry", spice, [Source.Trading], false);
-// var greenCurry = new CookingIngredient("Green Curry", spice, [Source.Trading], false);
-// var yellowCurry = new CookingIngredient("Yellow Curry", spice, [Source.Trading], false);
-// var goldenCurry = new CookingIngredient("Golden Curry", spice, [Source.Trading], true);
 export class Curry extends Food {
     type: "red"| "green"| "yellow"| "golden";
     constructor(type: "red"| "green"| "yellow"| "golden") {
@@ -1963,9 +1763,7 @@ export const redCurry_prototype: Curry = new Curry("red");
 export const greenCurry_prototype: Curry = new Curry("green");
 export const yellowCurry_prototype: Curry = new Curry("yellow");
 export const goldenCurry_prototype: Curry = new Curry("golden");
-foods.push(redCurry_prototype, greenCurry_prototype, yellowCurry_prototype, goldenCurry_prototype);
 
-// var beets = new CookingIngredient("Beets", vegetable, [Source.Farming], true);
 export class Beets extends Food {
     constructor() {
         super();
@@ -1981,12 +1779,6 @@ export class Beets extends Food {
     }
 }
 export const beets_prototype: Beets = new Beets();
-foods.push(beets_prototype);
-
-// var water = new CookingIngredient("Water", water, [Source.Water], false);
-// var cleanWater = new CookingIngredient("Clean Water", water, [Source.Potions], true);
-// var purifiedWater = new CookingIngredient("Purified Water", water, [Source.Potions], false);
-
 
 export class Flour extends Food {
     type: "rice"| "wheat"| "barley"| "oat"| "rye"| "buckwheat";
@@ -2015,4 +1807,2015 @@ export const barleyFlour_prototype: Flour = new Flour("barley");
 export const oatFlour_prototype: Flour = new Flour("oat");
 export const ryeFlour_prototype: Flour = new Flour("rye");
 export const buckwheatFlour_prototype: Flour = new Flour("buckwheat");
-foods.push(riceFlour_prototype, wheatFlour_prototype, barleyFlour_prototype, oatFlour_prototype, ryeFlour_prototype, buckwheatFlour_prototype);
+
+export class CookingRecipe extends Recipe {
+    ingredients: Array<Food>;
+    extras: Array<Food>;
+    locations: Array<Interactable>;
+    items: Array<Item>;
+    notes: string;
+    
+    constructor(name: string, description: string) {
+        super(name, description);
+    }
+}
+
+export class Honey extends Food {
+    constructor() {
+        super();
+        this.categories.push("Honey");
+        this.singular = "honey";
+        this.plural = "honey";
+        this.description = "honey";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const honey_prototype: Honey = new Honey();
+
+var cookingRecipes: Array<CookingRecipe> = [];
+
+export class PancakeBatter extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pancake Batter");
+        this.singular = "pancake batter";
+        this.plural = "pancake batter";
+        this.description = "pancake batter";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pancakeBatter_prototype: PancakeBatter = new PancakeBatter();
+
+export class Jam extends Food {
+    constructor() {
+        super();
+        this.categories.push("Jam");
+        this.singular = "jam";
+        this.plural = "jam";
+        this.description = "jam";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const jam_prototype: Jam = new Jam();
+
+export class ChiliPowder extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chili Powder");
+        this.singular = "chili powder";
+        this.plural = "chili powder";
+        this.description = "chili powder";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chiliPowder_prototype: ChiliPowder = new ChiliPowder();
+
+export class Chocolate extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chocolate");
+        this.singular = "chocolate";
+        this.plural = "chocolate";
+        this.description = "chocolate";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chocolate_prototype: Chocolate = new Chocolate();
+
+export class FriedEgg extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fried Egg");
+        this.singular = "fried egg";
+        this.plural = "fried egg";
+        this.description = "fried egg";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const friedEgg_prototype: FriedEgg = new FriedEgg();
+
+export class Omelet extends Food {
+    constructor() {
+        super();
+        this.categories.push("Omelet");
+        this.singular = "omelet";
+        this.plural = "omelet";
+        this.description = "omelet";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const omelet_prototype: Omelet = new Omelet();
+
+export class ScrambledEgg extends Food {
+    constructor() {
+        super();
+        this.categories.push("Scrambled Egg");
+        this.singular = "scrambled egg";
+        this.plural = "scrambled egg";
+        this.description = "scrambled egg";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const scrambledEgg_prototype: ScrambledEgg = new ScrambledEgg();
+
+export class PoachedEgg extends Food {
+    constructor() {
+        super();
+        this.categories.push("Poached Egg");
+        this.singular = "poached egg";
+        this.plural = "poached egg";
+        this.description = "poached egg";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const poachedEgg_prototype: PoachedEgg = new PoachedEgg();
+
+
+export class Pickle extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pickle");
+        this.singular = "pickle";
+        this.plural = "pickle";
+        this.description = "pickle";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pickle_prototype: Pickle = new Pickle();
+
+export class Pancake extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pancake");
+        this.singular = "pancake";
+        this.plural = "pancake";
+        this.description = "pancake";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pancake_prototype: Pancake = new Pancake();
+
+export class CrushedIce extends Food {
+    constructor() {
+        super();
+        this.categories.push("Crushed Ice");
+        this.singular = "crushed ice";
+        this.plural = "crushed ice";
+        this.description = "crushed ice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const crushedIce_prototype: CrushedIce = new CrushedIce();
+
+export class Granola extends Food {
+    constructor() {
+        super();
+        this.categories.push("Granola");
+        this.singular = "granola";
+        this.plural = "granola";
+        this.description = "granola";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const granola_prototype: Granola = new Granola();
+
+export class BreadDough extends Food {
+    constructor() {
+        super();
+        this.categories.push("Bread Dough");
+        this.singular = "bread dough";
+        this.plural = "bread dough";
+        this.description = "bread dough";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const breadDough_prototype: BreadDough = new BreadDough();
+
+export class RawNoodles extends Food {
+    constructor() {
+        super();
+        this.categories.push("Raw Noodles");
+        this.singular = "raw noodles";
+        this.plural = "raw noodles";
+        this.description = "raw noodles";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const rawNoodles_prototype: RawNoodles = new RawNoodles();
+
+export class RawRiceNoodles extends Food {
+    constructor() {
+        super();
+        this.categories.push("Raw Rice Noodles");
+        this.singular = "raw rice noodles";
+        this.plural = "raw rice noodles";
+        this.description = "raw rice noodles";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const rawRiceNoodles_prototype: RawRiceNoodles = new RawRiceNoodles();
+
+export class CookedRice extends Food {
+    constructor() {
+        super();
+        this.categories.push("Cooked Rice");
+        this.singular = "cooked rice";
+        this.plural = "cooked rice";
+        this.description = "cooked rice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cookedRice_prototype: CookedRice = new CookedRice();
+
+export class Batter extends Food {
+    constructor() {
+        super();
+        this.categories.push("Batter");
+        this.singular = "batter";
+        this.plural = "batter";
+        this.description = "batter";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const batter_prototype: Batter = new Batter();
+
+export class Tofu extends Food {
+    constructor() {
+        super();
+        this.categories.push("Tofu");
+        this.singular = "tofu";
+        this.plural = "tofu";
+        this.description = "tofu";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const tofu_prototype: Tofu = new Tofu();
+
+export class Broth extends Food {
+    constructor() {
+        super();
+        this.categories.push("Broth");
+        this.singular = "broth";
+        this.plural = "broth";
+        this.description = "broth";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const broth_prototype: Broth = new Broth();
+
+export class Tortilla extends Food {
+    constructor() {
+        super();
+        this.categories.push("Tortilla");
+        this.singular = "tortilla";
+        this.plural = "tortilla";
+        this.description = "tortilla";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const tortilla_prototype: Tortilla = new Tortilla();
+
+export class PieFilling extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pie Filling");
+        this.singular = "pie filling";
+        this.plural = "pie fillings";
+        this.description = "pie fillings";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pieFilling_prototype: PieFilling = new PieFilling();
+
+export class PizzaDough extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pizza Dough");
+        this.singular = "pizza dough";
+        this.plural = "pizza dough";
+        this.description = "pizza dough";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pizzaDough_prototype: PizzaDough = new PizzaDough();
+
+export class PastryDough extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pastry Dough");
+        this.singular = "pastry dough";
+        this.plural = "pastry dough";
+        this.description = "pastry dough";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pastryDough_prototype: PastryDough = new PastryDough();
+
+
+export class IceCream extends Food {
+    constructor() {
+        super();
+        this.categories.push("Ice Cream");
+        this.singular = "ice cream";
+        this.plural = "ice cream";
+        this.description = "ice cream";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const iceCream_prototype: IceCream = new IceCream();
+
+export class GoatCheese extends Food {
+    constructor() {
+        super();
+        this.categories.push("Goat Cheese");
+        this.singular = "goat cheese";
+        this.plural = "goat cheese";
+        this.description = "goat cheese";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const goatCheese_prototype: GoatCheese = new GoatCheese();
+
+export class Butter extends Food {
+    constructor() {
+        super();
+        this.categories.push("Butter");
+        this.singular = "butter";
+        this.plural = "butter";
+        this.description = "butter";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const butter_prototype: Butter = new Butter();
+
+export class Cream extends Food {
+    constructor() {
+        super();
+        this.categories.push("Cream");
+        this.singular = "cream";
+        this.plural = "cream";
+        this.description = "cream";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cream_prototype: Cream = new Cream();
+
+export class SourCream extends Food {
+    constructor() {
+        super();
+        this.categories.push("Sour Cream");
+        this.singular = "sour cream";
+        this.plural = "sour cream";
+        this.description = "sour cream";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const sourCream_prototype: SourCream = new SourCream();
+
+export class Cheese extends Food {
+    constructor() {
+        super();
+        this.categories.push("Cheese");
+        this.singular = "cheese";
+        this.plural = "cheese";
+        this.description = "cheese";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cheese_prototype: Cheese = new Cheese();
+
+export class WhippedCream extends Food {
+    constructor() {
+        super();
+        this.categories.push("Whipped Cream");
+        this.singular = "whipped cream";
+        this.plural = "whipped cream";
+        this.description = "whipped cream";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const whippedCream_prototype: WhippedCream = new WhippedCream();
+
+export class Yogurt extends Food {
+    constructor() {
+        super();
+        this.categories.push("Yogurt");
+        this.singular = "yogurt";
+        this.plural = "yogurt";
+        this.description = "yogurt";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const yogurt_prototype: Yogurt = new Yogurt();
+
+
+export class Wasabi extends Food {
+    constructor() {
+        super();
+        this.categories.push("Wasabi");
+        this.singular = "wasabi";
+        this.plural = "wasabi";
+        this.description = "wasabi";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const wasabi_prototype: Wasabi = new Wasabi();
+
+export class GroundGinger extends Food {
+    constructor() {
+        super();
+        this.categories.push("Ground Ginger");
+        this.singular = "ground ginger";
+        this.plural = "ground ginger";
+        this.description = "ground ginger";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const groundGinger_prototype: GroundGinger = new GroundGinger();
+
+export class Syrup extends Food {
+    constructor() {
+        super();
+        this.categories.push("Syrup");
+        this.singular = "syrup";
+        this.plural = "syrup";
+        this.description = "syrup";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const syrup_prototype: Syrup = new Syrup();
+
+export class Guacamole extends Food {
+    constructor() {
+        super();
+        this.categories.push("Guacamole");
+        this.singular = "guacamole";
+        this.plural = "guacamole";
+        this.description = "guacamole";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const guacamole_prototype: Guacamole = new Guacamole();
+
+export class Salsa extends Food {
+    constructor() {
+        super();
+        this.categories.push("Salsa");
+        this.singular = "salsa";
+        this.plural = "salsa";
+        this.description = "salsa";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const salsa_prototype: Salsa = new Salsa();
+
+export class PeanutButter extends Food {
+    constructor() {
+        super();
+        this.categories.push("Peanut Butter");
+        this.singular = "peanut butter";
+        this.plural = "peanut butter";
+        this.description = "peanut butter";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const peanutButter_prototype: PeanutButter = new PeanutButter();
+
+export class Jellies extends Food {
+    constructor() {
+        super();
+        this.categories.push("Jellies");
+        this.singular = "jellies";
+        this.plural = "jellies";
+        this.description = "jellies";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const jellies_prototype: Jellies = new Jellies();
+
+export class Mayonnaise extends Food {
+    constructor() {
+        super();
+        this.categories.push("Mayonnaise");
+        this.singular = "mayonnaise";
+        this.plural = "mayonnaise";
+        this.description = "mayonnaise";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const mayonnaise_prototype: Mayonnaise = new Mayonnaise();
+
+export class Ketchup extends Food {
+    constructor() {
+        super();
+        this.categories.push("Ketchup");
+        this.singular = "ketchup";
+        this.plural = "ketchup";
+        this.description = "ketchup";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const ketchup_prototype: Ketchup = new Ketchup();
+
+export class ChiliFlakes extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chili Flakes");
+        this.singular = "chili flakes";
+        this.plural = "chili flakes";
+        this.description = "chili flakes";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chiliFlakes_prototype: ChiliFlakes = new ChiliFlakes();
+
+
+
+
+export class PlainPasta extends Food {
+    constructor() {
+        super();
+        this.categories.push("Plain Pasta");
+        this.singular = "plain pasta";
+        this.plural = "plain pasta";
+        this.description = "plain pasta";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const plainPasta_prototype: PlainPasta = new PlainPasta();
+
+export class PastaAndSauce extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pasta and Sauce");
+        this.singular = "pasta and sauce";
+        this.plural = "pasta and sauce";
+        this.description = "pasta and sauce";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pastaAndSauce_prototype: PastaAndSauce = new PastaAndSauce();
+
+export class PastaSauceMeat extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pasta, Sauce, and Meat");
+        this.singular = "pasta, sauce, and meat";
+        this.plural = "pasta, sauce, and meat";
+        this.description = "pasta, sauce, and meat";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pastaSauceMeat_prototype: PastaSauceMeat = new PastaSauceMeat();
+
+export class MacNCheese extends Food {
+    constructor() {
+        super();
+        this.categories.push("Mac 'n' Cheese");
+        this.singular = "mac 'n' cheese";
+        this.plural = "mac 'n' cheese";
+        this.description = "mac 'n' cheese";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const macNCheese_prototype: MacNCheese = new MacNCheese();
+
+export class Carbonara extends Food {
+    constructor() {
+        super();
+        this.categories.push("Carbonara");
+        this.singular = "carbonara";
+        this.plural = "carbonara";
+        this.description = "carbonara";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const carbonara_prototype: Carbonara = new Carbonara();
+
+export class BeefStroganoff extends Food {
+    constructor() {
+        super();
+        this.categories.push("Beef Stroganoff");
+        this.singular = "beef stroganoff";
+        this.plural = "beef stroganoff";
+        this.description = "beef stroganoff";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const beefStroganoff_prototype: BeefStroganoff = new BeefStroganoff();
+
+export class Lasagna extends Food {
+    constructor() {
+        super();
+        this.categories.push("Lasagna");
+        this.singular = "lasagna";
+        this.plural = "lasagna";
+        this.description = "lasagna";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const lasagna_prototype: Lasagna = new Lasagna();
+
+
+
+export class ClamChowder extends Food {
+    constructor() {
+        super();
+        this.categories.push("Clam Chowder");
+        this.singular = "clam chowder";
+        this.plural = "clam chowder";
+        this.description = "clam chowder";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const clamChowder_prototype: ClamChowder = new ClamChowder();
+
+export class LobsterBisque extends Food {
+    constructor() {
+        super();
+        this.categories.push("Lobster Bisque");
+        this.singular = "lobster bisque";
+        this.plural = "lobster bisque";
+        this.description = "lobster bisque";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const lobsterBisque_prototype: LobsterBisque = new LobsterBisque();
+
+
+export class CornChowder extends Food {
+    constructor() {
+        super();
+        this.categories.push("Corn Chowder");
+        this.singular = "corn chowder";
+        this.plural = "corn chowder";
+        this.description = "corn chowder";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cornChowder_prototype: CornChowder = new CornChowder();
+
+export class Chili extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chili");
+        this.singular = "chili";
+        this.plural = "chili";
+        this.description = "chili";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chili_prototype: Chili = new Chili();
+
+export class ChickenNoodleSoup extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chicken Noodle Soup");
+        this.singular = "chicken noodle soup";
+        this.plural = "chicken noodle soup";
+        this.description = "chicken noodle soup";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chickenNoodleSoup_prototype: ChickenNoodleSoup = new ChickenNoodleSoup();
+
+
+export class BLT extends Food {
+    constructor() {
+        super();
+        this.categories.push("BLT");
+        this.singular = "BLT";
+        this.plural = "BLT";
+        this.description = "BLT";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bLT_prototype: BLT = new BLT();
+
+export class Burger extends Food {
+    constructor() {
+        super();
+        this.categories.push("Burger");
+        this.singular = "burger";
+        this.plural = "burger";
+        this.description = "burger";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const burger_prototype: Burger = new Burger();
+
+export class Toasties extends Food {
+    constructor() {
+        super();
+        this.categories.push("Toasties");
+        this.singular = "toasties";
+        this.plural = "toasties";
+        this.description = "toasties";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const toasties_prototype: Toasties = new Toasties();
+
+export class PBJ extends Food {
+    constructor() {
+        super();
+        this.categories.push("PBJ");
+        this.singular = "PBJ";
+        this.plural = "PBJ";
+        this.description = "PBJ";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pBJ_prototype: PBJ = new PBJ();
+
+export class LettuceWrap extends Food {
+    constructor() {
+        super();
+        this.categories.push("Lettuce Wrap");
+        this.singular = "lettuce wrap";
+        this.plural = "lettuce wrap";
+        this.description = "lettuce wrap";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const lettuceWrap_prototype: LettuceWrap = new LettuceWrap();
+
+
+export class Coffee extends Food {
+    constructor() {
+        super();
+        this.categories.push("Coffee");
+        this.singular = "coffee";
+        this.plural = "coffee";
+        this.description = "coffee";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const coffee_prototype: Coffee = new Coffee();
+
+export class Milkshake extends Food {
+    constructor() {
+        super();
+        this.categories.push("Milkshake");
+        this.singular = "milkshake";
+        this.plural = "milkshake";
+        this.description = "milkshake";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const milkshake_prototype: Milkshake = new Milkshake();
+
+export class ChocolateMilk extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chocolate Milk");
+        this.singular = "chocolate milk";
+        this.plural = "chocolate milk";
+        this.description = "chocolate milk";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chocolateMilk_prototype: ChocolateMilk = new ChocolateMilk();
+
+export class Tea extends Food {
+    constructor() {
+        super();
+        this.categories.push("Tea");
+        this.singular = "tea";
+        this.plural = "tea";
+        this.description = "tea";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const tea_prototype: Tea = new Tea();
+
+
+export class BoiledEgg extends Food {
+    constructor() {
+        super();
+        this.categories.push("Boiled Egg");
+        this.singular = "boiled egg";
+        this.plural = "boiled eggs";
+        this.description = "boiled egg";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const boiledEgg_prototype: BoiledEgg = new BoiledEgg();
+
+
+export class NutsNBerries extends Food {
+    constructor() {
+        super();
+        this.categories.push("Nuts 'n' Berries");
+        this.singular = "nuts 'n' berries";
+        this.plural = "nuts 'n' berries";
+        this.description = "nuts 'n' berries";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const nutsNBerries_prototype: NutsNBerries = new NutsNBerries();
+
+export class Cake extends Food {
+    constructor() {
+        super();
+        this.categories.push("Cake");
+        this.singular = "cake";
+        this.plural = "cakes";
+        this.description = "cake";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cake_prototype: Cake = new Cake();
+
+export class Pizza extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pizza");
+        this.singular = "pizza";
+        this.plural = "pizzas";
+        this.description = "pizza";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pizza_prototype: Pizza = new Pizza();
+
+export class FruitSalad extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fruit Salad");
+        this.singular = "fruit salad";
+        this.plural = "fruit salad";
+        this.description = "fruit salad";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const fruitSalad_prototype: FruitSalad = new FruitSalad();
+
+export class BananaBread extends Food {
+    constructor() {
+        super();
+        this.categories.push("Banana Bread");
+        this.singular = "banana bread";
+        this.plural = "banana bread";
+        this.description = "banana bread";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bananaBread_prototype: BananaBread = new BananaBread();
+
+export class BakedPotato extends Food {
+    constructor() {
+        super();
+        this.categories.push("Baked Potato");
+        this.singular = "baked potato";
+        this.plural = "baked potatoes";
+        this.description = "baked potato";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bakedPotato_prototype: BakedPotato = new BakedPotato();
+
+export class CurryRice extends Food {
+    constructor() {
+        super();
+        this.categories.push("Curry and Rice");
+        this.singular = "curry and rice";
+        this.plural = "curry and rice";
+        this.description = "curry and rice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const curryRice_prototype: CurryRice = new CurryRice();
+
+export class Jerky extends Food {
+    constructor() {
+        super();
+        this.categories.push("Jerky");
+        this.singular = "jerky";
+        this.plural = "jerky";
+        this.description = "jerky";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const jerky_prototype: Jerky = new Jerky();
+
+export class Sushi extends Food {
+    constructor() {
+        super();
+        this.categories.push("Sushi");
+        this.singular = "sushi";
+        this.plural = "sushi";
+        this.description = "sushi";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Fishing"];
+    }
+}
+export const sushi_prototype: Sushi = new Sushi();
+
+export class FrenchFries extends Food {
+    constructor() {
+        super();
+        this.categories.push("French Fries");
+        this.singular = "french fries";
+        this.plural = "french fries";
+        this.description = "french fries";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const frenchFries_prototype: FrenchFries = new FrenchFries();
+
+export class SausageAndPeppers extends Food {
+    constructor() {
+        super();
+        this.categories.push("Sausage and Peppers");
+        this.singular = "sausage and peppers";
+        this.plural = "sausage and peppers";
+        this.description = "sausage and peppers";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const sausageAndPeppers_prototype: SausageAndPeppers = new SausageAndPeppers();
+
+export class Coleslaw extends Food {
+    constructor() {
+        super();
+        this.categories.push("Coleslaw");
+        this.singular = "coleslaw";
+        this.plural = "coleslaw";
+        this.description = "coleslaw";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const coleslaw_prototype: Coleslaw = new Coleslaw();
+
+export class SteakAndPotatoes extends Food {
+    constructor() {
+        super();
+        this.categories.push("Steak and Potatoes");
+        this.singular = "steak and potatoes";
+        this.plural = "steak and potatoes";
+        this.description = "steak and potatoes";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const steakAndPotatoes_prototype: SteakAndPotatoes = new SteakAndPotatoes();
+
+export class Ratatouille extends Food {
+    constructor() {
+        super();
+        this.categories.push("Ratatouille");
+        this.singular = "ratatouille";
+        this.plural = "ratatouille";
+        this.description = "ratatouille";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const ratatouille_prototype: Ratatouille = new Ratatouille();
+
+export class Gumbo extends Food {
+    constructor() {
+        super();
+        this.categories.push("Gumbo");
+        this.singular = "gumbo";
+        this.plural = "gumbo";
+        this.description = "gumbo";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const gumbo_prototype: Gumbo = new Gumbo();
+
+export class RoastedVegetables extends Food {
+    constructor() {
+        super();
+        this.categories.push("Roasted Vegetables");
+        this.singular = "roasted vegetables";
+        this.plural = "roasted vegetables";
+        this.description = "roasted vegetables";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const roastedVegetables_prototype: RoastedVegetables = new RoastedVegetables();
+
+export class Bruschetta extends Food {
+    constructor() {
+        super();
+        this.categories.push("Bruschetta");
+        this.singular = "bruschetta";
+        this.plural = "bruschetta";
+        this.description = "bruschetta";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bruschetta_prototype: Bruschetta = new Bruschetta();
+
+export class StuffedShrooms extends Food {
+    constructor() {
+        super();
+        this.categories.push("Stuffed 'Shrooms");
+        this.singular = "stuffed 'shrooms";
+        this.plural = "stuffed 'shrooms";
+        this.description = "stuffed 'shrooms";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const stuffedShrooms_prototype: StuffedShrooms = new StuffedShrooms();
+
+export class EggRolls extends Food {
+    constructor() {
+        super();
+        this.categories.push("Egg Rolls");
+        this.singular = "egg rolls";
+        this.plural = "egg rolls";
+        this.description = "egg rolls";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const eggRolls_prototype: EggRolls = new EggRolls();
+
+export class EggSalad extends Food {
+    constructor() {
+        super();
+        this.categories.push("Egg Salad");
+        this.singular = "egg salad";
+        this.plural = "egg salad";
+        this.description = "egg salad";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const eggSalad_prototype: EggSalad = new EggSalad();
+
+export class StirFry extends Food {
+    constructor() {
+        super();
+        this.categories.push("Stir Fry");
+        this.singular = "stir fry";
+        this.plural = "stir fry";
+        this.description = "stir fry";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const stirFry_prototype: StirFry = new StirFry();
+
+export class SteakAndEggs extends Food {
+    constructor() {
+        super();
+        this.categories.push("Steak and Eggs");
+        this.singular = "steak and eggs";
+        this.plural = "steak and eggs";
+        this.description = "steak and eggs";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const steakAndEggs_prototype: SteakAndEggs = new SteakAndEggs();
+
+export class HamAndEggs extends Food {
+    constructor() {
+        super();
+        this.categories.push("Ham and Eggs");
+        this.singular = "ham and eggs";
+        this.plural = "ham and eggs";
+        this.description = "ham and eggs";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const hamAndEggs_prototype: HamAndEggs = new HamAndEggs();
+
+export class ChickenAndRice extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chicken 'n' Rice");
+        this.singular = "chicken 'n' rice";
+        this.plural = "chicken 'n' rice";
+        this.description = "chicken 'n' rice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chickenAndRice_prototype: ChickenAndRice = new ChickenAndRice();
+
+export class CabbageRolls extends Food {
+    constructor() {
+        super();
+        this.categories.push("Cabbage Rolls");
+        this.singular = "cabbage rolls";
+        this.plural = "cabbage rolls";
+        this.description = "cabbage rolls";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cabbageRolls_prototype: CabbageRolls = new CabbageRolls();
+
+export class Pho extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pho");
+        this.singular = "pho";
+        this.plural = "pho";
+        this.description = "pho";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pho_prototype: Pho = new Pho();
+
+export class RiceAndBeans extends Food {
+    constructor() {
+        super();
+        this.categories.push("Rice and Beans");
+        this.singular = "rice and beans";
+        this.plural = "rice and beans";
+        this.description = "rice and beans";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const riceAndBeans_prototype: RiceAndBeans = new RiceAndBeans();
+
+export class CornBread extends Food {
+    constructor() {
+        super();
+        this.categories.push("Corn Bread");
+        this.singular = "corn bread";
+        this.plural = "corn bread";
+        this.description = "corn bread";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const cornBread_prototype: CornBread = new CornBread();
+
+export class Oatmeal extends Food {
+    constructor() {
+        super();
+        this.categories.push("Oatmeal");
+        this.singular = "oatmeal";
+        this.plural = "oatmeal";
+        this.description = "oatmeal";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const oatmeal_prototype: Oatmeal = new Oatmeal();
+
+export class FruitSnack extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fruit Snack");
+        this.singular = "fruit snack";
+        this.plural = "fruit snack";
+        this.description = "fruit snack";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const fruitSnack_prototype: FruitSnack = new FruitSnack();
+
+export class Meatloaf extends Food {
+    constructor() {
+        super();
+        this.categories.push("Meatloaf");
+        this.singular = "meatloaf";
+        this.plural = "meatloaf";
+        this.description = "meatloaf";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const meatloaf_prototype: Meatloaf = new Meatloaf();
+
+export class FishAndFungi extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fish 'n' Fungi");
+        this.singular = "fish 'n' fungi";
+        this.plural = "fish 'n' fungi";
+        this.description = "fish 'n' fungi";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const fishAndFungi_prototype: FishAndFungi = new FishAndFungi();
+
+export class AvocadoToast extends Food {
+    constructor() {
+        super();
+        this.categories.push("Avocado Toast");
+        this.singular = "avocado toast";
+        this.plural = "avocado toast";
+        this.description = "avocado toast";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const avocadoToast_prototype: AvocadoToast = new AvocadoToast();
+
+export class Waffles extends Food {
+    constructor() {
+        super();
+        this.categories.push("Waffles");
+        this.singular = "waffles";
+        this.plural = "waffles";
+        this.description = "waffles";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const waffles_prototype: Waffles = new Waffles();
+
+export class YogurtParfait extends Food {
+    constructor() {
+        super();
+        this.categories.push("Yogurt Parfait");
+        this.singular = "yogurt parfait";
+        this.plural = "yogurt parfait";
+        this.description = "yogurt parfait";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const yogurtParfait_prototype: YogurtParfait = new YogurtParfait();
+
+export class Pie extends Food {
+    constructor() {
+        super();
+        this.categories.push("Pie");
+        this.singular = "pie";
+        this.plural = "pie";
+        this.description = "pie";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const pie_prototype: Pie = new Pie();
+
+export class Quesadillas extends Food {
+    constructor() {
+        super();
+        this.categories.push("Quesadillas");
+        this.singular = "quesadillas";
+        this.plural = "quesadillas";
+        this.description = "quesadillas";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const quesadillas_prototype: Quesadillas = new Quesadillas();
+
+export class RawMeat extends Food {
+    constructor() {
+        super();
+        this.categories.push("Raw Meat");
+        this.singular = "raw meat";
+        this.plural = "raw meat";
+        this.description = "raw meat";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const rawMeat_prototype: RawMeat = new RawMeat();
+
+export class GrilledProtein extends Food {
+    constructor() {
+        super();
+        this.categories.push("Grilled Protein");
+        this.singular = "grilled protein";
+        this.plural = "grilled protein";
+        this.description = "grilled protein";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const grilledProtein_prototype: GrilledProtein = new GrilledProtein();
+
+export class FriedProtein extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fried Protein");
+        this.singular = "fried protein";
+        this.plural = "fried protein";
+        this.description = "fried protein";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const friedProtein_prototype: FriedProtein = new FriedProtein();
+
+export class ChickenPotPie extends Food {
+    constructor() {
+        super();
+        this.categories.push("Chicken Pot Pie");
+        this.singular = "chicken pot pie";
+        this.plural = "chicken pot pie";
+        this.description = "chicken pot pie";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const chickenPotPie_prototype: ChickenPotPie = new ChickenPotPie();
+
+export class FriedRice extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fried Rice");
+        this.singular = "fried rice";
+        this.plural = "fried rice";
+        this.description = "fried rice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const friedRice_prototype: FriedRice = new FriedRice();
+
+export class Caviar extends Food {
+    constructor() {
+        super();
+        this.categories.push("Caviar");
+        this.singular = "caviar";
+        this.plural = "caviar";
+        this.description = "caviar";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Fishing"];
+    }
+}
+export const caviar_prototype: Caviar = new Caviar();
+
+export class SteamedDumplings extends Food {
+    constructor() {
+        super();
+        this.categories.push("Steamed Dumplings");
+        this.singular = "steamed dumplings";
+        this.plural = "steamed dumplings";
+        this.description = "steamed dumplings";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const steamedDumplings_prototype: SteamedDumplings = new SteamedDumplings();
+
+export class FriedDumplings extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fried Dumplings");
+        this.singular = "fried dumplings";
+        this.plural = "fried dumplings";
+        this.description = "fried dumplings";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const friedDumplings_prototype: FriedDumplings = new FriedDumplings();
+
+export class FunGuyFungiFeast extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fun Guy's Fantastic Fungi Feast");
+        this.singular = "fun guy's fantastic fungi feast";
+        this.plural = "fun guy's fantastic fungi feasts";
+        this.description = "fun guy's fantastic fungi feast";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const funGuyFungiFeast_prototype: FunGuyFungiFeast = new FunGuyFungiFeast();
+
+export class RawInsects extends Food {
+    constructor() {
+        super();
+        this.categories.push("Raw Insects");
+        this.singular = "raw insects";
+        this.plural = "raw insects";
+        this.description = "raw insects";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const rawInsects_prototype: RawInsects = new RawInsects();
+
+export class InsectPuree extends Food {
+    constructor() {
+        super();
+        this.categories.push("Insect Puree");
+        this.singular = "insect puree";
+        this.plural = "insect purees";
+        this.description = "insect puree";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const insectPuree_prototype: InsectPuree = new InsectPuree();
+
+export class RoastedInsects extends Food {
+    constructor() {
+        super();
+        this.categories.push("Roasted Insects");
+        this.singular = "roasted insects";
+        this.plural = "roasted insects";
+        this.description = "roasted insects";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const roastedInsects_prototype: RoastedInsects = new RoastedInsects();
+
+export class SeasonedInsects extends Food {
+    constructor() {
+        super();
+        this.categories.push("Seasoned Insects");
+        this.singular = "seasoned insects";
+        this.plural = "seasoned insects";
+        this.description = "seasoned insects";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const seasonedInsects_prototype: SeasonedInsects = new SeasonedInsects();
+
+export class BugsNSlime extends Food {
+    constructor() {
+        super();
+        this.categories.push("Bugs 'n' Slime");
+        this.singular = "bugs 'n' slime";
+        this.plural = "bugs 'n' slime";
+        this.description = "bugs 'n' slime";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bugsNSlime_prototype: BugsNSlime = new BugsNSlime();
+
+export class BugsNOoze extends Food {
+    constructor() {
+        super();
+        this.categories.push("Bugs 'n' Ooze");
+        this.singular = "bugs 'n' ooze";
+        this.plural = "bugs 'n' ooze";
+        this.description = "bugs 'n' ooze";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bugsNOoze_prototype: BugsNOoze = new BugsNOoze();
+
+export class MossWrap extends Food {
+    constructor() {
+        super();
+        this.categories.push("Moss Wrap");
+        this.singular = "moss wrap";
+        this.plural = "moss wraps";
+        this.description = "moss wrap";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const mossWrap_prototype: MossWrap = new MossWrap();
+
+export class SlimeSlurpie extends Food {
+    constructor() {
+        super();
+        this.categories.push("Slime Slurpie");
+        this.singular = "slime slurpie";
+        this.plural = "slime slurpies";
+        this.description = "slime slurpie";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const slimeSlurpie_prototype: SlimeSlurpie = new SlimeSlurpie();
+
+export class BugJuice extends Food {
+    constructor() {
+        super();
+        this.categories.push("Bug Juice");
+        this.singular = "bug juice";
+        this.plural = "bug juices";
+        this.description = "bug juice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const bugJuice_prototype: BugJuice = new BugJuice();
+
+export class AlgaePaste extends Food {
+    constructor() {
+        super();
+        this.categories.push("Algae Paste");
+        this.singular = "algae paste";
+        this.plural = "algae pastes";
+        this.description = "algae paste";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const algaePaste_prototype: AlgaePaste = new AlgaePaste();
+
+export class CaveCritterFritters extends Food {
+    constructor() {
+        super();
+        this.categories.push("Cave Critter Fritters");
+        this.singular = "cave critter fritters";
+        this.plural = "cave critter fritters";
+        this.description = "cave critter fritters";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const caveCritterFritters_prototype: CaveCritterFritters = new CaveCritterFritters();
+
+export class MuddyMossyMoldyMess extends Food {
+    constructor() {
+        super();
+        this.categories.push("Muddy, Mossy, Moldy Mess");
+        this.singular = "muddy, mossy, moldy mess";
+        this.plural = "muddy, mossy, moldy messes";
+        this.description = "muddy, mossy, moldy mess";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const muddyMossyMoldyMess_prototype: MuddyMossyMoldyMess = new MuddyMossyMoldyMess();
+
+export class OoeyGooeyFreshNFruity extends Food {
+    constructor() {
+        super();
+        this.categories.push("Ooey Gooey Fresh 'n' Fruity");
+        this.singular = "ooey gooey fresh 'n' fruity";
+        this.plural = "ooey gooey fresh 'n' fruity";
+        this.description = "ooey gooey fresh 'n' fruity";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const ooeyGooeyFreshNFruity_prototype: OoeyGooeyFreshNFruity = new OoeyGooeyFreshNFruity();
+
+export class ScoopOGloop extends Food {
+    constructor() {
+        super();
+        this.categories.push("Scoop O' Gloop");
+        this.singular = "scoop o' gloop";
+        this.plural = "scoops o' gloop";
+        this.description = "scoop o' gloop";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const scoopOGloop_prototype: ScoopOGloop = new ScoopOGloop();
+foods.push(scoopOGloop_prototype);

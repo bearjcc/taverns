@@ -2,13 +2,13 @@
 exports.__esModule = true;
 exports.Recipe = void 0;
 var Recipe = /** @class */ (function () {
-    function Recipe(name, description, ingredients, skill, level, membersOnly) {
+    function Recipe(name, description) {
         this.name = name;
         this.description = description;
-        this.ingredients = ingredients;
-        this.skill = skill;
-        this.level = level;
-        this.membersOnly = membersOnly;
+        this.ingredients = [];
+        this.skill = null;
+        this.level = 0;
+        this.membersOnly = false;
     }
     return Recipe;
 }());

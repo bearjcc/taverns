@@ -5,24 +5,24 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import {Ingredient} from "./ingredients"
+import {Item} from "./items"
 import {Skill} from "./skills"
 
 
 export class Recipe {
     name: string;
     description: string;
-    ingredients: Ingredient[];
+    ingredients: Item[];
     skill: Skill;
     level: number;
     membersOnly: boolean;
     
-    constructor(name: string, description: string, ingredients: Ingredient[], skill: Skill, level: number, membersOnly: boolean) {
+    constructor(name: string, description: string) {
         this.name = name;
         this.description = description;
-        this.ingredients = ingredients;
-        this.skill = skill;
-        this.level = level;
-        this.membersOnly = membersOnly;
+        this.ingredients = [];
+        this.skill = null;
+        this.level = 0;
+        this.membersOnly = false;
     }
 }

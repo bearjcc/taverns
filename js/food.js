@@ -13,8 +13,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.buckwheatFlour_prototype = exports.ryeFlour_prototype = exports.oatFlour_prototype = exports.barleyFlour_prototype = exports.wheatFlour_prototype = exports.riceFlour_prototype = exports.Flour = exports.beets_prototype = exports.Beets = exports.goldenCurry_prototype = exports.yellowCurry_prototype = exports.greenCurry_prototype = exports.redCurry_prototype = exports.Curry = exports.roseWine_prototype = exports.muscadineWine_prototype = exports.redWine_prototype = exports.whiteWine_prototype = exports.Wine = exports.dragonessence_prototype = exports.stickyOil_prototype = exports.peanutOil_prototype = exports.avocadoOil_prototype = exports.oliveOil_prototype = exports.grapeseedOil_prototype = exports.vegetableOil_prototype = exports.Oil = exports.barley_prototype = exports.Barley = exports.oats_prototype = exports.Oats = exports.wheat_prototype = exports.Wheat = exports.teaLeaves_prototype = exports.TeaLeaves = exports.coffeeBeans_prototype = exports.CoffeeBeans = exports.cocoaBeans_prototype = exports.CocoaBeans = exports.milkOfThePoppy_prototype = exports.MilkOfThePoppy = exports.goatMilk_prototype = exports.cowMilk_prototype = exports.Milk = exports.soySauce_prototype = exports.SoySauce = exports.dragonEgg_prototype = exports.lizardEgg_prototype = exports.snakeEgg_prototype = exports.fishEgg_prototype = exports.chickenEgg_prototype = exports.Egg = exports.redOnion_prototype = exports.greenOnion_prototype = exports.whiteOnion_prototype = exports.purpleOnion_prototype = exports.Onion = exports.cucumbers_prototype = exports.Cucumbers = exports.vanillaBean_prototype = exports.VanillaBean = exports.acorns_prototype = exports.Acorns = exports.mapleSap_prototype = exports.MapleSap = exports.wasabi_prototype = exports.Wasabi = exports.sprouts_prototype = exports.Sprouts = exports.venison_prototype = exports.Venison = exports.humanoidFlesh_prototype = exports.HumanoidFlesh = exports.glowworm_prototype = exports.Glowworm = exports.oozePurple_prototype = exports.oozeSuperior_prototype = exports.oozeGreen_prototype = exports.oozeGray_prototype = exports.Ooze = exports.antsFire_prototype = exports.antsBlack_prototype = exports.antsRed_prototype = exports.Ants = exports.beetles_prototype = exports.Beetles = exports.mealworms_prototype = exports.Mealworms = exports.brains_prototype = exports.Brains = exports.grubs_prototype = exports.Grubs = exports.dragonmeat_prototype = exports.Dragonmeat = exports.questionableMeat_prototype = exports.QuestionableMeat = exports.rancidMeat_prototype = exports.RancidMeat = exports.broccoli_prototype = exports.Broccoli = exports.cauliflower_prototype = exports.Cauliflower = exports.cabbage_prototype = exports.Cabbage = exports.lettuce_prototype = exports.Lettuce = exports.tomatoes_prototype = exports.Tomatoes = exports.basil_prototype = exports.Basil = exports.sage_prototype = exports.Sage = exports.chives_prototype = exports.Chives = exports.turmeric_prototype = exports.Turmeric = exports.thyme_prototype = exports.Thyme = exports.rosemary_prototype = exports.Rosemary = exports.parsley_prototype = exports.Parsley = exports.oregano_prototype = exports.Oregano = exports.ginger_prototype = exports.Ginger = exports.garlic_prototype = exports.Garlic = exports.fennel_prototype = exports.Fennel = exports.dill_prototype = exports.Dill = exports.cumin_prototype = exports.Cumin = exports.cilantro_prototype = exports.Cilantro = exports.coriander_prototype = exports.Coriander = exports.pepperChili_prototype = exports.pepperCayenne_prototype = exports.pepperJalapeno_prototype = exports.pepperBell_prototype = exports.pepperWhite_prototype = exports.pepperBlack_prototype = exports.Pepper = exports.pineapple_prototype = exports.Pineapple = exports.banana_prototype = exports.Banana = exports.berryBlackCurrant_prototype = exports.berryBlueCurrant_prototype = exports.berryRasp_prototype = exports.berryStraw_prototype = exports.berryCherry_prototype = exports.berrySnozz_prototype = exports.berryBlack_prototype = exports.berryBlue_prototype = exports.berryRed_prototype = exports.Berry = exports.eggplant_prototype = exports.Eggplant = exports.beet_prototype = exports.Beet = exports.potato_prototype = exports.Potato = exports.carrot_prototype = exports.Carrot = exports.coconut_prototype = exports.Coconut = exports.chestnut_prototype = exports.Chestnut = exports.brazilNut_prototype = exports.BrazilNut = exports.almond_prototype = exports.Almond = exports.walnut_prototype = exports.Walnut = exports.peanut_prototype = exports.Peanut = exports.citrusTangerine_prototype = exports.citrusGrapefruit_prototype = exports.citrusLime_prototype = exports.citrusLemon_prototype = exports.citrusOrange_prototype = exports.Citrus = exports.avocado_prototype = exports.Avocado = exports.grapeMuscadine_prototype = exports.grapePurple_prototype = exports.grapeWhite_prototype = exports.grapeRed_prototype = exports.Grape = exports.pear_prototype = exports.Pear = exports.appleGolden_prototype = exports.appleGreen_prototype = exports.appleRed_prototype = exports.Apple = exports.mushroomRed_prototype = exports.mushroomMorel_prototype = exports.mushroomGlowing_prototype = exports.mushroomPurple_prototype = exports.mushroomBrown_prototype = exports.mushroomWhite_prototype = exports.Mushroom = exports.beansSoy_prototype = exports.beansJack_prototype = exports.beansGarbanzo_prototype = exports.beansMung_prototype = exports.beansLima_prototype = exports.beansGreen_prototype = exports.beansBlack_prototype = exports.beansPinto_prototype = exports.beansKidney_prototype = exports.Beans = exports.asparagus_prototype = exports.Asparagus = exports.cornOnOheCob_prototype = exports.CornOnTheCob = exports.corn_prototype = exports.Corn = exports.rice_prototype = exports.Rice = exports.seaweedBrown_prototype = exports.seaweedGreen_prototype = exports.seaweedRed_prototype = exports.Seaweed = exports.sugar_prototype = exports.Sugar = exports.pig_feet_prototype = exports.PigFeet = exports.pig_skin_prototype = exports.PigSkin = exports.pork_prototype = exports.Pork = exports.beef_prototype = exports.Beef = exports.shark_meat_prototype = exports.SharkMeat = exports.shrimp_prototype = exports.Shrimp = exports.clam_meat_prototype = exports.ClamMeat = exports.lobster_prototype = exports.Lobster = exports.catfish_prototype = exports.Catfish = exports.crayfish_prototype = exports.Crayfish = exports.carp_prototype = exports.Carp = exports.pike_prototype = exports.Pike = exports.rainbowTrout_prototype = exports.RainbowTrout = exports.trout_prototype = exports.Trout = exports.salmon_prototype = exports.Salmon = exports.foods = exports.Food = void 0;
+exports.scoopOGloop_prototype = exports.ScoopOGloop = exports.ooeyGooeyFreshNFruity_prototype = exports.OoeyGooeyFreshNFruity = exports.muddyMossyMoldyMess_prototype = exports.MuddyMossyMoldyMess = exports.caveCritterFritters_prototype = exports.CaveCritterFritters = exports.algaePaste_prototype = exports.AlgaePaste = exports.bugJuice_prototype = exports.BugJuice = exports.slimeSlurpie_prototype = exports.SlimeSlurpie = exports.mossWrap_prototype = exports.MossWrap = exports.bugsNOoze_prototype = exports.BugsNOoze = exports.bugsNSlime_prototype = exports.BugsNSlime = exports.seasonedInsects_prototype = exports.SeasonedInsects = exports.roastedInsects_prototype = exports.RoastedInsects = exports.insectPuree_prototype = exports.InsectPuree = exports.rawInsects_prototype = exports.RawInsects = exports.funGuyFungiFeast_prototype = exports.FunGuyFungiFeast = exports.friedDumplings_prototype = exports.FriedDumplings = exports.steamedDumplings_prototype = exports.SteamedDumplings = exports.caviar_prototype = exports.Caviar = exports.friedRice_prototype = exports.FriedRice = exports.chickenPotPie_prototype = exports.ChickenPotPie = exports.friedProtein_prototype = exports.FriedProtein = exports.grilledProtein_prototype = exports.GrilledProtein = exports.rawMeat_prototype = exports.RawMeat = exports.quesadillas_prototype = exports.Quesadillas = exports.pie_prototype = exports.Pie = exports.yogurtParfait_prototype = exports.YogurtParfait = exports.waffles_prototype = exports.Waffles = exports.avocadoToast_prototype = exports.AvocadoToast = exports.fishAndFungi_prototype = exports.FishAndFungi = exports.meatloaf_prototype = exports.Meatloaf = exports.fruitSnack_prototype = exports.FruitSnack = exports.oatmeal_prototype = exports.Oatmeal = exports.cornBread_prototype = exports.CornBread = exports.riceAndBeans_prototype = exports.RiceAndBeans = exports.pho_prototype = exports.Pho = exports.cabbageRolls_prototype = exports.CabbageRolls = exports.chickenAndRice_prototype = exports.ChickenAndRice = exports.hamAndEggs_prototype = exports.HamAndEggs = exports.steakAndEggs_prototype = exports.SteakAndEggs = exports.stirFry_prototype = exports.StirFry = exports.eggSalad_prototype = exports.EggSalad = exports.eggRolls_prototype = exports.EggRolls = exports.stuffedShrooms_prototype = exports.StuffedShrooms = exports.bruschetta_prototype = exports.Bruschetta = exports.roastedVegetables_prototype = exports.RoastedVegetables = exports.gumbo_prototype = exports.Gumbo = exports.ratatouille_prototype = exports.Ratatouille = exports.steakAndPotatoes_prototype = exports.SteakAndPotatoes = exports.coleslaw_prototype = exports.Coleslaw = exports.sausageAndPeppers_prototype = exports.SausageAndPeppers = exports.frenchFries_prototype = exports.FrenchFries = exports.sushi_prototype = exports.Sushi = exports.jerky_prototype = exports.Jerky = exports.curryRice_prototype = exports.CurryRice = exports.bakedPotato_prototype = exports.BakedPotato = exports.bananaBread_prototype = exports.BananaBread = exports.fruitSalad_prototype = exports.FruitSalad = exports.pizza_prototype = exports.Pizza = exports.cake_prototype = exports.Cake = exports.nutsNBerries_prototype = exports.NutsNBerries = exports.boiledEgg_prototype = exports.BoiledEgg = exports.tea_prototype = exports.Tea = exports.chocolateMilk_prototype = exports.ChocolateMilk = exports.milkshake_prototype = exports.Milkshake = exports.coffee_prototype = exports.Coffee = exports.lettuceWrap_prototype = exports.LettuceWrap = exports.pBJ_prototype = exports.PBJ = exports.toasties_prototype = exports.Toasties = exports.burger_prototype = exports.Burger = exports.bLT_prototype = exports.BLT = exports.chickenNoodleSoup_prototype = exports.ChickenNoodleSoup = exports.chili_prototype = exports.Chili = exports.cornChowder_prototype = exports.CornChowder = exports.lobsterBisque_prototype = exports.LobsterBisque = exports.clamChowder_prototype = exports.ClamChowder = exports.lasagna_prototype = exports.Lasagna = exports.beefStroganoff_prototype = exports.BeefStroganoff = exports.carbonara_prototype = exports.Carbonara = exports.macNCheese_prototype = exports.MacNCheese = exports.pastaSauceMeat_prototype = exports.PastaSauceMeat = exports.pastaAndSauce_prototype = exports.PastaAndSauce = exports.plainPasta_prototype = exports.PlainPasta = exports.chiliFlakes_prototype = exports.ChiliFlakes = exports.ketchup_prototype = exports.Ketchup = exports.mayonnaise_prototype = exports.Mayonnaise = exports.jellies_prototype = exports.Jellies = exports.peanutButter_prototype = exports.PeanutButter = exports.salsa_prototype = exports.Salsa = exports.guacamole_prototype = exports.Guacamole = exports.syrup_prototype = exports.Syrup = exports.groundGinger_prototype = exports.GroundGinger = exports.yogurt_prototype = exports.Yogurt = exports.whippedCream_prototype = exports.WhippedCream = exports.cheese_prototype = exports.Cheese = exports.sourCream_prototype = exports.SourCream = exports.cream_prototype = exports.Cream = exports.butter_prototype = exports.Butter = exports.goatCheese_prototype = exports.GoatCheese = exports.iceCream_prototype = exports.IceCream = exports.pastryDough_prototype = exports.PastryDough = exports.pizzaDough_prototype = exports.PizzaDough = exports.pieFilling_prototype = exports.PieFilling = exports.tortilla_prototype = exports.Tortilla = exports.broth_prototype = exports.Broth = exports.tofu_prototype = exports.Tofu = exports.batter_prototype = exports.Batter = exports.cookedRice_prototype = exports.CookedRice = exports.rawRiceNoodles_prototype = exports.RawRiceNoodles = exports.rawNoodles_prototype = exports.RawNoodles = exports.breadDough_prototype = exports.BreadDough = exports.granola_prototype = exports.Granola = exports.crushedIce_prototype = exports.CrushedIce = exports.pancake_prototype = exports.Pancake = exports.pickle_prototype = exports.Pickle = exports.poachedEgg_prototype = exports.PoachedEgg = exports.scrambledEgg_prototype = exports.ScrambledEgg = exports.omelet_prototype = exports.Omelet = exports.friedEgg_prototype = exports.FriedEgg = exports.chocolate_prototype = exports.Chocolate = exports.chiliPowder_prototype = exports.ChiliPowder = exports.jam_prototype = exports.Jam = exports.pancakeBatter_prototype = exports.PancakeBatter = exports.honey_prototype = exports.Honey = exports.CookingRecipe = exports.buckwheatFlour_prototype = exports.ryeFlour_prototype = exports.oatFlour_prototype = exports.barleyFlour_prototype = exports.wheatFlour_prototype = exports.riceFlour_prototype = exports.Flour = exports.beets_prototype = exports.Beets = exports.goldenCurry_prototype = exports.yellowCurry_prototype = exports.greenCurry_prototype = exports.redCurry_prototype = exports.Curry = exports.roseWine_prototype = exports.muscadineWine_prototype = exports.redWine_prototype = exports.whiteWine_prototype = exports.Wine = exports.dragonessence_prototype = exports.stickyOil_prototype = exports.peanutOil_prototype = exports.avocadoOil_prototype = exports.oliveOil_prototype = exports.grapeseedOil_prototype = exports.vegetableOil_prototype = exports.Oil = exports.barley_prototype = exports.Barley = exports.oats_prototype = exports.Oats = exports.wheat_prototype = exports.Wheat = exports.teaLeaves_prototype = exports.TeaLeaves = exports.coffeeBeans_prototype = exports.CoffeeBeans = exports.cocoaBeans_prototype = exports.CocoaBeans = exports.milkOfThePoppy_prototype = exports.MilkOfThePoppy = exports.goatMilk_prototype = exports.cowMilk_prototype = exports.Milk = exports.soySauce_prototype = exports.SoySauce = exports.dragonEgg_prototype = exports.lizardEgg_prototype = exports.snakeEgg_prototype = exports.fishEgg_prototype = exports.chickenEgg_prototype = exports.Egg = exports.redOnion_prototype = exports.greenOnion_prototype = exports.whiteOnion_prototype = exports.purpleOnion_prototype = exports.Onion = exports.cucumbers_prototype = exports.Cucumbers = exports.vanillaBean_prototype = exports.VanillaBean = exports.acorns_prototype = exports.Acorns = exports.mapleSap_prototype = exports.MapleSap = exports.wasabi_prototype = exports.Wasabi = exports.sprouts_prototype = exports.Sprouts = exports.venison_prototype = exports.Venison = exports.humanoidFlesh_prototype = exports.HumanoidFlesh = exports.glowworm_prototype = exports.Glowworm = exports.oozePurple_prototype = exports.oozeSuperior_prototype = exports.oozeGreen_prototype = exports.oozeGray_prototype = exports.Ooze = exports.antsFire_prototype = exports.antsBlack_prototype = exports.antsRed_prototype = exports.Ants = exports.beetles_prototype = exports.Beetles = exports.mealworms_prototype = exports.Mealworms = exports.brains_prototype = exports.Brains = exports.grubs_prototype = exports.Grubs = exports.dragonmeat_prototype = exports.Dragonmeat = exports.questionableMeat_prototype = exports.QuestionableMeat = exports.rancidMeat_prototype = exports.RancidMeat = exports.broccoli_prototype = exports.Broccoli = exports.cauliflower_prototype = exports.Cauliflower = exports.cabbage_prototype = exports.Cabbage = exports.lettuce_prototype = exports.Lettuce = exports.tomatoes_prototype = exports.Tomatoes = exports.basil_prototype = exports.Basil = exports.sage_prototype = exports.Sage = exports.chives_prototype = exports.Chives = exports.turmeric_prototype = exports.Turmeric = exports.thyme_prototype = exports.Thyme = exports.rosemary_prototype = exports.Rosemary = exports.parsley_prototype = exports.Parsley = exports.oregano_prototype = exports.Oregano = exports.ginger_prototype = exports.Ginger = exports.garlic_prototype = exports.Garlic = exports.fennel_prototype = exports.Fennel = exports.dill_prototype = exports.Dill = exports.cumin_prototype = exports.Cumin = exports.cilantro_prototype = exports.Cilantro = exports.coriander_prototype = exports.Coriander = exports.pepperChili_prototype = exports.pepperCayenne_prototype = exports.pepperJalapeno_prototype = exports.pepperBell_prototype = exports.pepperWhite_prototype = exports.pepperBlack_prototype = exports.Pepper = exports.pineapple_prototype = exports.Pineapple = exports.banana_prototype = exports.Banana = exports.berryBlackCurrant_prototype = exports.berryBlueCurrant_prototype = exports.berryRasp_prototype = exports.berryStraw_prototype = exports.berryCherry_prototype = exports.berrySnozz_prototype = exports.berryBlack_prototype = exports.berryBlue_prototype = exports.berryRed_prototype = exports.Berry = exports.eggplant_prototype = exports.Eggplant = exports.beet_prototype = exports.Beet = exports.potato_prototype = exports.Potato = exports.carrot_prototype = exports.Carrot = exports.coconut_prototype = exports.Coconut = exports.chestnut_prototype = exports.Chestnut = exports.brazilNut_prototype = exports.BrazilNut = exports.almond_prototype = exports.Almond = exports.walnut_prototype = exports.Walnut = exports.peanut_prototype = exports.Peanut = exports.citrusTangerine_prototype = exports.citrusGrapefruit_prototype = exports.citrusLime_prototype = exports.citrusLemon_prototype = exports.citrusOrange_prototype = exports.Citrus = exports.avocado_prototype = exports.Avocado = exports.grapeMuscadine_prototype = exports.grapePurple_prototype = exports.grapeWhite_prototype = exports.grapeRed_prototype = exports.Grape = exports.pear_prototype = exports.Pear = exports.appleGolden_prototype = exports.appleGreen_prototype = exports.appleRed_prototype = exports.Apple = exports.mushroomRed_prototype = exports.mushroomMorel_prototype = exports.mushroomGlowing_prototype = exports.mushroomPurple_prototype = exports.mushroomBrown_prototype = exports.mushroomWhite_prototype = exports.Mushroom = exports.beansSoy_prototype = exports.beansJack_prototype = exports.beansGarbanzo_prototype = exports.beansMung_prototype = exports.beansLima_prototype = exports.beansGreen_prototype = exports.beansBlack_prototype = exports.beansPinto_prototype = exports.beansKidney_prototype = exports.Beans = exports.asparagus_prototype = exports.Asparagus = exports.cornOnOheCob_prototype = exports.CornOnTheCob = exports.corn_prototype = exports.Corn = exports.rice_prototype = exports.Rice = exports.seaweedBrown_prototype = exports.seaweedGreen_prototype = exports.seaweedRed_prototype = exports.Seaweed = exports.sugar_prototype = exports.Sugar = exports.pig_feet_prototype = exports.PigFeet = exports.pig_skin_prototype = exports.PigSkin = exports.pork_prototype = exports.Pork = exports.beef_prototype = exports.Beef = exports.shark_meat_prototype = exports.SharkMeat = exports.shrimp_prototype = exports.Shrimp = exports.clam_meat_prototype = exports.ClamMeat = exports.lobster_prototype = exports.Lobster = exports.catfish_prototype = exports.Catfish = exports.crayfish_prototype = exports.Crayfish = exports.carp_prototype = exports.Carp = exports.pike_prototype = exports.Pike = exports.rainbowTrout_prototype = exports.RainbowTrout = exports.trout_prototype = exports.Trout = exports.salmon_prototype = exports.Salmon = exports.fishes = exports.nuts = exports.oils = exports.grains = exports.fruits = exports.vegetables = exports.seafoods = exports.crustaceans = exports.meats = exports.proteins = exports.foods = exports.Food = void 0;
 var itm_consumables_1 = require("./itm_consumables");
+var recipes_1 = require("./recipes");
 var Food = /** @class */ (function (_super) {
     __extends(Food, _super);
     function Food() {
@@ -112,7 +113,16 @@ var Food = /** @class */ (function (_super) {
 }(itm_consumables_1.Consumable));
 exports.Food = Food;
 exports.foods = [];
-// var salmon = new CookingIngredient("Salmon", fish, [Source.Fishing], false);
+exports.proteins = [];
+exports.meats = [];
+exports.crustaceans = [];
+exports.seafoods = [];
+exports.vegetables = [];
+exports.fruits = [];
+exports.grains = [];
+exports.oils = [];
+exports.nuts = [];
+exports.fishes = [];
 var Salmon = /** @class */ (function (_super) {
     __extends(Salmon, _super);
     function Salmon() {
@@ -132,8 +142,7 @@ var Salmon = /** @class */ (function (_super) {
 }(Food));
 exports.Salmon = Salmon;
 exports.salmon_prototype = new Salmon();
-exports.foods.push(exports.salmon_prototype);
-// var trout = new CookingIngredient("Trout", fish, [Source.Fishing], false);
+exports.fishes.push(exports.salmon_prototype);
 var Trout = /** @class */ (function (_super) {
     __extends(Trout, _super);
     function Trout() {
@@ -153,7 +162,7 @@ var Trout = /** @class */ (function (_super) {
 }(Food));
 exports.Trout = Trout;
 exports.trout_prototype = new Trout();
-exports.foods.push(exports.trout_prototype);
+exports.fishes.push(exports.trout_prototype);
 var RainbowTrout = /** @class */ (function (_super) {
     __extends(RainbowTrout, _super);
     function RainbowTrout() {
@@ -163,8 +172,7 @@ var RainbowTrout = /** @class */ (function (_super) {
 }(Trout));
 exports.RainbowTrout = RainbowTrout;
 exports.rainbowTrout_prototype = new RainbowTrout();
-exports.foods.push(exports.rainbowTrout_prototype);
-// var pike = new CookingIngredient("Pike", fish, [Source.Fishing], true);
+exports.fishes.push(exports.rainbowTrout_prototype);
 var Pike = /** @class */ (function (_super) {
     __extends(Pike, _super);
     function Pike() {
@@ -184,8 +192,7 @@ var Pike = /** @class */ (function (_super) {
 }(Food));
 exports.Pike = Pike;
 exports.pike_prototype = new Pike();
-exports.foods.push(exports.pike_prototype);
-// var carp = new CookingIngredient("Carp", fish, [Source.Fishing], false);
+exports.fishes.push(exports.pike_prototype);
 var Carp = /** @class */ (function (_super) {
     __extends(Carp, _super);
     function Carp() {
@@ -205,8 +212,7 @@ var Carp = /** @class */ (function (_super) {
 }(Food));
 exports.Carp = Carp;
 exports.carp_prototype = new Carp();
-exports.foods.push(exports.carp_prototype);
-// var crayfish = new CookingIngredient("Crayfish", fish, [Source.Fishing], false);
+exports.fishes.push(exports.carp_prototype);
 var Crayfish = /** @class */ (function (_super) {
     __extends(Crayfish, _super);
     function Crayfish() {
@@ -226,8 +232,7 @@ var Crayfish = /** @class */ (function (_super) {
 }(Food));
 exports.Crayfish = Crayfish;
 exports.crayfish_prototype = new Crayfish();
-exports.foods.push(exports.crayfish_prototype);
-// var catfish = new CookingIngredient("Catfish", fish, [Source.Fishing], false);
+exports.crustaceans.push(exports.crayfish_prototype);
 var Catfish = /** @class */ (function (_super) {
     __extends(Catfish, _super);
     function Catfish() {
@@ -247,8 +252,7 @@ var Catfish = /** @class */ (function (_super) {
 }(Food));
 exports.Catfish = Catfish;
 exports.catfish_prototype = new Catfish();
-exports.foods.push(exports.catfish_prototype);
-// var lobster = new CookingIngredient("Lobster", fish, [Source.Fishing], false);
+exports.fishes.push(exports.catfish_prototype);
 var Lobster = /** @class */ (function (_super) {
     __extends(Lobster, _super);
     function Lobster() {
@@ -268,8 +272,7 @@ var Lobster = /** @class */ (function (_super) {
 }(Food));
 exports.Lobster = Lobster;
 exports.lobster_prototype = new Lobster();
-exports.foods.push(exports.lobster_prototype);
-// var clamMeat = new CookingIngredient("Clam Meat", fish, [Source.Fishing], false);
+exports.crustaceans.push(exports.lobster_prototype);
 var ClamMeat = /** @class */ (function (_super) {
     __extends(ClamMeat, _super);
     function ClamMeat() {
@@ -289,8 +292,7 @@ var ClamMeat = /** @class */ (function (_super) {
 }(Food));
 exports.ClamMeat = ClamMeat;
 exports.clam_meat_prototype = new ClamMeat();
-exports.foods.push(exports.clam_meat_prototype);
-// var shrimp = new CookingIngredient("Shrimp", fish, [Source.Fishing], false);
+exports.seafoods.push(exports.clam_meat_prototype);
 var Shrimp = /** @class */ (function (_super) {
     __extends(Shrimp, _super);
     function Shrimp() {
@@ -310,8 +312,7 @@ var Shrimp = /** @class */ (function (_super) {
 }(Food));
 exports.Shrimp = Shrimp;
 exports.shrimp_prototype = new Shrimp();
-exports.foods.push(exports.shrimp_prototype);
-// var sharkMeat = new CookingIngredient("Shark Meat", fish, [Source.Fishing], true);
+exports.fishes.push(exports.shrimp_prototype);
 var SharkMeat = /** @class */ (function (_super) {
     __extends(SharkMeat, _super);
     function SharkMeat() {
@@ -331,8 +332,7 @@ var SharkMeat = /** @class */ (function (_super) {
 }(Food));
 exports.SharkMeat = SharkMeat;
 exports.shark_meat_prototype = new SharkMeat();
-exports.foods.push(exports.shark_meat_prototype);
-// var beef = new CookingIngredient("Beef", meat, [Source.Farming], false);
+exports.fishes.push(exports.shark_meat_prototype);
 var Beef = /** @class */ (function (_super) {
     __extends(Beef, _super);
     function Beef() {
@@ -352,8 +352,7 @@ var Beef = /** @class */ (function (_super) {
 }(Food));
 exports.Beef = Beef;
 exports.beef_prototype = new Beef();
-exports.foods.push(exports.beef_prototype);
-// var pork = new CookingIngredient("Pork", meat, [Source.Farming], false);
+exports.meats.push(exports.beef_prototype);
 var Pork = /** @class */ (function (_super) {
     __extends(Pork, _super);
     function Pork() {
@@ -373,8 +372,7 @@ var Pork = /** @class */ (function (_super) {
 }(Food));
 exports.Pork = Pork;
 exports.pork_prototype = new Pork();
-exports.foods.push(exports.pork_prototype);
-// var pigSkin = new CookingIngredient("Pig Skin", other, [Source.Farming], true);
+exports.meats.push(exports.pork_prototype);
 var PigSkin = /** @class */ (function (_super) {
     __extends(PigSkin, _super);
     function PigSkin() {
@@ -395,8 +393,7 @@ var PigSkin = /** @class */ (function (_super) {
 }(Food));
 exports.PigSkin = PigSkin;
 exports.pig_skin_prototype = new PigSkin();
-exports.foods.push(exports.pig_skin_prototype);
-// var pigFeet = new CookingIngredient("Pig's Feet", other, [Source.Farming], true);
+exports.meats.push(exports.pig_skin_prototype);
 var PigFeet = /** @class */ (function (_super) {
     __extends(PigFeet, _super);
     function PigFeet() {
@@ -416,8 +413,6 @@ var PigFeet = /** @class */ (function (_super) {
 }(Food));
 exports.PigFeet = PigFeet;
 exports.pig_feet_prototype = new PigFeet();
-exports.foods.push(exports.pig_feet_prototype);
-// var sugar = new CookingIngredient("Sugar", baking, [Source.Milling], false);
 var Sugar = /** @class */ (function (_super) {
     __extends(Sugar, _super);
     function Sugar() {
@@ -439,8 +434,6 @@ var Sugar = /** @class */ (function (_super) {
 }(Food));
 exports.Sugar = Sugar;
 exports.sugar_prototype = new Sugar();
-exports.foods.push(exports.sugar_prototype);
-// var seaweed = new CookingIngredient("Seaweed", sushi, [Source.Foraging], true);
 var Seaweed = /** @class */ (function (_super) {
     __extends(Seaweed, _super);
     function Seaweed(type) {
@@ -464,8 +457,6 @@ exports.Seaweed = Seaweed;
 exports.seaweedRed_prototype = new Seaweed("red");
 exports.seaweedGreen_prototype = new Seaweed("green");
 exports.seaweedBrown_prototype = new Seaweed("brown");
-exports.foods.push(exports.seaweedRed_prototype, exports.seaweedGreen_prototype, exports.seaweedBrown_prototype);
-// var rice = new CookingIngredient("Rice", grain, [Source.Farming], false);
 var Rice = /** @class */ (function (_super) {
     __extends(Rice, _super);
     function Rice() {
@@ -485,8 +476,6 @@ var Rice = /** @class */ (function (_super) {
 }(Food));
 exports.Rice = Rice;
 exports.rice_prototype = new Rice();
-exports.foods.push(exports.rice_prototype);
-// var corn = new CookingIngredient("Corn", grain, [Source.Farming], false);
 var Corn = /** @class */ (function (_super) {
     __extends(Corn, _super);
     function Corn() {
@@ -506,7 +495,6 @@ var Corn = /** @class */ (function (_super) {
 }(Food));
 exports.Corn = Corn;
 exports.corn_prototype = new Corn();
-exports.foods.push(exports.corn_prototype);
 var CornOnTheCob = /** @class */ (function (_super) {
     __extends(CornOnTheCob, _super);
     function CornOnTheCob() {
@@ -526,8 +514,6 @@ var CornOnTheCob = /** @class */ (function (_super) {
 }(Food));
 exports.CornOnTheCob = CornOnTheCob;
 exports.cornOnOheCob_prototype = new CornOnTheCob();
-exports.foods.push(exports.cornOnOheCob_prototype);
-// var asparagus = new CookingIngredient("Asparagus", vegetable, [Source.Farming], false);
 var Asparagus = /** @class */ (function (_super) {
     __extends(Asparagus, _super);
     function Asparagus() {
@@ -547,8 +533,6 @@ var Asparagus = /** @class */ (function (_super) {
 }(Food));
 exports.Asparagus = Asparagus;
 exports.asparagus_prototype = new Asparagus();
-exports.foods.push(exports.asparagus_prototype);
-// var redBeans = new CookingIngredient("Red Beans", protein, [Source.Foraging], false);
 var Beans = /** @class */ (function (_super) {
     __extends(Beans, _super);
     function Beans(type) {
@@ -578,13 +562,6 @@ exports.beansMung_prototype = new Beans("mung");
 exports.beansGarbanzo_prototype = new Beans("garbanzo");
 exports.beansJack_prototype = new Beans("jack");
 exports.beansSoy_prototype = new Beans("soy");
-exports.foods.push(exports.beansKidney_prototype, exports.beansPinto_prototype, exports.beansBlack_prototype, exports.beansGreen_prototype, exports.beansLima_prototype, exports.beansMung_prototype, exports.beansGarbanzo_prototype, exports.beansJack_prototype, exports.beansSoy_prototype);
-// var whiteMushroom = new CookingIngredient("White Mushroom", protein, [Source.Foraging, Source.Farming], false);
-// var brownMushroom = new CookingIngredient("Brown Mushroom", fungi, [Source.Foraging, Source.Farming], false);
-// var purpleMushroom = new CookingIngredient("Purple Mushroom", fungi, [Source.Foraging, Source.Farming], true);
-// var glowingMushrooms = new CookingIngredient("Glowing Mushrooms", fungi, [Source.Foraging, Source.Farming], true);
-// var morels = new CookingIngredient("Morels", protein, [Source.Foraging, Source.Farming], false);
-// var redMushrooms = new CookingIngredient("Red Mushrooms", poison, [Source.Foraging], false);
 var Mushroom = /** @class */ (function (_super) {
     __extends(Mushroom, _super);
     function Mushroom(type, weight) {
@@ -611,8 +588,6 @@ exports.mushroomPurple_prototype = new Mushroom("purple", 0);
 exports.mushroomGlowing_prototype = new Mushroom("glowing", 0);
 exports.mushroomMorel_prototype = new Mushroom("morel", 0);
 exports.mushroomRed_prototype = new Mushroom("red", 0);
-exports.foods.push(exports.mushroomWhite_prototype, exports.mushroomBrown_prototype, exports.mushroomPurple_prototype, exports.mushroomGlowing_prototype, exports.mushroomMorel_prototype, exports.mushroomRed_prototype);
-// var apples = new CookingIngredient("Apples", fruit, [Source.Farming, Source.Foraging], false);
 var Apple = /** @class */ (function (_super) {
     __extends(Apple, _super);
     function Apple(type) {
@@ -636,8 +611,6 @@ exports.Apple = Apple;
 exports.appleRed_prototype = new Apple("red");
 exports.appleGreen_prototype = new Apple("green");
 exports.appleGolden_prototype = new Apple("golden");
-exports.foods.push(exports.appleRed_prototype, exports.appleGreen_prototype, exports.appleGolden_prototype);
-// var pears = new CookingIngredient("Pears", fruit, [Source.Farming], true);
 var Pear = /** @class */ (function (_super) {
     __extends(Pear, _super);
     function Pear() {
@@ -657,8 +630,6 @@ var Pear = /** @class */ (function (_super) {
 }(Food));
 exports.Pear = Pear;
 exports.pear_prototype = new Pear();
-exports.foods.push(exports.pear_prototype);
-// var grapes = new CookingIngredient("Grapes", fruit, [Source.Farming], false);
 var Grape = /** @class */ (function (_super) {
     __extends(Grape, _super);
     function Grape(type) {
@@ -683,8 +654,6 @@ exports.grapeRed_prototype = new Grape("red");
 exports.grapeWhite_prototype = new Grape("white");
 exports.grapePurple_prototype = new Grape("purple");
 exports.grapeMuscadine_prototype = new Grape("muscadine");
-exports.foods.push(exports.grapeRed_prototype, exports.grapeWhite_prototype, exports.grapePurple_prototype, exports.grapeMuscadine_prototype);
-// var avocados = new CookingIngredient("Avocados", fruit, [Source.Farming], true);
 var Avocado = /** @class */ (function (_super) {
     __extends(Avocado, _super);
     function Avocado() {
@@ -704,8 +673,6 @@ var Avocado = /** @class */ (function (_super) {
 }(Food));
 exports.Avocado = Avocado;
 exports.avocado_prototype = new Avocado();
-exports.foods.push(exports.avocado_prototype);
-// var citrus = new CookingIngredient("Citrus", fruit, [Source.Farming], true);
 var Citrus = /** @class */ (function (_super) {
     __extends(Citrus, _super);
     function Citrus(type) {
@@ -731,8 +698,6 @@ exports.citrusLemon_prototype = new Citrus("lemon");
 exports.citrusLime_prototype = new Citrus("lime");
 exports.citrusGrapefruit_prototype = new Citrus("grapefruit");
 exports.citrusTangerine_prototype = new Citrus("tangerine");
-exports.foods.push(exports.citrusOrange_prototype, exports.citrusLemon_prototype, exports.citrusLime_prototype, exports.citrusGrapefruit_prototype, exports.citrusTangerine_prototype);
-// var peanuts = new CookingIngredient("Peanuts", nut, [Source.Farming], false);
 var Peanut = /** @class */ (function (_super) {
     __extends(Peanut, _super);
     function Peanut() {
@@ -752,8 +717,6 @@ var Peanut = /** @class */ (function (_super) {
 }(Food));
 exports.Peanut = Peanut;
 exports.peanut_prototype = new Peanut();
-exports.foods.push(exports.peanut_prototype);
-// var walnuts = new CookingIngredient("Walnuts", nut, [Source.Foraging], false);
 var Walnut = /** @class */ (function (_super) {
     __extends(Walnut, _super);
     function Walnut() {
@@ -773,8 +736,6 @@ var Walnut = /** @class */ (function (_super) {
 }(Food));
 exports.Walnut = Walnut;
 exports.walnut_prototype = new Walnut();
-exports.foods.push(exports.walnut_prototype);
-// var almonds = new CookingIngredient("Almonds", nut, [Source.Farming], true);
 var Almond = /** @class */ (function (_super) {
     __extends(Almond, _super);
     function Almond() {
@@ -794,8 +755,6 @@ var Almond = /** @class */ (function (_super) {
 }(Food));
 exports.Almond = Almond;
 exports.almond_prototype = new Almond();
-exports.foods.push(exports.almond_prototype);
-// var brazilNuts = new CookingIngredient("Brazil Nuts", nut, [Source.Foraging], true);
 var BrazilNut = /** @class */ (function (_super) {
     __extends(BrazilNut, _super);
     function BrazilNut() {
@@ -815,8 +774,6 @@ var BrazilNut = /** @class */ (function (_super) {
 }(Food));
 exports.BrazilNut = BrazilNut;
 exports.brazilNut_prototype = new BrazilNut();
-exports.foods.push(exports.brazilNut_prototype);
-// var chestnuts = new CookingIngredient("Chestnuts", nut, [Source.Questing], false);
 var Chestnut = /** @class */ (function (_super) {
     __extends(Chestnut, _super);
     function Chestnut() {
@@ -836,8 +793,6 @@ var Chestnut = /** @class */ (function (_super) {
 }(Food));
 exports.Chestnut = Chestnut;
 exports.chestnut_prototype = new Chestnut();
-exports.foods.push(exports.chestnut_prototype);
-// var coconut = new CookingIngredient("Coconut", fruit, [Source.Foraging], false);
 var Coconut = /** @class */ (function (_super) {
     __extends(Coconut, _super);
     function Coconut() {
@@ -857,8 +812,6 @@ var Coconut = /** @class */ (function (_super) {
 }(Food));
 exports.Coconut = Coconut;
 exports.coconut_prototype = new Coconut();
-exports.foods.push(exports.coconut_prototype);
-// var carrots = new CookingIngredient("Carrots", vegetable, [Source.Farming], false);
 var Carrot = /** @class */ (function (_super) {
     __extends(Carrot, _super);
     function Carrot() {
@@ -878,8 +831,6 @@ var Carrot = /** @class */ (function (_super) {
 }(Food));
 exports.Carrot = Carrot;
 exports.carrot_prototype = new Carrot();
-exports.foods.push(exports.carrot_prototype);
-// var potatoes = new CookingIngredient("Potatoes", starch, [Source.Farming, Source.Foraging], false);
 var Potato = /** @class */ (function (_super) {
     __extends(Potato, _super);
     function Potato() {
@@ -899,8 +850,6 @@ var Potato = /** @class */ (function (_super) {
 }(Food));
 exports.Potato = Potato;
 exports.potato_prototype = new Potato();
-exports.foods.push(exports.potato_prototype);
-// var beets = new CookingIngredient("Beets", vegetable, [Source.Farming], true);
 var Beet = /** @class */ (function (_super) {
     __extends(Beet, _super);
     function Beet() {
@@ -920,8 +869,6 @@ var Beet = /** @class */ (function (_super) {
 }(Food));
 exports.Beet = Beet;
 exports.beet_prototype = new Beet();
-exports.foods.push(exports.beet_prototype);
-// var eggplant = new CookingIngredient("Eggplant", vegetable, [Source.Farming], true);
 var Eggplant = /** @class */ (function (_super) {
     __extends(Eggplant, _super);
     function Eggplant() {
@@ -941,17 +888,6 @@ var Eggplant = /** @class */ (function (_super) {
 }(Food));
 exports.Eggplant = Eggplant;
 exports.eggplant_prototype = new Eggplant();
-exports.foods.push(exports.eggplant_prototype);
-// var redBerries = new CookingIngredient("Red Berries", berry, [Source.Foraging], false);
-// var blueberries = new CookingIngredient("Blueberries", berry, [Source.Foraging], false);
-// var boysenberries = new CookingIngredient("Boysenberries", berry, [Source.Foraging], true);
-// var snozzberries = new CookingIngredient("Snozzberries", berry, [Source.Foraging], false);
-// var cherries = new CookingIngredient("Cherries", fruit, [Source.Questing], false);
-// var strawberries = new CookingIngredient("Strawberries", fruit, [Source.Foraging], false);
-// var blackberries = new CookingIngredient("Blackberries", berry, [Source.Foraging], false);
-// var raspberries = new CookingIngredient("Raspberries", berry, [Source.Foraging], false);
-// var blueCurrants = new CookingIngredient("Blue Currants", berry, [Source.Foraging], false);
-// var blackCurrants = new CookingIngredient("Black Currants", berry, [Source.Foraging], false);
 var Berry = /** @class */ (function (_super) {
     __extends(Berry, _super);
     function Berry(type) {
@@ -991,8 +927,6 @@ exports.berryStraw_prototype = new Berry("straw");
 exports.berryRasp_prototype = new Berry("rasp");
 exports.berryBlueCurrant_prototype = new Berry("blue currant");
 exports.berryBlackCurrant_prototype = new Berry("black currant");
-exports.foods.push(exports.berryRed_prototype, exports.berryBlue_prototype, exports.berryBlack_prototype, exports.berrySnozz_prototype, exports.berryCherry_prototype, exports.berryStraw_prototype, exports.berryRasp_prototype, exports.berryBlueCurrant_prototype, exports.berryBlackCurrant_prototype);
-// var bananas = new CookingIngredient("Bananas", fruit, [Source.Farming], false);
 var Banana = /** @class */ (function (_super) {
     __extends(Banana, _super);
     function Banana() {
@@ -1012,8 +946,6 @@ var Banana = /** @class */ (function (_super) {
 }(Food));
 exports.Banana = Banana;
 exports.banana_prototype = new Banana();
-exports.foods.push(exports.banana_prototype);
-// var pineapples = new CookingIngredient("Pineapples", fruit, [Source.Foraging], false);
 var Pineapple = /** @class */ (function (_super) {
     __extends(Pineapple, _super);
     function Pineapple() {
@@ -1033,13 +965,6 @@ var Pineapple = /** @class */ (function (_super) {
 }(Food));
 exports.Pineapple = Pineapple;
 exports.pineapple_prototype = new Pineapple();
-exports.foods.push(exports.pineapple_prototype);
-// var blackPepper = new CookingIngredient("Black Pepper", spice, [Source.Trading], false);
-// var whitePepper = new CookingIngredient("White Pepper", spice, [Source.Trading], false);
-// var bellPepper = new CookingIngredient("Bell Pepper", vegetable, [Source.Farming], false);
-// var jalapenos = new CookingIngredient("Jalapenos", vegetable, [Source.Farming], false);
-// var cayennePepper = new CookingIngredient("Cayenne Pepper", spice, [Source.Trading], false);
-// var chiliPepper = new CookingIngredient("Chili Pepper", spice, [Source.Trading], false);
 var Pepper = /** @class */ (function (_super) {
     __extends(Pepper, _super);
     function Pepper(type) {
@@ -1066,8 +991,6 @@ exports.pepperBell_prototype = new Pepper("bell");
 exports.pepperJalapeno_prototype = new Pepper("jalapeno");
 exports.pepperCayenne_prototype = new Pepper("cayenne");
 exports.pepperChili_prototype = new Pepper("chili");
-exports.foods.push(exports.pepperBlack_prototype, exports.pepperWhite_prototype, exports.pepperBell_prototype, exports.pepperJalapeno_prototype, exports.pepperCayenne_prototype, exports.pepperChili_prototype);
-// var coriander = new CookingIngredient("Coriander", herb, [Source.Trading], false);
 var Coriander = /** @class */ (function (_super) {
     __extends(Coriander, _super);
     function Coriander() {
@@ -1087,8 +1010,6 @@ var Coriander = /** @class */ (function (_super) {
 }(Food));
 exports.Coriander = Coriander;
 exports.coriander_prototype = new Coriander();
-exports.foods.push(exports.coriander_prototype);
-// var cilantro = new CookingIngredient("Cilantro", herb, [Source.Trading], false);
 var Cilantro = /** @class */ (function (_super) {
     __extends(Cilantro, _super);
     function Cilantro() {
@@ -1108,8 +1029,6 @@ var Cilantro = /** @class */ (function (_super) {
 }(Food));
 exports.Cilantro = Cilantro;
 exports.cilantro_prototype = new Cilantro();
-exports.foods.push(exports.cilantro_prototype);
-// var cumin = new CookingIngredient("Cumin", spice, [Source.Trading], false);
 var Cumin = /** @class */ (function (_super) {
     __extends(Cumin, _super);
     function Cumin() {
@@ -1129,8 +1048,6 @@ var Cumin = /** @class */ (function (_super) {
 }(Food));
 exports.Cumin = Cumin;
 exports.cumin_prototype = new Cumin();
-exports.foods.push(exports.cumin_prototype);
-// var dill = new CookingIngredient("Dill", herb, [Source.Trading], false);
 var Dill = /** @class */ (function (_super) {
     __extends(Dill, _super);
     function Dill() {
@@ -1150,8 +1067,6 @@ var Dill = /** @class */ (function (_super) {
 }(Food));
 exports.Dill = Dill;
 exports.dill_prototype = new Dill();
-exports.foods.push(exports.dill_prototype);
-// var fennel = new CookingIngredient("Fennel", herb, [Source.Trading], false);
 var Fennel = /** @class */ (function (_super) {
     __extends(Fennel, _super);
     function Fennel() {
@@ -1171,8 +1086,6 @@ var Fennel = /** @class */ (function (_super) {
 }(Food));
 exports.Fennel = Fennel;
 exports.fennel_prototype = new Fennel();
-exports.foods.push(exports.fennel_prototype);
-// var garlic = new CookingIngredient("Garlic", herb, [Source.Trading], false);
 var Garlic = /** @class */ (function (_super) {
     __extends(Garlic, _super);
     function Garlic() {
@@ -1192,8 +1105,6 @@ var Garlic = /** @class */ (function (_super) {
 }(Food));
 exports.Garlic = Garlic;
 exports.garlic_prototype = new Garlic();
-exports.foods.push(exports.garlic_prototype);
-// var ginger = new CookingIngredient("Ginger", herb, [Source.Trading], false);
 var Ginger = /** @class */ (function (_super) {
     __extends(Ginger, _super);
     function Ginger() {
@@ -1213,8 +1124,6 @@ var Ginger = /** @class */ (function (_super) {
 }(Food));
 exports.Ginger = Ginger;
 exports.ginger_prototype = new Ginger();
-exports.foods.push(exports.ginger_prototype);
-// var oregano = new CookingIngredient("Oregano", herb, [Source.Trading], false);
 var Oregano = /** @class */ (function (_super) {
     __extends(Oregano, _super);
     function Oregano() {
@@ -1234,8 +1143,6 @@ var Oregano = /** @class */ (function (_super) {
 }(Food));
 exports.Oregano = Oregano;
 exports.oregano_prototype = new Oregano();
-exports.foods.push(exports.oregano_prototype);
-// var parsley = new CookingIngredient("Parsley", herb, [Source.Trading], false);
 var Parsley = /** @class */ (function (_super) {
     __extends(Parsley, _super);
     function Parsley() {
@@ -1255,8 +1162,6 @@ var Parsley = /** @class */ (function (_super) {
 }(Food));
 exports.Parsley = Parsley;
 exports.parsley_prototype = new Parsley();
-exports.foods.push(exports.parsley_prototype);
-// var rosemary = new CookingIngredient("Rosemary", herb, [Source.Trading], false);
 var Rosemary = /** @class */ (function (_super) {
     __extends(Rosemary, _super);
     function Rosemary() {
@@ -1276,8 +1181,6 @@ var Rosemary = /** @class */ (function (_super) {
 }(Food));
 exports.Rosemary = Rosemary;
 exports.rosemary_prototype = new Rosemary();
-exports.foods.push(exports.rosemary_prototype);
-// var thyme = new CookingIngredient("Thyme", herb, [Source.Trading], false);
 var Thyme = /** @class */ (function (_super) {
     __extends(Thyme, _super);
     function Thyme() {
@@ -1297,8 +1200,6 @@ var Thyme = /** @class */ (function (_super) {
 }(Food));
 exports.Thyme = Thyme;
 exports.thyme_prototype = new Thyme();
-exports.foods.push(exports.thyme_prototype);
-// var turmeric = new CookingIngredient("Turmeric", spice, [Source.Trading], false);
 var Turmeric = /** @class */ (function (_super) {
     __extends(Turmeric, _super);
     function Turmeric() {
@@ -1318,8 +1219,6 @@ var Turmeric = /** @class */ (function (_super) {
 }(Food));
 exports.Turmeric = Turmeric;
 exports.turmeric_prototype = new Turmeric();
-exports.foods.push(exports.turmeric_prototype);
-// var chives = new CookingIngredient("Chives", herb, [Source.Trading], false);
 var Chives = /** @class */ (function (_super) {
     __extends(Chives, _super);
     function Chives() {
@@ -1339,8 +1238,6 @@ var Chives = /** @class */ (function (_super) {
 }(Food));
 exports.Chives = Chives;
 exports.chives_prototype = new Chives();
-exports.foods.push(exports.chives_prototype);
-// var sage = new CookingIngredient("Sage", herb, [Source.Trading], false);
 var Sage = /** @class */ (function (_super) {
     __extends(Sage, _super);
     function Sage() {
@@ -1360,8 +1257,6 @@ var Sage = /** @class */ (function (_super) {
 }(Food));
 exports.Sage = Sage;
 exports.sage_prototype = new Sage();
-exports.foods.push(exports.sage_prototype);
-// var basil = new CookingIngredient("Basil", herb, [Source.Trading], false);
 var Basil = /** @class */ (function (_super) {
     __extends(Basil, _super);
     function Basil() {
@@ -1381,8 +1276,6 @@ var Basil = /** @class */ (function (_super) {
 }(Food));
 exports.Basil = Basil;
 exports.basil_prototype = new Basil();
-exports.foods.push(exports.basil_prototype);
-// var tomatoes = new CookingIngredient("Tomatoes", fruit, [Source.Farming], false);
 var Tomatoes = /** @class */ (function (_super) {
     __extends(Tomatoes, _super);
     function Tomatoes() {
@@ -1402,8 +1295,6 @@ var Tomatoes = /** @class */ (function (_super) {
 }(Food));
 exports.Tomatoes = Tomatoes;
 exports.tomatoes_prototype = new Tomatoes();
-exports.foods.push(exports.tomatoes_prototype);
-// var lettuce = new CookingIngredient("Lettuce", vegetable, [Source.Farming], false);
 var Lettuce = /** @class */ (function (_super) {
     __extends(Lettuce, _super);
     function Lettuce() {
@@ -1423,8 +1314,6 @@ var Lettuce = /** @class */ (function (_super) {
 }(Food));
 exports.Lettuce = Lettuce;
 exports.lettuce_prototype = new Lettuce();
-exports.foods.push(exports.lettuce_prototype);
-// var cabbage = new CookingIngredient("Cabbage", vegetable, [Source.Farming], true);
 var Cabbage = /** @class */ (function (_super) {
     __extends(Cabbage, _super);
     function Cabbage() {
@@ -1444,8 +1333,6 @@ var Cabbage = /** @class */ (function (_super) {
 }(Food));
 exports.Cabbage = Cabbage;
 exports.cabbage_prototype = new Cabbage();
-exports.foods.push(exports.cabbage_prototype);
-// var cauliflower = new CookingIngredient("Cauliflower", vegetable, [Source.Farming], true);
 var Cauliflower = /** @class */ (function (_super) {
     __extends(Cauliflower, _super);
     function Cauliflower() {
@@ -1465,8 +1352,6 @@ var Cauliflower = /** @class */ (function (_super) {
 }(Food));
 exports.Cauliflower = Cauliflower;
 exports.cauliflower_prototype = new Cauliflower();
-exports.foods.push(exports.cauliflower_prototype);
-// var broccoli = new CookingIngredient("Broccoli", vegetable, [Source.Farming], false);
 var Broccoli = /** @class */ (function (_super) {
     __extends(Broccoli, _super);
     function Broccoli() {
@@ -1486,8 +1371,6 @@ var Broccoli = /** @class */ (function (_super) {
 }(Food));
 exports.Broccoli = Broccoli;
 exports.broccoli_prototype = new Broccoli();
-exports.foods.push(exports.broccoli_prototype);
-// var rancidMeat = new CookingIngredient("Rancid Meat", protein, [Source.Questing], false);
 var RancidMeat = /** @class */ (function (_super) {
     __extends(RancidMeat, _super);
     function RancidMeat() {
@@ -1507,8 +1390,6 @@ var RancidMeat = /** @class */ (function (_super) {
 }(Food));
 exports.RancidMeat = RancidMeat;
 exports.rancidMeat_prototype = new RancidMeat();
-exports.foods.push(exports.rancidMeat_prototype);
-// var questionableMeat = new CookingIngredient("Questionable Meat", protein, [Source.Questing], false);
 var QuestionableMeat = /** @class */ (function (_super) {
     __extends(QuestionableMeat, _super);
     function QuestionableMeat() {
@@ -1528,8 +1409,6 @@ var QuestionableMeat = /** @class */ (function (_super) {
 }(Food));
 exports.QuestionableMeat = QuestionableMeat;
 exports.questionableMeat_prototype = new QuestionableMeat();
-exports.foods.push(exports.questionableMeat_prototype);
-// var dragonmeat = new CookingIngredient("Dragonmeat", protein, [Source.Questing], true);
 var Dragonmeat = /** @class */ (function (_super) {
     __extends(Dragonmeat, _super);
     function Dragonmeat() {
@@ -1549,8 +1428,6 @@ var Dragonmeat = /** @class */ (function (_super) {
 }(Food));
 exports.Dragonmeat = Dragonmeat;
 exports.dragonmeat_prototype = new Dragonmeat();
-exports.foods.push(exports.dragonmeat_prototype);
-// var grubs = new CookingIngredient("Grubs", protein, [Source.Foraging], false);
 var Grubs = /** @class */ (function (_super) {
     __extends(Grubs, _super);
     function Grubs() {
@@ -1570,8 +1447,6 @@ var Grubs = /** @class */ (function (_super) {
 }(Food));
 exports.Grubs = Grubs;
 exports.grubs_prototype = new Grubs();
-exports.foods.push(exports.grubs_prototype);
-// var brains = new CookingIngredient("Brains", other, [Source.Foraging], true);
 var Brains = /** @class */ (function (_super) {
     __extends(Brains, _super);
     function Brains() {
@@ -1591,8 +1466,6 @@ var Brains = /** @class */ (function (_super) {
 }(Food));
 exports.Brains = Brains;
 exports.brains_prototype = new Brains();
-exports.foods.push(exports.brains_prototype);
-// var mealworms = new CookingIngredient("Mealworms", protein, [Source.Foraging], false);
 var Mealworms = /** @class */ (function (_super) {
     __extends(Mealworms, _super);
     function Mealworms() {
@@ -1612,8 +1485,6 @@ var Mealworms = /** @class */ (function (_super) {
 }(Food));
 exports.Mealworms = Mealworms;
 exports.mealworms_prototype = new Mealworms();
-exports.foods.push(exports.mealworms_prototype);
-// var beetles = new CookingIngredient("Beetles", protein, [Source.Foraging], false);
 var Beetles = /** @class */ (function (_super) {
     __extends(Beetles, _super);
     function Beetles() {
@@ -1633,8 +1504,6 @@ var Beetles = /** @class */ (function (_super) {
 }(Food));
 exports.Beetles = Beetles;
 exports.beetles_prototype = new Beetles();
-exports.foods.push(exports.beetles_prototype);
-// var fireAnts = new CookingIngredient("Fire Ants", protein, [Source.Foraging], true);
 var Ants = /** @class */ (function (_super) {
     __extends(Ants, _super);
     function Ants(type) {
@@ -1658,11 +1527,6 @@ exports.Ants = Ants;
 exports.antsRed_prototype = new Ants("red");
 exports.antsBlack_prototype = new Ants("black");
 exports.antsFire_prototype = new Ants("fire");
-exports.foods.push(exports.antsRed_prototype, exports.antsBlack_prototype, exports.antsFire_prototype);
-// var grayOoze = new CookingIngredient("Gray Ooze", other, [Source.Foraging, Source.Questing], false);
-// var greenOoze = new CookingIngredient("Green Ooze", other, [Source.Questing], false);
-// var superiorOoze = new CookingIngredient("Superior Ooze", other, [Source.Questing], true);
-// var purpleOoze = new CookingIngredient("Purple Ooze", other, [Source.Questing], true);
 var Ooze = /** @class */ (function (_super) {
     __extends(Ooze, _super);
     function Ooze(type) {
@@ -1687,8 +1551,6 @@ exports.oozeGray_prototype = new Ooze("gray");
 exports.oozeGreen_prototype = new Ooze("green");
 exports.oozeSuperior_prototype = new Ooze("superior");
 exports.oozePurple_prototype = new Ooze("purple");
-exports.foods.push(exports.oozeGray_prototype, exports.oozeGreen_prototype, exports.oozeSuperior_prototype, exports.oozePurple_prototype);
-// var glowworm = new CookingIngredient("Glowworm", protein, [Source.Foraging], false);
 var Glowworm = /** @class */ (function (_super) {
     __extends(Glowworm, _super);
     function Glowworm() {
@@ -1708,8 +1570,6 @@ var Glowworm = /** @class */ (function (_super) {
 }(Food));
 exports.Glowworm = Glowworm;
 exports.glowworm_prototype = new Glowworm();
-exports.foods.push(exports.glowworm_prototype);
-// var humanoidFlesh = new CookingIngredient("Humanoid Flesh", protein, [Source.ReligiousCeremony], true);
 var HumanoidFlesh = /** @class */ (function (_super) {
     __extends(HumanoidFlesh, _super);
     function HumanoidFlesh() {
@@ -1729,8 +1589,6 @@ var HumanoidFlesh = /** @class */ (function (_super) {
 }(Food));
 exports.HumanoidFlesh = HumanoidFlesh;
 exports.humanoidFlesh_prototype = new HumanoidFlesh();
-exports.foods.push(exports.humanoidFlesh_prototype);
-// var deerMeat = new CookingIngredient("Deer Meat", protein, [Source.Hunting], false);
 var Venison = /** @class */ (function (_super) {
     __extends(Venison, _super);
     function Venison() {
@@ -1750,8 +1608,6 @@ var Venison = /** @class */ (function (_super) {
 }(Food));
 exports.Venison = Venison;
 exports.venison_prototype = new Venison();
-exports.foods.push(exports.venison_prototype);
-// var sprouts = new CookingIngredient("Sprouts", spice, [Source.Foraging], true);
 var Sprouts = /** @class */ (function (_super) {
     __extends(Sprouts, _super);
     function Sprouts() {
@@ -1771,8 +1627,6 @@ var Sprouts = /** @class */ (function (_super) {
 }(Food));
 exports.Sprouts = Sprouts;
 exports.sprouts_prototype = new Sprouts();
-exports.foods.push(exports.sprouts_prototype);
-// var wasabi = new CookingIngredient("Wasabi", spice, [Source.Trading], true);
 var Wasabi = /** @class */ (function (_super) {
     __extends(Wasabi, _super);
     function Wasabi() {
@@ -1792,8 +1646,6 @@ var Wasabi = /** @class */ (function (_super) {
 }(Food));
 exports.Wasabi = Wasabi;
 exports.wasabi_prototype = new Wasabi();
-exports.foods.push(exports.wasabi_prototype);
-// var mapleSap = new CookingIngredient("Maple Sap", other, [Source.Foraging], false);
 var MapleSap = /** @class */ (function (_super) {
     __extends(MapleSap, _super);
     function MapleSap() {
@@ -1813,8 +1665,6 @@ var MapleSap = /** @class */ (function (_super) {
 }(Food));
 exports.MapleSap = MapleSap;
 exports.mapleSap_prototype = new MapleSap();
-exports.foods.push(exports.mapleSap_prototype);
-// var acorns = new CookingIngredient("Acorns", other, [Source.Foraging], false);
 var Acorns = /** @class */ (function (_super) {
     __extends(Acorns, _super);
     function Acorns() {
@@ -1834,8 +1684,6 @@ var Acorns = /** @class */ (function (_super) {
 }(Food));
 exports.Acorns = Acorns;
 exports.acorns_prototype = new Acorns();
-exports.foods.push(exports.acorns_prototype);
-// var vanillaBean = new CookingIngredient("Vanilla Bean", spice, [Source.Farming], true);
 var VanillaBean = /** @class */ (function (_super) {
     __extends(VanillaBean, _super);
     function VanillaBean() {
@@ -1855,8 +1703,6 @@ var VanillaBean = /** @class */ (function (_super) {
 }(Food));
 exports.VanillaBean = VanillaBean;
 exports.vanillaBean_prototype = new VanillaBean();
-exports.foods.push(exports.vanillaBean_prototype);
-// var cucumbers = new CookingIngredient("Cucumbers", vegetable, [Source.Farming], false);
 var Cucumbers = /** @class */ (function (_super) {
     __extends(Cucumbers, _super);
     function Cucumbers() {
@@ -1876,11 +1722,6 @@ var Cucumbers = /** @class */ (function (_super) {
 }(Food));
 exports.Cucumbers = Cucumbers;
 exports.cucumbers_prototype = new Cucumbers();
-exports.foods.push(exports.cucumbers_prototype);
-// var purpleOnion = new CookingIngredient("Purple Onion", vegetable, [Source.Farming], true);
-// var whiteOnion = new CookingIngredient("White Onion", vegetable, [Source.Farming], false);
-// var greenOnion = new CookingIngredient("Green Onion", vegetable, [Source.Foraging], false);
-// var redOnion = new CookingIngredient("Red Onion", vegetable, [Source.Foraging], false);
 var Onion = /** @class */ (function (_super) {
     __extends(Onion, _super);
     function Onion(type) {
@@ -1905,12 +1746,6 @@ exports.purpleOnion_prototype = new Onion("purple");
 exports.whiteOnion_prototype = new Onion("white");
 exports.greenOnion_prototype = new Onion("green");
 exports.redOnion_prototype = new Onion("red");
-exports.foods.push(exports.purpleOnion_prototype, exports.whiteOnion_prototype, exports.greenOnion_prototype, exports.redOnion_prototype);
-// var chickenEgg = new CookingIngredient("Chicken Egg", egg, [Source.Farming], false);
-// var fishEgg = new CookingIngredient("Fish Egg", egg, [Source.Fishing], true);
-// var snakeEgg = new CookingIngredient("Snake Egg", egg, [Source.Foraging], false);
-// var lizardEgg = new CookingIngredient("Lizard Egg", egg, [Source.Foraging], false);
-// var dragonEgg = new CookingIngredient("Dragon Egg", egg, [Source.Questing], true);
 var Egg = /** @class */ (function (_super) {
     __extends(Egg, _super);
     function Egg(type) {
@@ -1936,8 +1771,6 @@ exports.fishEgg_prototype = new Egg("fish");
 exports.snakeEgg_prototype = new Egg("snake");
 exports.lizardEgg_prototype = new Egg("lizard");
 exports.dragonEgg_prototype = new Egg("dragon");
-exports.foods.push(exports.chickenEgg_prototype, exports.fishEgg_prototype, exports.snakeEgg_prototype, exports.lizardEgg_prototype, exports.dragonEgg_prototype);
-// var soySauce = new CookingIngredient("Soy Sauce", spice, [Source.Trading], false);
 var SoySauce = /** @class */ (function (_super) {
     __extends(SoySauce, _super);
     function SoySauce() {
@@ -1957,9 +1790,6 @@ var SoySauce = /** @class */ (function (_super) {
 }(Food));
 exports.SoySauce = SoySauce;
 exports.soySauce_prototype = new SoySauce();
-exports.foods.push(exports.soySauce_prototype);
-// var cowMilk = new CookingIngredient("Cow Milk", dairy, [Source.Farming], false);
-// var goatMilk = new CookingIngredient("Goat Milk", dairy, [Source.Farming], true);
 var Milk = /** @class */ (function (_super) {
     __extends(Milk, _super);
     function Milk(type) {
@@ -1982,8 +1812,6 @@ var Milk = /** @class */ (function (_super) {
 exports.Milk = Milk;
 exports.cowMilk_prototype = new Milk("cow");
 exports.goatMilk_prototype = new Milk("goat");
-exports.foods.push(exports.cowMilk_prototype, exports.goatMilk_prototype);
-// var milkOfThePoppy = new CookingIngredient("Milk of the Poppy", spice, [Source.Foraging], true);
 var MilkOfThePoppy = /** @class */ (function (_super) {
     __extends(MilkOfThePoppy, _super);
     function MilkOfThePoppy() {
@@ -2003,8 +1831,6 @@ var MilkOfThePoppy = /** @class */ (function (_super) {
 }(Food));
 exports.MilkOfThePoppy = MilkOfThePoppy;
 exports.milkOfThePoppy_prototype = new MilkOfThePoppy();
-exports.foods.push(exports.milkOfThePoppy_prototype);
-// var cocoaBeans = new CookingIngredient("Cocoa Beans", spice, [Source.Farming], true);
 var CocoaBeans = /** @class */ (function (_super) {
     __extends(CocoaBeans, _super);
     function CocoaBeans() {
@@ -2024,8 +1850,6 @@ var CocoaBeans = /** @class */ (function (_super) {
 }(Food));
 exports.CocoaBeans = CocoaBeans;
 exports.cocoaBeans_prototype = new CocoaBeans();
-exports.foods.push(exports.cocoaBeans_prototype);
-// var coffeeBeans = new CookingIngredient("Coffee Beans", tea, [Source.Farming], true);
 var CoffeeBeans = /** @class */ (function (_super) {
     __extends(CoffeeBeans, _super);
     function CoffeeBeans() {
@@ -2045,8 +1869,6 @@ var CoffeeBeans = /** @class */ (function (_super) {
 }(Food));
 exports.CoffeeBeans = CoffeeBeans;
 exports.coffeeBeans_prototype = new CoffeeBeans();
-exports.foods.push(exports.coffeeBeans_prototype);
-// var teaLeaves = new CookingIngredient("Tea Leaves", tea, [Source.Farming], false);
 var TeaLeaves = /** @class */ (function (_super) {
     __extends(TeaLeaves, _super);
     function TeaLeaves() {
@@ -2066,8 +1888,6 @@ var TeaLeaves = /** @class */ (function (_super) {
 }(Food));
 exports.TeaLeaves = TeaLeaves;
 exports.teaLeaves_prototype = new TeaLeaves();
-exports.foods.push(exports.teaLeaves_prototype);
-// var wheat = new CookingIngredient("Wheat", grain, [Source.Farming], false);
 var Wheat = /** @class */ (function (_super) {
     __extends(Wheat, _super);
     function Wheat() {
@@ -2087,8 +1907,6 @@ var Wheat = /** @class */ (function (_super) {
 }(Food));
 exports.Wheat = Wheat;
 exports.wheat_prototype = new Wheat();
-exports.foods.push(exports.wheat_prototype);
-// var oats = new CookingIngredient("Oats", grain, [Source.Farming], false);
 var Oats = /** @class */ (function (_super) {
     __extends(Oats, _super);
     function Oats() {
@@ -2108,8 +1926,6 @@ var Oats = /** @class */ (function (_super) {
 }(Food));
 exports.Oats = Oats;
 exports.oats_prototype = new Oats();
-exports.foods.push(exports.oats_prototype);
-// var barley = new CookingIngredient("Barley", grain, [Source.Farming], true);
 var Barley = /** @class */ (function (_super) {
     __extends(Barley, _super);
     function Barley() {
@@ -2129,14 +1945,6 @@ var Barley = /** @class */ (function (_super) {
 }(Food));
 exports.Barley = Barley;
 exports.barley_prototype = new Barley();
-exports.foods.push(exports.barley_prototype);
-// var vegetableOil = new CookingIngredient("Vegetable Oil", oil, [Source.Distilling], false);
-// var grapeseedOil = new CookingIngredient("Grapeseed Oil", oil, [Source.Distilling], true);
-// var oliveOil = new CookingIngredient("Olive Oil", oil, [Source.Distilling], true);
-// var avocadoOil = new CookingIngredient("Avocado Oil", oil, [Source.Distilling], true);
-// var peanutOil = new CookingIngredient("Peanut Oil", oil, [Source.Distilling], true);
-// var stickyOil = new CookingIngredient("Sticky Oil", oil, [Source.Questing], false);
-// var dragonessence = new CookingIngredient("Dragonessence", oil, [Source.Questing], true);
 var Oil = /** @class */ (function (_super) {
     __extends(Oil, _super);
     function Oil(type) {
@@ -2168,7 +1976,6 @@ exports.avocadoOil_prototype = new Oil("avocado");
 exports.peanutOil_prototype = new Oil("peanut");
 exports.stickyOil_prototype = new Oil("sticky");
 exports.dragonessence_prototype = new Oil("dragonessence");
-exports.foods.push(exports.vegetableOil_prototype, exports.grapeseedOil_prototype, exports.oliveOil_prototype, exports.avocadoOil_prototype, exports.peanutOil_prototype, exports.stickyOil_prototype, exports.dragonessence_prototype);
 var Wine = /** @class */ (function (_super) {
     __extends(Wine, _super);
     function Wine(type) {
@@ -2197,11 +2004,6 @@ exports.whiteWine_prototype = new Wine("white");
 exports.redWine_prototype = new Wine("red");
 exports.muscadineWine_prototype = new Wine("muscadine");
 exports.roseWine_prototype = new Wine("rosé");
-exports.foods.push(exports.whiteWine_prototype, exports.redWine_prototype, exports.muscadineWine_prototype, exports.roseWine_prototype);
-// var redCurry = new CookingIngredient("Red Curry", spice, [Source.Trading], false);
-// var greenCurry = new CookingIngredient("Green Curry", spice, [Source.Trading], false);
-// var yellowCurry = new CookingIngredient("Yellow Curry", spice, [Source.Trading], false);
-// var goldenCurry = new CookingIngredient("Golden Curry", spice, [Source.Trading], true);
 var Curry = /** @class */ (function (_super) {
     __extends(Curry, _super);
     function Curry(type) {
@@ -2230,8 +2032,6 @@ exports.redCurry_prototype = new Curry("red");
 exports.greenCurry_prototype = new Curry("green");
 exports.yellowCurry_prototype = new Curry("yellow");
 exports.goldenCurry_prototype = new Curry("golden");
-exports.foods.push(exports.redCurry_prototype, exports.greenCurry_prototype, exports.yellowCurry_prototype, exports.goldenCurry_prototype);
-// var beets = new CookingIngredient("Beets", vegetable, [Source.Farming], true);
 var Beets = /** @class */ (function (_super) {
     __extends(Beets, _super);
     function Beets() {
@@ -2251,10 +2051,6 @@ var Beets = /** @class */ (function (_super) {
 }(Food));
 exports.Beets = Beets;
 exports.beets_prototype = new Beets();
-exports.foods.push(exports.beets_prototype);
-// var water = new CookingIngredient("Water", water, [Source.Water], false);
-// var cleanWater = new CookingIngredient("Clean Water", water, [Source.Potions], true);
-// var purifiedWater = new CookingIngredient("Purified Water", water, [Source.Potions], false);
 var Flour = /** @class */ (function (_super) {
     __extends(Flour, _super);
     function Flour(type) {
@@ -2285,4 +2081,2369 @@ exports.barleyFlour_prototype = new Flour("barley");
 exports.oatFlour_prototype = new Flour("oat");
 exports.ryeFlour_prototype = new Flour("rye");
 exports.buckwheatFlour_prototype = new Flour("buckwheat");
-exports.foods.push(exports.riceFlour_prototype, exports.wheatFlour_prototype, exports.barleyFlour_prototype, exports.oatFlour_prototype, exports.ryeFlour_prototype, exports.buckwheatFlour_prototype);
+var CookingRecipe = /** @class */ (function (_super) {
+    __extends(CookingRecipe, _super);
+    function CookingRecipe(name, description) {
+        return _super.call(this, name, description) || this;
+    }
+    return CookingRecipe;
+}(recipes_1.Recipe));
+exports.CookingRecipe = CookingRecipe;
+var Honey = /** @class */ (function (_super) {
+    __extends(Honey, _super);
+    function Honey() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Honey");
+        _this.singular = "honey";
+        _this.plural = "honey";
+        _this.description = "honey";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Honey;
+}(Food));
+exports.Honey = Honey;
+exports.honey_prototype = new Honey();
+var cookingRecipes = [];
+var PancakeBatter = /** @class */ (function (_super) {
+    __extends(PancakeBatter, _super);
+    function PancakeBatter() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pancake Batter");
+        _this.singular = "pancake batter";
+        _this.plural = "pancake batter";
+        _this.description = "pancake batter";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PancakeBatter;
+}(Food));
+exports.PancakeBatter = PancakeBatter;
+exports.pancakeBatter_prototype = new PancakeBatter();
+var Jam = /** @class */ (function (_super) {
+    __extends(Jam, _super);
+    function Jam() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Jam");
+        _this.singular = "jam";
+        _this.plural = "jam";
+        _this.description = "jam";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Jam;
+}(Food));
+exports.Jam = Jam;
+exports.jam_prototype = new Jam();
+var ChiliPowder = /** @class */ (function (_super) {
+    __extends(ChiliPowder, _super);
+    function ChiliPowder() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chili Powder");
+        _this.singular = "chili powder";
+        _this.plural = "chili powder";
+        _this.description = "chili powder";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ChiliPowder;
+}(Food));
+exports.ChiliPowder = ChiliPowder;
+exports.chiliPowder_prototype = new ChiliPowder();
+var Chocolate = /** @class */ (function (_super) {
+    __extends(Chocolate, _super);
+    function Chocolate() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chocolate");
+        _this.singular = "chocolate";
+        _this.plural = "chocolate";
+        _this.description = "chocolate";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Chocolate;
+}(Food));
+exports.Chocolate = Chocolate;
+exports.chocolate_prototype = new Chocolate();
+var FriedEgg = /** @class */ (function (_super) {
+    __extends(FriedEgg, _super);
+    function FriedEgg() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fried Egg");
+        _this.singular = "fried egg";
+        _this.plural = "fried egg";
+        _this.description = "fried egg";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FriedEgg;
+}(Food));
+exports.FriedEgg = FriedEgg;
+exports.friedEgg_prototype = new FriedEgg();
+var Omelet = /** @class */ (function (_super) {
+    __extends(Omelet, _super);
+    function Omelet() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Omelet");
+        _this.singular = "omelet";
+        _this.plural = "omelet";
+        _this.description = "omelet";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Omelet;
+}(Food));
+exports.Omelet = Omelet;
+exports.omelet_prototype = new Omelet();
+var ScrambledEgg = /** @class */ (function (_super) {
+    __extends(ScrambledEgg, _super);
+    function ScrambledEgg() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Scrambled Egg");
+        _this.singular = "scrambled egg";
+        _this.plural = "scrambled egg";
+        _this.description = "scrambled egg";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ScrambledEgg;
+}(Food));
+exports.ScrambledEgg = ScrambledEgg;
+exports.scrambledEgg_prototype = new ScrambledEgg();
+var PoachedEgg = /** @class */ (function (_super) {
+    __extends(PoachedEgg, _super);
+    function PoachedEgg() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Poached Egg");
+        _this.singular = "poached egg";
+        _this.plural = "poached egg";
+        _this.description = "poached egg";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PoachedEgg;
+}(Food));
+exports.PoachedEgg = PoachedEgg;
+exports.poachedEgg_prototype = new PoachedEgg();
+var Pickle = /** @class */ (function (_super) {
+    __extends(Pickle, _super);
+    function Pickle() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pickle");
+        _this.singular = "pickle";
+        _this.plural = "pickle";
+        _this.description = "pickle";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Pickle;
+}(Food));
+exports.Pickle = Pickle;
+exports.pickle_prototype = new Pickle();
+var Pancake = /** @class */ (function (_super) {
+    __extends(Pancake, _super);
+    function Pancake() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pancake");
+        _this.singular = "pancake";
+        _this.plural = "pancake";
+        _this.description = "pancake";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Pancake;
+}(Food));
+exports.Pancake = Pancake;
+exports.pancake_prototype = new Pancake();
+var CrushedIce = /** @class */ (function (_super) {
+    __extends(CrushedIce, _super);
+    function CrushedIce() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Crushed Ice");
+        _this.singular = "crushed ice";
+        _this.plural = "crushed ice";
+        _this.description = "crushed ice";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CrushedIce;
+}(Food));
+exports.CrushedIce = CrushedIce;
+exports.crushedIce_prototype = new CrushedIce();
+var Granola = /** @class */ (function (_super) {
+    __extends(Granola, _super);
+    function Granola() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Granola");
+        _this.singular = "granola";
+        _this.plural = "granola";
+        _this.description = "granola";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Granola;
+}(Food));
+exports.Granola = Granola;
+exports.granola_prototype = new Granola();
+var BreadDough = /** @class */ (function (_super) {
+    __extends(BreadDough, _super);
+    function BreadDough() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Bread Dough");
+        _this.singular = "bread dough";
+        _this.plural = "bread dough";
+        _this.description = "bread dough";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BreadDough;
+}(Food));
+exports.BreadDough = BreadDough;
+exports.breadDough_prototype = new BreadDough();
+var RawNoodles = /** @class */ (function (_super) {
+    __extends(RawNoodles, _super);
+    function RawNoodles() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Raw Noodles");
+        _this.singular = "raw noodles";
+        _this.plural = "raw noodles";
+        _this.description = "raw noodles";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RawNoodles;
+}(Food));
+exports.RawNoodles = RawNoodles;
+exports.rawNoodles_prototype = new RawNoodles();
+var RawRiceNoodles = /** @class */ (function (_super) {
+    __extends(RawRiceNoodles, _super);
+    function RawRiceNoodles() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Raw Rice Noodles");
+        _this.singular = "raw rice noodles";
+        _this.plural = "raw rice noodles";
+        _this.description = "raw rice noodles";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RawRiceNoodles;
+}(Food));
+exports.RawRiceNoodles = RawRiceNoodles;
+exports.rawRiceNoodles_prototype = new RawRiceNoodles();
+var CookedRice = /** @class */ (function (_super) {
+    __extends(CookedRice, _super);
+    function CookedRice() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Cooked Rice");
+        _this.singular = "cooked rice";
+        _this.plural = "cooked rice";
+        _this.description = "cooked rice";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CookedRice;
+}(Food));
+exports.CookedRice = CookedRice;
+exports.cookedRice_prototype = new CookedRice();
+var Batter = /** @class */ (function (_super) {
+    __extends(Batter, _super);
+    function Batter() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Batter");
+        _this.singular = "batter";
+        _this.plural = "batter";
+        _this.description = "batter";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Batter;
+}(Food));
+exports.Batter = Batter;
+exports.batter_prototype = new Batter();
+var Tofu = /** @class */ (function (_super) {
+    __extends(Tofu, _super);
+    function Tofu() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Tofu");
+        _this.singular = "tofu";
+        _this.plural = "tofu";
+        _this.description = "tofu";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Tofu;
+}(Food));
+exports.Tofu = Tofu;
+exports.tofu_prototype = new Tofu();
+var Broth = /** @class */ (function (_super) {
+    __extends(Broth, _super);
+    function Broth() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Broth");
+        _this.singular = "broth";
+        _this.plural = "broth";
+        _this.description = "broth";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Broth;
+}(Food));
+exports.Broth = Broth;
+exports.broth_prototype = new Broth();
+var Tortilla = /** @class */ (function (_super) {
+    __extends(Tortilla, _super);
+    function Tortilla() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Tortilla");
+        _this.singular = "tortilla";
+        _this.plural = "tortilla";
+        _this.description = "tortilla";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Tortilla;
+}(Food));
+exports.Tortilla = Tortilla;
+exports.tortilla_prototype = new Tortilla();
+var PieFilling = /** @class */ (function (_super) {
+    __extends(PieFilling, _super);
+    function PieFilling() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pie Filling");
+        _this.singular = "pie filling";
+        _this.plural = "pie fillings";
+        _this.description = "pie fillings";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PieFilling;
+}(Food));
+exports.PieFilling = PieFilling;
+exports.pieFilling_prototype = new PieFilling();
+var PizzaDough = /** @class */ (function (_super) {
+    __extends(PizzaDough, _super);
+    function PizzaDough() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pizza Dough");
+        _this.singular = "pizza dough";
+        _this.plural = "pizza dough";
+        _this.description = "pizza dough";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PizzaDough;
+}(Food));
+exports.PizzaDough = PizzaDough;
+exports.pizzaDough_prototype = new PizzaDough();
+var PastryDough = /** @class */ (function (_super) {
+    __extends(PastryDough, _super);
+    function PastryDough() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pastry Dough");
+        _this.singular = "pastry dough";
+        _this.plural = "pastry dough";
+        _this.description = "pastry dough";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PastryDough;
+}(Food));
+exports.PastryDough = PastryDough;
+exports.pastryDough_prototype = new PastryDough();
+var IceCream = /** @class */ (function (_super) {
+    __extends(IceCream, _super);
+    function IceCream() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Ice Cream");
+        _this.singular = "ice cream";
+        _this.plural = "ice cream";
+        _this.description = "ice cream";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return IceCream;
+}(Food));
+exports.IceCream = IceCream;
+exports.iceCream_prototype = new IceCream();
+var GoatCheese = /** @class */ (function (_super) {
+    __extends(GoatCheese, _super);
+    function GoatCheese() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Goat Cheese");
+        _this.singular = "goat cheese";
+        _this.plural = "goat cheese";
+        _this.description = "goat cheese";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return GoatCheese;
+}(Food));
+exports.GoatCheese = GoatCheese;
+exports.goatCheese_prototype = new GoatCheese();
+var Butter = /** @class */ (function (_super) {
+    __extends(Butter, _super);
+    function Butter() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Butter");
+        _this.singular = "butter";
+        _this.plural = "butter";
+        _this.description = "butter";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Butter;
+}(Food));
+exports.Butter = Butter;
+exports.butter_prototype = new Butter();
+var Cream = /** @class */ (function (_super) {
+    __extends(Cream, _super);
+    function Cream() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Cream");
+        _this.singular = "cream";
+        _this.plural = "cream";
+        _this.description = "cream";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Cream;
+}(Food));
+exports.Cream = Cream;
+exports.cream_prototype = new Cream();
+var SourCream = /** @class */ (function (_super) {
+    __extends(SourCream, _super);
+    function SourCream() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Sour Cream");
+        _this.singular = "sour cream";
+        _this.plural = "sour cream";
+        _this.description = "sour cream";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SourCream;
+}(Food));
+exports.SourCream = SourCream;
+exports.sourCream_prototype = new SourCream();
+var Cheese = /** @class */ (function (_super) {
+    __extends(Cheese, _super);
+    function Cheese() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Cheese");
+        _this.singular = "cheese";
+        _this.plural = "cheese";
+        _this.description = "cheese";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Cheese;
+}(Food));
+exports.Cheese = Cheese;
+exports.cheese_prototype = new Cheese();
+var WhippedCream = /** @class */ (function (_super) {
+    __extends(WhippedCream, _super);
+    function WhippedCream() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Whipped Cream");
+        _this.singular = "whipped cream";
+        _this.plural = "whipped cream";
+        _this.description = "whipped cream";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return WhippedCream;
+}(Food));
+exports.WhippedCream = WhippedCream;
+exports.whippedCream_prototype = new WhippedCream();
+var Yogurt = /** @class */ (function (_super) {
+    __extends(Yogurt, _super);
+    function Yogurt() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Yogurt");
+        _this.singular = "yogurt";
+        _this.plural = "yogurt";
+        _this.description = "yogurt";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Yogurt;
+}(Food));
+exports.Yogurt = Yogurt;
+exports.yogurt_prototype = new Yogurt();
+var Wasabi = /** @class */ (function (_super) {
+    __extends(Wasabi, _super);
+    function Wasabi() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Wasabi");
+        _this.singular = "wasabi";
+        _this.plural = "wasabi";
+        _this.description = "wasabi";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Wasabi;
+}(Food));
+exports.Wasabi = Wasabi;
+exports.wasabi_prototype = new Wasabi();
+var GroundGinger = /** @class */ (function (_super) {
+    __extends(GroundGinger, _super);
+    function GroundGinger() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Ground Ginger");
+        _this.singular = "ground ginger";
+        _this.plural = "ground ginger";
+        _this.description = "ground ginger";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return GroundGinger;
+}(Food));
+exports.GroundGinger = GroundGinger;
+exports.groundGinger_prototype = new GroundGinger();
+var Syrup = /** @class */ (function (_super) {
+    __extends(Syrup, _super);
+    function Syrup() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Syrup");
+        _this.singular = "syrup";
+        _this.plural = "syrup";
+        _this.description = "syrup";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Syrup;
+}(Food));
+exports.Syrup = Syrup;
+exports.syrup_prototype = new Syrup();
+var Guacamole = /** @class */ (function (_super) {
+    __extends(Guacamole, _super);
+    function Guacamole() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Guacamole");
+        _this.singular = "guacamole";
+        _this.plural = "guacamole";
+        _this.description = "guacamole";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Guacamole;
+}(Food));
+exports.Guacamole = Guacamole;
+exports.guacamole_prototype = new Guacamole();
+var Salsa = /** @class */ (function (_super) {
+    __extends(Salsa, _super);
+    function Salsa() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Salsa");
+        _this.singular = "salsa";
+        _this.plural = "salsa";
+        _this.description = "salsa";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Salsa;
+}(Food));
+exports.Salsa = Salsa;
+exports.salsa_prototype = new Salsa();
+var PeanutButter = /** @class */ (function (_super) {
+    __extends(PeanutButter, _super);
+    function PeanutButter() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Peanut Butter");
+        _this.singular = "peanut butter";
+        _this.plural = "peanut butter";
+        _this.description = "peanut butter";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PeanutButter;
+}(Food));
+exports.PeanutButter = PeanutButter;
+exports.peanutButter_prototype = new PeanutButter();
+var Jellies = /** @class */ (function (_super) {
+    __extends(Jellies, _super);
+    function Jellies() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Jellies");
+        _this.singular = "jellies";
+        _this.plural = "jellies";
+        _this.description = "jellies";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Jellies;
+}(Food));
+exports.Jellies = Jellies;
+exports.jellies_prototype = new Jellies();
+var Mayonnaise = /** @class */ (function (_super) {
+    __extends(Mayonnaise, _super);
+    function Mayonnaise() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Mayonnaise");
+        _this.singular = "mayonnaise";
+        _this.plural = "mayonnaise";
+        _this.description = "mayonnaise";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Mayonnaise;
+}(Food));
+exports.Mayonnaise = Mayonnaise;
+exports.mayonnaise_prototype = new Mayonnaise();
+var Ketchup = /** @class */ (function (_super) {
+    __extends(Ketchup, _super);
+    function Ketchup() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Ketchup");
+        _this.singular = "ketchup";
+        _this.plural = "ketchup";
+        _this.description = "ketchup";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Ketchup;
+}(Food));
+exports.Ketchup = Ketchup;
+exports.ketchup_prototype = new Ketchup();
+var ChiliFlakes = /** @class */ (function (_super) {
+    __extends(ChiliFlakes, _super);
+    function ChiliFlakes() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chili Flakes");
+        _this.singular = "chili flakes";
+        _this.plural = "chili flakes";
+        _this.description = "chili flakes";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ChiliFlakes;
+}(Food));
+exports.ChiliFlakes = ChiliFlakes;
+exports.chiliFlakes_prototype = new ChiliFlakes();
+var PlainPasta = /** @class */ (function (_super) {
+    __extends(PlainPasta, _super);
+    function PlainPasta() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Plain Pasta");
+        _this.singular = "plain pasta";
+        _this.plural = "plain pasta";
+        _this.description = "plain pasta";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PlainPasta;
+}(Food));
+exports.PlainPasta = PlainPasta;
+exports.plainPasta_prototype = new PlainPasta();
+var PastaAndSauce = /** @class */ (function (_super) {
+    __extends(PastaAndSauce, _super);
+    function PastaAndSauce() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pasta and Sauce");
+        _this.singular = "pasta and sauce";
+        _this.plural = "pasta and sauce";
+        _this.description = "pasta and sauce";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PastaAndSauce;
+}(Food));
+exports.PastaAndSauce = PastaAndSauce;
+exports.pastaAndSauce_prototype = new PastaAndSauce();
+var PastaSauceMeat = /** @class */ (function (_super) {
+    __extends(PastaSauceMeat, _super);
+    function PastaSauceMeat() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pasta, Sauce, and Meat");
+        _this.singular = "pasta, sauce, and meat";
+        _this.plural = "pasta, sauce, and meat";
+        _this.description = "pasta, sauce, and meat";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PastaSauceMeat;
+}(Food));
+exports.PastaSauceMeat = PastaSauceMeat;
+exports.pastaSauceMeat_prototype = new PastaSauceMeat();
+var MacNCheese = /** @class */ (function (_super) {
+    __extends(MacNCheese, _super);
+    function MacNCheese() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Mac 'n' Cheese");
+        _this.singular = "mac 'n' cheese";
+        _this.plural = "mac 'n' cheese";
+        _this.description = "mac 'n' cheese";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return MacNCheese;
+}(Food));
+exports.MacNCheese = MacNCheese;
+exports.macNCheese_prototype = new MacNCheese();
+var Carbonara = /** @class */ (function (_super) {
+    __extends(Carbonara, _super);
+    function Carbonara() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Carbonara");
+        _this.singular = "carbonara";
+        _this.plural = "carbonara";
+        _this.description = "carbonara";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Carbonara;
+}(Food));
+exports.Carbonara = Carbonara;
+exports.carbonara_prototype = new Carbonara();
+var BeefStroganoff = /** @class */ (function (_super) {
+    __extends(BeefStroganoff, _super);
+    function BeefStroganoff() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Beef Stroganoff");
+        _this.singular = "beef stroganoff";
+        _this.plural = "beef stroganoff";
+        _this.description = "beef stroganoff";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BeefStroganoff;
+}(Food));
+exports.BeefStroganoff = BeefStroganoff;
+exports.beefStroganoff_prototype = new BeefStroganoff();
+var Lasagna = /** @class */ (function (_super) {
+    __extends(Lasagna, _super);
+    function Lasagna() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Lasagna");
+        _this.singular = "lasagna";
+        _this.plural = "lasagna";
+        _this.description = "lasagna";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Lasagna;
+}(Food));
+exports.Lasagna = Lasagna;
+exports.lasagna_prototype = new Lasagna();
+var ClamChowder = /** @class */ (function (_super) {
+    __extends(ClamChowder, _super);
+    function ClamChowder() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Clam Chowder");
+        _this.singular = "clam chowder";
+        _this.plural = "clam chowder";
+        _this.description = "clam chowder";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ClamChowder;
+}(Food));
+exports.ClamChowder = ClamChowder;
+exports.clamChowder_prototype = new ClamChowder();
+var LobsterBisque = /** @class */ (function (_super) {
+    __extends(LobsterBisque, _super);
+    function LobsterBisque() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Lobster Bisque");
+        _this.singular = "lobster bisque";
+        _this.plural = "lobster bisque";
+        _this.description = "lobster bisque";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return LobsterBisque;
+}(Food));
+exports.LobsterBisque = LobsterBisque;
+exports.lobsterBisque_prototype = new LobsterBisque();
+var CornChowder = /** @class */ (function (_super) {
+    __extends(CornChowder, _super);
+    function CornChowder() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Corn Chowder");
+        _this.singular = "corn chowder";
+        _this.plural = "corn chowder";
+        _this.description = "corn chowder";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CornChowder;
+}(Food));
+exports.CornChowder = CornChowder;
+exports.cornChowder_prototype = new CornChowder();
+var Chili = /** @class */ (function (_super) {
+    __extends(Chili, _super);
+    function Chili() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chili");
+        _this.singular = "chili";
+        _this.plural = "chili";
+        _this.description = "chili";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Chili;
+}(Food));
+exports.Chili = Chili;
+exports.chili_prototype = new Chili();
+var ChickenNoodleSoup = /** @class */ (function (_super) {
+    __extends(ChickenNoodleSoup, _super);
+    function ChickenNoodleSoup() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chicken Noodle Soup");
+        _this.singular = "chicken noodle soup";
+        _this.plural = "chicken noodle soup";
+        _this.description = "chicken noodle soup";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ChickenNoodleSoup;
+}(Food));
+exports.ChickenNoodleSoup = ChickenNoodleSoup;
+exports.chickenNoodleSoup_prototype = new ChickenNoodleSoup();
+var BLT = /** @class */ (function (_super) {
+    __extends(BLT, _super);
+    function BLT() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("BLT");
+        _this.singular = "BLT";
+        _this.plural = "BLT";
+        _this.description = "BLT";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BLT;
+}(Food));
+exports.BLT = BLT;
+exports.bLT_prototype = new BLT();
+var Burger = /** @class */ (function (_super) {
+    __extends(Burger, _super);
+    function Burger() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Burger");
+        _this.singular = "burger";
+        _this.plural = "burger";
+        _this.description = "burger";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Burger;
+}(Food));
+exports.Burger = Burger;
+exports.burger_prototype = new Burger();
+var Toasties = /** @class */ (function (_super) {
+    __extends(Toasties, _super);
+    function Toasties() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Toasties");
+        _this.singular = "toasties";
+        _this.plural = "toasties";
+        _this.description = "toasties";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Toasties;
+}(Food));
+exports.Toasties = Toasties;
+exports.toasties_prototype = new Toasties();
+var PBJ = /** @class */ (function (_super) {
+    __extends(PBJ, _super);
+    function PBJ() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("PBJ");
+        _this.singular = "PBJ";
+        _this.plural = "PBJ";
+        _this.description = "PBJ";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return PBJ;
+}(Food));
+exports.PBJ = PBJ;
+exports.pBJ_prototype = new PBJ();
+var LettuceWrap = /** @class */ (function (_super) {
+    __extends(LettuceWrap, _super);
+    function LettuceWrap() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Lettuce Wrap");
+        _this.singular = "lettuce wrap";
+        _this.plural = "lettuce wrap";
+        _this.description = "lettuce wrap";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return LettuceWrap;
+}(Food));
+exports.LettuceWrap = LettuceWrap;
+exports.lettuceWrap_prototype = new LettuceWrap();
+var Coffee = /** @class */ (function (_super) {
+    __extends(Coffee, _super);
+    function Coffee() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Coffee");
+        _this.singular = "coffee";
+        _this.plural = "coffee";
+        _this.description = "coffee";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Coffee;
+}(Food));
+exports.Coffee = Coffee;
+exports.coffee_prototype = new Coffee();
+var Milkshake = /** @class */ (function (_super) {
+    __extends(Milkshake, _super);
+    function Milkshake() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Milkshake");
+        _this.singular = "milkshake";
+        _this.plural = "milkshake";
+        _this.description = "milkshake";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Milkshake;
+}(Food));
+exports.Milkshake = Milkshake;
+exports.milkshake_prototype = new Milkshake();
+var ChocolateMilk = /** @class */ (function (_super) {
+    __extends(ChocolateMilk, _super);
+    function ChocolateMilk() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chocolate Milk");
+        _this.singular = "chocolate milk";
+        _this.plural = "chocolate milk";
+        _this.description = "chocolate milk";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ChocolateMilk;
+}(Food));
+exports.ChocolateMilk = ChocolateMilk;
+exports.chocolateMilk_prototype = new ChocolateMilk();
+var Tea = /** @class */ (function (_super) {
+    __extends(Tea, _super);
+    function Tea() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Tea");
+        _this.singular = "tea";
+        _this.plural = "tea";
+        _this.description = "tea";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Tea;
+}(Food));
+exports.Tea = Tea;
+exports.tea_prototype = new Tea();
+var BoiledEgg = /** @class */ (function (_super) {
+    __extends(BoiledEgg, _super);
+    function BoiledEgg() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Boiled Egg");
+        _this.singular = "boiled egg";
+        _this.plural = "boiled eggs";
+        _this.description = "boiled egg";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BoiledEgg;
+}(Food));
+exports.BoiledEgg = BoiledEgg;
+exports.boiledEgg_prototype = new BoiledEgg();
+var NutsNBerries = /** @class */ (function (_super) {
+    __extends(NutsNBerries, _super);
+    function NutsNBerries() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Nuts 'n' Berries");
+        _this.singular = "nuts 'n' berries";
+        _this.plural = "nuts 'n' berries";
+        _this.description = "nuts 'n' berries";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return NutsNBerries;
+}(Food));
+exports.NutsNBerries = NutsNBerries;
+exports.nutsNBerries_prototype = new NutsNBerries();
+var Cake = /** @class */ (function (_super) {
+    __extends(Cake, _super);
+    function Cake() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Cake");
+        _this.singular = "cake";
+        _this.plural = "cakes";
+        _this.description = "cake";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Cake;
+}(Food));
+exports.Cake = Cake;
+exports.cake_prototype = new Cake();
+var Pizza = /** @class */ (function (_super) {
+    __extends(Pizza, _super);
+    function Pizza() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pizza");
+        _this.singular = "pizza";
+        _this.plural = "pizzas";
+        _this.description = "pizza";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Pizza;
+}(Food));
+exports.Pizza = Pizza;
+exports.pizza_prototype = new Pizza();
+var FruitSalad = /** @class */ (function (_super) {
+    __extends(FruitSalad, _super);
+    function FruitSalad() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fruit Salad");
+        _this.singular = "fruit salad";
+        _this.plural = "fruit salad";
+        _this.description = "fruit salad";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FruitSalad;
+}(Food));
+exports.FruitSalad = FruitSalad;
+exports.fruitSalad_prototype = new FruitSalad();
+var BananaBread = /** @class */ (function (_super) {
+    __extends(BananaBread, _super);
+    function BananaBread() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Banana Bread");
+        _this.singular = "banana bread";
+        _this.plural = "banana bread";
+        _this.description = "banana bread";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BananaBread;
+}(Food));
+exports.BananaBread = BananaBread;
+exports.bananaBread_prototype = new BananaBread();
+var BakedPotato = /** @class */ (function (_super) {
+    __extends(BakedPotato, _super);
+    function BakedPotato() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Baked Potato");
+        _this.singular = "baked potato";
+        _this.plural = "baked potatoes";
+        _this.description = "baked potato";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BakedPotato;
+}(Food));
+exports.BakedPotato = BakedPotato;
+exports.bakedPotato_prototype = new BakedPotato();
+var CurryRice = /** @class */ (function (_super) {
+    __extends(CurryRice, _super);
+    function CurryRice() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Curry and Rice");
+        _this.singular = "curry and rice";
+        _this.plural = "curry and rice";
+        _this.description = "curry and rice";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CurryRice;
+}(Food));
+exports.CurryRice = CurryRice;
+exports.curryRice_prototype = new CurryRice();
+var Jerky = /** @class */ (function (_super) {
+    __extends(Jerky, _super);
+    function Jerky() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Jerky");
+        _this.singular = "jerky";
+        _this.plural = "jerky";
+        _this.description = "jerky";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Jerky;
+}(Food));
+exports.Jerky = Jerky;
+exports.jerky_prototype = new Jerky();
+var Sushi = /** @class */ (function (_super) {
+    __extends(Sushi, _super);
+    function Sushi() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Sushi");
+        _this.singular = "sushi";
+        _this.plural = "sushi";
+        _this.description = "sushi";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Fishing"];
+        return _this;
+    }
+    return Sushi;
+}(Food));
+exports.Sushi = Sushi;
+exports.sushi_prototype = new Sushi();
+var FrenchFries = /** @class */ (function (_super) {
+    __extends(FrenchFries, _super);
+    function FrenchFries() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("French Fries");
+        _this.singular = "french fries";
+        _this.plural = "french fries";
+        _this.description = "french fries";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FrenchFries;
+}(Food));
+exports.FrenchFries = FrenchFries;
+exports.frenchFries_prototype = new FrenchFries();
+var SausageAndPeppers = /** @class */ (function (_super) {
+    __extends(SausageAndPeppers, _super);
+    function SausageAndPeppers() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Sausage and Peppers");
+        _this.singular = "sausage and peppers";
+        _this.plural = "sausage and peppers";
+        _this.description = "sausage and peppers";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SausageAndPeppers;
+}(Food));
+exports.SausageAndPeppers = SausageAndPeppers;
+exports.sausageAndPeppers_prototype = new SausageAndPeppers();
+var Coleslaw = /** @class */ (function (_super) {
+    __extends(Coleslaw, _super);
+    function Coleslaw() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Coleslaw");
+        _this.singular = "coleslaw";
+        _this.plural = "coleslaw";
+        _this.description = "coleslaw";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Coleslaw;
+}(Food));
+exports.Coleslaw = Coleslaw;
+exports.coleslaw_prototype = new Coleslaw();
+var SteakAndPotatoes = /** @class */ (function (_super) {
+    __extends(SteakAndPotatoes, _super);
+    function SteakAndPotatoes() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Steak and Potatoes");
+        _this.singular = "steak and potatoes";
+        _this.plural = "steak and potatoes";
+        _this.description = "steak and potatoes";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SteakAndPotatoes;
+}(Food));
+exports.SteakAndPotatoes = SteakAndPotatoes;
+exports.steakAndPotatoes_prototype = new SteakAndPotatoes();
+var Ratatouille = /** @class */ (function (_super) {
+    __extends(Ratatouille, _super);
+    function Ratatouille() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Ratatouille");
+        _this.singular = "ratatouille";
+        _this.plural = "ratatouille";
+        _this.description = "ratatouille";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Ratatouille;
+}(Food));
+exports.Ratatouille = Ratatouille;
+exports.ratatouille_prototype = new Ratatouille();
+var Gumbo = /** @class */ (function (_super) {
+    __extends(Gumbo, _super);
+    function Gumbo() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Gumbo");
+        _this.singular = "gumbo";
+        _this.plural = "gumbo";
+        _this.description = "gumbo";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Gumbo;
+}(Food));
+exports.Gumbo = Gumbo;
+exports.gumbo_prototype = new Gumbo();
+var RoastedVegetables = /** @class */ (function (_super) {
+    __extends(RoastedVegetables, _super);
+    function RoastedVegetables() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Roasted Vegetables");
+        _this.singular = "roasted vegetables";
+        _this.plural = "roasted vegetables";
+        _this.description = "roasted vegetables";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RoastedVegetables;
+}(Food));
+exports.RoastedVegetables = RoastedVegetables;
+exports.roastedVegetables_prototype = new RoastedVegetables();
+var Bruschetta = /** @class */ (function (_super) {
+    __extends(Bruschetta, _super);
+    function Bruschetta() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Bruschetta");
+        _this.singular = "bruschetta";
+        _this.plural = "bruschetta";
+        _this.description = "bruschetta";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Bruschetta;
+}(Food));
+exports.Bruschetta = Bruschetta;
+exports.bruschetta_prototype = new Bruschetta();
+var StuffedShrooms = /** @class */ (function (_super) {
+    __extends(StuffedShrooms, _super);
+    function StuffedShrooms() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Stuffed 'Shrooms");
+        _this.singular = "stuffed 'shrooms";
+        _this.plural = "stuffed 'shrooms";
+        _this.description = "stuffed 'shrooms";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return StuffedShrooms;
+}(Food));
+exports.StuffedShrooms = StuffedShrooms;
+exports.stuffedShrooms_prototype = new StuffedShrooms();
+var EggRolls = /** @class */ (function (_super) {
+    __extends(EggRolls, _super);
+    function EggRolls() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Egg Rolls");
+        _this.singular = "egg rolls";
+        _this.plural = "egg rolls";
+        _this.description = "egg rolls";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return EggRolls;
+}(Food));
+exports.EggRolls = EggRolls;
+exports.eggRolls_prototype = new EggRolls();
+var EggSalad = /** @class */ (function (_super) {
+    __extends(EggSalad, _super);
+    function EggSalad() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Egg Salad");
+        _this.singular = "egg salad";
+        _this.plural = "egg salad";
+        _this.description = "egg salad";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return EggSalad;
+}(Food));
+exports.EggSalad = EggSalad;
+exports.eggSalad_prototype = new EggSalad();
+var StirFry = /** @class */ (function (_super) {
+    __extends(StirFry, _super);
+    function StirFry() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Stir Fry");
+        _this.singular = "stir fry";
+        _this.plural = "stir fry";
+        _this.description = "stir fry";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return StirFry;
+}(Food));
+exports.StirFry = StirFry;
+exports.stirFry_prototype = new StirFry();
+var SteakAndEggs = /** @class */ (function (_super) {
+    __extends(SteakAndEggs, _super);
+    function SteakAndEggs() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Steak and Eggs");
+        _this.singular = "steak and eggs";
+        _this.plural = "steak and eggs";
+        _this.description = "steak and eggs";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SteakAndEggs;
+}(Food));
+exports.SteakAndEggs = SteakAndEggs;
+exports.steakAndEggs_prototype = new SteakAndEggs();
+var HamAndEggs = /** @class */ (function (_super) {
+    __extends(HamAndEggs, _super);
+    function HamAndEggs() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Ham and Eggs");
+        _this.singular = "ham and eggs";
+        _this.plural = "ham and eggs";
+        _this.description = "ham and eggs";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return HamAndEggs;
+}(Food));
+exports.HamAndEggs = HamAndEggs;
+exports.hamAndEggs_prototype = new HamAndEggs();
+var ChickenAndRice = /** @class */ (function (_super) {
+    __extends(ChickenAndRice, _super);
+    function ChickenAndRice() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chicken 'n' Rice");
+        _this.singular = "chicken 'n' rice";
+        _this.plural = "chicken 'n' rice";
+        _this.description = "chicken 'n' rice";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ChickenAndRice;
+}(Food));
+exports.ChickenAndRice = ChickenAndRice;
+exports.chickenAndRice_prototype = new ChickenAndRice();
+var CabbageRolls = /** @class */ (function (_super) {
+    __extends(CabbageRolls, _super);
+    function CabbageRolls() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Cabbage Rolls");
+        _this.singular = "cabbage rolls";
+        _this.plural = "cabbage rolls";
+        _this.description = "cabbage rolls";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CabbageRolls;
+}(Food));
+exports.CabbageRolls = CabbageRolls;
+exports.cabbageRolls_prototype = new CabbageRolls();
+var Pho = /** @class */ (function (_super) {
+    __extends(Pho, _super);
+    function Pho() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pho");
+        _this.singular = "pho";
+        _this.plural = "pho";
+        _this.description = "pho";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Pho;
+}(Food));
+exports.Pho = Pho;
+exports.pho_prototype = new Pho();
+var RiceAndBeans = /** @class */ (function (_super) {
+    __extends(RiceAndBeans, _super);
+    function RiceAndBeans() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Rice and Beans");
+        _this.singular = "rice and beans";
+        _this.plural = "rice and beans";
+        _this.description = "rice and beans";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RiceAndBeans;
+}(Food));
+exports.RiceAndBeans = RiceAndBeans;
+exports.riceAndBeans_prototype = new RiceAndBeans();
+var CornBread = /** @class */ (function (_super) {
+    __extends(CornBread, _super);
+    function CornBread() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Corn Bread");
+        _this.singular = "corn bread";
+        _this.plural = "corn bread";
+        _this.description = "corn bread";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CornBread;
+}(Food));
+exports.CornBread = CornBread;
+exports.cornBread_prototype = new CornBread();
+var Oatmeal = /** @class */ (function (_super) {
+    __extends(Oatmeal, _super);
+    function Oatmeal() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Oatmeal");
+        _this.singular = "oatmeal";
+        _this.plural = "oatmeal";
+        _this.description = "oatmeal";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Oatmeal;
+}(Food));
+exports.Oatmeal = Oatmeal;
+exports.oatmeal_prototype = new Oatmeal();
+var FruitSnack = /** @class */ (function (_super) {
+    __extends(FruitSnack, _super);
+    function FruitSnack() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fruit Snack");
+        _this.singular = "fruit snack";
+        _this.plural = "fruit snack";
+        _this.description = "fruit snack";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FruitSnack;
+}(Food));
+exports.FruitSnack = FruitSnack;
+exports.fruitSnack_prototype = new FruitSnack();
+var Meatloaf = /** @class */ (function (_super) {
+    __extends(Meatloaf, _super);
+    function Meatloaf() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Meatloaf");
+        _this.singular = "meatloaf";
+        _this.plural = "meatloaf";
+        _this.description = "meatloaf";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Meatloaf;
+}(Food));
+exports.Meatloaf = Meatloaf;
+exports.meatloaf_prototype = new Meatloaf();
+var FishAndFungi = /** @class */ (function (_super) {
+    __extends(FishAndFungi, _super);
+    function FishAndFungi() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fish 'n' Fungi");
+        _this.singular = "fish 'n' fungi";
+        _this.plural = "fish 'n' fungi";
+        _this.description = "fish 'n' fungi";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FishAndFungi;
+}(Food));
+exports.FishAndFungi = FishAndFungi;
+exports.fishAndFungi_prototype = new FishAndFungi();
+var AvocadoToast = /** @class */ (function (_super) {
+    __extends(AvocadoToast, _super);
+    function AvocadoToast() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Avocado Toast");
+        _this.singular = "avocado toast";
+        _this.plural = "avocado toast";
+        _this.description = "avocado toast";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return AvocadoToast;
+}(Food));
+exports.AvocadoToast = AvocadoToast;
+exports.avocadoToast_prototype = new AvocadoToast();
+var Waffles = /** @class */ (function (_super) {
+    __extends(Waffles, _super);
+    function Waffles() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Waffles");
+        _this.singular = "waffles";
+        _this.plural = "waffles";
+        _this.description = "waffles";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Waffles;
+}(Food));
+exports.Waffles = Waffles;
+exports.waffles_prototype = new Waffles();
+var YogurtParfait = /** @class */ (function (_super) {
+    __extends(YogurtParfait, _super);
+    function YogurtParfait() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Yogurt Parfait");
+        _this.singular = "yogurt parfait";
+        _this.plural = "yogurt parfait";
+        _this.description = "yogurt parfait";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return YogurtParfait;
+}(Food));
+exports.YogurtParfait = YogurtParfait;
+exports.yogurtParfait_prototype = new YogurtParfait();
+var Pie = /** @class */ (function (_super) {
+    __extends(Pie, _super);
+    function Pie() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Pie");
+        _this.singular = "pie";
+        _this.plural = "pie";
+        _this.description = "pie";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Pie;
+}(Food));
+exports.Pie = Pie;
+exports.pie_prototype = new Pie();
+var Quesadillas = /** @class */ (function (_super) {
+    __extends(Quesadillas, _super);
+    function Quesadillas() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Quesadillas");
+        _this.singular = "quesadillas";
+        _this.plural = "quesadillas";
+        _this.description = "quesadillas";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Quesadillas;
+}(Food));
+exports.Quesadillas = Quesadillas;
+exports.quesadillas_prototype = new Quesadillas();
+var RawMeat = /** @class */ (function (_super) {
+    __extends(RawMeat, _super);
+    function RawMeat() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Raw Meat");
+        _this.singular = "raw meat";
+        _this.plural = "raw meat";
+        _this.description = "raw meat";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RawMeat;
+}(Food));
+exports.RawMeat = RawMeat;
+exports.rawMeat_prototype = new RawMeat();
+var GrilledProtein = /** @class */ (function (_super) {
+    __extends(GrilledProtein, _super);
+    function GrilledProtein() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Grilled Protein");
+        _this.singular = "grilled protein";
+        _this.plural = "grilled protein";
+        _this.description = "grilled protein";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return GrilledProtein;
+}(Food));
+exports.GrilledProtein = GrilledProtein;
+exports.grilledProtein_prototype = new GrilledProtein();
+var FriedProtein = /** @class */ (function (_super) {
+    __extends(FriedProtein, _super);
+    function FriedProtein() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fried Protein");
+        _this.singular = "fried protein";
+        _this.plural = "fried protein";
+        _this.description = "fried protein";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FriedProtein;
+}(Food));
+exports.FriedProtein = FriedProtein;
+exports.friedProtein_prototype = new FriedProtein();
+var ChickenPotPie = /** @class */ (function (_super) {
+    __extends(ChickenPotPie, _super);
+    function ChickenPotPie() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Chicken Pot Pie");
+        _this.singular = "chicken pot pie";
+        _this.plural = "chicken pot pie";
+        _this.description = "chicken pot pie";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ChickenPotPie;
+}(Food));
+exports.ChickenPotPie = ChickenPotPie;
+exports.chickenPotPie_prototype = new ChickenPotPie();
+var FriedRice = /** @class */ (function (_super) {
+    __extends(FriedRice, _super);
+    function FriedRice() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fried Rice");
+        _this.singular = "fried rice";
+        _this.plural = "fried rice";
+        _this.description = "fried rice";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FriedRice;
+}(Food));
+exports.FriedRice = FriedRice;
+exports.friedRice_prototype = new FriedRice();
+var Caviar = /** @class */ (function (_super) {
+    __extends(Caviar, _super);
+    function Caviar() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Caviar");
+        _this.singular = "caviar";
+        _this.plural = "caviar";
+        _this.description = "caviar";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Fishing"];
+        return _this;
+    }
+    return Caviar;
+}(Food));
+exports.Caviar = Caviar;
+exports.caviar_prototype = new Caviar();
+var SteamedDumplings = /** @class */ (function (_super) {
+    __extends(SteamedDumplings, _super);
+    function SteamedDumplings() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Steamed Dumplings");
+        _this.singular = "steamed dumplings";
+        _this.plural = "steamed dumplings";
+        _this.description = "steamed dumplings";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SteamedDumplings;
+}(Food));
+exports.SteamedDumplings = SteamedDumplings;
+exports.steamedDumplings_prototype = new SteamedDumplings();
+var FriedDumplings = /** @class */ (function (_super) {
+    __extends(FriedDumplings, _super);
+    function FriedDumplings() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fried Dumplings");
+        _this.singular = "fried dumplings";
+        _this.plural = "fried dumplings";
+        _this.description = "fried dumplings";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FriedDumplings;
+}(Food));
+exports.FriedDumplings = FriedDumplings;
+exports.friedDumplings_prototype = new FriedDumplings();
+var FunGuyFungiFeast = /** @class */ (function (_super) {
+    __extends(FunGuyFungiFeast, _super);
+    function FunGuyFungiFeast() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Fun Guy's Fantastic Fungi Feast");
+        _this.singular = "fun guy's fantastic fungi feast";
+        _this.plural = "fun guy's fantastic fungi feasts";
+        _this.description = "fun guy's fantastic fungi feast";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return FunGuyFungiFeast;
+}(Food));
+exports.FunGuyFungiFeast = FunGuyFungiFeast;
+exports.funGuyFungiFeast_prototype = new FunGuyFungiFeast();
+var RawInsects = /** @class */ (function (_super) {
+    __extends(RawInsects, _super);
+    function RawInsects() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Raw Insects");
+        _this.singular = "raw insects";
+        _this.plural = "raw insects";
+        _this.description = "raw insects";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RawInsects;
+}(Food));
+exports.RawInsects = RawInsects;
+exports.rawInsects_prototype = new RawInsects();
+var InsectPuree = /** @class */ (function (_super) {
+    __extends(InsectPuree, _super);
+    function InsectPuree() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Insect Puree");
+        _this.singular = "insect puree";
+        _this.plural = "insect purees";
+        _this.description = "insect puree";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return InsectPuree;
+}(Food));
+exports.InsectPuree = InsectPuree;
+exports.insectPuree_prototype = new InsectPuree();
+var RoastedInsects = /** @class */ (function (_super) {
+    __extends(RoastedInsects, _super);
+    function RoastedInsects() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Roasted Insects");
+        _this.singular = "roasted insects";
+        _this.plural = "roasted insects";
+        _this.description = "roasted insects";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return RoastedInsects;
+}(Food));
+exports.RoastedInsects = RoastedInsects;
+exports.roastedInsects_prototype = new RoastedInsects();
+var SeasonedInsects = /** @class */ (function (_super) {
+    __extends(SeasonedInsects, _super);
+    function SeasonedInsects() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Seasoned Insects");
+        _this.singular = "seasoned insects";
+        _this.plural = "seasoned insects";
+        _this.description = "seasoned insects";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SeasonedInsects;
+}(Food));
+exports.SeasonedInsects = SeasonedInsects;
+exports.seasonedInsects_prototype = new SeasonedInsects();
+var BugsNSlime = /** @class */ (function (_super) {
+    __extends(BugsNSlime, _super);
+    function BugsNSlime() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Bugs 'n' Slime");
+        _this.singular = "bugs 'n' slime";
+        _this.plural = "bugs 'n' slime";
+        _this.description = "bugs 'n' slime";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BugsNSlime;
+}(Food));
+exports.BugsNSlime = BugsNSlime;
+exports.bugsNSlime_prototype = new BugsNSlime();
+var BugsNOoze = /** @class */ (function (_super) {
+    __extends(BugsNOoze, _super);
+    function BugsNOoze() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Bugs 'n' Ooze");
+        _this.singular = "bugs 'n' ooze";
+        _this.plural = "bugs 'n' ooze";
+        _this.description = "bugs 'n' ooze";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BugsNOoze;
+}(Food));
+exports.BugsNOoze = BugsNOoze;
+exports.bugsNOoze_prototype = new BugsNOoze();
+var MossWrap = /** @class */ (function (_super) {
+    __extends(MossWrap, _super);
+    function MossWrap() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Moss Wrap");
+        _this.singular = "moss wrap";
+        _this.plural = "moss wraps";
+        _this.description = "moss wrap";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return MossWrap;
+}(Food));
+exports.MossWrap = MossWrap;
+exports.mossWrap_prototype = new MossWrap();
+var SlimeSlurpie = /** @class */ (function (_super) {
+    __extends(SlimeSlurpie, _super);
+    function SlimeSlurpie() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Slime Slurpie");
+        _this.singular = "slime slurpie";
+        _this.plural = "slime slurpies";
+        _this.description = "slime slurpie";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return SlimeSlurpie;
+}(Food));
+exports.SlimeSlurpie = SlimeSlurpie;
+exports.slimeSlurpie_prototype = new SlimeSlurpie();
+var BugJuice = /** @class */ (function (_super) {
+    __extends(BugJuice, _super);
+    function BugJuice() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Bug Juice");
+        _this.singular = "bug juice";
+        _this.plural = "bug juices";
+        _this.description = "bug juice";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return BugJuice;
+}(Food));
+exports.BugJuice = BugJuice;
+exports.bugJuice_prototype = new BugJuice();
+var AlgaePaste = /** @class */ (function (_super) {
+    __extends(AlgaePaste, _super);
+    function AlgaePaste() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Algae Paste");
+        _this.singular = "algae paste";
+        _this.plural = "algae pastes";
+        _this.description = "algae paste";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return AlgaePaste;
+}(Food));
+exports.AlgaePaste = AlgaePaste;
+exports.algaePaste_prototype = new AlgaePaste();
+var CaveCritterFritters = /** @class */ (function (_super) {
+    __extends(CaveCritterFritters, _super);
+    function CaveCritterFritters() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Cave Critter Fritters");
+        _this.singular = "cave critter fritters";
+        _this.plural = "cave critter fritters";
+        _this.description = "cave critter fritters";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return CaveCritterFritters;
+}(Food));
+exports.CaveCritterFritters = CaveCritterFritters;
+exports.caveCritterFritters_prototype = new CaveCritterFritters();
+var MuddyMossyMoldyMess = /** @class */ (function (_super) {
+    __extends(MuddyMossyMoldyMess, _super);
+    function MuddyMossyMoldyMess() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Muddy, Mossy, Moldy Mess");
+        _this.singular = "muddy, mossy, moldy mess";
+        _this.plural = "muddy, mossy, moldy messes";
+        _this.description = "muddy, mossy, moldy mess";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return MuddyMossyMoldyMess;
+}(Food));
+exports.MuddyMossyMoldyMess = MuddyMossyMoldyMess;
+exports.muddyMossyMoldyMess_prototype = new MuddyMossyMoldyMess();
+var OoeyGooeyFreshNFruity = /** @class */ (function (_super) {
+    __extends(OoeyGooeyFreshNFruity, _super);
+    function OoeyGooeyFreshNFruity() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Ooey Gooey Fresh 'n' Fruity");
+        _this.singular = "ooey gooey fresh 'n' fruity";
+        _this.plural = "ooey gooey fresh 'n' fruity";
+        _this.description = "ooey gooey fresh 'n' fruity";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return OoeyGooeyFreshNFruity;
+}(Food));
+exports.OoeyGooeyFreshNFruity = OoeyGooeyFreshNFruity;
+exports.ooeyGooeyFreshNFruity_prototype = new OoeyGooeyFreshNFruity();
+var ScoopOGloop = /** @class */ (function (_super) {
+    __extends(ScoopOGloop, _super);
+    function ScoopOGloop() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Scoop O' Gloop");
+        _this.singular = "scoop o' gloop";
+        _this.plural = "scoops o' gloop";
+        _this.description = "scoop o' gloop";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return ScoopOGloop;
+}(Food));
+exports.ScoopOGloop = ScoopOGloop;
+exports.scoopOGloop_prototype = new ScoopOGloop();
+exports.foods.push(exports.scoopOGloop_prototype);
