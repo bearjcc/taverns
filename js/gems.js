@@ -191,11 +191,11 @@ exports.lapis_prototype = new Lapis(1, 100);
 exports.gems.push(exports.lapis_prototype);
 var Rock = /** @class */ (function (_super) {
     __extends(Rock, _super);
-    function Rock() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function Rock(weight) {
+        return _super.call(this, weight, 100) || this;
     }
     return Rock;
 }(Gem));
 exports.Rock = Rock;
-exports.rock_prototype = new Rock(1, 100);
+exports.rock_prototype = new Rock(1);
 exports.gems.push(exports.rock_prototype);

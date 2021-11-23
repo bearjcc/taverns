@@ -10,13 +10,14 @@
 
 export class Interactable {
     name: string;
-    description: string;
-    constructor(name: string, description: string) {
-        this.name = name;
-        this.description = description;
+    categories: string[] = [];
+
+    constructor() {
+        this.categories.push("Interactable");
     }
-    do() {
-        console.log(this.name);
+
+    interact() {
+        // do something
     }
 }
 

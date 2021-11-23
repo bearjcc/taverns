@@ -20,7 +20,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.runite_ore_prototype = exports.RuniteOre = exports.adamantite_ore_prototype = exports.AdamantiteOre = exports.mithril_ore_prototype = exports.MithrilOre = exports.platinum_ore_prototype = exports.PlatinumOre = exports.limestone_prototype = exports.Limestone = exports.gold_ore_prototype = exports.GoldOre = exports.silver_ore_prototype = exports.SilverOre = exports.coal_prototype = exports.Coal = exports.iron_ore_prototype = exports.IronOre = exports.tin_ore_prototype = exports.TinOre = exports.copper_ore_prototype = exports.CopperOre = exports.geode_prototype = exports.Geode = exports.clay_prototype = exports.Clay = exports.ores = void 0;
+exports.runite_ore_prototype = exports.RuniteOre = exports.adamantite_ore_prototype = exports.AdamantiteOre = exports.mithril_ore_prototype = exports.MithrilOre = exports.platinum_ore_prototype = exports.PlatinumOre = exports.limestone_prototype = exports.Limestone = exports.gold_ore_prototype = exports.GoldOre = exports.silver_ore_prototype = exports.SilverOre = exports.coal_prototype = exports.Coal = exports.iron_ore_prototype = exports.IronOre = exports.tin_ore_prototype = exports.TinOre = exports.copper_ore_prototype = exports.CopperOre = exports.geode_prototype = exports.Geode = exports.clay_prototype = exports.Clay = exports.ores = exports.OreItem = void 0;
 var items_1 = require("./items");
 var Gems = require("./gems");
 var OreItem = /** @class */ (function (_super) {
@@ -34,6 +34,7 @@ var OreItem = /** @class */ (function (_super) {
     }
     return OreItem;
 }(items_1.Item));
+exports.OreItem = OreItem;
 exports.ores = [];
 //clay
 var Clay = /** @class */ (function (_super) {
@@ -98,25 +99,22 @@ var Geode = /** @class */ (function (_super) {
             return new Gems.Garnet(this.weight * .75, quality);
         }
         else if (rdm < 90) {
-            return new Gems.Pearl(this.weight * .75, quality);
-        }
-        else if (rdm < 100) {
             return new Gems.Onyx(this.weight * .75, quality);
         }
-        else if (rdm < 110) {
+        else if (rdm < 100) {
             return new Gems.Quartz(this.weight * .75, quality);
         }
-        else if (rdm < 120) {
+        else if (rdm < 110) {
             return new Gems.Agate(this.weight * .75, quality);
         }
-        else if (rdm < 130) {
+        else if (rdm < 120) {
             return new Gems.Jade(this.weight * .75, quality);
         }
-        else if (rdm < 140) {
+        else if (rdm < 130) {
             return new Gems.Lapis(this.weight * .75, quality);
         }
         else {
-            return new Gems.Rock(this.weight * .75, quality);
+            return new Gems.Rock(this.weight * .75);
         }
     };
     return Geode;

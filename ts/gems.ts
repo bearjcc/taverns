@@ -89,8 +89,12 @@ export class Lapis extends Gem {}
 export var lapis_prototype = new Lapis(1, 100);
 gems.push(lapis_prototype);
 
-export class Rock extends Gem {}
-export var rock_prototype = new Rock(1, 100);
+export class Rock extends Gem {
+    constructor(weight: number) {
+        super(weight, 100);
+    }
+}
+export var rock_prototype = new Rock(1);
 gems.push(rock_prototype);
 
 export type GemType = "Ruby" | "Sapphire" | "Emerald" | "Topaz" | "Diamond" | "Amethyst" | "Opal" | "Garnet" | "Pearl" | "Onyx" | "Quartz" | "Agate" | "Jade" | "Lapis" | "Rock";

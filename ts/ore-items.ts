@@ -10,7 +10,7 @@ import { Item } from "./items";
 import { Gem } from "./gems";
 import * as Gems from "./gems";
 
-class OreItem extends Item {
+export class OreItem extends Item {
     constructor(weight: number, quality: number) {
         super();
         this.categories.push("Ore");
@@ -73,19 +73,17 @@ export class Geode extends OreItem {
         } else if(rdm < 80) {
             return new Gems.Garnet(this.weight * .75, quality);
         } else if(rdm < 90) {
-            return new Gems.Pearl(this.weight * .75, quality);
-        } else if(rdm < 100) {
             return new Gems.Onyx(this.weight * .75, quality);
-        } else if(rdm < 110) {
+        } else if(rdm < 100) {
             return new Gems.Quartz(this.weight * .75, quality);
-        } else if(rdm < 120) {
+        } else if(rdm < 110) {
             return new Gems.Agate(this.weight * .75, quality);
-        } else if(rdm < 130) {
+        } else if(rdm < 120) {
             return new Gems.Jade(this.weight * .75, quality);
-        } else if(rdm < 140) {
+        } else if(rdm < 130) {
             return new Gems.Lapis(this.weight * .75, quality);
         } else {
-            return new Gems.Rock(this.weight * .75, quality);
+            return new Gems.Rock(this.weight * .75);
         }        
     }
 }

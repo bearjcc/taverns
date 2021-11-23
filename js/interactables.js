@@ -10,12 +10,12 @@ exports.__esModule = true;
 exports.Interactable = void 0;
 // An Interactable is something that is permanant in the world and players can use it, generally for skilling
 var Interactable = /** @class */ (function () {
-    function Interactable(name, description) {
-        this.name = name;
-        this.description = description;
+    function Interactable() {
+        this.categories = [];
+        this.categories.push("Interactable");
     }
-    Interactable.prototype["do"] = function () {
-        console.log(this.name);
+    Interactable.prototype.interact = function () {
+        // do something
     };
     return Interactable;
 }());
