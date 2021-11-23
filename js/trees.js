@@ -75,6 +75,7 @@ var Leaf = /** @class */ (function (_super) {
     //leaves require no tools
     function Leaf(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Leaf");
         _this.singular = treeType + " leaf";
         _this.plural = treeType + " leaves";
         return _this;
@@ -87,6 +88,7 @@ var Twig = /** @class */ (function (_super) {
     //twigs require no tools
     function Twig(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Twig");
         _this.singular = treeType + " twig";
         _this.plural = treeType + " twigs";
         return _this;
@@ -100,6 +102,7 @@ var Branch = /** @class */ (function (_super) {
     // Branches require Axe or Knife
     function Branch(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Branch");
         _this.singular = treeType + " branch";
         _this.plural = treeType + " branches";
         return _this;
@@ -112,6 +115,7 @@ var Root = /** @class */ (function (_super) {
     // Roots require Knife
     function Root(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Root");
         _this.singular = treeType + " root";
         _this.plural = treeType + " roots";
         return _this;
@@ -124,6 +128,7 @@ var Bark = /** @class */ (function (_super) {
     // Bark requires Knife
     function Bark(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Bark");
         _this.singular = treeType + " bark";
         _this.plural = treeType + " bark";
         return _this;
@@ -136,6 +141,7 @@ var Log = /** @class */ (function (_super) {
     // Logs require Saw or Axe
     function Log(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Log");
         _this.singular = treeType + " log";
         _this.plural = treeType + " logs";
         return _this;
@@ -148,6 +154,7 @@ var TreeStump = /** @class */ (function (_super) {
     // Stunps require Pack Animal and Rope
     function TreeStump(treeType) {
         var _this = _super.call(this) || this;
+        _this.categories.push("Stump");
         _this.singular = treeType + " tree stump";
         _this.plural = treeType + " tree stumps";
         return _this;

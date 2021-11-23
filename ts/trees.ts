@@ -80,6 +80,7 @@ export class Leaf extends Item {
     //leaves require no tools
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Leaf");
         this.singular = treeType + " leaf";
         this.plural = treeType + " leaves";
     }
@@ -89,6 +90,7 @@ export class Twig extends Item {
     //twigs require no tools
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Twig");
         this.singular = treeType + " twig";
         this.plural = treeType + " twigs";
     }
@@ -99,6 +101,7 @@ export class Branch extends Item {
     // Branches require Axe or Knife
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Branch");
         this.singular = treeType + " branch";
         this.plural = treeType + " branches";
     }
@@ -108,6 +111,7 @@ export class Root extends Item {
     // Roots require Knife
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Root");
         this.singular = treeType + " root";
         this.plural = treeType + " roots";
     }
@@ -117,6 +121,7 @@ export class Bark extends Item {
     // Bark requires Knife
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Bark");
         this.singular = treeType + " bark";
         this.plural = treeType + " bark";
     }
@@ -126,6 +131,7 @@ export class Log extends Item {
     // Logs require Saw or Axe
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Log");
         this.singular = treeType + " log";
         this.plural = treeType + " logs";
     }
@@ -135,6 +141,7 @@ export class TreeStump extends Item {
     // Stunps require Pack Animal and Rope
     constructor(treeType: TreeType) {
         super();
+        this.categories.push("Stump");
         this.singular = treeType + " tree stump";
         this.plural = treeType + " tree stumps";
     }
