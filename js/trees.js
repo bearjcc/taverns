@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.sapientPear_prototype = exports.SapientPear = exports.magic_prototype = exports.Magic = exports.pear_prototype = exports.Pear = exports.mapleTree_prototype = exports.MapleTree = exports.willow_prototype = exports.Willow = exports.eldertree_prototype = exports.Eldertree = exports.cherry_prototype = exports.Cherry = exports.apple_prototype = exports.Apple = exports.oak_prototype = exports.Oak = exports.citrus_prototype = exports.Citrus = exports.maple_prototype = exports.Maple = exports.palm_prototype = exports.Palm = exports.banana_prototype = exports.Banana = exports.cinnamon_prototype = exports.Cinnamon = exports.birch_prototype = exports.Birch = exports.deadwood_prototype = exports.Deadwood = exports.pine_prototype = exports.Pine = exports.trees = exports.Tree = void 0;
+exports.sapientPear_prototype = exports.SapientPear = exports.magic_prototype = exports.Mystic = exports.pear_prototype = exports.Pear = exports.willow_prototype = exports.Willow = exports.eldertree_prototype = exports.Elder = exports.cherry_prototype = exports.Cherry = exports.apple_prototype = exports.Apple = exports.oak_prototype = exports.Oak = exports.citrus_prototype = exports.Citrus = exports.maple_prototype = exports.Maple = exports.palm_prototype = exports.Palm = exports.banana_prototype = exports.Banana = exports.cinnamon_prototype = exports.Cinnamon = exports.birch_prototype = exports.Birch = exports.deadwood_prototype = exports.Deadwood = exports.pine_prototype = exports.Pine = exports.trees = exports.TreeStump = exports.Log = exports.Bark = exports.Root = exports.Branch = exports.Twig = exports.Leaf = exports.Tree = void 0;
 // ============================================================================
 // Language: TypeScript
 // Path: ts\trees.ts
@@ -21,7 +21,9 @@ exports.sapientPear_prototype = exports.SapientPear = exports.magic_prototype = 
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+var food_1 = require("./food");
 var interactables_1 = require("./interactables");
+var items_1 = require("./items");
 var Tree = /** @class */ (function (_super) {
     __extends(Tree, _super);
     function Tree(name, description, levelRequired, axeRequired) {
@@ -30,9 +32,129 @@ var Tree = /** @class */ (function (_super) {
         _this.axeRequired = axeRequired;
         return _this;
     }
+    Tree.prototype.chop = function (axe, lvl) {
+        if (axe === this.axeRequired && lvl >= this.levelRequired) {
+            console.log("You chop the " + this.name + " down.");
+            return true;
+        }
+        else {
+            console.log("You can't chop the " + this.name + " down with that.");
+            return false;
+        }
+    };
+    Tree.prototype.getFruit = function () {
+        console.log("This tree bears no fruit");
+        return null;
+    };
+    Tree.prototype.getLeaf = function () {
+        return new Leaf(this.name);
+    };
+    Tree.prototype.getTwig = function () {
+        return new Twig(this.name);
+    };
+    Tree.prototype.getBranch = function () {
+        return new Branch(this.name);
+    };
+    Tree.prototype.getRoot = function () {
+        return new Root(this.name);
+    };
+    Tree.prototype.getBark = function () {
+        return new Bark(this.name);
+    };
+    Tree.prototype.getLog = function () {
+        return new Log(this.name);
+    };
+    Tree.prototype.getStump = function () {
+        return new TreeStump(this.name);
+    };
     return Tree;
 }(interactables_1.Interactable));
 exports.Tree = Tree;
+var Leaf = /** @class */ (function (_super) {
+    __extends(Leaf, _super);
+    //leaves require no tools
+    function Leaf(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " leaf";
+        _this.plural = treeType + " leaves";
+        return _this;
+    }
+    return Leaf;
+}(items_1.Item));
+exports.Leaf = Leaf;
+var Twig = /** @class */ (function (_super) {
+    __extends(Twig, _super);
+    //twigs require no tools
+    function Twig(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " twig";
+        _this.plural = treeType + " twigs";
+        return _this;
+    }
+    return Twig;
+}(items_1.Item));
+exports.Twig = Twig;
+0;
+var Branch = /** @class */ (function (_super) {
+    __extends(Branch, _super);
+    // Branches require Axe or Knife
+    function Branch(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " branch";
+        _this.plural = treeType + " branches";
+        return _this;
+    }
+    return Branch;
+}(items_1.Item));
+exports.Branch = Branch;
+var Root = /** @class */ (function (_super) {
+    __extends(Root, _super);
+    // Roots require Knife
+    function Root(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " root";
+        _this.plural = treeType + " roots";
+        return _this;
+    }
+    return Root;
+}(items_1.Item));
+exports.Root = Root;
+var Bark = /** @class */ (function (_super) {
+    __extends(Bark, _super);
+    // Bark requires Knife
+    function Bark(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " bark";
+        _this.plural = treeType + " bark";
+        return _this;
+    }
+    return Bark;
+}(items_1.Item));
+exports.Bark = Bark;
+var Log = /** @class */ (function (_super) {
+    __extends(Log, _super);
+    // Logs require Saw or Axe
+    function Log(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " log";
+        _this.plural = treeType + " logs";
+        return _this;
+    }
+    return Log;
+}(items_1.Item));
+exports.Log = Log;
+var TreeStump = /** @class */ (function (_super) {
+    __extends(TreeStump, _super);
+    // Stunps require Pack Animal and Rope
+    function TreeStump(treeType) {
+        var _this = _super.call(this) || this;
+        _this.singular = treeType + " tree stump";
+        _this.plural = treeType + " tree stumps";
+        return _this;
+    }
+    return TreeStump;
+}(items_1.Item));
+exports.TreeStump = TreeStump;
 exports.trees = [];
 var Pine = /** @class */ (function (_super) {
     __extends(Pine, _super);
@@ -49,6 +171,10 @@ var Deadwood = /** @class */ (function (_super) {
     function Deadwood() {
         return _super.call(this, "Deadwood", "A deadwood tree.", 5, "Bronze") || this;
     }
+    Deadwood.prototype.getLeaf = function () {
+        console.log("This tree has no leaves");
+        return null;
+    };
     return Deadwood;
 }(Tree));
 exports.Deadwood = Deadwood;
@@ -79,6 +205,9 @@ var Banana = /** @class */ (function (_super) {
     function Banana() {
         return _super.call(this, "Banana", "A banana tree.", 20, "Iron") || this;
     }
+    Banana.prototype.getFruit = function () {
+        return new food_1.Banana();
+    };
     return Banana;
 }(Tree));
 exports.Banana = Banana;
@@ -109,6 +238,9 @@ var Citrus = /** @class */ (function (_super) {
     function Citrus() {
         return _super.call(this, "Citrus", "A citrus tree.", 35, "Steel") || this;
     }
+    Citrus.prototype.getFruit = function () {
+        return new food_1.Citrus("orange");
+    };
     return Citrus;
 }(Tree));
 exports.Citrus = Citrus;
@@ -129,6 +261,9 @@ var Apple = /** @class */ (function (_super) {
     function Apple() {
         return _super.call(this, "Apple", "An apple tree.", 45, "Steel") || this;
     }
+    Apple.prototype.getFruit = function () {
+        return new food_1.Apple("red");
+    };
     return Apple;
 }(Tree));
 exports.Apple = Apple;
@@ -139,20 +274,23 @@ var Cherry = /** @class */ (function (_super) {
     function Cherry() {
         return _super.call(this, "Cherry", "A cherry tree.", 50, "Mithril") || this;
     }
+    Cherry.prototype.getFruit = function () {
+        return new food_1.Cherry();
+    };
     return Cherry;
 }(Tree));
 exports.Cherry = Cherry;
 exports.cherry_prototype = new Cherry();
 exports.trees.push(exports.cherry_prototype);
-var Eldertree = /** @class */ (function (_super) {
-    __extends(Eldertree, _super);
-    function Eldertree() {
-        return _super.call(this, "Eldertree", "An eldertree tree.", 55, "Mithril") || this;
+var Elder = /** @class */ (function (_super) {
+    __extends(Elder, _super);
+    function Elder() {
+        return _super.call(this, "Elder", "An eldertree tree.", 55, "Mithril") || this;
     }
-    return Eldertree;
+    return Elder;
 }(Tree));
-exports.Eldertree = Eldertree;
-exports.eldertree_prototype = new Eldertree();
+exports.Elder = Elder;
+exports.eldertree_prototype = new Elder();
 exports.trees.push(exports.eldertree_prototype);
 var Willow = /** @class */ (function (_super) {
     __extends(Willow, _super);
@@ -164,41 +302,37 @@ var Willow = /** @class */ (function (_super) {
 exports.Willow = Willow;
 exports.willow_prototype = new Willow();
 exports.trees.push(exports.willow_prototype);
-var MapleTree = /** @class */ (function (_super) {
-    __extends(MapleTree, _super);
-    function MapleTree() {
-        return _super.call(this, "MapleTree", "A maple tree.", 65, "Mithril") || this;
-    }
-    return MapleTree;
-}(Tree));
-exports.MapleTree = MapleTree;
-exports.mapleTree_prototype = new MapleTree();
-exports.trees.push(exports.mapleTree_prototype);
 var Pear = /** @class */ (function (_super) {
     __extends(Pear, _super);
     function Pear() {
         return _super.call(this, "Pear", "A pear tree.", 70, "Adamantite") || this;
     }
+    Pear.prototype.getFruit = function () {
+        return new food_1.Pear();
+    };
     return Pear;
 }(Tree));
 exports.Pear = Pear;
 exports.pear_prototype = new Pear();
 exports.trees.push(exports.pear_prototype);
-var Magic = /** @class */ (function (_super) {
-    __extends(Magic, _super);
-    function Magic() {
-        return _super.call(this, "Magic", "A magic tree.", 75, "Adamantite") || this;
+var Mystic = /** @class */ (function (_super) {
+    __extends(Mystic, _super);
+    function Mystic() {
+        return _super.call(this, "Mystic", "A magic tree.", 75, "Adamantite") || this;
     }
-    return Magic;
+    return Mystic;
 }(Tree));
-exports.Magic = Magic;
-exports.magic_prototype = new Magic();
+exports.Mystic = Mystic;
+exports.magic_prototype = new Mystic();
 exports.trees.push(exports.magic_prototype);
 var SapientPear = /** @class */ (function (_super) {
     __extends(SapientPear, _super);
     function SapientPear() {
         return _super.call(this, "Sapient Pear", "A sapient pear tree.", 90, "Mystic") || this;
     }
+    SapientPear.prototype.getFruit = function () {
+        return new food_1.SapientPear();
+    };
     return SapientPear;
 }(Tree));
 exports.SapientPear = SapientPear;

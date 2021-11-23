@@ -88,120 +88,6 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 // arsenic
 // azuth
 
-//twigs
-
-// Leaves need no tools
-//pine needles
-//birch leaves
-//cinnamon leaves
-//banana leaves
-//palm leaves
-//maple leaves
-//citrus leaves
-//oak leaves
-//apple leaves
-//cherry leaves
-//eldertree leaves
-//willow leaves
-//pear leaves
-//peach leaves
-//magic tree leaves
-//sapient pear leaves
-
-// Branches require Axe or Knife
-//pine branches
-//deadwood branches
-//birch branches
-//cinnamon branches
-//banana branches
-//palm branches
-//maple branches
-//citrus branches
-//oak branches
-//apple branches
-//cherry branches
-//eldertree branches
-//willow branches
-//pear branches
-//peach branches
-//magic tree branches
-//sapient pear branches
-
-// Logs require Saw or Axe
-//pine logs
-//deadwood logs
-//birch logs
-//cinnamon logs
-//banana logs
-//palm logs
-//maple logs
-//citrus logs
-//oak logs
-//apple logs
-//cherry logs
-//eldertree logs
-//willow logs
-//pear logs
-//peach logs
-//magic tree logs
-//sapient pear logs
-
-// Bark requires Knife
-//pine bark
-//deadwood bark
-//birch bark
-//cinnamon bark
-//banana bark
-//palm bark
-//maple bark
-//citrus bark
-//oak bark
-//apple bark
-//cherry bark
-//eldertree bark
-//willow bark
-//pear bark
-//peach bark
-//magic tree bark
-//sapient pear bark
-
-// Roots require Knife
-//pine roots
-//deadwood roots
-//birch roots
-//cinnamon roots
-//banana roots
-//palm roots
-//maple roots
-//citrus roots
-//oak roots
-//apple roots
-//cherry roots
-//eldertree roots
-//willow roots
-//pear roots
-//peach roots
-//magic tree roots
-//sapient pear roots
-
-// Stunps require Pack Animal and Rope
-//pine stumps
-//deadwood stumps
-//birch stumps
-//cinnamon stumps
-//banana stumps
-//palm stumps
-//maple stumps
-//citrus stumps
-//oak stumps
-//apple stumps
-//cherry stumps
-//eldertree stumps
-//willow stumps
-//pear stumps
-//peach stumps
-//magic tree stumps
-//sapient pear stumps
 
 //grit
 //salt
@@ -257,7 +143,7 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 //Mithril Axe
 //Adamantite Axe
 //Mystic Axe
-export type Axe = "Bronze" | "Iron" | "Steel" | "Mithril" | "Adamantite" | "Mystic";
+export type AxeType = "Bronze" | "Iron" | "Steel" | "Mithril" | "Adamantite" | "Mystic";
 
 ////Hammers
 //Bronze Hammer

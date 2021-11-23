@@ -582,6 +582,23 @@ export class Pear extends Food {
 export const pear_prototype: Pear = new Pear();
 fruits.push(pear_prototype);
 
+export class SapientPear extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fruit", "Pear");
+        this.singular = "Pear";
+        this.plural = "Pears";
+        this.description = "Pear";
+        this.hunger = 10;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const sapientPear_prototype: SapientPear = new SapientPear();
+fruits.push(sapientPear_prototype);
+
 export class Grape extends Food {
     type: "red" | "white" | "purple" | "muscadine";
 
@@ -819,8 +836,8 @@ export const eggplant_prototype: Eggplant = new Eggplant();
 vegetables.push(eggplant_prototype);
 
 export class Berry extends Food {
-    type: "red" | "blue" | "black" | "snozz" | "cherry" | "straw" | "rasp" | "blue currant" | "black currant";
-    constructor(type: "red" | "blue" | "black" | "snozz" | "cherry" | "straw" | "rasp" | "blue currant" | "black currant") {
+    type: "red" | "blue" | "black" | "snozz" | "straw" | "rasp" | "blue currant" | "black currant";
+    constructor(type: "red" | "blue" | "black" | "snozz" | "straw" | "rasp" | "blue currant" | "black currant") {
         super();
         this.hasType = true;
         this.type = type;
@@ -828,9 +845,6 @@ export class Berry extends Food {
         if (type === "blue currant" || type === "black currant") {
             this.singular = this.type;
             this.plural = this.singular + "s";
-        } else if (type === "cherry") {
-            this.singular = "cherry";
-            this.plural = "cherries";
         } else {
             this.singular = this.type + "berry";
             this.plural = this.type + "berries";
@@ -847,12 +861,28 @@ export const berryRed_prototype: Berry = new Berry("red");
 export const berryBlue_prototype: Berry = new Berry("blue");
 export const berryBlack_prototype: Berry = new Berry("black");
 export const berrySnozz_prototype: Berry = new Berry("snozz");
-export const berryCherry_prototype: Berry = new Berry("cherry");
 export const berryStraw_prototype: Berry = new Berry("straw");
 export const berryRasp_prototype: Berry = new Berry("rasp");
 export const berryBlueCurrant_prototype: Berry = new Berry("blue currant");
 export const berryBlackCurrant_prototype: Berry = new Berry("black currant");
-berries.push(berryRed_prototype, berryBlue_prototype, berryBlack_prototype, berrySnozz_prototype, berryCherry_prototype, berryStraw_prototype, berryRasp_prototype, berryBlueCurrant_prototype, berryBlackCurrant_prototype);
+berries.push(berryRed_prototype, berryBlue_prototype, berryBlack_prototype, berrySnozz_prototype, berryStraw_prototype, berryRasp_prototype, berryBlueCurrant_prototype, berryBlackCurrant_prototype);
+
+export class Cherry extends Food {
+    constructor() {
+        super();
+        this.categories.push("Fruit", "Cherry");
+        this.singular = "Cherry";
+        this.plural = "Cherries";
+        this.description = "Cherry";
+        this.hunger = 10;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Foraging"];
+    }
+}
+export const cherry_prototype: Cherry = new Cherry();
+fruits.push(cherry_prototype);
 
 export class Banana extends Food {
     constructor() {
