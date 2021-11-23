@@ -1,6 +1,6 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\itm_consumables.ts
+// Path: ts\consumables.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
@@ -22,3 +22,21 @@ export class Consumable extends Item {
         console.log(`You consumed the ${this.singular}`);
     }
 }
+
+export var dairies: Consumable[] = [];
+
+export class CrushedIce extends Food {
+    constructor() {
+        super();
+        this.categories.push("Crushed Ice");
+        this.singular = "crushed ice";
+        this.plural = "crushed ice";
+        this.description = "crushed ice";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const crushedIce_prototype: CrushedIce = new CrushedIce();

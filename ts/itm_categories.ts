@@ -5,7 +5,7 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import {Consumable} from "./itm_consumables"
+import {Consumable} from "./consumables"
 
 
 

@@ -5,11 +5,8 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+import {Consumable, dairies} from "./consumables"
 import {Source} from "./ingredients"
-import {Interactable} from "./interactables"
-import {Item} from "./items"
-import {Consumable} from "./itm_consumables"
-import {Recipe} from "./recipes"
 
 export class Food extends Consumable {
     sources: Source[]; // where a user can obtain the food
@@ -116,9 +113,30 @@ export var seafoods: Food[] = [];
 export var vegetables: Food[] = [];
 export var fruits: Food[] = [];
 export var grains: Food[] = [];
-export var oils: Food[] = [];
 export var nuts: Food[] = [];
 export var fishes: Food[] = [];
+export var starchs: Food[] = [];
+export var berries: Food[] = [];
+export var spices: Food[] = [];
+export var herbs: Food[] = [];
+export var others: Food[] = [];
+export var insects: Food[] = [];
+export var fungi: Food[] = [];
+export var eggs: Food[] = [];
+export var sweets: Food[] = [];
+export var doughs: Food[] = [];
+export var brines: Food[] = [];
+export var soups: Food[] = [];
+export var cheeses: Food[] = [];
+export var sauces: Food[] = [];
+export var sides: Food[] = [];
+export var entrees: Food[] = [];
+export var spreads: Food[] = [];
+export var condiments: Food[] = [];
+export var sandwiches: Food[] = [];
+export var snacks: Food[] = [];
+export var breads: Food[] = [];
+export var sushis: Food[] = [];
 
 export class Salmon extends Food {
     constructor() {
@@ -361,6 +379,7 @@ export class PigFeet extends Food {
     }
 }
 export const pig_feet_prototype: PigFeet = new PigFeet();
+meats.push(pig_feet_prototype);
 
 export class Sugar extends Food {
     constructor() {
@@ -379,6 +398,7 @@ export class Sugar extends Food {
     }
 }
 export const sugar_prototype: Sugar = new Sugar();
+sweets.push(sugar_prototype);
 
 export class Seaweed extends Food {
     type: "red" | "green" | "brown";
@@ -401,6 +421,7 @@ export class Seaweed extends Food {
 export const seaweedRed_prototype: Seaweed = new Seaweed("red");
 export const seaweedGreen_prototype: Seaweed = new Seaweed("green");
 export const seaweedBrown_prototype: Seaweed = new Seaweed("brown");
+seafoods.push(seaweedRed_prototype, seaweedGreen_prototype, seaweedBrown_prototype);
 
 export class Rice extends Food {
     constructor() {
@@ -417,6 +438,7 @@ export class Rice extends Food {
     }
 }
 export const rice_prototype: Rice = new Rice();
+grains.push(rice_prototype);
 
 export class Corn extends Food {
     constructor() {
@@ -433,6 +455,7 @@ export class Corn extends Food {
     }
 }
 export const corn_prototype: Corn = new Corn();
+grains.push(corn_prototype);
 
 export class CornOnTheCob extends Food {
     constructor() {
@@ -449,6 +472,7 @@ export class CornOnTheCob extends Food {
     }
 }
 export const cornOnOheCob_prototype: CornOnTheCob = new CornOnTheCob();
+grains.push(cornOnOheCob_prototype);
 
 export class Asparagus extends Food {
     constructor() {
@@ -465,6 +489,7 @@ export class Asparagus extends Food {
     }
 }
 export const asparagus_prototype: Asparagus = new Asparagus();
+vegetables.push(asparagus_prototype);
 
 export class Beans extends Food {
     type: "kidney" | "pinto" | "black" | "green" | "lima" | "mung" | "garbanzo" | "jack" | "soy";
@@ -493,6 +518,7 @@ export const beansMung_prototype: Beans = new Beans("mung");
 export const beansGarbanzo_prototype: Beans = new Beans("garbanzo");
 export const beansJack_prototype: Beans = new Beans("jack");
 export const beansSoy_prototype: Beans = new Beans("soy");
+proteins.push(beansKidney_prototype, beansPinto_prototype, beansBlack_prototype, beansGreen_prototype, beansLima_prototype, beansMung_prototype, beansGarbanzo_prototype, beansJack_prototype, beansSoy_prototype);
 
 export class Mushroom extends Food {
     type: "white" | "brown" | "purple" | "glowing" | "morel" | "red";
@@ -518,6 +544,7 @@ export const mushroomPurple_prototype: Mushroom = new Mushroom("purple", 0);
 export const mushroomGlowing_prototype: Mushroom = new Mushroom("glowing", 0);
 export const mushroomMorel_prototype: Mushroom = new Mushroom("morel", 0);
 export const mushroomRed_prototype: Mushroom = new Mushroom("red", 0);
+proteins.push(mushroomWhite_prototype, mushroomBrown_prototype, mushroomPurple_prototype, mushroomGlowing_prototype, mushroomMorel_prototype, mushroomRed_prototype);
 
 export class Apple extends Food {
     type: "red" | "green" | "golden";
@@ -540,6 +567,7 @@ export class Apple extends Food {
 export const appleRed_prototype: Apple = new Apple("red");
 export const appleGreen_prototype: Apple = new Apple("green");
 export const appleGolden_prototype: Apple = new Apple("golden");
+fruits.push(appleRed_prototype, appleGreen_prototype, appleGolden_prototype);
 
 export class Pear extends Food {
     constructor() {
@@ -556,6 +584,7 @@ export class Pear extends Food {
     }
 }
 export const pear_prototype: Pear = new Pear();
+fruits.push(pear_prototype);
 
 export class Grape extends Food {
     type: "red" | "white" | "purple" | "muscadine";
@@ -579,6 +608,7 @@ export const grapeRed_prototype: Grape = new Grape("red");
 export const grapeWhite_prototype: Grape = new Grape("white");
 export const grapePurple_prototype: Grape = new Grape("purple");
 export const grapeMuscadine_prototype: Grape = new Grape("muscadine");
+fruits.push(grapeRed_prototype, grapeWhite_prototype, grapePurple_prototype, grapeMuscadine_prototype);
 
 export class Avocado extends Food {
     constructor() {
@@ -595,6 +625,7 @@ export class Avocado extends Food {
     }
 }
 export const avocado_prototype: Avocado = new Avocado();
+fruits.push(avocado_prototype);
 
 export class Citrus extends Food {
     type: "orange" | "lemon" | "lime" | "grapefruit" | "tangerine";
@@ -619,6 +650,7 @@ export const citrusLemon_prototype: Citrus = new Citrus("lemon");
 export const citrusLime_prototype: Citrus = new Citrus("lime");
 export const citrusGrapefruit_prototype: Citrus = new Citrus("grapefruit");
 export const citrusTangerine_prototype: Citrus = new Citrus("tangerine");
+fruits.push(citrusOrange_prototype, citrusLemon_prototype, citrusLime_prototype, citrusGrapefruit_prototype, citrusTangerine_prototype);
 
 export class Peanut extends Food {
     constructor() {
@@ -635,6 +667,7 @@ export class Peanut extends Food {
     }
 }
 export const peanut_prototype: Peanut = new Peanut();
+nuts.push(peanut_prototype);
 
 export class Walnut extends Food {
     constructor() {
@@ -651,6 +684,7 @@ export class Walnut extends Food {
     }
 }
 export const walnut_prototype: Walnut = new Walnut();
+nuts.push(walnut_prototype);
 
 export class Almond extends Food {
     constructor() {
@@ -667,6 +701,7 @@ export class Almond extends Food {
     }
 }
 export const almond_prototype: Almond = new Almond();
+nuts.push(almond_prototype);
 
 export class BrazilNut extends Food {
     constructor() {
@@ -683,6 +718,7 @@ export class BrazilNut extends Food {
     }
 }
 export const brazilNut_prototype: BrazilNut = new BrazilNut();
+nuts.push(brazilNut_prototype);
 
 export class Chestnut extends Food {
     constructor() {
@@ -699,6 +735,7 @@ export class Chestnut extends Food {
     }
 }
 export const chestnut_prototype: Chestnut = new Chestnut();
+nuts.push(chestnut_prototype);
 
 export class Coconut extends Food {
     constructor() {
@@ -715,6 +752,7 @@ export class Coconut extends Food {
     }
 }
 export const coconut_prototype: Coconut = new Coconut();
+fruits.push(coconut_prototype);
 
 export class Carrot extends Food {
     constructor() {
@@ -731,6 +769,7 @@ export class Carrot extends Food {
     }
 }
 export const carrot_prototype: Carrot = new Carrot();
+vegetables.push(carrot_prototype);
 
 export class Potato extends Food {
     constructor() {
@@ -747,6 +786,7 @@ export class Potato extends Food {
     }
 }
 export const potato_prototype: Potato = new Potato();
+starchs.push(potato_prototype);
 
 export class Beet extends Food {
     constructor() {
@@ -763,6 +803,7 @@ export class Beet extends Food {
     }
 }
 export const beet_prototype: Beet = new Beet();
+vegetables.push(beet_prototype);
 
 export class Eggplant extends Food {
     constructor() {
@@ -779,6 +820,7 @@ export class Eggplant extends Food {
     }
 }
 export const eggplant_prototype: Eggplant = new Eggplant();
+vegetables.push(eggplant_prototype);
 
 export class Berry extends Food {
     type: "red" | "blue" | "black" | "snozz" | "cherry" | "straw" | "rasp" | "blue currant" | "black currant";
@@ -814,6 +856,7 @@ export const berryStraw_prototype: Berry = new Berry("straw");
 export const berryRasp_prototype: Berry = new Berry("rasp");
 export const berryBlueCurrant_prototype: Berry = new Berry("blue currant");
 export const berryBlackCurrant_prototype: Berry = new Berry("black currant");
+berries.push(berryRed_prototype, berryBlue_prototype, berryBlack_prototype, berrySnozz_prototype, berryCherry_prototype, berryStraw_prototype, berryRasp_prototype, berryBlueCurrant_prototype, berryBlackCurrant_prototype);
 
 export class Banana extends Food {
     constructor() {
@@ -830,6 +873,7 @@ export class Banana extends Food {
     }
 }
 export const banana_prototype: Banana = new Banana();
+fruits.push(banana_prototype);
 
 export class Pineapple extends Food {
     constructor() {
@@ -846,6 +890,7 @@ export class Pineapple extends Food {
     }
 }
 export const pineapple_prototype: Pineapple = new Pineapple();
+fruits.push(pineapple_prototype);
 
 export class Pepper extends Food {
     type: "black" | "white" | "bell" | "jalapeno" | "cayenne" | "chili";
@@ -870,6 +915,7 @@ export const pepperBell_prototype: Pepper = new Pepper("bell");
 export const pepperJalapeno_prototype: Pepper = new Pepper("jalapeno");
 export const pepperCayenne_prototype: Pepper = new Pepper("cayenne");
 export const pepperChili_prototype: Pepper = new Pepper("chili");
+spices.push(pepperBlack_prototype, pepperWhite_prototype, pepperBell_prototype, pepperJalapeno_prototype, pepperCayenne_prototype, pepperChili_prototype);
 
 export class Coriander extends Food {
     constructor() {
@@ -886,6 +932,7 @@ export class Coriander extends Food {
     }
 }
 export const coriander_prototype: Coriander = new Coriander();
+herbs.push(coriander_prototype);
 
 export class Cilantro extends Food {
     constructor() {
@@ -902,6 +949,7 @@ export class Cilantro extends Food {
     }
 }
 export const cilantro_prototype: Cilantro = new Cilantro();
+herbs.push(cilantro_prototype);
 
 export class Cumin extends Food {
     constructor() {
@@ -918,6 +966,7 @@ export class Cumin extends Food {
     }
 }
 export const cumin_prototype: Cumin = new Cumin();
+spices.push(cumin_prototype);
 
 export class Dill extends Food {
     constructor() {
@@ -934,6 +983,7 @@ export class Dill extends Food {
     }
 }
 export const dill_prototype: Dill = new Dill();
+herbs.push(dill_prototype);
 
 export class Fennel extends Food {
     constructor() {
@@ -950,6 +1000,7 @@ export class Fennel extends Food {
     }
 }
 export const fennel_prototype: Fennel = new Fennel();
+herbs.push(fennel_prototype);
 
 export class Garlic extends Food {
     constructor() {
@@ -966,6 +1017,7 @@ export class Garlic extends Food {
     }
 }
 export const garlic_prototype: Garlic = new Garlic();
+herbs.push(garlic_prototype);
 
 export class Ginger extends Food {
     constructor() {
@@ -982,6 +1034,7 @@ export class Ginger extends Food {
     }
 }
 export const ginger_prototype: Ginger = new Ginger();
+herbs.push(ginger_prototype);
 
 export class Oregano extends Food {
     constructor() {
@@ -998,6 +1051,7 @@ export class Oregano extends Food {
     }
 }
 export const oregano_prototype: Oregano = new Oregano();
+herbs.push(oregano_prototype);
 
 export class Parsley extends Food {
     constructor() {
@@ -1014,6 +1068,7 @@ export class Parsley extends Food {
     }
 }
 export const parsley_prototype: Parsley = new Parsley();
+herbs.push(parsley_prototype);
 
 export class Rosemary extends Food {
     constructor() {
@@ -1030,6 +1085,7 @@ export class Rosemary extends Food {
     }
 }
 export const rosemary_prototype: Rosemary = new Rosemary();
+herbs.push(rosemary_prototype);
 
 export class Thyme extends Food {
     constructor() {
@@ -1046,6 +1102,7 @@ export class Thyme extends Food {
     }
 }
 export const thyme_prototype: Thyme = new Thyme();
+herbs.push(thyme_prototype);
 
 export class Turmeric extends Food {
     constructor() {
@@ -1062,6 +1119,7 @@ export class Turmeric extends Food {
     }
 }
 export const turmeric_prototype: Turmeric = new Turmeric();
+spices.push(turmeric_prototype);
 
 export class Chives extends Food {
     constructor() {
@@ -1078,6 +1136,7 @@ export class Chives extends Food {
     }
 }
 export const chives_prototype: Chives = new Chives();
+herbs.push(chives_prototype);
 
 export class Sage extends Food {
     constructor() {
@@ -1094,6 +1153,7 @@ export class Sage extends Food {
     }
 }
 export const sage_prototype: Sage = new Sage();
+herbs.push(sage_prototype);
 
 export class Basil extends Food {
     constructor() {
@@ -1110,6 +1170,7 @@ export class Basil extends Food {
     }
 }
 export const basil_prototype: Basil = new Basil();
+herbs.push(basil_prototype);
 
 export class Tomatoes extends Food {
     constructor() {
@@ -1126,6 +1187,7 @@ export class Tomatoes extends Food {
     }
 }
 export const tomatoes_prototype: Tomatoes = new Tomatoes();
+fruits.push(tomatoes_prototype);
 
 export class Lettuce extends Food {
     constructor() {
@@ -1142,6 +1204,7 @@ export class Lettuce extends Food {
     }
 }
 export const lettuce_prototype: Lettuce = new Lettuce();
+vegetables.push(lettuce_prototype);
 
 export class Cabbage extends Food {
     constructor() {
@@ -1158,6 +1221,7 @@ export class Cabbage extends Food {
     }
 }
 export const cabbage_prototype: Cabbage = new Cabbage();
+vegetables.push(cabbage_prototype);
 
 export class Cauliflower extends Food {
     constructor() {
@@ -1174,6 +1238,7 @@ export class Cauliflower extends Food {
     }
 }
 export const cauliflower_prototype: Cauliflower = new Cauliflower();
+vegetables.push(cauliflower_prototype);
 
 export class Broccoli extends Food {
     constructor() {
@@ -1190,43 +1255,12 @@ export class Broccoli extends Food {
     }
 }
 export const broccoli_prototype: Broccoli = new Broccoli();
-
-export class RancidMeat extends Food {
-    constructor() {
-        super();
-        this.categories.push("Protein", "Rancid Meat");
-        this.singular = "Rancid Meat";
-        this.plural = "Rancid Meat";
-        this.description = "Rancid Meat";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Questing"];
-    }
-}
-export const rancidMeat_prototype: RancidMeat = new RancidMeat();
-
-export class QuestionableMeat extends Food {
-    constructor() {
-        super();
-        this.categories.push("Protein", "Questionable Meat");
-        this.singular = "Questionable Meat";
-        this.plural = "Questionable Meat";
-        this.description = "Questionable Meat";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Questing"];
-    }
-}
-export const questionableMeat_prototype: QuestionableMeat = new QuestionableMeat();
+vegetables.push(broccoli_prototype);
 
 export class Dragonmeat extends Food {
     constructor() {
         super();
-        this.categories.push("Protein", "Dragonmeat");
+        this.categories.push("Protein", "Meat", "Dragonmeat");
         this.singular = "Dragonmeat";
         this.plural = "Dragonmeat";
         this.description = "Dragonmeat";
@@ -1238,6 +1272,7 @@ export class Dragonmeat extends Food {
     }
 }
 export const dragonmeat_prototype: Dragonmeat = new Dragonmeat();
+meats.push(dragonmeat_prototype);
 
 export class Grubs extends Food {
     constructor() {
@@ -1254,6 +1289,7 @@ export class Grubs extends Food {
     }
 }
 export const grubs_prototype: Grubs = new Grubs();
+proteins.push(grubs_prototype);
 
 export class Brains extends Food {
     constructor() {
@@ -1270,11 +1306,12 @@ export class Brains extends Food {
     }
 }
 export const brains_prototype: Brains = new Brains();
+others.push(brains_prototype);
 
 export class Mealworms extends Food {
     constructor() {
         super();
-        this.categories.push("Protein", "Mealworm");
+        this.categories.push("Protein", "Insects", "Mealworm");
         this.singular = "Mealworm";
         this.plural = "Mealworms";
         this.description = "Mealworms";
@@ -1286,11 +1323,12 @@ export class Mealworms extends Food {
     }
 }
 export const mealworms_prototype: Mealworms = new Mealworms();
+insects.push(mealworms_prototype);
 
 export class Beetles extends Food {
     constructor() {
         super();
-        this.categories.push("Protein", "Beetle");
+        this.categories.push("Protein", "Insects", "Beetle");
         this.singular = "Beetle";
         this.plural = "Beetles";
         this.description = "Beetles";
@@ -1302,6 +1340,7 @@ export class Beetles extends Food {
     }
 }
 export const beetles_prototype: Beetles = new Beetles();
+insects.push(beetles_prototype);
 
 export class Ants extends Food {
     type : "red" | "black"| "fire";
@@ -1309,7 +1348,7 @@ export class Ants extends Food {
         super();
         this.hasType = true;
         this.type = type;
-        this.categories.push("Protein", "Ant");
+        this.categories.push("Protein", "Insects", "Ant");
         this.singular = this.type + "ant";
         this.plural = this.singular + "s";
         this.description = "ants";
@@ -1323,6 +1362,7 @@ export class Ants extends Food {
 export const antsRed_prototype: Ants = new Ants("red");
 export const antsBlack_prototype: Ants = new Ants("black");
 export const antsFire_prototype: Ants = new Ants("fire");
+insects.push(antsRed_prototype, antsBlack_prototype, antsFire_prototype);
 
 export class Ooze extends Food {
     type : "gray" | "green" | "superior" | "purple";
@@ -1345,11 +1385,12 @@ export const oozeGray_prototype: Ooze = new Ooze("gray");
 export const oozeGreen_prototype: Ooze = new Ooze("green");
 export const oozeSuperior_prototype: Ooze = new Ooze("superior");
 export const oozePurple_prototype: Ooze = new Ooze("purple");
+others.push(oozeGray_prototype, oozeGreen_prototype, oozeSuperior_prototype, oozePurple_prototype);
 
 export class Glowworm extends Food {
     constructor() {
         super();
-        this.categories.push("Protein", "Glowworm");
+        this.categories.push("Protein", "Insects", "Glowworm");
         this.singular = "Glowworm";
         this.plural = "Glowworms";
         this.description = "Glowworms";
@@ -1361,11 +1402,12 @@ export class Glowworm extends Food {
     }
 }
 export const glowworm_prototype: Glowworm = new Glowworm();
+insects.push(glowworm_prototype);
 
 export class HumanoidFlesh extends Food {
     constructor() {
         super();
-        this.categories.push("Protein", "Humanoid Flesh");
+        this.categories.push("Protein", "Meat", "Other", "Humanoid Flesh");
         this.singular = "Humanoid Flesh";
         this.plural = "Humanoid Flesh";
         this.description = "Humanoid Flesh";
@@ -1377,11 +1419,13 @@ export class HumanoidFlesh extends Food {
     }
 }
 export const humanoidFlesh_prototype: HumanoidFlesh = new HumanoidFlesh();
+meats.push(humanoidFlesh_prototype);
+others.push(humanoidFlesh_prototype);
 
 export class Venison extends Food {
     constructor() {
         super();
-        this.categories.push("Protein", "Venison");
+        this.categories.push("Protein", "Meat", "Venison");
         this.singular = "Venison";
         this.plural = "Venison";
         this.description = "Deer Meat";
@@ -1393,11 +1437,12 @@ export class Venison extends Food {
     }
 }
 export const venison_prototype: Venison = new Venison();
+meats.push(venison_prototype);
 
 export class Sprouts extends Food {
     constructor() {
         super();
-        this.categories.push("Spice", "Sprout");
+        this.categories.push("Vegatable", "Sprout");
         this.singular = "Sprout";
         this.plural = "Sprouts";
         this.description = "Sprouts";
@@ -1409,22 +1454,7 @@ export class Sprouts extends Food {
     }
 }
 export const sprouts_prototype: Sprouts = new Sprouts();
-
-export class Wasabi extends Food {
-    constructor() {
-        super();
-        this.categories.push("Spice", "Wasabi");
-        this.singular = "Wasabi";
-        this.plural = "Wasabi";
-        this.description = "Wasabi";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Trading"];
-    }
-}
-export const wasabi_prototype: Wasabi = new Wasabi();
+vegetables.push(sprouts_prototype);
 
 export class MapleSap extends Food {
     constructor() {
@@ -1441,11 +1471,12 @@ export class MapleSap extends Food {
     }
 }
 export const mapleSap_prototype: MapleSap = new MapleSap();
+others.push(mapleSap_prototype);
 
 export class Acorns extends Food {
     constructor() {
         super();
-        this.categories.push("Other", "Acorn");
+        this.categories.push("Protein", "Nuts", "Acorn");
         this.singular = "Acorn";
         this.plural = "Acorns";
         this.description = "Acorns";
@@ -1457,6 +1488,7 @@ export class Acorns extends Food {
     }
 }
 export const acorns_prototype: Acorns = new Acorns();
+nuts.push(acorns_prototype);
 
 export class VanillaBean extends Food {
     constructor() {
@@ -1473,6 +1505,7 @@ export class VanillaBean extends Food {
     }
 }
 export const vanillaBean_prototype: VanillaBean = new VanillaBean();
+spices.push(vanillaBean_prototype);
 
 export class Cucumbers extends Food {
     constructor() {
@@ -1489,6 +1522,7 @@ export class Cucumbers extends Food {
     }
 }
 export const cucumbers_prototype: Cucumbers = new Cucumbers();
+vegetables.push(cucumbers_prototype);
 
 export class Onion extends Food {
     type: "purple"| "white"| "green"| "red";
@@ -1511,6 +1545,7 @@ export const purpleOnion_prototype: Onion = new Onion("purple");
 export const whiteOnion_prototype: Onion = new Onion("white");
 export const greenOnion_prototype: Onion = new Onion("green");
 export const redOnion_prototype: Onion = new Onion("red");
+vegetables.push(purpleOnion_prototype, whiteOnion_prototype, greenOnion_prototype, redOnion_prototype);
 
 export class Egg extends Food {
     type: "chicken"| "fish"| "snake"| "lizard"| "dragon";
@@ -1518,7 +1553,7 @@ export class Egg extends Food {
         super();
         this.hasType = true;
         this.type = type;
-        this.categories.push("Egg");
+        this.categories.push("Protein", "Dairy", "Egg");
         this.singular = this.type + " egg";
         this.plural = this.singular + "s";
         this.description = "unborn animal in a shell";
@@ -1534,6 +1569,8 @@ export const fishEgg_prototype: Egg = new Egg("fish");
 export const snakeEgg_prototype: Egg = new Egg("snake");
 export const lizardEgg_prototype: Egg = new Egg("lizard");
 export const dragonEgg_prototype: Egg = new Egg("dragon");
+eggs.push(chickenEgg_prototype, fishEgg_prototype, snakeEgg_prototype, lizardEgg_prototype, dragonEgg_prototype);
+dairies.push(chickenEgg_prototype, fishEgg_prototype, snakeEgg_prototype, lizardEgg_prototype, dragonEgg_prototype);
 
 export class SoySauce extends Food {
     constructor() {
@@ -1550,42 +1587,7 @@ export class SoySauce extends Food {
     }
 }
 export const soySauce_prototype: SoySauce = new SoySauce();
-
-export class Milk extends Food {
-    type: "cow"| "goat";
-    constructor(type: "cow"| "goat") {
-        super();
-        this.hasType = true;
-        this.type = type;
-        this.categories.push("Dairy", "Milk");
-        this.singular = this.type + " milk";
-        this.plural = this.singular;
-        this.description = "milk";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const cowMilk_prototype: Milk = new Milk("cow");
-export const goatMilk_prototype: Milk = new Milk("goat");
-
-export class MilkOfThePoppy extends Food {
-    constructor() {
-        super();
-        this.categories.push("Spice", "Milk of the Poppy");
-        this.singular = "Milk of the Poppy";
-        this.plural = "Milk of the Poppy";
-        this.description = "Milk of the Poppy";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Foraging"];
-    }
-}
-export const milkOfThePoppy_prototype: MilkOfThePoppy = new MilkOfThePoppy();
+spices.push(soySauce_prototype);
 
 export class CocoaBeans extends Food {
     constructor() {
@@ -1602,11 +1604,12 @@ export class CocoaBeans extends Food {
     }
 }
 export const cocoaBeans_prototype: CocoaBeans = new CocoaBeans();
+spices.push(cocoaBeans_prototype);
 
 export class CoffeeBeans extends Food {
     constructor() {
         super();
-        this.categories.push("Tea", "Coffee Beans");
+        this.categories.push("Spice", "Coffee Beans");
         this.singular = "Coffee Beans";
         this.plural = "Coffee Beans";
         this.description = "Coffee Beans";
@@ -1618,11 +1621,12 @@ export class CoffeeBeans extends Food {
     }
 }
 export const coffeeBeans_prototype: CoffeeBeans = new CoffeeBeans();
+spices.push(coffeeBeans_prototype);
 
 export class TeaLeaves extends Food {
     constructor() {
         super();
-        this.categories.push("Tea", "Tea Leaves");
+        this.categories.push("Spice", "Tea Leaves");
         this.singular = "Tea Leaves";
         this.plural = "Tea Leaves";
         this.description = "Tea Leaves";
@@ -1634,6 +1638,7 @@ export class TeaLeaves extends Food {
     }
 }
 export const teaLeaves_prototype: TeaLeaves = new TeaLeaves();
+spices.push(teaLeaves_prototype);
 
 export class Wheat extends Food {
     constructor() {
@@ -1650,6 +1655,7 @@ export class Wheat extends Food {
     }
 }
 export const wheat_prototype: Wheat = new Wheat();
+grains.push(wheat_prototype);
 
 export class Oats extends Food {
     constructor() {
@@ -1666,6 +1672,7 @@ export class Oats extends Food {
     }
 }
 export const oats_prototype: Oats = new Oats();
+grains.push(oats_prototype);
 
 export class Barley extends Food {
     constructor() {
@@ -1682,61 +1689,7 @@ export class Barley extends Food {
     }
 }
 export const barley_prototype: Barley = new Barley();
-
-export class Oil extends Food {
-    type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence";
-    constructor(type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence") {
-        super();
-        this.hasType = true;
-        this.type = type;
-        this.categories.push("Oil");
-        this.singular = this.type + " oil";
-        this.plural = this.singular;
-        if(type === "dragonessence") {
-            this.singular = "Dragonessence";
-            this.plural = "Dragonessence";
-        }
-        this.description = "oil";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Distilling"];
-    }
-}
-export const vegetableOil_prototype: Oil = new Oil("vegetable");
-export const grapeseedOil_prototype: Oil = new Oil("grapeseed");
-export const oliveOil_prototype: Oil = new Oil("olive");
-export const avocadoOil_prototype: Oil = new Oil("avocado");
-export const peanutOil_prototype: Oil = new Oil("peanut");
-export const stickyOil_prototype: Oil = new Oil("sticky");
-export const dragonessence_prototype: Oil = new Oil("dragonessence");
-
-export class Wine extends Food {
-    type: "white"| "red" | "muscadine" | "rosé";
-    constructor(type: "white"| "red" | "muscadine" | "rosé") {
-        super();
-        this.hasType = true;
-        this.type = type;
-        this.categories.push("Alcohol");
-        this.singular = this.type + " wine";
-        this.plural = this.singular;
-        if(type === "rosé") {
-            this.singular = "Rosé";
-            this.plural = "Rosé";
-        }
-        this.description = "wine";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Distilling"];
-    }
-}
-export const whiteWine_prototype: Wine = new Wine("white");
-export const redWine_prototype: Wine = new Wine("red");
-export const muscadineWine_prototype: Wine = new Wine("muscadine");
-export const roseWine_prototype: Wine = new Wine("rosé");
+grains.push(barley_prototype);
 
 export class Curry extends Food {
     type: "red"| "green"| "yellow"| "golden";
@@ -1744,7 +1697,7 @@ export class Curry extends Food {
         super();
         this.hasType = true;
         this.type = type;
-        this.categories.push("Spice");
+        this.categories.push("Spice", "Curry");
         this.singular = this.type + " curry";
         this.plural = this.singular;
         if(type === "golden") {
@@ -1763,6 +1716,7 @@ export const redCurry_prototype: Curry = new Curry("red");
 export const greenCurry_prototype: Curry = new Curry("green");
 export const yellowCurry_prototype: Curry = new Curry("yellow");
 export const goldenCurry_prototype: Curry = new Curry("golden");
+spices.push(redCurry_prototype, greenCurry_prototype, yellowCurry_prototype, goldenCurry_prototype);
 
 export class Beets extends Food {
     constructor() {
@@ -1779,6 +1733,7 @@ export class Beets extends Food {
     }
 }
 export const beets_prototype: Beets = new Beets();
+vegetables.push(beets_prototype);
 
 export class Flour extends Food {
     type: "rice"| "wheat"| "barley"| "oat"| "rye"| "buckwheat";
@@ -1786,7 +1741,7 @@ export class Flour extends Food {
         super();
         this.hasType = true;
         this.type = type;
-        this.categories.push("Pasta");
+        this.categories.push("Starch");
         this.singular = this.type + " flour";
         this.plural = this.singular;
         if(type === "buckwheat") {
@@ -1807,23 +1762,13 @@ export const barleyFlour_prototype: Flour = new Flour("barley");
 export const oatFlour_prototype: Flour = new Flour("oat");
 export const ryeFlour_prototype: Flour = new Flour("rye");
 export const buckwheatFlour_prototype: Flour = new Flour("buckwheat");
+starchs.push(riceFlour_prototype, wheatFlour_prototype, barleyFlour_prototype, oatFlour_prototype, ryeFlour_prototype, buckwheatFlour_prototype);
 
-export class CookingRecipe extends Recipe {
-    ingredients: Array<Food>;
-    extras: Array<Food>;
-    locations: Array<Interactable>;
-    items: Array<Item>;
-    notes: string;
-    
-    constructor(name: string, description: string) {
-        super(name, description);
-    }
-}
 
 export class Honey extends Food {
     constructor() {
         super();
-        this.categories.push("Honey");
+        this.categories.push("Sweet", "Honey");
         this.singular = "honey";
         this.plural = "honey";
         this.description = "honey";
@@ -1835,13 +1780,12 @@ export class Honey extends Food {
     }
 }
 export const honey_prototype: Honey = new Honey();
-
-var cookingRecipes: Array<CookingRecipe> = [];
+sweets.push(honey_prototype);
 
 export class PancakeBatter extends Food {
     constructor() {
         super();
-        this.categories.push("Pancake Batter");
+        this.categories.push("Dough");
         this.singular = "pancake batter";
         this.plural = "pancake batter";
         this.description = "pancake batter";
@@ -1853,11 +1797,12 @@ export class PancakeBatter extends Food {
     }
 }
 export const pancakeBatter_prototype: PancakeBatter = new PancakeBatter();
+doughs.push(pancakeBatter_prototype);
 
 export class Jam extends Food {
     constructor() {
         super();
-        this.categories.push("Jam");
+        this.categories.push("Sweet", "Jam");
         this.singular = "jam";
         this.plural = "jam";
         this.description = "jam";
@@ -1869,11 +1814,12 @@ export class Jam extends Food {
     }
 }
 export const jam_prototype: Jam = new Jam();
+sweets.push(jam_prototype);
 
 export class ChiliPowder extends Food {
     constructor() {
         super();
-        this.categories.push("Chili Powder");
+        this.categories.push("Spice");
         this.singular = "chili powder";
         this.plural = "chili powder";
         this.description = "chili powder";
@@ -1885,11 +1831,12 @@ export class ChiliPowder extends Food {
     }
 }
 export const chiliPowder_prototype: ChiliPowder = new ChiliPowder();
+spices.push(chiliPowder_prototype);
 
 export class Chocolate extends Food {
     constructor() {
         super();
-        this.categories.push("Chocolate");
+        this.categories.push("Sweet", "Chocolate");
         this.singular = "chocolate";
         this.plural = "chocolate";
         this.description = "chocolate";
@@ -1901,11 +1848,12 @@ export class Chocolate extends Food {
     }
 }
 export const chocolate_prototype: Chocolate = new Chocolate();
+sweets.push(chocolate_prototype);
 
 export class FriedEgg extends Food {
     constructor() {
         super();
-        this.categories.push("Fried Egg");
+        this.categories.push("Protein");
         this.singular = "fried egg";
         this.plural = "fried egg";
         this.description = "fried egg";
@@ -1917,11 +1865,12 @@ export class FriedEgg extends Food {
     }
 }
 export const friedEgg_prototype: FriedEgg = new FriedEgg();
+proteins.push(friedEgg_prototype);
 
 export class Omelet extends Food {
     constructor() {
         super();
-        this.categories.push("Omelet");
+        this.categories.push("Protein", "Omelet");
         this.singular = "omelet";
         this.plural = "omelet";
         this.description = "omelet";
@@ -1933,11 +1882,12 @@ export class Omelet extends Food {
     }
 }
 export const omelet_prototype: Omelet = new Omelet();
+proteins.push(omelet_prototype);
 
 export class ScrambledEgg extends Food {
     constructor() {
         super();
-        this.categories.push("Scrambled Egg");
+        this.categories.push("Protein");
         this.singular = "scrambled egg";
         this.plural = "scrambled egg";
         this.description = "scrambled egg";
@@ -1949,11 +1899,12 @@ export class ScrambledEgg extends Food {
     }
 }
 export const scrambledEgg_prototype: ScrambledEgg = new ScrambledEgg();
+proteins.push(scrambledEgg_prototype);
 
 export class PoachedEgg extends Food {
     constructor() {
         super();
-        this.categories.push("Poached Egg");
+        this.categories.push("Protein");
         this.singular = "poached egg";
         this.plural = "poached egg";
         this.description = "poached egg";
@@ -1965,12 +1916,12 @@ export class PoachedEgg extends Food {
     }
 }
 export const poachedEgg_prototype: PoachedEgg = new PoachedEgg();
-
+proteins.push(poachedEgg_prototype);
 
 export class Pickle extends Food {
     constructor() {
         super();
-        this.categories.push("Pickle");
+        this.categories.push("Brined");
         this.singular = "pickle";
         this.plural = "pickle";
         this.description = "pickle";
@@ -1982,11 +1933,12 @@ export class Pickle extends Food {
     }
 }
 export const pickle_prototype: Pickle = new Pickle();
+brines.push(pickle_prototype);
 
 export class Pancake extends Food {
     constructor() {
         super();
-        this.categories.push("Pancake");
+        this.categories.push("Starch");
         this.singular = "pancake";
         this.plural = "pancake";
         this.description = "pancake";
@@ -1998,27 +1950,12 @@ export class Pancake extends Food {
     }
 }
 export const pancake_prototype: Pancake = new Pancake();
-
-export class CrushedIce extends Food {
-    constructor() {
-        super();
-        this.categories.push("Crushed Ice");
-        this.singular = "crushed ice";
-        this.plural = "crushed ice";
-        this.description = "crushed ice";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const crushedIce_prototype: CrushedIce = new CrushedIce();
+starchs.push(pancake_prototype);
 
 export class Granola extends Food {
     constructor() {
         super();
-        this.categories.push("Granola");
+        this.categories.push("Starch");
         this.singular = "granola";
         this.plural = "granola";
         this.description = "granola";
@@ -2030,11 +1967,12 @@ export class Granola extends Food {
     }
 }
 export const granola_prototype: Granola = new Granola();
+starchs.push(granola_prototype);
 
 export class BreadDough extends Food {
     constructor() {
         super();
-        this.categories.push("Bread Dough");
+        this.categories.push("Dough");
         this.singular = "bread dough";
         this.plural = "bread dough";
         this.description = "bread dough";
@@ -2046,11 +1984,12 @@ export class BreadDough extends Food {
     }
 }
 export const breadDough_prototype: BreadDough = new BreadDough();
+doughs.push(breadDough_prototype);
 
-export class RawNoodles extends Food {
+export class Noodles extends Food {
     constructor() {
         super();
-        this.categories.push("Raw Noodles");
+        this.categories.push("Noodles");
         this.singular = "raw noodles";
         this.plural = "raw noodles";
         this.description = "raw noodles";
@@ -2061,60 +2000,12 @@ export class RawNoodles extends Food {
         this.sources = ["Farming"];
     }
 }
-export const rawNoodles_prototype: RawNoodles = new RawNoodles();
-
-export class RawRiceNoodles extends Food {
-    constructor() {
-        super();
-        this.categories.push("Raw Rice Noodles");
-        this.singular = "raw rice noodles";
-        this.plural = "raw rice noodles";
-        this.description = "raw rice noodles";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const rawRiceNoodles_prototype: RawRiceNoodles = new RawRiceNoodles();
-
-export class CookedRice extends Food {
-    constructor() {
-        super();
-        this.categories.push("Cooked Rice");
-        this.singular = "cooked rice";
-        this.plural = "cooked rice";
-        this.description = "cooked rice";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const cookedRice_prototype: CookedRice = new CookedRice();
-
-export class Batter extends Food {
-    constructor() {
-        super();
-        this.categories.push("Batter");
-        this.singular = "batter";
-        this.plural = "batter";
-        this.description = "batter";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const batter_prototype: Batter = new Batter();
+export const noodles_prototype: Noodles = new Noodles();
 
 export class Tofu extends Food {
     constructor() {
         super();
-        this.categories.push("Tofu");
+        this.categories.push("Protein");
         this.singular = "tofu";
         this.plural = "tofu";
         this.description = "tofu";
@@ -2126,11 +2017,12 @@ export class Tofu extends Food {
     }
 }
 export const tofu_prototype: Tofu = new Tofu();
+proteins.push(tofu_prototype);
 
 export class Broth extends Food {
     constructor() {
         super();
-        this.categories.push("Broth");
+        this.categories.push("Soup", "Broth");
         this.singular = "broth";
         this.plural = "broth";
         this.description = "broth";
@@ -2142,11 +2034,12 @@ export class Broth extends Food {
     }
 }
 export const broth_prototype: Broth = new Broth();
+soups.push(broth_prototype);
 
 export class Tortilla extends Food {
     constructor() {
         super();
-        this.categories.push("Tortilla");
+        this.categories.push("Starch", "Tortilla");
         this.singular = "tortilla";
         this.plural = "tortilla";
         this.description = "tortilla";
@@ -2158,11 +2051,12 @@ export class Tortilla extends Food {
     }
 }
 export const tortilla_prototype: Tortilla = new Tortilla();
+starchs.push(tortilla_prototype);
 
 export class PieFilling extends Food {
     constructor() {
         super();
-        this.categories.push("Pie Filling");
+        this.categories.push("Sweet");
         this.singular = "pie filling";
         this.plural = "pie fillings";
         this.description = "pie fillings";
@@ -2174,11 +2068,12 @@ export class PieFilling extends Food {
     }
 }
 export const pieFilling_prototype: PieFilling = new PieFilling();
+sweets.push(pieFilling_prototype);
 
 export class PizzaDough extends Food {
     constructor() {
         super();
-        this.categories.push("Pizza Dough");
+        this.categories.push("Dough");
         this.singular = "pizza dough";
         this.plural = "pizza dough";
         this.description = "pizza dough";
@@ -2190,11 +2085,12 @@ export class PizzaDough extends Food {
     }
 }
 export const pizzaDough_prototype: PizzaDough = new PizzaDough();
+doughs.push(pizzaDough_prototype);
 
 export class PastryDough extends Food {
     constructor() {
         super();
-        this.categories.push("Pastry Dough");
+        this.categories.push("Dough");
         this.singular = "pastry dough";
         this.plural = "pastry dough";
         this.description = "pastry dough";
@@ -2206,12 +2102,13 @@ export class PastryDough extends Food {
     }
 }
 export const pastryDough_prototype: PastryDough = new PastryDough();
+doughs.push(pastryDough_prototype);
 
 
 export class IceCream extends Food {
     constructor() {
         super();
-        this.categories.push("Ice Cream");
+        this.categories.push("Sweets");
         this.singular = "ice cream";
         this.plural = "ice cream";
         this.description = "ice cream";
@@ -2223,11 +2120,12 @@ export class IceCream extends Food {
     }
 }
 export const iceCream_prototype: IceCream = new IceCream();
+sweets.push(iceCream_prototype);
 
 export class GoatCheese extends Food {
     constructor() {
         super();
-        this.categories.push("Goat Cheese");
+        this.categories.push("Cheese");
         this.singular = "goat cheese";
         this.plural = "goat cheese";
         this.description = "goat cheese";
@@ -2239,11 +2137,12 @@ export class GoatCheese extends Food {
     }
 }
 export const goatCheese_prototype: GoatCheese = new GoatCheese();
+cheeses.push(goatCheese_prototype);
 
 export class Butter extends Food {
     constructor() {
         super();
-        this.categories.push("Butter");
+        this.categories.push("Dairy");
         this.singular = "butter";
         this.plural = "butter";
         this.description = "butter";
@@ -2255,11 +2154,12 @@ export class Butter extends Food {
     }
 }
 export const butter_prototype: Butter = new Butter();
+dairies.push(butter_prototype);
 
 export class Cream extends Food {
     constructor() {
         super();
-        this.categories.push("Cream");
+        this.categories.push("Dairy", "Cream");
         this.singular = "cream";
         this.plural = "cream";
         this.description = "cream";
@@ -2271,22 +2171,7 @@ export class Cream extends Food {
     }
 }
 export const cream_prototype: Cream = new Cream();
-
-export class SourCream extends Food {
-    constructor() {
-        super();
-        this.categories.push("Sour Cream");
-        this.singular = "sour cream";
-        this.plural = "sour cream";
-        this.description = "sour cream";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const sourCream_prototype: SourCream = new SourCream();
+dairies.push(cream_prototype);
 
 export class Cheese extends Food {
     constructor() {
@@ -2303,27 +2188,12 @@ export class Cheese extends Food {
     }
 }
 export const cheese_prototype: Cheese = new Cheese();
-
-export class WhippedCream extends Food {
-    constructor() {
-        super();
-        this.categories.push("Whipped Cream");
-        this.singular = "whipped cream";
-        this.plural = "whipped cream";
-        this.description = "whipped cream";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const whippedCream_prototype: WhippedCream = new WhippedCream();
+cheeses.push(cheese_prototype);
 
 export class Yogurt extends Food {
     constructor() {
         super();
-        this.categories.push("Yogurt");
+        this.categories.push("Dairy", "Yogurt");
         this.singular = "yogurt";
         this.plural = "yogurt";
         this.description = "yogurt";
@@ -2335,12 +2205,13 @@ export class Yogurt extends Food {
     }
 }
 export const yogurt_prototype: Yogurt = new Yogurt();
+dairies.push(yogurt_prototype);
 
 
 export class Wasabi extends Food {
     constructor() {
         super();
-        this.categories.push("Wasabi");
+        this.categories.push("Spice", "Wasabi");
         this.singular = "wasabi";
         this.plural = "wasabi";
         this.description = "wasabi";
@@ -2352,27 +2223,12 @@ export class Wasabi extends Food {
     }
 }
 export const wasabi_prototype: Wasabi = new Wasabi();
-
-export class GroundGinger extends Food {
-    constructor() {
-        super();
-        this.categories.push("Ground Ginger");
-        this.singular = "ground ginger";
-        this.plural = "ground ginger";
-        this.description = "ground ginger";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const groundGinger_prototype: GroundGinger = new GroundGinger();
+spices.push(wasabi_prototype);
 
 export class Syrup extends Food {
     constructor() {
         super();
-        this.categories.push("Syrup");
+        this.categories.push("Sweet");
         this.singular = "syrup";
         this.plural = "syrup";
         this.description = "syrup";
@@ -2384,11 +2240,12 @@ export class Syrup extends Food {
     }
 }
 export const syrup_prototype: Syrup = new Syrup();
+sweets.push(syrup_prototype);
 
 export class Guacamole extends Food {
     constructor() {
         super();
-        this.categories.push("Guacamole");
+        this.categories.push("Sauce", "Spread", "Guacamole");
         this.singular = "guacamole";
         this.plural = "guacamole";
         this.description = "guacamole";
@@ -2400,11 +2257,13 @@ export class Guacamole extends Food {
     }
 }
 export const guacamole_prototype: Guacamole = new Guacamole();
+spreads.push(guacamole_prototype);
+sauces.push(guacamole_prototype);
 
 export class Salsa extends Food {
     constructor() {
         super();
-        this.categories.push("Salsa");
+        this.categories.push("Sauce");
         this.singular = "salsa";
         this.plural = "salsa";
         this.description = "salsa";
@@ -2416,11 +2275,12 @@ export class Salsa extends Food {
     }
 }
 export const salsa_prototype: Salsa = new Salsa();
+sauces.push(salsa_prototype);
 
 export class PeanutButter extends Food {
     constructor() {
         super();
-        this.categories.push("Peanut Butter");
+        this.categories.push("Spread");
         this.singular = "peanut butter";
         this.plural = "peanut butter";
         this.description = "peanut butter";
@@ -2432,12 +2292,13 @@ export class PeanutButter extends Food {
     }
 }
 export const peanutButter_prototype: PeanutButter = new PeanutButter();
+spreads.push(peanutButter_prototype);
 
-export class Jellies extends Food {
+export class Jelliy extends Food {
     constructor() {
         super();
-        this.categories.push("Jellies");
-        this.singular = "jellies";
+        this.categories.push("Spread");
+        this.singular = "jelly";
         this.plural = "jellies";
         this.description = "jellies";
         this.hunger = 0;
@@ -2447,12 +2308,13 @@ export class Jellies extends Food {
         this.sources = ["Farming"];
     }
 }
-export const jellies_prototype: Jellies = new Jellies();
+export const jellies_prototype: Jelliy = new Jelliy();
+spreads.push(jellies_prototype);
 
 export class Mayonnaise extends Food {
     constructor() {
         super();
-        this.categories.push("Mayonnaise");
+        this.categories.push("Spread");
         this.singular = "mayonnaise";
         this.plural = "mayonnaise";
         this.description = "mayonnaise";
@@ -2464,11 +2326,13 @@ export class Mayonnaise extends Food {
     }
 }
 export const mayonnaise_prototype: Mayonnaise = new Mayonnaise();
+spreads.push(mayonnaise_prototype);
+condiments.push(mayonnaise_prototype);
 
 export class Ketchup extends Food {
     constructor() {
         super();
-        this.categories.push("Ketchup");
+        this.categories.push("Condiment");
         this.singular = "ketchup";
         this.plural = "ketchup";
         this.description = "ketchup";
@@ -2480,46 +2344,12 @@ export class Ketchup extends Food {
     }
 }
 export const ketchup_prototype: Ketchup = new Ketchup();
+condiments.push(ketchup_prototype);
 
-export class ChiliFlakes extends Food {
+export class PastaEntree extends Food {
     constructor() {
         super();
-        this.categories.push("Chili Flakes");
-        this.singular = "chili flakes";
-        this.plural = "chili flakes";
-        this.description = "chili flakes";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const chiliFlakes_prototype: ChiliFlakes = new ChiliFlakes();
-
-
-
-
-export class PlainPasta extends Food {
-    constructor() {
-        super();
-        this.categories.push("Plain Pasta");
-        this.singular = "plain pasta";
-        this.plural = "plain pasta";
-        this.description = "plain pasta";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const plainPasta_prototype: PlainPasta = new PlainPasta();
-
-export class PastaAndSauce extends Food {
-    constructor() {
-        super();
-        this.categories.push("Pasta and Sauce");
+        this.categories.push("Entree", "Pasta");
         this.singular = "pasta and sauce";
         this.plural = "pasta and sauce";
         this.description = "pasta and sauce";
@@ -2530,28 +2360,13 @@ export class PastaAndSauce extends Food {
         this.sources = ["Farming"];
     }
 }
-export const pastaAndSauce_prototype: PastaAndSauce = new PastaAndSauce();
-
-export class PastaSauceMeat extends Food {
-    constructor() {
-        super();
-        this.categories.push("Pasta, Sauce, and Meat");
-        this.singular = "pasta, sauce, and meat";
-        this.plural = "pasta, sauce, and meat";
-        this.description = "pasta, sauce, and meat";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const pastaSauceMeat_prototype: PastaSauceMeat = new PastaSauceMeat();
+export const pastaEntree_prototype: PastaEntree = new PastaEntree();
+entrees.push(pastaEntree_prototype);
 
 export class MacNCheese extends Food {
     constructor() {
         super();
-        this.categories.push("Mac 'n' Cheese");
+        this.categories.push("Entree", "Pasta");
         this.singular = "mac 'n' cheese";
         this.plural = "mac 'n' cheese";
         this.description = "mac 'n' cheese";
@@ -2563,11 +2378,12 @@ export class MacNCheese extends Food {
     }
 }
 export const macNCheese_prototype: MacNCheese = new MacNCheese();
+entrees.push(macNCheese_prototype);
 
 export class Carbonara extends Food {
     constructor() {
         super();
-        this.categories.push("Carbonara");
+        this.categories.push("Entree", "Pasta");
         this.singular = "carbonara";
         this.plural = "carbonara";
         this.description = "carbonara";
@@ -2579,11 +2395,12 @@ export class Carbonara extends Food {
     }
 }
 export const carbonara_prototype: Carbonara = new Carbonara();
+entrees.push(carbonara_prototype);
 
 export class BeefStroganoff extends Food {
     constructor() {
         super();
-        this.categories.push("Beef Stroganoff");
+        this.categories.push("Entree", "Pasta");
         this.singular = "beef stroganoff";
         this.plural = "beef stroganoff";
         this.description = "beef stroganoff";
@@ -2595,11 +2412,12 @@ export class BeefStroganoff extends Food {
     }
 }
 export const beefStroganoff_prototype: BeefStroganoff = new BeefStroganoff();
+entrees.push(beefStroganoff_prototype);
 
 export class Lasagna extends Food {
     constructor() {
         super();
-        this.categories.push("Lasagna");
+        this.categories.push("Entree", "Pasta");
         this.singular = "lasagna";
         this.plural = "lasagna";
         this.description = "lasagna";
@@ -2611,13 +2429,12 @@ export class Lasagna extends Food {
     }
 }
 export const lasagna_prototype: Lasagna = new Lasagna();
-
-
+entrees.push(lasagna_prototype);
 
 export class ClamChowder extends Food {
     constructor() {
         super();
-        this.categories.push("Clam Chowder");
+        this.categories.push("Soup");
         this.singular = "clam chowder";
         this.plural = "clam chowder";
         this.description = "clam chowder";
@@ -2629,11 +2446,12 @@ export class ClamChowder extends Food {
     }
 }
 export const clamChowder_prototype: ClamChowder = new ClamChowder();
+soups.push(clamChowder_prototype);
 
 export class LobsterBisque extends Food {
     constructor() {
         super();
-        this.categories.push("Lobster Bisque");
+        this.categories.push("Soup");
         this.singular = "lobster bisque";
         this.plural = "lobster bisque";
         this.description = "lobster bisque";
@@ -2645,12 +2463,12 @@ export class LobsterBisque extends Food {
     }
 }
 export const lobsterBisque_prototype: LobsterBisque = new LobsterBisque();
-
+soups.push(lobsterBisque_prototype);
 
 export class CornChowder extends Food {
     constructor() {
         super();
-        this.categories.push("Corn Chowder");
+        this.categories.push("Soup");
         this.singular = "corn chowder";
         this.plural = "corn chowder";
         this.description = "corn chowder";
@@ -2662,11 +2480,12 @@ export class CornChowder extends Food {
     }
 }
 export const cornChowder_prototype: CornChowder = new CornChowder();
+soups.push(cornChowder_prototype);
 
 export class Chili extends Food {
     constructor() {
         super();
-        this.categories.push("Chili");
+        this.categories.push("Soup");
         this.singular = "chili";
         this.plural = "chili";
         this.description = "chili";
@@ -2678,11 +2497,12 @@ export class Chili extends Food {
     }
 }
 export const chili_prototype: Chili = new Chili();
+soups.push(chili_prototype);
 
 export class ChickenNoodleSoup extends Food {
     constructor() {
         super();
-        this.categories.push("Chicken Noodle Soup");
+        this.categories.push("Soup");
         this.singular = "chicken noodle soup";
         this.plural = "chicken noodle soup";
         this.description = "chicken noodle soup";
@@ -2694,12 +2514,12 @@ export class ChickenNoodleSoup extends Food {
     }
 }
 export const chickenNoodleSoup_prototype: ChickenNoodleSoup = new ChickenNoodleSoup();
-
+soups.push(chickenNoodleSoup_prototype);
 
 export class BLT extends Food {
     constructor() {
         super();
-        this.categories.push("BLT");
+        this.categories.push("Sandwich");
         this.singular = "BLT";
         this.plural = "BLT";
         this.description = "BLT";
@@ -2711,11 +2531,12 @@ export class BLT extends Food {
     }
 }
 export const bLT_prototype: BLT = new BLT();
+sandwiches.push(bLT_prototype);
 
 export class Burger extends Food {
     constructor() {
         super();
-        this.categories.push("Burger");
+        this.categories.push("Sandwich");
         this.singular = "burger";
         this.plural = "burger";
         this.description = "burger";
@@ -2727,11 +2548,12 @@ export class Burger extends Food {
     }
 }
 export const burger_prototype: Burger = new Burger();
+sandwiches.push(burger_prototype);
 
 export class Toasties extends Food {
     constructor() {
         super();
-        this.categories.push("Toasties");
+        this.categories.push("Sandwich");
         this.singular = "toasties";
         this.plural = "toasties";
         this.description = "toasties";
@@ -2743,6 +2565,7 @@ export class Toasties extends Food {
     }
 }
 export const toasties_prototype: Toasties = new Toasties();
+sandwiches.push(toasties_prototype);
 
 export class PBJ extends Food {
     constructor() {
@@ -2759,11 +2582,12 @@ export class PBJ extends Food {
     }
 }
 export const pBJ_prototype: PBJ = new PBJ();
+sandwiches.push(pBJ_prototype);
 
 export class LettuceWrap extends Food {
     constructor() {
         super();
-        this.categories.push("Lettuce Wrap");
+        this.categories.push("Sandwich");
         this.singular = "lettuce wrap";
         this.plural = "lettuce wrap";
         this.description = "lettuce wrap";
@@ -2775,77 +2599,12 @@ export class LettuceWrap extends Food {
     }
 }
 export const lettuceWrap_prototype: LettuceWrap = new LettuceWrap();
-
-
-export class Coffee extends Food {
-    constructor() {
-        super();
-        this.categories.push("Coffee");
-        this.singular = "coffee";
-        this.plural = "coffee";
-        this.description = "coffee";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const coffee_prototype: Coffee = new Coffee();
-
-export class Milkshake extends Food {
-    constructor() {
-        super();
-        this.categories.push("Milkshake");
-        this.singular = "milkshake";
-        this.plural = "milkshake";
-        this.description = "milkshake";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const milkshake_prototype: Milkshake = new Milkshake();
-
-export class ChocolateMilk extends Food {
-    constructor() {
-        super();
-        this.categories.push("Chocolate Milk");
-        this.singular = "chocolate milk";
-        this.plural = "chocolate milk";
-        this.description = "chocolate milk";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const chocolateMilk_prototype: ChocolateMilk = new ChocolateMilk();
-
-export class Tea extends Food {
-    constructor() {
-        super();
-        this.categories.push("Tea");
-        this.singular = "tea";
-        this.plural = "tea";
-        this.description = "tea";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const tea_prototype: Tea = new Tea();
-
+sandwiches.push(lettuceWrap_prototype);
 
 export class BoiledEgg extends Food {
     constructor() {
         super();
-        this.categories.push("Boiled Egg");
+        this.categories.push("Protein");
         this.singular = "boiled egg";
         this.plural = "boiled eggs";
         this.description = "boiled egg";
@@ -2857,12 +2616,12 @@ export class BoiledEgg extends Food {
     }
 }
 export const boiledEgg_prototype: BoiledEgg = new BoiledEgg();
-
+proteins.push(boiledEgg_prototype);
 
 export class NutsNBerries extends Food {
     constructor() {
         super();
-        this.categories.push("Nuts 'n' Berries");
+        this.categories.push("Snack");
         this.singular = "nuts 'n' berries";
         this.plural = "nuts 'n' berries";
         this.description = "nuts 'n' berries";
@@ -2874,11 +2633,12 @@ export class NutsNBerries extends Food {
     }
 }
 export const nutsNBerries_prototype: NutsNBerries = new NutsNBerries();
+snacks.push(nutsNBerries_prototype);
 
 export class Cake extends Food {
     constructor() {
         super();
-        this.categories.push("Cake");
+        this.categories.push("Sweet");
         this.singular = "cake";
         this.plural = "cakes";
         this.description = "cake";
@@ -2890,11 +2650,12 @@ export class Cake extends Food {
     }
 }
 export const cake_prototype: Cake = new Cake();
+sweets.push(cake_prototype);
 
 export class Pizza extends Food {
     constructor() {
         super();
-        this.categories.push("Pizza");
+        this.categories.push("Entree");
         this.singular = "pizza";
         this.plural = "pizzas";
         this.description = "pizza";
@@ -2906,11 +2667,12 @@ export class Pizza extends Food {
     }
 }
 export const pizza_prototype: Pizza = new Pizza();
+entrees.push(pizza_prototype);
 
 export class FruitSalad extends Food {
     constructor() {
         super();
-        this.categories.push("Fruit Salad");
+        this.categories.push("Side");
         this.singular = "fruit salad";
         this.plural = "fruit salad";
         this.description = "fruit salad";
@@ -2922,11 +2684,12 @@ export class FruitSalad extends Food {
     }
 }
 export const fruitSalad_prototype: FruitSalad = new FruitSalad();
+sides.push(fruitSalad_prototype);
 
 export class BananaBread extends Food {
     constructor() {
         super();
-        this.categories.push("Banana Bread");
+        this.categories.push("Bread");
         this.singular = "banana bread";
         this.plural = "banana bread";
         this.description = "banana bread";
@@ -2938,11 +2701,12 @@ export class BananaBread extends Food {
     }
 }
 export const bananaBread_prototype: BananaBread = new BananaBread();
+breads.push(bananaBread_prototype);
 
 export class BakedPotato extends Food {
     constructor() {
         super();
-        this.categories.push("Baked Potato");
+        this.categories.push("Side");
         this.singular = "baked potato";
         this.plural = "baked potatoes";
         this.description = "baked potato";
@@ -2954,27 +2718,12 @@ export class BakedPotato extends Food {
     }
 }
 export const bakedPotato_prototype: BakedPotato = new BakedPotato();
-
-export class CurryRice extends Food {
-    constructor() {
-        super();
-        this.categories.push("Curry and Rice");
-        this.singular = "curry and rice";
-        this.plural = "curry and rice";
-        this.description = "curry and rice";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const curryRice_prototype: CurryRice = new CurryRice();
+sides.push(bakedPotato_prototype);
 
 export class Jerky extends Food {
     constructor() {
         super();
-        this.categories.push("Jerky");
+        this.categories.push("Snack");
         this.singular = "jerky";
         this.plural = "jerky";
         this.description = "jerky";
@@ -2986,27 +2735,12 @@ export class Jerky extends Food {
     }
 }
 export const jerky_prototype: Jerky = new Jerky();
-
-export class Sushi extends Food {
-    constructor() {
-        super();
-        this.categories.push("Sushi");
-        this.singular = "sushi";
-        this.plural = "sushi";
-        this.description = "sushi";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Fishing"];
-    }
-}
-export const sushi_prototype: Sushi = new Sushi();
+snacks.push(jerky_prototype);
 
 export class FrenchFries extends Food {
     constructor() {
         super();
-        this.categories.push("French Fries");
+        this.categories.push("Side");
         this.singular = "french fries";
         this.plural = "french fries";
         this.description = "french fries";
@@ -3018,11 +2752,12 @@ export class FrenchFries extends Food {
     }
 }
 export const frenchFries_prototype: FrenchFries = new FrenchFries();
+sides.push(frenchFries_prototype);
 
 export class SausageAndPeppers extends Food {
     constructor() {
         super();
-        this.categories.push("Sausage and Peppers");
+        this.categories.push("Entree");
         this.singular = "sausage and peppers";
         this.plural = "sausage and peppers";
         this.description = "sausage and peppers";
@@ -3034,11 +2769,12 @@ export class SausageAndPeppers extends Food {
     }
 }
 export const sausageAndPeppers_prototype: SausageAndPeppers = new SausageAndPeppers();
+entrees.push(sausageAndPeppers_prototype);
 
 export class Coleslaw extends Food {
     constructor() {
         super();
-        this.categories.push("Coleslaw");
+        this.categories.push("Side");
         this.singular = "coleslaw";
         this.plural = "coleslaw";
         this.description = "coleslaw";
@@ -3050,11 +2786,12 @@ export class Coleslaw extends Food {
     }
 }
 export const coleslaw_prototype: Coleslaw = new Coleslaw();
+sides.push(coleslaw_prototype);
 
 export class SteakAndPotatoes extends Food {
     constructor() {
         super();
-        this.categories.push("Steak and Potatoes");
+        this.categories.push("Entree");
         this.singular = "steak and potatoes";
         this.plural = "steak and potatoes";
         this.description = "steak and potatoes";
@@ -3066,11 +2803,12 @@ export class SteakAndPotatoes extends Food {
     }
 }
 export const steakAndPotatoes_prototype: SteakAndPotatoes = new SteakAndPotatoes();
+entrees.push(steakAndPotatoes_prototype);
 
 export class Ratatouille extends Food {
     constructor() {
         super();
-        this.categories.push("Ratatouille");
+        this.categories.push("Entree");
         this.singular = "ratatouille";
         this.plural = "ratatouille";
         this.description = "ratatouille";
@@ -3082,11 +2820,12 @@ export class Ratatouille extends Food {
     }
 }
 export const ratatouille_prototype: Ratatouille = new Ratatouille();
+entrees.push(ratatouille_prototype);
 
 export class Gumbo extends Food {
     constructor() {
         super();
-        this.categories.push("Gumbo");
+        this.categories.push("Entree");
         this.singular = "gumbo";
         this.plural = "gumbo";
         this.description = "gumbo";
@@ -3098,11 +2837,12 @@ export class Gumbo extends Food {
     }
 }
 export const gumbo_prototype: Gumbo = new Gumbo();
+entrees.push(gumbo_prototype);
 
 export class RoastedVegetables extends Food {
     constructor() {
         super();
-        this.categories.push("Roasted Vegetables");
+        this.categories.push("Side");
         this.singular = "roasted vegetables";
         this.plural = "roasted vegetables";
         this.description = "roasted vegetables";
@@ -3114,11 +2854,12 @@ export class RoastedVegetables extends Food {
     }
 }
 export const roastedVegetables_prototype: RoastedVegetables = new RoastedVegetables();
+sides.push(roastedVegetables_prototype);
 
 export class Bruschetta extends Food {
     constructor() {
         super();
-        this.categories.push("Bruschetta");
+        this.categories.push("Side");
         this.singular = "bruschetta";
         this.plural = "bruschetta";
         this.description = "bruschetta";
@@ -3130,11 +2871,12 @@ export class Bruschetta extends Food {
     }
 }
 export const bruschetta_prototype: Bruschetta = new Bruschetta();
+sides.push(bruschetta_prototype);
 
 export class StuffedShrooms extends Food {
     constructor() {
         super();
-        this.categories.push("Stuffed 'Shrooms");
+        this.categories.push("Side");
         this.singular = "stuffed 'shrooms";
         this.plural = "stuffed 'shrooms";
         this.description = "stuffed 'shrooms";
@@ -3146,11 +2888,12 @@ export class StuffedShrooms extends Food {
     }
 }
 export const stuffedShrooms_prototype: StuffedShrooms = new StuffedShrooms();
+sides.push(stuffedShrooms_prototype);
 
 export class EggRolls extends Food {
     constructor() {
         super();
-        this.categories.push("Egg Rolls");
+        this.categories.push("Side");
         this.singular = "egg rolls";
         this.plural = "egg rolls";
         this.description = "egg rolls";
@@ -3162,11 +2905,12 @@ export class EggRolls extends Food {
     }
 }
 export const eggRolls_prototype: EggRolls = new EggRolls();
+sides.push(eggRolls_prototype);
 
 export class EggSalad extends Food {
     constructor() {
         super();
-        this.categories.push("Egg Salad");
+        this.categories.push("Spread");
         this.singular = "egg salad";
         this.plural = "egg salad";
         this.description = "egg salad";
@@ -3178,11 +2922,12 @@ export class EggSalad extends Food {
     }
 }
 export const eggSalad_prototype: EggSalad = new EggSalad();
+spreads.push(eggSalad_prototype);
 
 export class StirFry extends Food {
     constructor() {
         super();
-        this.categories.push("Stir Fry");
+        this.categories.push("Entree");
         this.singular = "stir fry";
         this.plural = "stir fry";
         this.description = "stir fry";
@@ -3194,11 +2939,12 @@ export class StirFry extends Food {
     }
 }
 export const stirFry_prototype: StirFry = new StirFry();
+entrees.push(stirFry_prototype);
 
 export class SteakAndEggs extends Food {
     constructor() {
         super();
-        this.categories.push("Steak and Eggs");
+        this.categories.push("Entree");
         this.singular = "steak and eggs";
         this.plural = "steak and eggs";
         this.description = "steak and eggs";
@@ -3210,11 +2956,12 @@ export class SteakAndEggs extends Food {
     }
 }
 export const steakAndEggs_prototype: SteakAndEggs = new SteakAndEggs();
+entrees.push(steakAndEggs_prototype);
 
 export class HamAndEggs extends Food {
     constructor() {
         super();
-        this.categories.push("Ham and Eggs");
+        this.categories.push("Entree");
         this.singular = "ham and eggs";
         this.plural = "ham and eggs";
         this.description = "ham and eggs";
@@ -3226,27 +2973,12 @@ export class HamAndEggs extends Food {
     }
 }
 export const hamAndEggs_prototype: HamAndEggs = new HamAndEggs();
-
-export class ChickenAndRice extends Food {
-    constructor() {
-        super();
-        this.categories.push("Chicken 'n' Rice");
-        this.singular = "chicken 'n' rice";
-        this.plural = "chicken 'n' rice";
-        this.description = "chicken 'n' rice";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const chickenAndRice_prototype: ChickenAndRice = new ChickenAndRice();
+entrees.push(hamAndEggs_prototype);
 
 export class CabbageRolls extends Food {
     constructor() {
         super();
-        this.categories.push("Cabbage Rolls");
+        this.categories.push("Side");
         this.singular = "cabbage rolls";
         this.plural = "cabbage rolls";
         this.description = "cabbage rolls";
@@ -3258,11 +2990,12 @@ export class CabbageRolls extends Food {
     }
 }
 export const cabbageRolls_prototype: CabbageRolls = new CabbageRolls();
+sides.push(cabbageRolls_prototype);
 
 export class Pho extends Food {
     constructor() {
         super();
-        this.categories.push("Pho");
+        this.categories.push("Soup");
         this.singular = "pho";
         this.plural = "pho";
         this.description = "pho";
@@ -3274,27 +3007,12 @@ export class Pho extends Food {
     }
 }
 export const pho_prototype: Pho = new Pho();
-
-export class RiceAndBeans extends Food {
-    constructor() {
-        super();
-        this.categories.push("Rice and Beans");
-        this.singular = "rice and beans";
-        this.plural = "rice and beans";
-        this.description = "rice and beans";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const riceAndBeans_prototype: RiceAndBeans = new RiceAndBeans();
+soups.push(pho_prototype);
 
 export class CornBread extends Food {
     constructor() {
         super();
-        this.categories.push("Corn Bread");
+        this.categories.push("Bread");
         this.singular = "corn bread";
         this.plural = "corn bread";
         this.description = "corn bread";
@@ -3306,11 +3024,12 @@ export class CornBread extends Food {
     }
 }
 export const cornBread_prototype: CornBread = new CornBread();
+breads.push(cornBread_prototype);
 
 export class Oatmeal extends Food {
     constructor() {
         super();
-        this.categories.push("Oatmeal");
+        this.categories.push("Soup");
         this.singular = "oatmeal";
         this.plural = "oatmeal";
         this.description = "oatmeal";
@@ -3322,11 +3041,12 @@ export class Oatmeal extends Food {
     }
 }
 export const oatmeal_prototype: Oatmeal = new Oatmeal();
+soups.push(oatmeal_prototype);
 
 export class FruitSnack extends Food {
     constructor() {
         super();
-        this.categories.push("Fruit Snack");
+        this.categories.push("Snack");
         this.singular = "fruit snack";
         this.plural = "fruit snack";
         this.description = "fruit snack";
@@ -3338,11 +3058,12 @@ export class FruitSnack extends Food {
     }
 }
 export const fruitSnack_prototype: FruitSnack = new FruitSnack();
+snacks.push(fruitSnack_prototype);
 
 export class Meatloaf extends Food {
     constructor() {
         super();
-        this.categories.push("Meatloaf");
+        this.categories.push("Entree");
         this.singular = "meatloaf";
         this.plural = "meatloaf";
         this.description = "meatloaf";
@@ -3354,11 +3075,12 @@ export class Meatloaf extends Food {
     }
 }
 export const meatloaf_prototype: Meatloaf = new Meatloaf();
+entrees.push(meatloaf_prototype);
 
 export class FishAndFungi extends Food {
     constructor() {
         super();
-        this.categories.push("Fish 'n' Fungi");
+        this.categories.push("Entree");
         this.singular = "fish 'n' fungi";
         this.plural = "fish 'n' fungi";
         this.description = "fish 'n' fungi";
@@ -3370,11 +3092,12 @@ export class FishAndFungi extends Food {
     }
 }
 export const fishAndFungi_prototype: FishAndFungi = new FishAndFungi();
+entrees.push(fishAndFungi_prototype);
 
 export class AvocadoToast extends Food {
     constructor() {
         super();
-        this.categories.push("Avocado Toast");
+        this.categories.push("Sandwich");
         this.singular = "avocado toast";
         this.plural = "avocado toast";
         this.description = "avocado toast";
@@ -3386,11 +3109,12 @@ export class AvocadoToast extends Food {
     }
 }
 export const avocadoToast_prototype: AvocadoToast = new AvocadoToast();
+sandwiches.push(avocadoToast_prototype);
 
 export class Waffles extends Food {
     constructor() {
         super();
-        this.categories.push("Waffles");
+        this.categories.push("Entree");
         this.singular = "waffles";
         this.plural = "waffles";
         this.description = "waffles";
@@ -3402,6 +3126,7 @@ export class Waffles extends Food {
     }
 }
 export const waffles_prototype: Waffles = new Waffles();
+entrees.push(waffles_prototype);
 
 export class YogurtParfait extends Food {
     constructor() {
@@ -3422,7 +3147,7 @@ export const yogurtParfait_prototype: YogurtParfait = new YogurtParfait();
 export class Pie extends Food {
     constructor() {
         super();
-        this.categories.push("Pie");
+        this.categories.push("Sweet");
         this.singular = "pie";
         this.plural = "pie";
         this.description = "pie";
@@ -3434,12 +3159,13 @@ export class Pie extends Food {
     }
 }
 export const pie_prototype: Pie = new Pie();
+sweets.push(pie_prototype);
 
-export class Quesadillas extends Food {
+export class Quesadilla extends Food {
     constructor() {
         super();
-        this.categories.push("Quesadillas");
-        this.singular = "quesadillas";
+        this.categories.push("Entree");
+        this.singular = "quesadilla";
         this.plural = "quesadillas";
         this.description = "quesadillas";
         this.hunger = 0;
@@ -3449,28 +3175,13 @@ export class Quesadillas extends Food {
         this.sources = ["Farming"];
     }
 }
-export const quesadillas_prototype: Quesadillas = new Quesadillas();
-
-export class RawMeat extends Food {
-    constructor() {
-        super();
-        this.categories.push("Raw Meat");
-        this.singular = "raw meat";
-        this.plural = "raw meat";
-        this.description = "raw meat";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const rawMeat_prototype: RawMeat = new RawMeat();
+export const quesadillas_prototype: Quesadilla = new Quesadilla();
+entrees.push(quesadillas_prototype);
 
 export class GrilledProtein extends Food {
     constructor() {
         super();
-        this.categories.push("Grilled Protein");
+        this.categories.push("Protein");
         this.singular = "grilled protein";
         this.plural = "grilled protein";
         this.description = "grilled protein";
@@ -3482,11 +3193,12 @@ export class GrilledProtein extends Food {
     }
 }
 export const grilledProtein_prototype: GrilledProtein = new GrilledProtein();
+proteins.push(grilledProtein_prototype);
 
 export class FriedProtein extends Food {
     constructor() {
         super();
-        this.categories.push("Fried Protein");
+        this.categories.push("Protein");
         this.singular = "fried protein";
         this.plural = "fried protein";
         this.description = "fried protein";
@@ -3498,11 +3210,12 @@ export class FriedProtein extends Food {
     }
 }
 export const friedProtein_prototype: FriedProtein = new FriedProtein();
+proteins.push(friedProtein_prototype);
 
 export class ChickenPotPie extends Food {
     constructor() {
         super();
-        this.categories.push("Chicken Pot Pie");
+        this.categories.push("Entree");
         this.singular = "chicken pot pie";
         this.plural = "chicken pot pie";
         this.description = "chicken pot pie";
@@ -3514,11 +3227,29 @@ export class ChickenPotPie extends Food {
     }
 }
 export const chickenPotPie_prototype: ChickenPotPie = new ChickenPotPie();
+entrees.push(chickenPotPie_prototype);
+
+export class RiceEntree extends Food {
+    constructor() {
+        super();
+        this.categories.push("Entree");
+        this.singular = "rice entree";
+        this.plural = "rice entree";
+        this.description = "rice entree";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const riceEntree_prototype: RiceEntree = new RiceEntree();
+entrees.push(riceEntree_prototype);
 
 export class FriedRice extends Food {
     constructor() {
         super();
-        this.categories.push("Fried Rice");
+        this.categories.push("Entree");
         this.singular = "fried rice";
         this.plural = "fried rice";
         this.description = "fried rice";
@@ -3530,11 +3261,12 @@ export class FriedRice extends Food {
     }
 }
 export const friedRice_prototype: FriedRice = new FriedRice();
+entrees.push(friedRice_prototype);
 
 export class Caviar extends Food {
     constructor() {
         super();
-        this.categories.push("Caviar");
+        this.categories.push("seafood");
         this.singular = "caviar";
         this.plural = "caviar";
         this.description = "caviar";
@@ -3546,11 +3278,12 @@ export class Caviar extends Food {
     }
 }
 export const caviar_prototype: Caviar = new Caviar();
+seafoods.push(caviar_prototype);
 
 export class SteamedDumplings extends Food {
     constructor() {
         super();
-        this.categories.push("Steamed Dumplings");
+        this.categories.push("Side");
         this.singular = "steamed dumplings";
         this.plural = "steamed dumplings";
         this.description = "steamed dumplings";
@@ -3562,11 +3295,12 @@ export class SteamedDumplings extends Food {
     }
 }
 export const steamedDumplings_prototype: SteamedDumplings = new SteamedDumplings();
+sides.push(steamedDumplings_prototype);
 
 export class FriedDumplings extends Food {
     constructor() {
         super();
-        this.categories.push("Fried Dumplings");
+        this.categories.push("Side");
         this.singular = "fried dumplings";
         this.plural = "fried dumplings";
         this.description = "fried dumplings";
@@ -3578,11 +3312,12 @@ export class FriedDumplings extends Food {
     }
 }
 export const friedDumplings_prototype: FriedDumplings = new FriedDumplings();
+sides.push(friedDumplings_prototype);
 
 export class FunGuyFungiFeast extends Food {
     constructor() {
         super();
-        this.categories.push("Fun Guy's Fantastic Fungi Feast");
+        this.categories.push("Entree");
         this.singular = "fun guy's fantastic fungi feast";
         this.plural = "fun guy's fantastic fungi feasts";
         this.description = "fun guy's fantastic fungi feast";
@@ -3594,27 +3329,12 @@ export class FunGuyFungiFeast extends Food {
     }
 }
 export const funGuyFungiFeast_prototype: FunGuyFungiFeast = new FunGuyFungiFeast();
-
-export class RawInsects extends Food {
-    constructor() {
-        super();
-        this.categories.push("Raw Insects");
-        this.singular = "raw insects";
-        this.plural = "raw insects";
-        this.description = "raw insects";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const rawInsects_prototype: RawInsects = new RawInsects();
+entrees.push(funGuyFungiFeast_prototype);
 
 export class InsectPuree extends Food {
     constructor() {
         super();
-        this.categories.push("Insect Puree");
+        this.categories.push("Insect");
         this.singular = "insect puree";
         this.plural = "insect purees";
         this.description = "insect puree";
@@ -3626,11 +3346,12 @@ export class InsectPuree extends Food {
     }
 }
 export const insectPuree_prototype: InsectPuree = new InsectPuree();
+insects.push(insectPuree_prototype);
 
 export class RoastedInsects extends Food {
     constructor() {
         super();
-        this.categories.push("Roasted Insects");
+        this.categories.push("Insect");
         this.singular = "roasted insects";
         this.plural = "roasted insects";
         this.description = "roasted insects";
@@ -3642,11 +3363,12 @@ export class RoastedInsects extends Food {
     }
 }
 export const roastedInsects_prototype: RoastedInsects = new RoastedInsects();
+insects.push(roastedInsects_prototype);
 
 export class SeasonedInsects extends Food {
     constructor() {
         super();
-        this.categories.push("Seasoned Insects");
+        this.categories.push("Insect");
         this.singular = "seasoned insects";
         this.plural = "seasoned insects";
         this.description = "seasoned insects";
@@ -3658,11 +3380,12 @@ export class SeasonedInsects extends Food {
     }
 }
 export const seasonedInsects_prototype: SeasonedInsects = new SeasonedInsects();
+insects.push(seasonedInsects_prototype);
 
 export class BugsNSlime extends Food {
     constructor() {
         super();
-        this.categories.push("Bugs 'n' Slime");
+        this.categories.push("Entree", "Other");
         this.singular = "bugs 'n' slime";
         this.plural = "bugs 'n' slime";
         this.description = "bugs 'n' slime";
@@ -3674,11 +3397,13 @@ export class BugsNSlime extends Food {
     }
 }
 export const bugsNSlime_prototype: BugsNSlime = new BugsNSlime();
+entrees.push(bugsNSlime_prototype);
+others.push(bugsNSlime_prototype);
 
 export class BugsNOoze extends Food {
     constructor() {
         super();
-        this.categories.push("Bugs 'n' Ooze");
+        this.categories.push("Entree", "Others");
         this.singular = "bugs 'n' ooze";
         this.plural = "bugs 'n' ooze";
         this.description = "bugs 'n' ooze";
@@ -3690,11 +3415,13 @@ export class BugsNOoze extends Food {
     }
 }
 export const bugsNOoze_prototype: BugsNOoze = new BugsNOoze();
+entrees.push(bugsNOoze_prototype);
+others.push(bugsNOoze_prototype);
 
 export class MossWrap extends Food {
     constructor() {
         super();
-        this.categories.push("Moss Wrap");
+        this.categories.push("Sandwich");
         this.singular = "moss wrap";
         this.plural = "moss wraps";
         this.description = "moss wrap";
@@ -3706,43 +3433,12 @@ export class MossWrap extends Food {
     }
 }
 export const mossWrap_prototype: MossWrap = new MossWrap();
-
-export class SlimeSlurpie extends Food {
-    constructor() {
-        super();
-        this.categories.push("Slime Slurpie");
-        this.singular = "slime slurpie";
-        this.plural = "slime slurpies";
-        this.description = "slime slurpie";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const slimeSlurpie_prototype: SlimeSlurpie = new SlimeSlurpie();
-
-export class BugJuice extends Food {
-    constructor() {
-        super();
-        this.categories.push("Bug Juice");
-        this.singular = "bug juice";
-        this.plural = "bug juices";
-        this.description = "bug juice";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Farming"];
-    }
-}
-export const bugJuice_prototype: BugJuice = new BugJuice();
+sandwiches.push(mossWrap_prototype);
 
 export class AlgaePaste extends Food {
     constructor() {
         super();
-        this.categories.push("Algae Paste");
+        this.categories.push("Other");
         this.singular = "algae paste";
         this.plural = "algae pastes";
         this.description = "algae paste";
@@ -3754,11 +3450,12 @@ export class AlgaePaste extends Food {
     }
 }
 export const algaePaste_prototype: AlgaePaste = new AlgaePaste();
+others.push(algaePaste_prototype);
 
 export class CaveCritterFritters extends Food {
     constructor() {
         super();
-        this.categories.push("Cave Critter Fritters");
+        this.categories.push("Insects");
         this.singular = "cave critter fritters";
         this.plural = "cave critter fritters";
         this.description = "cave critter fritters";
@@ -3770,11 +3467,12 @@ export class CaveCritterFritters extends Food {
     }
 }
 export const caveCritterFritters_prototype: CaveCritterFritters = new CaveCritterFritters();
+insects.push(caveCritterFritters_prototype);
 
 export class MuddyMossyMoldyMess extends Food {
     constructor() {
         super();
-        this.categories.push("Muddy, Mossy, Moldy Mess");
+        this.categories.push("Others");
         this.singular = "muddy, mossy, moldy mess";
         this.plural = "muddy, mossy, moldy messes";
         this.description = "muddy, mossy, moldy mess";
@@ -3786,11 +3484,12 @@ export class MuddyMossyMoldyMess extends Food {
     }
 }
 export const muddyMossyMoldyMess_prototype: MuddyMossyMoldyMess = new MuddyMossyMoldyMess();
+others.push(muddyMossyMoldyMess_prototype);
 
 export class OoeyGooeyFreshNFruity extends Food {
     constructor() {
         super();
-        this.categories.push("Ooey Gooey Fresh 'n' Fruity");
+        this.categories.push("Others");
         this.singular = "ooey gooey fresh 'n' fruity";
         this.plural = "ooey gooey fresh 'n' fruity";
         this.description = "ooey gooey fresh 'n' fruity";
@@ -3802,11 +3501,12 @@ export class OoeyGooeyFreshNFruity extends Food {
     }
 }
 export const ooeyGooeyFreshNFruity_prototype: OoeyGooeyFreshNFruity = new OoeyGooeyFreshNFruity();
+others.push(ooeyGooeyFreshNFruity_prototype);
 
 export class ScoopOGloop extends Food {
     constructor() {
         super();
-        this.categories.push("Scoop O' Gloop");
+        this.categories.push("Others");
         this.singular = "scoop o' gloop";
         this.plural = "scoops o' gloop";
         this.description = "scoop o' gloop";
@@ -3818,4 +3518,22 @@ export class ScoopOGloop extends Food {
     }
 }
 export const scoopOGloop_prototype: ScoopOGloop = new ScoopOGloop();
-foods.push(scoopOGloop_prototype);
+others.push(scoopOGloop_prototype);
+
+
+
+
+// *****************************
+// Must come at end of file
+// Combine subcategory arrays into category arrays
+// Combine all categories into food
+// Ensure food array only contains unqiue items
+// *****************************
+
+fruits.push(...berries);
+dairies.push(...eggs);
+seafoods.push(...fishes, ...crustaceans, ...sushis);
+proteins.push(...fishes, ...eggs, ...fungi, ...meats, ...nuts);
+foods.push(...vegetables, ...grains, ...starchs, ...spices, ...herbs, ...others, ...insects, ...sweets, ...doughs, ...brines, ...soups, ...cheeses, ...sauces, ...sides, ...entrees, ...spreads, ...condiments, ...sandwiches, ...snacks, ...breads, ...fruits, ...seafoods, ...proteins);
+//condense foods into unqiue values only
+foods = foods.filter((food, index, self) => self.findIndex(f => f.singular === food.singular) === index);
