@@ -5,16 +5,17 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import {Consumable} from "./consumables"
+import {Consumable, dairies} from "./consumables"
 
 
 export class Drink extends Consumable {
+    hunger: number = 0; // negative makes more hungry
+    thirst: number = 0; // negative makes more thirsty
 }
 
-export class Alcohol extends Drink {
-}
+export var drinks: Drink[] = [];
 
-export class Milk extends Food {
+export class Milk extends Drink {
     type: "cow"| "goat";
     constructor(type: "cow"| "goat") {
         super();
@@ -33,34 +34,10 @@ export class Milk extends Food {
 }
 export const cowMilk_prototype: Milk = new Milk("cow");
 export const goatMilk_prototype: Milk = new Milk("goat");
+drinks.push(cowMilk_prototype, goatMilk_prototype);
+dairies.push(cowMilk_prototype, goatMilk_prototype);
 
-export class Wine extends Food {
-    type: "white"| "red" | "muscadine" | "rosé";
-    constructor(type: "white"| "red" | "muscadine" | "rosé") {
-        super();
-        this.hasType = true;
-        this.type = type;
-        this.categories.push("Alcohol");
-        this.singular = this.type + " wine";
-        this.plural = this.singular;
-        if(type === "rosé") {
-            this.singular = "Rosé";
-            this.plural = "Rosé";
-        }
-        this.description = "wine";
-        this.hunger = 0;
-        this.thirst = 0;
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Distilling"];
-    }
-}
-export const whiteWine_prototype: Wine = new Wine("white");
-export const redWine_prototype: Wine = new Wine("red");
-export const muscadineWine_prototype: Wine = new Wine("muscadine");
-export const roseWine_prototype: Wine = new Wine("rosé");
-
-export class Coffee extends Food {
+export class Coffee extends Drink {
     constructor() {
         super();
         this.categories.push("Coffee");
@@ -75,8 +52,9 @@ export class Coffee extends Food {
     }
 }
 export const coffee_prototype: Coffee = new Coffee();
+drinks.push(coffee_prototype);
 
-export class Milkshake extends Food {
+export class Milkshake extends Drink {
     constructor() {
         super();
         this.categories.push("Milkshake");
@@ -91,8 +69,10 @@ export class Milkshake extends Food {
     }
 }
 export const milkshake_prototype: Milkshake = new Milkshake();
+drinks.push(milkshake_prototype);
+dairies.push(milkshake_prototype);
 
-export class ChocolateMilk extends Food {
+export class ChocolateMilk extends Drink {
     constructor() {
         super();
         this.categories.push("Chocolate Milk");
@@ -107,8 +87,10 @@ export class ChocolateMilk extends Food {
     }
 }
 export const chocolateMilk_prototype: ChocolateMilk = new ChocolateMilk();
+drinks.push(chocolateMilk_prototype);
+dairies.push(chocolateMilk_prototype);
 
-export class Tea extends Food {
+export class Tea extends Drink {
     constructor() {
         super();
         this.categories.push("Tea");
@@ -123,8 +105,9 @@ export class Tea extends Food {
     }
 }
 export const tea_prototype: Tea = new Tea();
+drinks.push(tea_prototype);
 
-export class SlimeSlurpie extends Food {
+export class SlimeSlurpie extends Drink {
     constructor() {
         super();
         this.categories.push("Slime Slurpie");
@@ -139,8 +122,9 @@ export class SlimeSlurpie extends Food {
     }
 }
 export const slimeSlurpie_prototype: SlimeSlurpie = new SlimeSlurpie();
+drinks.push(slimeSlurpie_prototype);
 
-export class BugJuice extends Food {
+export class BugJuice extends Drink {
     constructor() {
         super();
         this.categories.push("Bug Juice");
@@ -155,3 +139,21 @@ export class BugJuice extends Food {
     }
 }
 export const bugJuice_prototype: BugJuice = new BugJuice();
+drinks.push(bugJuice_prototype);
+
+export class Water extends Drink {
+    constructor() {
+        super();
+        this.categories.push("Water");
+        this.singular = "water";
+        this.plural = "water";
+        this.description = "water";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Farming"];
+    }
+}
+export const water_prototype: Water = new Water();
+drinks.push(water_prototype);

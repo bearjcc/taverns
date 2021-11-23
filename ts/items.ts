@@ -16,6 +16,8 @@ export class Item {
     membersOnly: boolean = false;
     categories: string[] = [];
 
+    sources: Source[]; // where a user can obtain the item
+
     constructor() {
         this.categories.push("Item");
     }
@@ -58,6 +60,8 @@ export class Item {
     }
 }
 
+export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading" | "Milling" | "Crafting" | "Cooking" | "Distilling" | "Brewing" | "Water" | "Potions" | "Hunting" | "Religious Ceremony" | "Alchemy";
+
 
 // // Cooking
 // var FryingPan = new Item("Frying Pan", "A pan that can be used to fry food.");
@@ -80,5 +84,9 @@ export class Item {
 // var Spear = new Item("Spear", "A spear that can be used to smash things.");
 // var Bow = new Item("Bow", "A bow that can be used to shoot things.");
 // var Crossbow = new Item("Crossbow", "A crossbow that can be used to shoot things.");
+
+//Potions
+// arsenic
+// azuth
 
 

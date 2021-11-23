@@ -6,14 +6,10 @@
 // Owner: Ursa Minor Inc.
 // ============================================================================
 import {Consumable, dairies} from "./consumables"
-import {Source} from "./ingredients"
 
 export class Food extends Consumable {
-    sources: Source[]; // where a user can obtain the food
-    
     hunger: number; // positive number makes eater more full, less hungry
     thirst: number; // positive number makes eater less thirsty
-    hp: number; // positive number heals, negative number damages
 
     dryLevel: number; // how dry is the food? (0-100)
     cookedLevel: number; // how much the food has been cooked
@@ -21,7 +17,7 @@ export class Food extends Consumable {
 
     mustBeDry: boolean = false; // does the food need to be dried?
     canBeCooked: boolean = true; // can the food be cooked?
-    hasType: boolean = false; // does the food have a type?
+    
 
     constructor() {
         super();

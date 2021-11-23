@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.bugJuice_prototype = exports.BugJuice = exports.slimeSlurpie_prototype = exports.SlimeSlurpie = exports.tea_prototype = exports.Tea = exports.chocolateMilk_prototype = exports.ChocolateMilk = exports.milkshake_prototype = exports.Milkshake = exports.coffee_prototype = exports.Coffee = exports.roseWine_prototype = exports.muscadineWine_prototype = exports.redWine_prototype = exports.whiteWine_prototype = exports.Wine = exports.goatMilk_prototype = exports.cowMilk_prototype = exports.Milk = exports.Alcohol = exports.Drink = void 0;
+exports.water_prototype = exports.Water = exports.bugJuice_prototype = exports.BugJuice = exports.slimeSlurpie_prototype = exports.SlimeSlurpie = exports.tea_prototype = exports.Tea = exports.chocolateMilk_prototype = exports.ChocolateMilk = exports.milkshake_prototype = exports.Milkshake = exports.coffee_prototype = exports.Coffee = exports.goatMilk_prototype = exports.cowMilk_prototype = exports.Milk = exports.drinks = exports.Drink = void 0;
 // ============================================================================
 // Language: TypeScript
 // Path: ts\itm_consumables.ts
@@ -25,19 +25,15 @@ var consumables_1 = require("./consumables");
 var Drink = /** @class */ (function (_super) {
     __extends(Drink, _super);
     function Drink() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.hunger = 0; // negative makes more hungry
+        _this.thirst = 0; // negative makes more thirsty
+        return _this;
     }
     return Drink;
 }(consumables_1.Consumable));
 exports.Drink = Drink;
-var Alcohol = /** @class */ (function (_super) {
-    __extends(Alcohol, _super);
-    function Alcohol() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return Alcohol;
-}(Drink));
-exports.Alcohol = Alcohol;
+exports.drinks = [];
 var Milk = /** @class */ (function (_super) {
     __extends(Milk, _super);
     function Milk(type) {
@@ -56,38 +52,12 @@ var Milk = /** @class */ (function (_super) {
         return _this;
     }
     return Milk;
-}(Food));
+}(Drink));
 exports.Milk = Milk;
 exports.cowMilk_prototype = new Milk("cow");
 exports.goatMilk_prototype = new Milk("goat");
-var Wine = /** @class */ (function (_super) {
-    __extends(Wine, _super);
-    function Wine(type) {
-        var _this = _super.call(this) || this;
-        _this.hasType = true;
-        _this.type = type;
-        _this.categories.push("Alcohol");
-        _this.singular = _this.type + " wine";
-        _this.plural = _this.singular;
-        if (type === "rosé") {
-            _this.singular = "Rosé";
-            _this.plural = "Rosé";
-        }
-        _this.description = "wine";
-        _this.hunger = 0;
-        _this.thirst = 0;
-        _this.hp = 0;
-        _this.weight = 1;
-        _this.sources = ["Distilling"];
-        return _this;
-    }
-    return Wine;
-}(Food));
-exports.Wine = Wine;
-exports.whiteWine_prototype = new Wine("white");
-exports.redWine_prototype = new Wine("red");
-exports.muscadineWine_prototype = new Wine("muscadine");
-exports.roseWine_prototype = new Wine("rosé");
+exports.drinks.push(exports.cowMilk_prototype, exports.goatMilk_prototype);
+consumables_1.dairies.push(exports.cowMilk_prototype, exports.goatMilk_prototype);
 var Coffee = /** @class */ (function (_super) {
     __extends(Coffee, _super);
     function Coffee() {
@@ -104,9 +74,10 @@ var Coffee = /** @class */ (function (_super) {
         return _this;
     }
     return Coffee;
-}(Food));
+}(Drink));
 exports.Coffee = Coffee;
 exports.coffee_prototype = new Coffee();
+exports.drinks.push(exports.coffee_prototype);
 var Milkshake = /** @class */ (function (_super) {
     __extends(Milkshake, _super);
     function Milkshake() {
@@ -123,9 +94,11 @@ var Milkshake = /** @class */ (function (_super) {
         return _this;
     }
     return Milkshake;
-}(Food));
+}(Drink));
 exports.Milkshake = Milkshake;
 exports.milkshake_prototype = new Milkshake();
+exports.drinks.push(exports.milkshake_prototype);
+consumables_1.dairies.push(exports.milkshake_prototype);
 var ChocolateMilk = /** @class */ (function (_super) {
     __extends(ChocolateMilk, _super);
     function ChocolateMilk() {
@@ -142,9 +115,11 @@ var ChocolateMilk = /** @class */ (function (_super) {
         return _this;
     }
     return ChocolateMilk;
-}(Food));
+}(Drink));
 exports.ChocolateMilk = ChocolateMilk;
 exports.chocolateMilk_prototype = new ChocolateMilk();
+exports.drinks.push(exports.chocolateMilk_prototype);
+consumables_1.dairies.push(exports.chocolateMilk_prototype);
 var Tea = /** @class */ (function (_super) {
     __extends(Tea, _super);
     function Tea() {
@@ -161,9 +136,10 @@ var Tea = /** @class */ (function (_super) {
         return _this;
     }
     return Tea;
-}(Food));
+}(Drink));
 exports.Tea = Tea;
 exports.tea_prototype = new Tea();
+exports.drinks.push(exports.tea_prototype);
 var SlimeSlurpie = /** @class */ (function (_super) {
     __extends(SlimeSlurpie, _super);
     function SlimeSlurpie() {
@@ -180,9 +156,10 @@ var SlimeSlurpie = /** @class */ (function (_super) {
         return _this;
     }
     return SlimeSlurpie;
-}(Food));
+}(Drink));
 exports.SlimeSlurpie = SlimeSlurpie;
 exports.slimeSlurpie_prototype = new SlimeSlurpie();
+exports.drinks.push(exports.slimeSlurpie_prototype);
 var BugJuice = /** @class */ (function (_super) {
     __extends(BugJuice, _super);
     function BugJuice() {
@@ -199,6 +176,27 @@ var BugJuice = /** @class */ (function (_super) {
         return _this;
     }
     return BugJuice;
-}(Food));
+}(Drink));
 exports.BugJuice = BugJuice;
 exports.bugJuice_prototype = new BugJuice();
+exports.drinks.push(exports.bugJuice_prototype);
+var Water = /** @class */ (function (_super) {
+    __extends(Water, _super);
+    function Water() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Water");
+        _this.singular = "water";
+        _this.plural = "water";
+        _this.description = "water";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Farming"];
+        return _this;
+    }
+    return Water;
+}(Drink));
+exports.Water = Water;
+exports.water_prototype = new Water();
+exports.drinks.push(exports.water_prototype);

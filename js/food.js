@@ -35,7 +35,6 @@ var Food = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.mustBeDry = false; // does the food need to be dried?
         _this.canBeCooked = true; // can the food be cooked?
-        _this.hasType = false; // does the food have a type?
         _this.categories.push("Food"); // add food to the list of categories
         _this.singular = "Food";
         _this.plural = "Food";

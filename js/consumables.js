@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.crushedIce_prototype = exports.CrushedIce = exports.dairies = exports.Consumable = void 0;
+exports.crushedIce_prototype = exports.Ice = exports.dairies = exports.Consumable = void 0;
 // ============================================================================
 // Language: TypeScript
 // Path: ts\consumables.ts
@@ -29,6 +29,8 @@ var Consumable = /** @class */ (function (_super) {
         _this.singular = "Consumable";
         _this.plural = "Consumables";
         _this.description = "A consumable is something that a player can use up";
+        _this.hasType = false; // does the consumable have a type?
+        _this.hp = 0; // positive number heals, negative number damages
         _this.categories.push("Consumable");
         return _this;
     }
@@ -39,22 +41,19 @@ var Consumable = /** @class */ (function (_super) {
 }(items_1.Item));
 exports.Consumable = Consumable;
 exports.dairies = [];
-var CrushedIce = /** @class */ (function (_super) {
-    __extends(CrushedIce, _super);
-    function CrushedIce() {
+var Ice = /** @class */ (function (_super) {
+    __extends(Ice, _super);
+    function Ice() {
         var _this = _super.call(this) || this;
         _this.categories.push("Crushed Ice");
         _this.singular = "crushed ice";
         _this.plural = "crushed ice";
         _this.description = "crushed ice";
-        _this.hunger = 0;
-        _this.thirst = 0;
         _this.hp = 0;
         _this.weight = 1;
-        _this.sources = ["Farming"];
         return _this;
     }
-    return CrushedIce;
-}(Food));
-exports.CrushedIce = CrushedIce;
-exports.crushedIce_prototype = new CrushedIce();
+    return Ice;
+}(Consumable));
+exports.Ice = Ice;
+exports.crushedIce_prototype = new Ice();

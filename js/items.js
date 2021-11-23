@@ -83,3 +83,6 @@ exports.Item = Item;
 // var Spear = new Item("Spear", "A spear that can be used to smash things.");
 // var Bow = new Item("Bow", "A bow that can be used to shoot things.");
 // var Crossbow = new Item("Crossbow", "A crossbow that can be used to shoot things.");
+//Potions
+// arsenic
+// azuth
