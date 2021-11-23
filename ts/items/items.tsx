@@ -10,13 +10,51 @@ export class Item {
     singular: string = "Item";
     plural: string = "Items";
     description: string = "An Item is something that a player can take with them and use.";
+    quality: number; // (0-100)
 
     weight: number = 0; // kilograms
     membersOnly: boolean = false;
-    types: string[] = [];
+    categories: string[] = [];
 
     constructor() {
-        this.types.push("Item");
+        this.categories.push("Item");
+    }
+
+    getInfo(qty: number): string {
+        switch (qty) {
+            case 0:
+                return `No ${this.plural}`;
+            case 1:
+                if (this.getQuality() === "average") {
+                    return `An ${this.getQuality()} ${this.singular}`;
+                } else {
+                    return `A ${this.getQuality()} ${this.singular}`;
+                }
+                default:
+                    return `Some ${this.getQuality()} ${this.plural}`;
+        }
+    }
+
+    getQuality() {
+        if (this.quality < 30) {
+            return "terrible";
+        } else if (this.quality < 60) {
+            return "poor";
+        } else if (this.quality < 70) {
+            return "mediocre";
+        } else if (this.quality < 80) {
+            return "average";
+        } else if (this.quality < 90) {
+            return "good";
+        } else if (this.quality < 97.5) {
+            return "great";
+        } else if (this.quality < 100) {
+            return "superb";
+        } else if (this.quality >= 100) {
+            return "perfect";
+        } else {
+            return "legendary";
+        }
     }
 }
 

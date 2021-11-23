@@ -15,7 +15,7 @@ export class Consumable extends Item {
 
     constructor() {
         super();
-        this.types.push("Consumable");
+        this.categories.push("Consumable");
     }
 
     consume() {
