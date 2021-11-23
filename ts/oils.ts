@@ -1,4 +1,14 @@
-export class Oil extends Food {
+// ============================================================================
+// Language: TypeScript
+// Author: Joseph C. Caswell
+// All rights reserved.
+// Owner: Ursa Minor Inc.
+// ============================================================================
+import {Consumable} from "./consumables"
+
+
+
+export class Oil extends Consumable {
     type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence";
     constructor(type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence") {
         super();
@@ -12,8 +22,6 @@ export class Oil extends Food {
             this.plural = "Dragonessence";
         }
         this.description = "oil";
-        this.hunger = 0;
-        this.thirst = 0;
         this.hp = 0;
         this.weight = 1;
         this.sources = ["Distilling"];

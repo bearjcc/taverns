@@ -422,6 +422,24 @@ export class Fish extends Animal {
 	static readonly description: string;
 }
 
+export class Deer extends Animal {
+	static readonly plural: string = "Deer";
+	static readonly singular: string = "Deer";
+	static readonly description: string;
+}
+
+export class Reindeer extends Animal {
+	static readonly plural: string = "Reindeer";
+	static readonly singular: string = "Reindeer";
+	static readonly description: string;
+}
+
+export class Elk extends Animal {
+	static readonly plural: string = "Elk";
+	static readonly singular: string = "Elk";
+	static readonly description: string;
+}
+
 export class Adder extends Fish {
 	static readonly plural: string = "Adders";
 	static readonly singular: string = "Adder";

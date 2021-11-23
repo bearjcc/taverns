@@ -1,3 +1,6 @@
+import {Drink, drinks} from "./drinks"
+
+
 // ============================================================================
 // Language: TypeScript
 // Path: ts\alcohols.ts
@@ -5,8 +8,6 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import {Drink, drinks} from "./drinks"
-
 
 export class Alcohol extends Drink {
     drunkness: number = 0; // positive makes more intoxicated
@@ -185,7 +186,63 @@ export class Cocktail extends Alcohol {
 export const rumCocktail_prototype: Cocktail = new Cocktail();
 alcohols.push(rumCocktail_prototype);
 
+export class Grog extends Alcohol {
+    constructor() {
+        super();
+        this.categories.push("Grog");
+        this.singular = "grog";
+        this.plural = "grogs";
+        this.description = "grog";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.drunkness = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Distilling"];
+    }
+}
+export const grog_prototype: Grog = new Grog();
+alcohols.push(grog_prototype);
 
+export class DevilsBlood extends Alcohol {
+    constructor() {
+        super();
+        this.categories.push("Devil's Blood");
+        this.singular = "devil's blood";
+        this.plural = "devil's blood";
+        this.description = "devil's blood";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.drunkness = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Distilling"];
+    }
+}
+export const devilsBlood_prototype: DevilsBlood = new DevilsBlood();
+alcohols.push(devilsBlood_prototype);
+
+export class Cider extends Alcohol {
+    type: "Apple"| "Cherry" | "Pear";
+    constructor(type: "Apple"| "Cherry" | "Pear") {
+        super();
+        this.type = type;
+        this.categories.push("Cider");
+        this.singular = type + "cider";
+        this.plural = type + "ciders";
+        this.description = "cider";
+        this.hunger = 0;
+        this.thirst = 0;
+        this.drunkness = 0;
+        this.hp = 0;
+        this.weight = 1;
+        this.sources = ["Brewing"];
+    }
+}
+export const ciderApple_prototype: Cider = new Cider("Apple");
+export const ciderCherry_prototype: Cider = new Cider("Cherry");
+export const ciderPear_prototype: Cider = new Cider("Pear");
+alcohols.push(ciderApple_prototype, ciderCherry_prototype, ciderPear_prototype);
 
 
 // *****************************

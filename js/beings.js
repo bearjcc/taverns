@@ -20,7 +20,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.PolarBear = exports.Grizzly = exports.BlackBear = exports.Bear = exports.Bat = exports.Badger = exports.Ape = exports.Baboon = exports.ArticFox = exports.Fox = exports.RattleSnake = exports.RatSnake = exports.Anaconda = exports.Snake = exports.Insect = exports.Raven = exports.Pheasant = exports.Owl = exports.Hawk = exports.Eagle = exports.Dove = exports.Condor = exports.Bird = exports.Ray = exports.Walrus = exports.Shark = exports.Seal = exports.Shrimp = exports.Crab = exports.Clam = exports.Lobster = exports.SeaUrchin = exports.Starfish = exports.SandDollar = exports.Anglerfish = exports.Squid = exports.Whale = exports.Dolphin = exports.Octopus = exports.Barrelfish = exports.Anchovy = exports.Jellyfish = exports.Mahi = exports.Cod = exports.Salmon = exports.RainbowTrout = exports.Trout = exports.Swordfish = exports.Silverling = exports.Jewelfish = exports.Eel = exports.Crayfish = exports.Catfish = exports.Carp = exports.Barracuda = exports.Adder = exports.Fish = exports.Ox = exports.Donkey = exports.Llama = exports.Horse = exports.FarmAnimal = exports.Hedgehog = exports.Mouse = exports.Rabbit = exports.Songbird = exports.Ferret = exports.Parrot = exports.Chameleon = exports.Dog = exports.Cat = exports.Pet = exports.Ostrich = exports.Lizardmount = exports.Elephant = exports.Gryphon = exports.Dragon = exports.Phoenix = exports.Unicorn = exports.Animal = exports.Banshee = exports.Hydra = exports.Minotaur = exports.Monster = exports.Sphinx = exports.Kitsune = exports.Pixie = exports.Kobold = exports.Leprechaun = exports.Fairy = exports.Valkyrie = exports.Ghost = exports.Imp = exports.Djin = exports.God = exports.Goblin = exports.Troll = exports.Lizardfolk = exports.Merfolk = exports.Mixedblood = exports.Felix = exports.Goliath = exports.Satyr = exports.orc_prototype = exports.Orc = exports.human_prototype = exports.Human = exports.halfling_prototype = exports.Halfling = exports.gnome_prototype = exports.Gnome = exports.elf_prototype = exports.Elf = exports.dwarf_prototype = exports.Dwarf = exports.playableRaces = exports.Humanoid = exports.Being = void 0;
+exports.PolarBear = exports.Grizzly = exports.BlackBear = exports.Bear = exports.Bat = exports.Badger = exports.Ape = exports.Baboon = exports.ArticFox = exports.Fox = exports.RattleSnake = exports.RatSnake = exports.Anaconda = exports.Snake = exports.Insect = exports.Raven = exports.Pheasant = exports.Owl = exports.Hawk = exports.Eagle = exports.Dove = exports.Condor = exports.Bird = exports.Ray = exports.Walrus = exports.Shark = exports.Seal = exports.Shrimp = exports.Crab = exports.Clam = exports.Lobster = exports.SeaUrchin = exports.Starfish = exports.SandDollar = exports.Anglerfish = exports.Squid = exports.Whale = exports.Dolphin = exports.Octopus = exports.Barrelfish = exports.Anchovy = exports.Jellyfish = exports.Mahi = exports.Cod = exports.Salmon = exports.RainbowTrout = exports.Trout = exports.Swordfish = exports.Silverling = exports.Jewelfish = exports.Eel = exports.Crayfish = exports.Catfish = exports.Carp = exports.Barracuda = exports.Adder = exports.Elk = exports.Reindeer = exports.Deer = exports.Fish = exports.Ox = exports.Donkey = exports.Llama = exports.Horse = exports.FarmAnimal = exports.Hedgehog = exports.Mouse = exports.Rabbit = exports.Songbird = exports.Ferret = exports.Parrot = exports.Chameleon = exports.Dog = exports.Cat = exports.Pet = exports.Ostrich = exports.Lizardmount = exports.Elephant = exports.Gryphon = exports.Dragon = exports.Phoenix = exports.Unicorn = exports.Animal = exports.Banshee = exports.Hydra = exports.Minotaur = exports.Monster = exports.Sphinx = exports.Kitsune = exports.Pixie = exports.Kobold = exports.Leprechaun = exports.Fairy = exports.Valkyrie = exports.Ghost = exports.Imp = exports.Djin = exports.God = exports.Goblin = exports.Troll = exports.Lizardfolk = exports.Merfolk = exports.Mixedblood = exports.Felix = exports.Goliath = exports.Satyr = exports.orc_prototype = exports.Orc = exports.human_prototype = exports.Human = exports.halfling_prototype = exports.Halfling = exports.gnome_prototype = exports.Gnome = exports.elf_prototype = exports.Elf = exports.dwarf_prototype = exports.Dwarf = exports.playableRaces = exports.Humanoid = exports.Being = void 0;
 var Being = /** @class */ (function () {
     function Being(name, gender) {
         this.name = name;
@@ -639,6 +639,36 @@ var Fish = /** @class */ (function (_super) {
     return Fish;
 }(Animal));
 exports.Fish = Fish;
+var Deer = /** @class */ (function (_super) {
+    __extends(Deer, _super);
+    function Deer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Deer.plural = "Deer";
+    Deer.singular = "Deer";
+    return Deer;
+}(Animal));
+exports.Deer = Deer;
+var Reindeer = /** @class */ (function (_super) {
+    __extends(Reindeer, _super);
+    function Reindeer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Reindeer.plural = "Reindeer";
+    Reindeer.singular = "Reindeer";
+    return Reindeer;
+}(Animal));
+exports.Reindeer = Reindeer;
+var Elk = /** @class */ (function (_super) {
+    __extends(Elk, _super);
+    function Elk() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Elk.plural = "Elk";
+    Elk.singular = "Elk";
+    return Elk;
+}(Animal));
+exports.Elk = Elk;
 var Adder = /** @class */ (function (_super) {
     __extends(Adder, _super);
     function Adder() {

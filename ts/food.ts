@@ -1435,6 +1435,10 @@ export class Venison extends Food {
 export const venison_prototype: Venison = new Venison();
 meats.push(venison_prototype);
 
+export class ReindeerVenison extends Venison {}
+export const reindeer_venison_prototype: ReindeerVenison = new ReindeerVenison();
+meats.push(reindeer_venison_prototype);
+
 export class Sprouts extends Food {
     constructor() {
         super();
@@ -3531,5 +3535,5 @@ dairies.push(...eggs);
 seafoods.push(...fishes, ...crustaceans, ...sushis);
 proteins.push(...fishes, ...eggs, ...fungi, ...meats, ...nuts);
 foods.push(...vegetables, ...grains, ...starchs, ...spices, ...herbs, ...others, ...insects, ...sweets, ...doughs, ...brines, ...soups, ...cheeses, ...sauces, ...sides, ...entrees, ...spreads, ...condiments, ...sandwiches, ...snacks, ...breads, ...fruits, ...seafoods, ...proteins);
-//condense foods into unqiue values only
-foods = foods.filter((food, index, self) => self.findIndex(f => f.singular === food.singular) === index);
+//make sure foods only contains unqiue items
+foods = foods.filter((item, index, self) => self.indexOf(item) === index);

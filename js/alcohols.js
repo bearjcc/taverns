@@ -13,7 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-exports.rumCocktail_prototype = exports.Cocktail = exports.brandy_prototype = exports.Brandy = exports.gin_prototype = exports.Gin = exports.tequila_prototype = exports.Tequila = exports.rum_prototype = exports.Rum = exports.vodka_prototype = exports.Vodka = exports.whiskey_prototype = exports.Whiskey = exports.beer_prototype = exports.Beer = exports.roseWine_prototype = exports.muscadineWine_prototype = exports.redWine_prototype = exports.whiteWine_prototype = exports.Wine = exports.alcohols = exports.Alcohol = void 0;
+exports.ciderPear_prototype = exports.ciderCherry_prototype = exports.ciderApple_prototype = exports.Cider = exports.devilsBlood_prototype = exports.DevilsBlood = exports.grog_prototype = exports.Grog = exports.rumCocktail_prototype = exports.Cocktail = exports.brandy_prototype = exports.Brandy = exports.gin_prototype = exports.Gin = exports.tequila_prototype = exports.Tequila = exports.rum_prototype = exports.Rum = exports.vodka_prototype = exports.Vodka = exports.whiskey_prototype = exports.Whiskey = exports.beer_prototype = exports.Beer = exports.roseWine_prototype = exports.muscadineWine_prototype = exports.redWine_prototype = exports.whiteWine_prototype = exports.Wine = exports.alcohols = exports.Alcohol = void 0;
+var drinks_1 = require("./drinks");
 // ============================================================================
 // Language: TypeScript
 // Path: ts\alcohols.ts
@@ -21,7 +22,6 @@ exports.rumCocktail_prototype = exports.Cocktail = exports.brandy_prototype = ex
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-var drinks_1 = require("./drinks");
 var Alcohol = /** @class */ (function (_super) {
     __extends(Alcohol, _super);
     function Alcohol() {
@@ -230,6 +230,72 @@ var Cocktail = /** @class */ (function (_super) {
 exports.Cocktail = Cocktail;
 exports.rumCocktail_prototype = new Cocktail();
 exports.alcohols.push(exports.rumCocktail_prototype);
+var Grog = /** @class */ (function (_super) {
+    __extends(Grog, _super);
+    function Grog() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Grog");
+        _this.singular = "grog";
+        _this.plural = "grogs";
+        _this.description = "grog";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.drunkness = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Distilling"];
+        return _this;
+    }
+    return Grog;
+}(Alcohol));
+exports.Grog = Grog;
+exports.grog_prototype = new Grog();
+exports.alcohols.push(exports.grog_prototype);
+var DevilsBlood = /** @class */ (function (_super) {
+    __extends(DevilsBlood, _super);
+    function DevilsBlood() {
+        var _this = _super.call(this) || this;
+        _this.categories.push("Devil's Blood");
+        _this.singular = "devil's blood";
+        _this.plural = "devil's blood";
+        _this.description = "devil's blood";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.drunkness = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Distilling"];
+        return _this;
+    }
+    return DevilsBlood;
+}(Alcohol));
+exports.DevilsBlood = DevilsBlood;
+exports.devilsBlood_prototype = new DevilsBlood();
+exports.alcohols.push(exports.devilsBlood_prototype);
+var Cider = /** @class */ (function (_super) {
+    __extends(Cider, _super);
+    function Cider(type) {
+        var _this = _super.call(this) || this;
+        _this.type = type;
+        _this.categories.push("Cider");
+        _this.singular = type + "cider";
+        _this.plural = type + "ciders";
+        _this.description = "cider";
+        _this.hunger = 0;
+        _this.thirst = 0;
+        _this.drunkness = 0;
+        _this.hp = 0;
+        _this.weight = 1;
+        _this.sources = ["Brewing"];
+        return _this;
+    }
+    return Cider;
+}(Alcohol));
+exports.Cider = Cider;
+exports.ciderApple_prototype = new Cider("Apple");
+exports.ciderCherry_prototype = new Cider("Cherry");
+exports.ciderPear_prototype = new Cider("Pear");
+exports.alcohols.push(exports.ciderApple_prototype, exports.ciderCherry_prototype, exports.ciderPear_prototype);
 // *****************************
 // Must come at end of file
 // Combine alchols into drinks array

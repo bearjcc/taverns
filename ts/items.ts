@@ -85,8 +85,443 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 // var Bow = new Item("Bow", "A bow that can be used to shoot things.");
 // var Crossbow = new Item("Crossbow", "A crossbow that can be used to shoot things.");
 
-//Potions
 // arsenic
 // azuth
 
+//twigs
 
+// Leaves need no tools
+//pine needles
+//birch leaves
+//cinnamon leaves
+//banana leaves
+//palm leaves
+//maple leaves
+//citrus leaves
+//oak leaves
+//apple leaves
+//cherry leaves
+//eldertree leaves
+//willow leaves
+//pear leaves
+//peach leaves
+//magic tree leaves
+//sapient pear leaves
+
+// Branches require Axe or Knife
+//pine branches
+//deadwood branches
+//birch branches
+//cinnamon branches
+//banana branches
+//palm branches
+//maple branches
+//citrus branches
+//oak branches
+//apple branches
+//cherry branches
+//eldertree branches
+//willow branches
+//pear branches
+//peach branches
+//magic tree branches
+//sapient pear branches
+
+// Logs require Saw or Axe
+//pine logs
+//deadwood logs
+//birch logs
+//cinnamon logs
+//banana logs
+//palm logs
+//maple logs
+//citrus logs
+//oak logs
+//apple logs
+//cherry logs
+//eldertree logs
+//willow logs
+//pear logs
+//peach logs
+//magic tree logs
+//sapient pear logs
+
+// Bark requires Knife
+//pine bark
+//deadwood bark
+//birch bark
+//cinnamon bark
+//banana bark
+//palm bark
+//maple bark
+//citrus bark
+//oak bark
+//apple bark
+//cherry bark
+//eldertree bark
+//willow bark
+//pear bark
+//peach bark
+//magic tree bark
+//sapient pear bark
+
+// Roots require Knife
+//pine roots
+//deadwood roots
+//birch roots
+//cinnamon roots
+//banana roots
+//palm roots
+//maple roots
+//citrus roots
+//oak roots
+//apple roots
+//cherry roots
+//eldertree roots
+//willow roots
+//pear roots
+//peach roots
+//magic tree roots
+//sapient pear roots
+
+// Stunps require Pack Animal and Rope
+//pine stumps
+//deadwood stumps
+//birch stumps
+//cinnamon stumps
+//banana stumps
+//palm stumps
+//maple stumps
+//citrus stumps
+//oak stumps
+//apple stumps
+//cherry stumps
+//eldertree stumps
+//willow stumps
+//pear stumps
+//peach stumps
+//magic tree stumps
+//sapient pear stumps
+
+//grit
+//salt
+//clay
+//sand
+
+//clay
+//geodes
+//copper ore
+//tin ore
+//iron ore
+//coal
+//silver ore
+//gold ore
+//limestone
+//platinum ore
+//mithril ore
+//adamantite ore
+//runite ore
+
+////Gems
+//ruby
+//sapphire
+//emerald
+//topaz
+//diamond
+//amethyst
+//opal
+//garnet
+//pearl
+//onyx
+//quartz
+//agate
+//jade
+
+
+////Knives
+//Bronze Knife
+//Iron Knife
+//Steel Knife
+//Mithril Knife
+//Adamantite Knife
+//Mystic Knife
+//Butteryfly Knife
+//Pairing Knife
+//Chef's Knife
+//Ethereal Knife
+
+////Axes
+//Bronze Axe
+//Iron Axe
+//Steel Axe
+//Mithril Axe
+//Adamantite Axe
+//Mystic Axe
+export type Axe = "Bronze" | "Iron" | "Steel" | "Mithril" | "Adamantite" | "Mystic";
+
+////Hammers
+//Bronze Hammer
+//Iron Hammer
+//Steel Hammer
+//Mithril Hammer
+//Adamantite Hammer
+//Mystic Hammer
+//Sledgehammer
+//Silver Hammer
+
+////Archeology
+//broken pottery
+//fertility statue - common artifact
+//The Lionman -an ivory statue from a cave
+//Bone Flute
+//Bone Beads
+//Bone Spearheads
+//Cave Painting - common archeology location
+//Stone Spearheads
+//Flint Spearheads
+//Ancient Stone Tools
+//Collassal Heads - collection
+//Funeral Masks
+//Rosetta Stone - boon: learn 5 more languages
+//Terracotta Army - collection
+//Religious Scrolls -original copies of several religions
+//Weeping Lion
+//Book of Vile Creatures
+//Crown of Teeth - collection
+//The Mask of the Forgotten Souls
+//The Mark of the Beast
+//The Hand of the Chosen One
+//The Eye of the Shosen One
+
+//plow
+//hoe
+//watering can
+//bucket
+//bridle
+//saddle
+//saddlebag
+//rope
+//fertilizer
+//seeds
+//hay
+
+////bait
+//worms
+//grubs
+//crickets
+//raw meat
+//silverlings
+
+////hooks
+//bone hook
+//wooden hook
+//bronze hook
+//iron hook
+//steel hook
+//mithril hook
+//adamantite hook
+//mystic hook
+
+////fishing poles
+//pine fishing pole
+//deadwood fishing pole
+//birch fishing pole
+//cinnamon fishing pole
+//banana fishing pole
+//palm fishing pole
+//maple fishing pole
+//citrus fishing pole
+//oak fishing pole
+//apple fishing pole
+//cherry fishing pole
+//eldertree fishing pole
+//willow fishing pole
+//pear fishing pole
+//peach fishing pole
+//magic tree fishing pole
+//sapient pear fishing pole
+//mystic fishing pole
+
+//fishing net
+
+//diving gear
+
+////Crockery
+//pot
+//pitcher
+//bowl
+//urn
+
+//basket
+
+////Jewelry
+//ruby ring
+//sapphire ring
+//emerald ring
+//topaz ring
+//diamond ring
+//amethyst ring
+//opal ring
+//garnet ring
+//pearl ring
+//onyx ring
+//quartz ring
+//agate ring
+//jade ring
+
+//ruby necklace
+//sapphire necklace
+//emerald necklace
+//topaz necklace
+//diamond necklace
+//amethyst necklace
+//opal necklace
+//garnet necklace
+//pearl necklace
+//onyx necklace
+//quartz necklace
+//agate necklace
+//jade necklace
+
+//silver bracelet
+//gold bracelet
+//platinum bracelet
+
+//cotton armband
+//silk armband
+//wool armband
+
+//scales
+
+////Leather
+//cow hide
+//deer hide
+//lizard hide
+//wolf hide
+//bear hide
+//snake hide
+//dragon hide
+
+//cow leather
+//deer leather
+//lizard leather
+//snake leather
+//dragon leather
+
+//cow leather gloves
+//deer leather gloves
+//lizard leather gloves
+//snake leather gloves
+//dragon leather gloves
+
+//cow leather moccasins
+//deer leather moccasins
+//lizard leather moccasins
+//snake leather moccasins
+
+//waterskins
+
+////glass works
+//glass
+//glass bottle
+//glass bowl
+//glass cup
+//glass jar
+//aquarium
+//spectacles
+//telescope
+//magnifying glass
+
+////weaving
+//loose cotton
+//loose wool
+//loose linen
+//loose silk
+//loose llama wool
+//loose goat hair
+
+//spun cotton
+//spun wool
+//spun linen
+//spun silk
+//spun llama wool
+//spun mohair - goat hair
+
+//cotton thread
+//silk thread
+
+//cotton bolt
+//wool bolt
+//linen bolt
+//silk bolt
+//llama wool bolt
+//mohair bolt - goat hair
+
+//cotton shirt
+//woolen shirt
+//linen shirt
+//silken shirt
+//llama wool shirt
+//mohair shirt
+
+//cotton pants
+//woolen pants
+//linen pants
+//silken pants
+//llama wool pants
+//mohair pants
+
+//cotton dress
+//woolen dress
+//linen dress
+//silken dress
+//llama wool dress
+//mohair dress
+
+//cotton cap
+//woolen cap
+//linen cap
+//silken cap
+//llama wool cap
+//mohair cap
+
+//cotton scarf
+//woolen scarf
+//linen scarf
+//silken scarf
+//llama wool scarf
+//mohair scarf
+
+//cotton socks
+//woolen socks
+//linen socks
+//silken socks
+//llama wool socks
+//mohair socks
+
+//cotton undergarments
+//woolen undergarments
+//linen undergarments
+//silken undergarments
+//llama wool undergarments
+//mohair undergarments
+
+//cotton bandage
+
+//woolen coat
+//leather coat
+//fur coat
+
+//woolen cloak
+
+//fancy hat
+//party hat
+
+//sigils
+
+//fan
+
+//headdress
+
+//colander
+//kettle
