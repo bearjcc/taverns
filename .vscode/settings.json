@@ -1,0 +1,9 @@
+{
+    "compile-hero.disable-compile-files-on-did-save-code": false,
+    "typescriptHero.imports.stringQuoteStyle": "\"",
+    "typescriptHero.imports.insertSemicolons": false,
+    "typescriptHero.imports.insertSpaceBeforeAndAfterImportBraces": false,
+    "typescriptHero.imports.multiLineTrailingComma": false,
+    "typescriptHero.imports.organizeOnSave": true,
+    "typescriptHero.imports.organizeSortsByFirstSpecifier": true
+}
