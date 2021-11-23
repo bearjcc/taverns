@@ -1,0 +1,44 @@
+ #backpack-sidebar {
+        position: absolute;
+        height: 20rem;
+        width: 20rem;
+        bottom: 0;
+        right: 0;
+        background-color: #ffffff42;
+        margin: .25rem;
+        margin-bottom: 0;
+        padding: .25rem;
+        border-top-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+    }
+    
+    #backpack-sidebar img {
+        height: 3rem;
+        width: 3rem;
+    }
+    
+    #searchbar {
+        width: 15rem;
+        height: 2rem;
+        font-size: 1.5rem;
+        position: absolute;
+        top: .5rem;
+        right: .75rem;
+        background-color: #ffffff42;
+        background-image: url("img/search.svg");
+        background-repeat: no-repeat;
+        background-position: 13rem .25rem;
+    }
+    
+    #searchbar:active {
+        background-color: #ffffff60;
+    }
+    
+    #backpack-grid {
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        scrollbar-width: thin;
+    }

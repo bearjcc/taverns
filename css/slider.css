@@ -1,0 +1,65 @@
+.slider {
+  position: relative;
+  display: inline-block;
+  width: 5rem;
+  background: #ccc;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+  border-width: 0;
+  margin: 0;
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 1.5rem;
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-image: url("../img/volume-up.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider::-moz-range-thumb {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 1.5rem;
+  border-width: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-image: url("../img/volume-up.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slider.high::-moz-range-thumb {
+    background-image: url("../img/volume-up.svg");
+}
+
+.slider.med::-moz-range-thumb {
+    background-image: url("../img/volume-med.svg");
+}
+
+.slider.off::-moz-range-thumb {
+    background-image: url("../img/volume-off.svg");
+}
+
+.slider::after{
+   position:absolute; width:0; height:0; overflow:hidden; z-index:-1; /*hide images*/
+   content:url("../img/volume-up.svg") url("../img/volume-med.svg") url("../img/volume-off.svg");   /*load images*/
+}
