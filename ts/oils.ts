@@ -4,28 +4,42 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import {Consumable} from "./consumables"
-
-
+import { Consumable } from "./consumables";
 
 export class Oil extends Consumable {
-    type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence";
-    constructor(type: "vegetable"| "grapeseed"| "olive"| "avocado"| "peanut"| "sticky"| "dragonessence") {
-        super();
-        this.hasType = true;
-        this.type = type;
-        this.categories.push("Oil");
-        this.singular = this.type + " oil";
-        this.plural = this.singular;
-        if(type === "dragonessence") {
-            this.singular = "Dragonessence";
-            this.plural = "Dragonessence";
-        }
-        this.description = "oil";
-        this.hp = 0;
-        this.weight = 1;
-        this.sources = ["Distilling"];
-    }
+	type:
+		| "vegetable"
+		| "grapeseed"
+		| "olive"
+		| "avocado"
+		| "peanut"
+		| "sticky"
+		| "dragonessence";
+	constructor(
+		type:
+			| "vegetable"
+			| "grapeseed"
+			| "olive"
+			| "avocado"
+			| "peanut"
+			| "sticky"
+			| "dragonessence"
+	) {
+		super();
+		this.hasType = true;
+		this.type = type;
+		this.categories.push("Oil");
+		this.singular = this.type + " oil";
+		this.plural = this.singular;
+		if (type === "dragonessence") {
+			this.singular = "Dragonessence";
+			this.plural = "Dragonessence";
+		}
+		this.description = "oil";
+		this.hp = 0;
+		this.weight = 1;
+		this.sources = ["Distilling"];
+	}
 }
 export const vegetableOil_prototype: Oil = new Oil("vegetable");
 export const grapeseedOil_prototype: Oil = new Oil("grapeseed");

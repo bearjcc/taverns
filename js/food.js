@@ -610,7 +610,8 @@ var Mushroom = /** @class */ (function (_super) {
         _this.categories.push("Protein", "Mushroom");
         _this.hasType = true;
         _this.type = type;
-        _this.singular = (_this.type === "morel") ? _this.type : _this.type + " mushroom";
+        _this.singular =
+            _this.type === "morel" ? _this.type : _this.type + " mushroom";
         _this.plural = _this.singular + "s";
         _this.description = "fun mush";
         _this.hunger = 10;

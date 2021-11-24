@@ -7,61 +7,76 @@
 // ============================================================================
 
 export class Item {
-    singular: string = "Item";
-    plural: string = "Items";
-    description: string = "An Item is something that a player can take with them and use.";
-    quality: number; // (0-100)
+	singular: string = "Item";
+	plural: string = "Items";
+	description: string =
+		"An Item is something that a player can take with them and use.";
+	quality: number; // (0-100)
 
-    weight: number = 0; // kilograms
-    membersOnly: boolean = false;
-    categories: string[] = [];
+	weight: number = 0; // kilograms
+	membersOnly: boolean = false;
+	categories: string[] = [];
 
-    sources: Source[]; // where a user can obtain the item
+	sources: Source[]; // where a user can obtain the item
 
-    constructor() {
-        this.categories.push("Item");
-    }
+	constructor() {
+		this.categories.push("Item");
+	}
 
-    getInfo(qty: number): string {
-        switch (qty) {
-            case 0:
-                return `No ${this.plural}`;
-            case 1:
-                if (this.getQuality() === "average") {
-                    return `An ${this.getQuality()} ${this.singular}`;
-                } else {
-                    return `A ${this.getQuality()} ${this.singular}`;
-                }
-                default:
-                    return `Some ${this.getQuality()} ${this.plural}`;
-        }
-    }
+	getInfo(qty: number): string {
+		switch (qty) {
+			case 0:
+				return `No ${this.plural}`;
+			case 1:
+				if (this.getQuality() === "average") {
+					return `An ${this.getQuality()} ${this.singular}`;
+				} else {
+					return `A ${this.getQuality()} ${this.singular}`;
+				}
+			default:
+				return `Some ${this.getQuality()} ${this.plural}`;
+		}
+	}
 
-    getQuality() {
-        if (this.quality < 30) {
-            return "terrible";
-        } else if (this.quality < 60) {
-            return "poor";
-        } else if (this.quality < 70) {
-            return "mediocre";
-        } else if (this.quality < 80) {
-            return "average";
-        } else if (this.quality < 90) {
-            return "good";
-        } else if (this.quality < 97.5) {
-            return "great";
-        } else if (this.quality < 100) {
-            return "superb";
-        } else if (this.quality >= 100) {
-            return "perfect";
-        } else {
-            return "legendary";
-        }
-    }
+	getQuality() {
+		if (this.quality < 30) {
+			return "terrible";
+		} else if (this.quality < 60) {
+			return "poor";
+		} else if (this.quality < 70) {
+			return "mediocre";
+		} else if (this.quality < 80) {
+			return "average";
+		} else if (this.quality < 90) {
+			return "good";
+		} else if (this.quality < 97.5) {
+			return "great";
+		} else if (this.quality < 100) {
+			return "superb";
+		} else if (this.quality >= 100) {
+			return "perfect";
+		} else {
+			return "legendary";
+		}
+	}
 }
 
-export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading" | "Milling" | "Crafting" | "Cooking" | "Distilling" | "Brewing" | "Water" | "Potions" | "Hunting" | "Religious Ceremony" | "Alchemy";
-
+export type Source =
+	| "Farming"
+	| "Fishing"
+	| "Foraging"
+	| "Questing"
+	| "Trading"
+	| "Milling"
+	| "Crafting"
+	| "Cooking"
+	| "Distilling"
+	| "Brewing"
+	| "Water"
+	| "Potions"
+	| "Hunting"
+	| "Religious Ceremony"
+	| "Alchemy";
 
 // // Cooking
 // var FryingPan = new Item("Frying Pan", "A pan that can be used to fry food.");
@@ -71,7 +86,6 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 // var PieTin = new Item("Pie Tin", "A tin that can hold pies.");
 
 // // Crafting
-
 
 // //Weapons
 // var Hammer = new Item("Hammer", "A hammer that can be used to smash things.");
@@ -88,13 +102,10 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 // arsenic
 // azuth
 
-
 //grit
 //salt
 //clay
 //sand
-
-
 
 ////Knives
 //Bronze Knife
@@ -115,7 +126,13 @@ export type Source = "Farming" | "Fishing" | "Foraging" | "Questing" | "Trading"
 //Mithril Axe
 //Adamantite Axe
 //Mystic Axe
-export type AxeType = "Bronze" | "Iron" | "Steel" | "Mithril" | "Adamantite" | "Mystic";
+export type AxeType =
+	| "Bronze"
+	| "Iron"
+	| "Steel"
+	| "Mithril"
+	| "Adamantite"
+	| "Mystic";
 
 ////Hammers
 //Bronze Hammer

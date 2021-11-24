@@ -9,18 +9,18 @@
 type Gender = "Male" | "Female" | "None" | "Other";
 type Rarity = "Common" | "Uncommon" | "Rare" | "Exotic";
 
-
 export class Being {
 	static readonly singular: string = "Being";
 	static readonly plural: string = "Beings";
-	static readonly description: string = "A living thing including plants, animals, fungi, and Gods.";
-	
+	static readonly description: string =
+		"A living thing including plants, animals, fungi, and Gods.";
+
 	name: string;
 	gender: Gender;
 	membersOnly: Boolean;
-	category : string[];
-	
-	constructor (name: string, gender: Gender) {
+	category: string[];
+
+	constructor(name: string, gender: Gender) {
 		this.name = name;
 		this.gender = gender;
 		this.membersOnly = false;
@@ -28,17 +28,16 @@ export class Being {
 	}
 }
 
-
 export class Humanoid extends Being {
 	static readonly singular: string = "Humanoid";
 	static readonly plural: string = "Humanoids";
 	static readonly description: string = "Intelligent and bipedal.";
-	
+
 	hasBackpack: Boolean;
 	description: string;
 	rarity: Rarity;
-	
-	constructor (name: string, gender: Gender, description: string) {
+
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender);
 		this.description = description;
 		this.hasBackpack = false;
@@ -51,22 +50,28 @@ export var playableRaces: Humanoid[];
 export class Dwarf extends Humanoid {
 	static readonly singular: string = "Dwarf";
 	static readonly plural: string = "Dwarves";
-	static readonly description: string = "Short of stature and short of temper, dwarves enjoy alcohol a little too much and are mostly geologists.";
-	
-	constructor (name: string, gender: Gender, description: string) {
+	static readonly description: string =
+		"Short of stature and short of temper, dwarves enjoy alcohol a little too much and are mostly geologists.";
+
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender, description);
 		this.rarity = "Common";
 		this.category.push("Dwarf");
 	}
 }
-export var dwarf_prototype = new Dwarf(Dwarf.singular, "None", Dwarf.description);
+export var dwarf_prototype = new Dwarf(
+	Dwarf.singular,
+	"None",
+	Dwarf.description
+);
 playableRaces.push(dwarf_prototype);
 
 export class Elf extends Humanoid {
 	static readonly singular: string = "Elf";
 	static readonly plural: string = "Elves";
-	static readonly description: string = "Tall, elegant, and haughty, elves outlive all other humanoid races and create magnificent architecture and art.";
-	constructor (name: string, gender: Gender, description: string) {
+	static readonly description: string =
+		"Tall, elegant, and haughty, elves outlive all other humanoid races and create magnificent architecture and art.";
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender, description);
 		this.rarity = "Common";
 		this.category.push("Elf");
@@ -78,54 +83,70 @@ playableRaces.push(elf_prototype);
 export class Gnome extends Humanoid {
 	static readonly singular: string = "Gnome";
 	static readonly plural: string = "Gnomes";
-	static readonly description: string = "The shortest of the humanoids, gnomes prefer animal companions over other humanoid races.";
-	
-	constructor (name: string, gender: Gender, description: string) {
+	static readonly description: string =
+		"The shortest of the humanoids, gnomes prefer animal companions over other humanoid races.";
+
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender, description);
 		this.rarity = "Uncommon";
 		this.category.push("Gnome");
 	}
 }
-export var gnome_prototype = new Gnome(Gnome.singular, "None", Gnome.description);
+export var gnome_prototype = new Gnome(
+	Gnome.singular,
+	"None",
+	Gnome.description
+);
 playableRaces.push(gnome_prototype);
 
 export class Halfling extends Humanoid {
 	static readonly singular: string = "Halfling";
 	static readonly plural: string = "Halflings";
-	static readonly description: string = "Halflings are so awkward they end up having the best luck, or, so it seems. They never seem to fit in though.";
-	
-	constructor (name: string, gender: Gender, description: string) {
+	static readonly description: string =
+		"Halflings are so awkward they end up having the best luck, or, so it seems. They never seem to fit in though.";
+
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender, description);
 		this.rarity = "Uncommon";
 		this.category.push("Halfling");
 	}
 }
-export var halfling_prototype = new Halfling(Halfling.singular, "None", Halfling.description);
+export var halfling_prototype = new Halfling(
+	Halfling.singular,
+	"None",
+	Halfling.description
+);
 playableRaces.push(halfling_prototype);
 
 export class Human extends Humanoid {
 	static readonly singular: string = "Human";
 	static readonly plural: string = "Humans";
-	static readonly description: string = "Pride, Honor, Territory, Ownership: there is rarely anything else on the mind of man";
-	constructor (name: string, gender: Gender, description: string) {
+	static readonly description: string =
+		"Pride, Honor, Territory, Ownership: there is rarely anything else on the mind of man";
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender, description);
 		this.rarity = "Common";
 		this.category.push("Human");
 	}
 }
-export var human_prototype = new Human(Human.singular, "None", Human.description);
+export var human_prototype = new Human(
+	Human.singular,
+	"None",
+	Human.description
+);
 playableRaces.push(human_prototype);
 
 export class Orc extends Humanoid {
 	static readonly singular: string = "Orc";
 	static readonly plural: string = "Orcs";
-	static readonly description: string = "Ugly, brutish, and war-hungry, there is nothing more important then clan and family to an orc.";
-	
-	constructor (name: string, gender: Gender, description: string) {
+	static readonly description: string =
+		"Ugly, brutish, and war-hungry, there is nothing more important then clan and family to an orc.";
+
+	constructor(name: string, gender: Gender, description: string) {
 		super(name, gender, description);
 		this.rarity = "Common";
 		this.category.push("Orc");
-	} 
+	}
 }
 export var orc_prototype = new Orc(Orc.singular, "None", Orc.description);
 playableRaces.push(orc_prototype);
@@ -135,16 +156,17 @@ export class Satyr extends Humanoid {
 	static readonly playable: Boolean = true;
 	static readonly plural: string = "Satyrs";
 	static readonly singular: string = "Satyr";
-	static readonly description: string = "Torso of man, legs and horns of a goat, satyrs are often tricksters or harlots";
+	static readonly description: string =
+		"Torso of man, legs and horns of a goat, satyrs are often tricksters or harlots";
 }
-
 
 export class Goliath extends Humanoid {
 	rarity: Rarity = "Rare";
 	static readonly playable: Boolean = true;
 	static readonly plural: string = "Goliaths";
 	static readonly singular: string = "Goliath";
-	static readonly description: string = "The largest of the humanoids. Though clan-like, and brutish like orcs, goliaths are much more peaceful, and less organized.";
+	static readonly description: string =
+		"The largest of the humanoids. Though clan-like, and brutish like orcs, goliaths are much more peaceful, and less organized.";
 }
 
 export class Felix extends Humanoid {
@@ -152,7 +174,8 @@ export class Felix extends Humanoid {
 	static readonly playable: Boolean = true;
 	static readonly plural: string = "Felideax";
 	static readonly singular: string = "Felix";
-	static readonly description: string= "Standing on their hind legs, these big cats have integrated well into humanoids' world.";
+	static readonly description: string =
+		"Standing on their hind legs, these big cats have integrated well into humanoids' world.";
 }
 
 export class Mixedblood extends Humanoid {
@@ -160,55 +183,64 @@ export class Mixedblood extends Humanoid {
 	static readonly playable: Boolean = true;
 	static readonly plural: string = "Mixedbloods";
 	static readonly singular: string = "Mixedblood";
-	static readonly description: string= "Infertile, and often asexual, mixedblood describes any half breed between two humanoid races.";
+	static readonly description: string =
+		"Infertile, and often asexual, mixedblood describes any half breed between two humanoid races.";
 }
 
 export class Merfolk extends Humanoid {
 	static readonly plural: string = "Mermen";
 	static readonly singular: string = "Merfolk";
-	static readonly description: string = "Humanoid torso with the lower body of a fish, these people can breath underwater or above";
+	static readonly description: string =
+		"Humanoid torso with the lower body of a fish, these people can breath underwater or above";
 }
 
 export class Lizardfolk extends Humanoid {
 	static readonly plural: string = "Lizardfolk";
 	static readonly singular: string = "Lizardi";
-	static readonly description: string = "Lizardfolk are slimy, gangly and not to be trusted.";
+	static readonly description: string =
+		"Lizardfolk are slimy, gangly and not to be trusted.";
 }
 
 export class Troll extends Humanoid {
 	static readonly plural: string = "Trolls";
 	static readonly singular: string = "Troll";
-	static readonly description: string = "Strong and hardy, but lacking intelligence, trolls tend to live alone.";
+	static readonly description: string =
+		"Strong and hardy, but lacking intelligence, trolls tend to live alone.";
 }
 
 export class Goblin extends Humanoid {
 	static readonly plural: string = "Goblins";
 	static readonly singular: string = "Goblin";
-	static readonly description: string = "Some think them cute, others think they are hideous, either way, better watch your gold while goblins are around!";
+	static readonly description: string =
+		"Some think them cute, others think they are hideous, either way, better watch your gold while goblins are around!";
 }
 
 export class God extends Being {
 	static readonly plural: string = "Gods";
 	static readonly singular: string = "God";
-	static readonly description: string = "Immortal beings that interact with the world through their followers rather then with a body of their own";
+	static readonly description: string =
+		"Immortal beings that interact with the world through their followers rather then with a body of their own";
 }
 
 export class Djin extends Being {
 	static readonly plural: string = "Djins";
 	static readonly singular: string = "Djin";
-	static readonly description: string = "Djins are a manifestation of pure Mystic Force. Powerful, Ephemeral, Tricksters.";
+	static readonly description: string =
+		"Djins are a manifestation of pure Mystic Force. Powerful, Ephemeral, Tricksters.";
 }
 
 export class Imp extends Being {
 	static readonly plural: string = "Imps";
 	static readonly singular: string = "Imp";
-	static readonly description: string = "Small, fiendish, impudent creatures with mild magical abilities";
+	static readonly description: string =
+		"Small, fiendish, impudent creatures with mild magical abilities";
 }
 
 export class Ghost extends Being {
 	static readonly plural: string = "Ghosts";
 	static readonly singular: string = "Ghost";
-	static readonly description: string = "A soul dettached from a body. May be seen around the world if they get lost on their way to Styx";
+	static readonly description: string =
+		"A soul dettached from a body. May be seen around the world if they get lost on their way to Styx";
 }
 
 export class Valkyrie extends Being {
@@ -775,4 +807,3 @@ export class PolarBear extends Bear {
 	static readonly singular: string = "Polar Bear";
 	static readonly description: string = "";
 }
-

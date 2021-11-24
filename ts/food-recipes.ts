@@ -391,8 +391,6 @@
 // ChiliFlakes.notes = "Needs to me prepped and dried";
 // cookingRecipes.push(ChiliFlakes);
 
-
-
 // // Pasta Dishes
 
 // var PlainPasta = new CookingRecipe("Plain Pasta", "A bowl of plain pasta.");
@@ -456,7 +454,6 @@
 // Lasagna.locations = [oven];
 // Lasagna.items = [];
 // Lasagna.notes = "";
-
 
 // // Soups and Stews
 

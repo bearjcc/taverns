@@ -9,16 +9,16 @@
 // An Interactable is something that is permanant in the world and players can use it, generally for skilling
 
 export class Interactable {
-    name: string;
-    categories: string[] = [];
+	name: string;
+	categories: string[] = [];
 
-    constructor() {
-        this.categories.push("Interactable");
-    }
+	constructor() {
+		this.categories.push("Interactable");
+	}
 
-    interact() {
-        // do something
-    }
+	interact() {
+		// do something
+	}
 }
 
 // Cooking
@@ -41,7 +41,6 @@ export class Interactable {
 //mills:
 // wind, water, or animal
 // grain, or sugar
-
 
 // Hearth
 // Firepit

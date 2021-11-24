@@ -57,7 +57,7 @@ export class OreDeposit extends Interactable {
 		//randomly generated quality
 		//geometric avarage of geode quality and skill level
 		var quality = Math.pow(Math.random() * skillLevel, 0.5);
-        
+
 		// chance that you get a gem
 		rdm = Math.ceil(Math.random() * 100);
 		if (rdm <= 1) {
@@ -88,94 +88,97 @@ export class OreDeposit extends Interactable {
 			} else if (rdm < 120) {
 				return new Gems.Jade(weight * 0.75, quality);
 			} else if (rdm < 130) {
-                return new Gems.Lapis(weight * 0.75, quality);
+				return new Gems.Lapis(weight * 0.75, quality);
 			} else {
-                return new OreItems.Geode(weight, quality);
-            }
+				return new OreItems.Geode(weight, quality);
+			}
 		}
 
-        return this.getOre(weight, quality);
+		return this.getOre(weight, quality);
 	}
 
-    getOre(weight: number, quality: number): OreItem {
-        //define this on sub classes
-        return null;
-    }
+	getOre(weight: number, quality: number): OreItem {
+		//define this on sub classes
+		return null;
+	}
 }
 
 export var oreDeposits: OreDeposit[] = [];
 
 //clay
 export class ClayDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Clay";
-        this.categories.push("Clay");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Clay";
+		this.categories.push("Clay");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.Clay(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.Clay(weight, quality);
+	}
 }
 export var clayDeposit_prototype: ClayDeposit = new ClayDeposit(1, 100);
 oreDeposits.push(clayDeposit_prototype);
 
 //geodes
 export class GeodeDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Geode";
-        this.categories.push("Geode");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Geode";
+		this.categories.push("Geode");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.Geode(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.Geode(weight, quality);
+	}
 }
 export var geodeDeposit_prototype: GeodeDeposit = new GeodeDeposit(1, 100);
 oreDeposits.push(geodeDeposit_prototype);
 
 //copper ore
 export class CopperOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Copper Ore";
-        this.categories.push("Copper");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Copper Ore";
+		this.categories.push("Copper");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.CopperOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.CopperOre(weight, quality);
+	}
 }
-export var copperOreDeposit_prototype: CopperOreDeposit = new CopperOreDeposit(1,100);
+export var copperOreDeposit_prototype: CopperOreDeposit = new CopperOreDeposit(
+	1,
+	100
+);
 oreDeposits.push(copperOreDeposit_prototype);
 
 //tin ore
 export class TinOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Tin Ore";
-        this.categories.push("Tin");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Tin Ore";
+		this.categories.push("Tin");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.TinOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.TinOre(weight, quality);
+	}
 }
 export var tinOreDeposit_prototype: TinOreDeposit = new TinOreDeposit(1, 100);
 oreDeposits.push(tinOreDeposit_prototype);
 
 //iron ore
 export class IronOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Iron Ore";
-        this.categories.push("Iron");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Iron Ore";
+		this.categories.push("Iron");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.IronOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.IronOre(weight, quality);
+	}
 }
 export var ironOreDeposit_prototype: IronOreDeposit = new IronOreDeposit(
 	1,
@@ -185,30 +188,30 @@ oreDeposits.push(ironOreDeposit_prototype);
 
 //coal
 export class CoalDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Coal";
-        this.categories.push("Coal");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Coal";
+		this.categories.push("Coal");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.Coal(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.Coal(weight, quality);
+	}
 }
 export var coalDeposit_prototype: CoalDeposit = new CoalDeposit(1, 100);
 oreDeposits.push(coalDeposit_prototype);
 
 //silver ore
 export class SilverOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Silver Ore";
-        this.categories.push("Silver");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Silver Ore";
+		this.categories.push("Silver");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.SilverOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.SilverOre(weight, quality);
+	}
 }
 export var silverOreDeposit_prototype: SilverOreDeposit = new SilverOreDeposit(
 	1,
@@ -218,15 +221,15 @@ oreDeposits.push(silverOreDeposit_prototype);
 
 //gold ore
 export class GoldOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Gold Ore";
-        this.categories.push("Gold");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Gold Ore";
+		this.categories.push("Gold");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.GoldOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.GoldOre(weight, quality);
+	}
 }
 export var goldOreDeposit_prototype: GoldOreDeposit = new GoldOreDeposit(
 	1,
@@ -236,15 +239,15 @@ oreDeposits.push(goldOreDeposit_prototype);
 
 //limestone
 export class LimestoneDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Limestone";
-        this.categories.push("Limestone");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Limestone";
+		this.categories.push("Limestone");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.Limestone(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.Limestone(weight, quality);
+	}
 }
 export var limestoneDeposit_prototype: LimestoneDeposit = new LimestoneDeposit(
 	1,
@@ -254,15 +257,15 @@ oreDeposits.push(limestoneDeposit_prototype);
 
 //platinum ore
 export class PlatinumOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Platinum Ore";
-        this.categories.push("Platinum");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Platinum Ore";
+		this.categories.push("Platinum");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.PlatinumOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.PlatinumOre(weight, quality);
+	}
 }
 export var platinumOreDeposit_prototype: PlatinumOreDeposit =
 	new PlatinumOreDeposit(1, 100);
@@ -270,15 +273,15 @@ oreDeposits.push(platinumOreDeposit_prototype);
 
 //mithril ore
 export class MithrilOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Mithril Ore";
-        this.categories.push("Mithril");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Mithril Ore";
+		this.categories.push("Mithril");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.MithrilOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.MithrilOre(weight, quality);
+	}
 }
 export var mithrilOreDeposit_prototype: MithrilOreDeposit =
 	new MithrilOreDeposit(1, 100);
@@ -286,15 +289,15 @@ oreDeposits.push(mithrilOreDeposit_prototype);
 
 //adamantite ore
 export class AdamantiteOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Adamantite Ore";
-        this.categories.push("Adamantite");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Adamantite Ore";
+		this.categories.push("Adamantite");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.AdamantiteOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.AdamantiteOre(weight, quality);
+	}
 }
 export var adamantiteOreDeposit_prototype: AdamantiteOreDeposit =
 	new AdamantiteOreDeposit(1, 100);
@@ -302,15 +305,15 @@ oreDeposits.push(adamantiteOreDeposit_prototype);
 
 //runite ore
 export class RuniteOreDeposit extends OreDeposit {
-    constructor(quantity: number, quality: number) {
-        super(quantity, quality);
-        this.name = "Runite Ore";
-        this.categories.push("Runite");
-    }
+	constructor(quantity: number, quality: number) {
+		super(quantity, quality);
+		this.name = "Runite Ore";
+		this.categories.push("Runite");
+	}
 
-    getOre(weight: number, quality: number): OreItem {
-        return new OreItems.RuniteOre(weight, quality);
-    }
+	getOre(weight: number, quality: number): OreItem {
+		return new OreItems.RuniteOre(weight, quality);
+	}
 }
 export var runiteOreDeposit_prototype: RuniteOreDeposit = new RuniteOreDeposit(
 	1,

@@ -8,14 +8,13 @@
 
 export class Affect {
 	name: string;
-    description: string;
-    static readonly description: string = "Affect";
+	description: string;
+	static readonly description: string = "Affect";
 	constructor(name: string, description: string) {
 		this.name = name;
 		this.description = description;
 	}
 }
-
 
 // define new Affect cold
 var cold = new Affect("Cold", "I am cold.");
@@ -46,5 +45,3 @@ var invisible = new Affect("Invisible", "I am invisible.");
 
 // define new Affect tired
 var tired = new Affect("Tired", "I am tired.");
-
-

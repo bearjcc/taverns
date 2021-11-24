@@ -11,12 +11,12 @@ import { Gem } from "./gems";
 import * as Gems from "./gems";
 
 export class OreItem extends Item {
-    constructor(weight: number, quality: number) {
-        super();
-        this.categories.push("Ore");
-        this.weight = weight;
-        this.quality = quality; //in this case quality means how much of that element you can get from it
-    }
+	constructor(weight: number, quality: number) {
+		super();
+		this.categories.push("Ore");
+		this.weight = weight;
+		this.quality = quality; //in this case quality means how much of that element you can get from it
+	}
 }
 
 export var ores: OreItem[] = [];
@@ -28,64 +28,66 @@ ores.push(clay_prototype);
 
 //geodes
 export class Geode extends OreItem {
-    constructor(weight: number, quality: number) {
-        super(weight, quality);
-        this.categories.push("Geode");
-    }
+	constructor(weight: number, quality: number) {
+		super(weight, quality);
+		this.categories.push("Geode");
+	}
 
-    break(skillLevel: number): Gem {
-        console.log("You break open the geode in an attempt to find a gem inside...")
-        
-        // chance that you smash the geode
-        var rdm = Math.ceil(Math.random() * 100);
-        if (rdm > skillLevel) {
-            console.log("You smash the geode into pieces.");
-            return null;
-        }
-        
-        rdm = Math.ceil(Math.random() * 100);
-        // chance that there is no gem
-        if (rdm > this.quality) {
-            console.log("There was no gem inside.")
-            return null;
-        }
-        
-        //randomly generated quality
-        //geometric avarage of geode quality and skill level
-        var quality = Math.pow(Math.random() * skillLevel, .5);
-        
-        //chance of getting a gem of a certain type
-        rdm = Math.ceil(Math.random() * 150);
-        if(rdm < 10) {
-            return new Gems.Ruby(this.weight * .75, quality);
-        } else if(rdm < 20) { 
-            return new Gems.Sapphire(this.weight * .75, quality);
-        } else if(rdm < 30) {
-            return new Gems.Emerald(this.weight * .75, quality);
-        } else if(rdm < 40) {
-            return new Gems.Topaz(this.weight * .75, quality);
-        } else if(rdm < 50) {
-            return new Gems.Diamond(this.weight * .75, quality);
-        } else if(rdm < 60) {
-            return new Gems.Amethyst(this.weight * .75, quality);
-        } else if(rdm < 70) {
-            return new Gems.Opal(this.weight * .75, quality);
-        } else if(rdm < 80) {
-            return new Gems.Garnet(this.weight * .75, quality);
-        } else if(rdm < 90) {
-            return new Gems.Onyx(this.weight * .75, quality);
-        } else if(rdm < 100) {
-            return new Gems.Quartz(this.weight * .75, quality);
-        } else if(rdm < 110) {
-            return new Gems.Agate(this.weight * .75, quality);
-        } else if(rdm < 120) {
-            return new Gems.Jade(this.weight * .75, quality);
-        } else if(rdm < 130) {
-            return new Gems.Lapis(this.weight * .75, quality);
-        } else {
-            return new Gems.Rock(this.weight * .75);
-        }        
-    }
+	break(skillLevel: number): Gem {
+		console.log(
+			"You break open the geode in an attempt to find a gem inside..."
+		);
+
+		// chance that you smash the geode
+		var rdm = Math.ceil(Math.random() * 100);
+		if (rdm > skillLevel) {
+			console.log("You smash the geode into pieces.");
+			return null;
+		}
+
+		rdm = Math.ceil(Math.random() * 100);
+		// chance that there is no gem
+		if (rdm > this.quality) {
+			console.log("There was no gem inside.");
+			return null;
+		}
+
+		//randomly generated quality
+		//geometric avarage of geode quality and skill level
+		var quality = Math.pow(Math.random() * skillLevel, 0.5);
+
+		//chance of getting a gem of a certain type
+		rdm = Math.ceil(Math.random() * 150);
+		if (rdm < 10) {
+			return new Gems.Ruby(this.weight * 0.75, quality);
+		} else if (rdm < 20) {
+			return new Gems.Sapphire(this.weight * 0.75, quality);
+		} else if (rdm < 30) {
+			return new Gems.Emerald(this.weight * 0.75, quality);
+		} else if (rdm < 40) {
+			return new Gems.Topaz(this.weight * 0.75, quality);
+		} else if (rdm < 50) {
+			return new Gems.Diamond(this.weight * 0.75, quality);
+		} else if (rdm < 60) {
+			return new Gems.Amethyst(this.weight * 0.75, quality);
+		} else if (rdm < 70) {
+			return new Gems.Opal(this.weight * 0.75, quality);
+		} else if (rdm < 80) {
+			return new Gems.Garnet(this.weight * 0.75, quality);
+		} else if (rdm < 90) {
+			return new Gems.Onyx(this.weight * 0.75, quality);
+		} else if (rdm < 100) {
+			return new Gems.Quartz(this.weight * 0.75, quality);
+		} else if (rdm < 110) {
+			return new Gems.Agate(this.weight * 0.75, quality);
+		} else if (rdm < 120) {
+			return new Gems.Jade(this.weight * 0.75, quality);
+		} else if (rdm < 130) {
+			return new Gems.Lapis(this.weight * 0.75, quality);
+		} else {
+			return new Gems.Rock(this.weight * 0.75);
+		}
+	}
 }
 export var geode_prototype: Geode = new Geode(1, 100);
 ores.push(geode_prototype);

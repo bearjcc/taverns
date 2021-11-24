@@ -27,7 +27,7 @@ var items_1 = require("./items");
 var Tree = /** @class */ (function (_super) {
     __extends(Tree, _super);
     function Tree(name, description, levelRequired, axeRequired) {
-        var _this = _super.call(this, name, description) || this;
+        var _this = _super.call(this) || this;
         _this.levelRequired = levelRequired;
         _this.axeRequired = axeRequired;
         return _this;
