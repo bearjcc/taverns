@@ -1,6 +1,16 @@
+// ============================================================================
+// Language: Javascript React
+// Path: src\App.jsx
+// Author: Joseph C. Caswell
+// All rights reserved.
+// Owner: Ursa Minor Inc.
+// ============================================================================
 import React, { Component } from 'react';
 import Table from './Table';
 import Form from './Form';
+import Login from './Login';
+import Splash from './Splash';
+import Sidebar from './Sidebar';
 
 class App extends Component {
     state = {
@@ -26,14 +36,9 @@ class App extends Component {
         
         return (
             <div className="container">
-                <h1>React Tutorial</h1>
-                <p>Add a character with a name and a job to the table.</p>
-                <Table
-                    characterData={characters}
-                    removeCharacter={this.removeCharacter}
-                />
-                <h3>Add New</h3>
-                <Form handleSubmit={this.handleSubmit} />
+                <Splash />
+                <Login />
+                <Sidebar />
             </div>
         );
     }

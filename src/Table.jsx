@@ -1,3 +1,10 @@
+// ============================================================================
+// Language: Javascript React
+// Path: src\Table.jsx
+// Author: Joseph C. Caswell
+// All rights reserved.
+// Owner: Ursa Minor Inc.
+// ============================================================================
 import React from 'react';
 
 const TableHeader = () => { 

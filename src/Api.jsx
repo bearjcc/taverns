@@ -1,3 +1,10 @@
+// ============================================================================
+// Language: Javascript React
+// Path: src\Api.jsx
+// Author: Joseph C. Caswell
+// All rights reserved.
+// Owner: Ursa Minor Inc.
+// ============================================================================
 import React, { Component } from 'react';
 
 class App extends Component {
