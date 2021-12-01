@@ -3,3 +3,120 @@
 /* Author: Joseph C. Caswell */
 /* All rights reserved */
 /* Owner: Ursa Minor Inc. */
+
+:root {
+    --bg-color: #231f20;
+    --primary-color: #27aae1;
+    --secondary-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+button.web {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--secondary-color);
+    font-size: 20px;
+    height: 35px;
+}
+
+button.web:hover {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+#title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+#login-register {
+    /* float right */
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    /* primary color */
+    background-color: var(--primary-color);
+
+    font-size: 20px;
+    text-align: center;
+}
+
+#login-register-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: none;
+}
+
+
+
+#narration {
+    font-family: 'Nothing You Could Do', cursive;
+    color: var(--secondary-color);
+    font-size: 16px;
+    opacity: .9;
+
+    margin-top: 50vh;
+    margin-left: 3vw;
+}
+
+.affect {
+    font-weight: bold;
+
+    /* show clickable */
+    cursor: pointer;
+}
+
+.affect:hover {
+    /* change color */
+    color: var(--primary-color);
+}
+
+.affect::before {
+    content: "";
+    background-color: var(--secondary-color);
+    padding: 2px;
+    position: absolute;
+    margin-top: -30px;
+    border-radius: 2.5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+.affect:hover::before {
+    content: "Status affect";
+    
+    color: var(--background-color);
+    visibility: visible;
+    opacity: 1;
+}
+
+.action {
+    text-decoration: underline;
+}
+
+.action:hover {
+    color: var(--primary-color);
+    cursor: pointer;
+}

@@ -1,0 +1,124 @@
+/* Language: css */
+/* Path: css\splash.css */
+/* Author: Joseph C. Caswell */
+/* All rights reserved */
+/* Owner: Ursa Minor Inc. */
+
+#splash {
+    /* take up the whole page and hide everything else */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+
+    /* background color */
+    background-color: var(--bg-color);
+}
+
+#splash-logo {
+    /* center the image keep aspect ratio */
+    width: 60%;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: auto;
+
+    /* zoom and fade in */
+    animation: splash-content-zoom 5s ease-in-out;
+}
+
+@keyframes splash-content-zoom {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    20% {
+        transform: scale(1);
+        opacity: .75;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#splash.hidden {
+    /* hide splash screen */
+    animation: splash-slideup 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes splash-slideup {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: -100%;
+    }
+}
+
+#about-game {
+    /* below splash-content */
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+    /* wait to show until splash-content-zoom is done animating */
+    opacity: 0;
+    animation-delay: 1s;
+    animation-name: about-show;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+@keyframes about-show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .75;
+    }
+}
+
+#play-now {
+    position: absolute;
+    bottom: 7.5vh;
+    width: 100%;
+
+    /* wait to show */
+    opacity: 0;
+    animation-delay: 1s;
+    animation-name: play-now-show;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes play-now-show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#play-now-button {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 30%;
+}
