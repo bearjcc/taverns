@@ -1,12 +1,12 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\consumables.ts
+// Path: ts\game\consumables.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
 
-import { Item } from "./items";
+import { Item, Source } from "./items";
 
 export type ConsumableType = {
 	singular: string;
@@ -18,6 +18,7 @@ export class Consumable extends Item {
 	static singular = "Consumable";
 	static plural = "Consumables";
 	static description = "A consumable is something that a player can use up";
+	static sources: Source[];
 
 	hasType: boolean = false; // does the consumable have a type?
 	hp: number = 0; // positive number heals, negative number damages

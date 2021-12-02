@@ -1,6 +1,6 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\vehicles.ts
+// Path: ts\game\achievements.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.

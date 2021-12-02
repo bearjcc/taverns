@@ -1,158 +1,167 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\itm_consumables.ts
+// Path: ts\game\drinks.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
 import { Consumable, dairies } from "./consumables";
+import { Source } from "./items";
+import { Class } from "./types";
 
 export class Drink extends Consumable {
 	hunger: number = 0; // negative makes more hungry
 	thirst: number = 0; // negative makes more thirsty
+
+	categories: string[] = [];
 }
 
-export var drinks: Drink[] = [];
+export type DrinkType = {
+	singular: string;
+	plural: string;
+	description: string;
+} & Class;
+
+export var drinks: DrinkType[] = [];
 
 export class Milk extends Drink {
+	static singular : string = "milk";
+	static plural : string = "milk";
+	static description : string = "A bottle of milk.";
+	static sources: Source[] = ["Farming"];
+	
 	type: "cow" | "goat";
 	constructor(type: "cow" | "goat") {
 		super();
 		this.hasType = true;
 		this.type = type;
 		this.categories.push("Dairy", "Milk");
-		this.singular = this.type + " milk";
-		this.plural = this.singular;
-		this.description = "milk";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const cowMilk_prototype: Milk = new Milk("cow");
-export const goatMilk_prototype: Milk = new Milk("goat");
-drinks.push(cowMilk_prototype, goatMilk_prototype);
-dairies.push(cowMilk_prototype, goatMilk_prototype);
+drinks.push(Milk);
+dairies.push(Milk);
 
 export class Coffee extends Drink {
+	static singular: string = "coffee";
+	static plural: string = "coffee";
+	static description: string = "A cup of coffee.";
+	static sources: Source[] = ["Farming"];
+
 	constructor() {
 		super();
 		this.categories.push("Coffee");
-		this.singular = "coffee";
-		this.plural = "coffee";
-		this.description = "coffee";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const coffee_prototype: Coffee = new Coffee();
-drinks.push(coffee_prototype);
+drinks.push(Coffee);
 
 export class Milkshake extends Drink {
+	static singular = "milkshake";
+	static plural = "milkshakes";
+	static description: string = "A milkshake.";
+	static sources: Source[] = ["Farming"];
+
 	constructor() {
 		super();
 		this.categories.push("Milkshake");
-		this.singular = "milkshake";
-		this.plural = "milkshake";
-		this.description = "milkshake";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const milkshake_prototype: Milkshake = new Milkshake();
-drinks.push(milkshake_prototype);
-dairies.push(milkshake_prototype);
+drinks.push(Milkshake);
+dairies.push(Milkshake);
 
 export class ChocolateMilk extends Drink {
+	static singular: string = "chocolate milk";
+	static plural : string = "chocolate milk";
+	static description : string = "A bottle of chocolate milk.";
+	static sources: Source[] = ["Cooking"];
+	
 	constructor() {
 		super();
 		this.categories.push("Chocolate Milk");
-		this.singular = "chocolate milk";
-		this.plural = "chocolate milk";
-		this.description = "chocolate milk";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const chocolateMilk_prototype: ChocolateMilk = new ChocolateMilk();
-drinks.push(chocolateMilk_prototype);
-dairies.push(chocolateMilk_prototype);
+drinks.push(ChocolateMilk);
+dairies.push(ChocolateMilk);
 
 export class Tea extends Drink {
+	static singular: string = "tea";
+	static plural: string = "tea";
+	static description : string = "A cup of tea.";
+	static sources: Source[] = ["Brewing"];
+	
 	constructor() {
 		super();
 		this.categories.push("Tea");
-		this.singular = "tea";
-		this.plural = "tea";
-		this.description = "tea";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const tea_prototype: Tea = new Tea();
-drinks.push(tea_prototype);
+drinks.push(Tea);
 
 export class SlimeSlurpie extends Drink {
+	static singular: string = "slime slurpie";
+	static plural : string = "slime slurpies";
+	static description : string = "A bottle of slime slurpie.";
+	static sources: Source[] = ["Cooking"];
+	
 	constructor() {
 		super();
 		this.categories.push("Slime Slurpie");
-		this.singular = "slime slurpie";
-		this.plural = "slime slurpies";
-		this.description = "slime slurpie";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const slimeSlurpie_prototype: SlimeSlurpie = new SlimeSlurpie();
-drinks.push(slimeSlurpie_prototype);
+drinks.push(SlimeSlurpie);
 
 export class BugJuice extends Drink {
+	static singular: string = "bug juice";
+	static plural: string = "bug juices";
+	static description: string = "A bottle of bug juice.";
+	static sources: Source[] = ["Brewing"];
+	
 	constructor() {
 		super();
 		this.categories.push("Bug Juice");
-		this.singular = "bug juice";
-		this.plural = "bug juices";
-		this.description = "bug juice";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const bugJuice_prototype: BugJuice = new BugJuice();
-drinks.push(bugJuice_prototype);
+drinks.push(BugJuice);
 
 export class Water extends Drink {
+	static singular: string = "water";
+	static plural: string = "water";
+	static description: string = "A bottle of water.";
+	static sources: Source[] = ["Water"];
+	
 	constructor() {
 		super();
 		this.categories.push("Water");
-		this.singular = "water";
-		this.plural = "water";
-		this.description = "water";
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
 		this.weight = 1;
-		this.sources = ["Farming"];
 	}
 }
-export const water_prototype: Water = new Water();
-drinks.push(water_prototype);
+drinks.push(Water);
