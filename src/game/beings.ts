@@ -5,7 +5,15 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import { Gender, Rarity } from "./types";
+import { Gender, Rarity, DamageType, CombatType } from "./types";
+import * as Affect from "./affects";
+import { Meat } from "./corpse-items";
+
+export type BeingType = {
+  singular: string;
+  plural: string;
+  description: string;
+}
 
 export class Being {
   static singular: string = "Being";
@@ -13,20 +21,54 @@ export class Being {
   static description: string =
     "A living thing including plants, animals, fungi, and Gods.";
 
-  membersOnly: Boolean;
-  types: BeingType[] = [];
+  membersOnly: Boolean = false;
+  strength: number = 0;
+  dexterity: number = 0;
+  stamina: number = 0;
+  fortitude: number = 0;
+  intelligence: number = 0;
+  charisma: number = 0;
+  speed: number = 30; //kilometers per hour
+  maxHealth: number = 100;
+  health: number = 100;
+  maxMana: number = 0;
+  mana: number = 0;
+  maxEnergy: number = 100;
+  energy: number = 100;
+  affects: Affect.Affect[] = [];
+  damageResistances: { [key in DamageType]: number } = {
+    Slashing: 0,
+    Crushing: 0,
+    Blunt: 0,
+    Piercing: 0,
+    Fire: 0,
+    Cold: 0,
+    Lightning: 0,
+    Poison: 0,
+    Holy: 0,
+    Unholy: 0,
+    Arcane: 0,
+  };
+  combatProficiencies: { [key in CombatType]: Boolean } = {
+    Melee: true,
+    Ranged: false,
+    Magic: false,
+  };
+  canFly: Boolean = false;
 
-  constructor() {
-    this.membersOnly = false;
-    this.types.push(Being);
+  getTypes(): BeingType[] {
+    let types : BeingType[] = [];
+    for (let prototype = Object.getPrototypeOf(this); prototype !== Object.prototype; prototype = Object.getPrototypeOf(prototype))
+        types.push(prototype);
+    return types;
+  }
+
+  getMeat(): Meat {
+    return new Meat(this);
   }
 }
 
-export type BeingType = {
-  singular: string;
-  plural: string;
-  description: string;
-};
+
 export var beings: BeingType[] = [];
 beings.push(Being);
 
@@ -46,7 +88,6 @@ export class Humanoid extends Being {
     this.name = name;
     this.gender = gender;
     this.hasBackpack = false;
-    this.types.push(Humanoid);
   }
 }
 beings.push(Humanoid);
@@ -67,7 +108,35 @@ export class Dwarf extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Common";
-    this.types.push(Dwarf);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Dwarf);
@@ -77,10 +146,39 @@ export class Elf extends Humanoid {
   static plural: string = "Elves";
   static description: string =
     "Tall, elegant, and haughty, elves outlive all other humanoid races and create magnificent architecture and art.";
+
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Common";
-    this.types.push(Elf);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Elf);
@@ -94,7 +192,35 @@ export class Gnome extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Uncommon";
-    this.types.push(Gnome);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Gnome);
@@ -108,7 +234,35 @@ export class Halfling extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Uncommon";
-    this.types.push(Halfling);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Halfling);
@@ -118,10 +272,39 @@ export class Human extends Humanoid {
   static plural: string = "Humans";
   static description: string =
     "Pride, Honor, Territory, Ownership: there is rarely anything else on the mind of man";
+
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Common";
-    this.types.push(Human);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Human);
@@ -135,7 +318,35 @@ export class Orc extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Common";
-    this.types.push(Orc);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Orc);
@@ -150,7 +361,35 @@ export class Satyr extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Exotic";
-    this.types.push(Satyr);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Satyr);
@@ -165,7 +404,35 @@ export class Goliath extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Rare";
-    this.types.push(Goliath);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Goliath);
@@ -180,7 +447,35 @@ export class Felix extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Rare";
-    this.types.push(Felix);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Felix);
@@ -199,16 +494,44 @@ export class Mixedblood extends Humanoid {
   constructor(
     name: string,
     gender: Gender,
-    description: string,
     parent1: HumanoidType,
     parent2: HumanoidType
   ) {
     super(name, gender);
     this.rarity = "Uncommon";
-    this.types.push(Mixedblood);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 playableRaces.push(Mixedblood);
+beings.push(...playableRaces);
 
 export class Merfolk extends Humanoid {
   static plural: string = "Mermen";
@@ -219,7 +542,35 @@ export class Merfolk extends Humanoid {
   constructor(name: string, gender: Gender) {
     super(name, gender);
     this.rarity = "Exotic";
-    this.types.push(Merfolk);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Merfolk);
@@ -232,8 +583,36 @@ export class Lizardfolk extends Humanoid {
 
   constructor(name: string, gender: Gender) {
     super(name, gender);
-    this.rarity = "Uncommon";
-    this.types.push(Lizardfolk);
+    this.rarity = "Rare";
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Lizardfolk);
@@ -246,8 +625,36 @@ export class Troll extends Humanoid {
 
   constructor(name: string, gender: Gender) {
     super(name, gender);
-    this.rarity = "Uncommon";
-    this.types.push(Troll);
+    this.rarity = "Rare";
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Troll);
@@ -260,8 +667,36 @@ export class Goblin extends Humanoid {
 
   constructor(name: string, gender: Gender) {
     super(name, gender);
-    this.rarity = "Common";
-    this.types.push(Goblin);
+    this.rarity = "Rare";
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Goblin);
@@ -279,7 +714,35 @@ export class God extends Being {
     super();
     this.name = name;
     this.gender = gender;
-    this.types.push(God);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(God);
@@ -297,7 +760,35 @@ export class Djin extends Being {
     super();
     this.name = name;
     this.gender = gender;
-    this.types.push(Djin);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Djin);
@@ -310,7 +801,35 @@ export class Imp extends Being {
 
   constructor() {
     super();
-    this.types.push(Imp);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Imp);
@@ -323,9 +842,38 @@ export class Undead extends Being {
 
   constructor() {
     super();
-    this.types.push(Undead);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
+beings.push(Undead);
 
 export class Ghost extends Undead {
   static plural: string = "Ghosts";
@@ -335,7 +883,35 @@ export class Ghost extends Undead {
 
   constructor() {
     super();
-    this.types.push(Ghost);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Ghost);
@@ -347,9 +923,38 @@ export class Skeleton extends Undead {
 
   constructor() {
     super();
-    this.types.push(Skeleton);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
+beings.push(Skeleton);
 
 export class Valkyrie extends Being {
   static plural: string = "Valkyries";
@@ -358,7 +963,35 @@ export class Valkyrie extends Being {
 
   constructor() {
     super();
-    this.types.push(Valkyrie);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Valkyrie);
@@ -368,6 +1001,39 @@ export class Fairy extends Being {
   static singular: string = "Fairy";
   static description: string =
     "Fairies are small, flying creatures that are known for their magic";
+
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Fairy);
 
@@ -379,7 +1045,35 @@ export class Leprechaun extends Fairy {
 
   constructor() {
     super();
-    this.types.push(Leprechaun);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Leprechaun);
@@ -392,7 +1086,35 @@ export class Kobold extends Fairy {
 
   constructor() {
     super();
-    this.types.push(Kobold);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Kobold);
@@ -402,6 +1124,39 @@ export class Pixie extends Fairy {
   static singular: string = "Pixie";
   static description: string =
     "Pixies are the smallest of the fairest and the most playful";
+
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Pixie);
 
@@ -413,7 +1168,35 @@ export class Kitsune extends Fairy {
 
   constructor() {
     super();
-    this.types.push(Kitsune);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Kitsune);
@@ -426,7 +1209,35 @@ export class Sphinx extends Being {
 
   constructor() {
     super();
-    this.types.push(Sphinx);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Sphinx);
@@ -439,7 +1250,35 @@ export class Monster extends Being {
 
   constructor() {
     super();
-    this.types.push(Monster);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Monster);
@@ -452,7 +1291,35 @@ export class Minotaur extends Monster {
 
   constructor() {
     super();
-    this.types.push(Minotaur);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Minotaur);
@@ -465,7 +1332,35 @@ export class Hydra extends Monster {
 
   constructor() {
     super();
-    this.types.push(Hydra);
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Hydra);
@@ -473,12 +1368,41 @@ beings.push(Hydra);
 export class Banshee extends Undead {
   static plural: string = "Banshee";
   static singular: string = "Banshee";
-  static description: string = "Banshees are undead women who continually wail their laments of their lost children";
+  static description: string =
+    "Banshees are undead women who continually wail their laments of their lost children";
+  gender: Gender = "Female";
 
-  gender: Gender = "Female"
   constructor() {
-	  super()
-	  this.types.push(Banshee)
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Banshee);
@@ -489,8 +1413,36 @@ export class Animal extends Being {
   static description: string = "A natural being that is not a person";
 
   constructor() {
-	super();
-	this.types.push(Animal);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Animal);
@@ -498,48 +1450,164 @@ beings.push(Animal);
 export class Unicorn extends Animal {
   static plural: string = "Unicorn";
   static singular: string = "Unicorn";
-  static description: string = "Unicorns are mythical creatures that resemble horses.";
+  static description: string =
+    "Unicorns are mythical creatures that resemble horses.";
 
-  constructor() {
-	super();
-	this.types.push(Unicorn);
-  }
+    constructor() {
+      super();
+      this.membersOnly = false;
+      this.strength = 0;
+      this.dexterity = 0;
+      this.stamina = 0;
+      this.fortitude = 0;
+      this.intelligence = 0;
+      this.charisma = 0;
+      this.speed = 30; //kilometers per hour
+      this.maxHealth = 100;
+      this.health = 100;
+      this.maxMana = 0;
+      this.mana = 0;
+      this.maxEnergy = 0;
+      this.energy = 0;
+      this.affects = [];
+      this.damageResistances.Arcane = 0;
+      this.damageResistances.Cold = 0;
+      this.damageResistances.Fire = 0;
+      this.damageResistances.Holy = 0;
+      this.damageResistances.Lightning = 0;
+      this.damageResistances.Poison = 0;
+      this.damageResistances.Slashing = 0;
+      this.damageResistances.Blunt = 0;
+      this.damageResistances.Piercing = 0;
+      this.damageResistances.Unholy = 0;
+      this.combatProficiencies.Melee = false;
+      this.combatProficiencies.Ranged = false;
+      this.combatProficiencies.Magic = false;
+      this.canFly = false;
+    }
 }
 beings.push(Unicorn);
 
 export class Phoenix extends Animal {
   static plural: string = "Phoneix";
   static singular: string = "Phoneix";
-  static description: string = "Phoenixes are mythical creatures reknown for their healing abilities.";
+  static description: string =
+    "Phoenixes are mythical creatures reknown for their healing abilities.";
 
-  constructor() {
-	super();
-	this.types.push(Phoenix);
-  }
+    constructor() {
+      super();
+      this.membersOnly = false;
+      this.strength = 0;
+      this.dexterity = 0;
+      this.stamina = 0;
+      this.fortitude = 0;
+      this.intelligence = 0;
+      this.charisma = 0;
+      this.speed = 30; //kilometers per hour
+      this.maxHealth = 100;
+      this.health = 100;
+      this.maxMana = 0;
+      this.mana = 0;
+      this.maxEnergy = 0;
+      this.energy = 0;
+      this.affects = [];
+      this.damageResistances.Arcane = 0;
+      this.damageResistances.Cold = 0;
+      this.damageResistances.Fire = 0;
+      this.damageResistances.Holy = 0;
+      this.damageResistances.Lightning = 0;
+      this.damageResistances.Poison = 0;
+      this.damageResistances.Slashing = 0;
+      this.damageResistances.Blunt = 0;
+      this.damageResistances.Piercing = 0;
+      this.damageResistances.Unholy = 0;
+      this.combatProficiencies.Melee = false;
+      this.combatProficiencies.Ranged = false;
+      this.combatProficiencies.Magic = false;
+      this.canFly = false;
+    }
 }
 beings.push(Phoenix);
 
 export class Dragon extends Animal {
   static plural: string = "Dragons";
   static singular: string = "Dragon";
-  static description: string = "Dragons are fierce and powerful beings who one should not cross.";
+  static description: string =
+    "Dragons are fierce and powerful beings who one should not cross.";
 
-  constructor() {
-	super();
-	this.types.push(Dragon);
-  }
+    constructor() {
+      super();
+      this.membersOnly = false;
+      this.strength = 0;
+      this.dexterity = 0;
+      this.stamina = 0;
+      this.fortitude = 0;
+      this.intelligence = 0;
+      this.charisma = 0;
+      this.speed = 30; //kilometers per hour
+      this.maxHealth = 100;
+      this.health = 100;
+      this.maxMana = 0;
+      this.mana = 0;
+      this.maxEnergy = 0;
+      this.energy = 0;
+      this.affects = [];
+      this.damageResistances.Arcane = 0;
+      this.damageResistances.Cold = 0;
+      this.damageResistances.Fire = 0;
+      this.damageResistances.Holy = 0;
+      this.damageResistances.Lightning = 0;
+      this.damageResistances.Poison = 0;
+      this.damageResistances.Slashing = 0;
+      this.damageResistances.Blunt = 0;
+      this.damageResistances.Piercing = 0;
+      this.damageResistances.Unholy = 0;
+      this.combatProficiencies.Melee = false;
+      this.combatProficiencies.Ranged = false;
+      this.combatProficiencies.Magic = false;
+      this.canFly = false;
+    }
 }
 beings.push(Dragon);
 
 export class Gryphon extends Animal {
   static plural: string = "Gryphon";
   static singular: string = "Gryphon";
-  static description: string = "With the body of a horse and the head of a bird, the gryphon is a mythical creature.";
+  static description: string =
+    "With the body of a horse and the head of a bird, the gryphon is a mythical creature.";
 
-  constructor() {
-	super();
-	this.types.push(Gryphon);
-  }
+    constructor() {
+      super();
+      this.membersOnly = false;
+      this.strength = 0;
+      this.dexterity = 0;
+      this.stamina = 0;
+      this.fortitude = 0;
+      this.intelligence = 0;
+      this.charisma = 0;
+      this.speed = 30; //kilometers per hour
+      this.maxHealth = 100;
+      this.health = 100;
+      this.maxMana = 0;
+      this.mana = 0;
+      this.maxEnergy = 0;
+      this.energy = 0;
+      this.affects = [];
+      this.damageResistances.Arcane = 0;
+      this.damageResistances.Cold = 0;
+      this.damageResistances.Fire = 0;
+      this.damageResistances.Holy = 0;
+      this.damageResistances.Lightning = 0;
+      this.damageResistances.Poison = 0;
+      this.damageResistances.Slashing = 0;
+      this.damageResistances.Blunt = 0;
+      this.damageResistances.Piercing = 0;
+      this.damageResistances.Unholy = 0;
+      this.combatProficiencies.Melee = false;
+      this.combatProficiencies.Ranged = false;
+      this.combatProficiencies.Magic = false;
+      this.canFly = false;
+    }
 }
 beings.push(Gryphon);
 
@@ -549,8 +1617,36 @@ export class Elephant extends Animal {
   static description: string = "Elephant are large intelligent mounts";
 
   constructor() {
-	super();
-	this.types.push(Elephant);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Elephant);
@@ -561,8 +1657,36 @@ export class Lizardmount extends Animal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Lizardmount);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Lizardmount);
@@ -573,8 +1697,36 @@ export class Ostrich extends Animal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Ostrich);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Ostrich);
@@ -586,8 +1738,36 @@ export class Pet extends Animal {
   canLeash: Boolean = true;
 
   constructor() {
-	super();
-	this.types.push(Pet);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Pet);
@@ -595,24 +1775,82 @@ beings.push(Pet);
 export class Cat extends Pet {
   static plural: string = "Cats";
   static singular: string = "Cat";
-  static description: string = "Cats are small, furry, and domesticated animals.";
+  static description: string =
+    "Cats are small, furry, and domesticated animals.";
 
-  constructor() {
-	super();
-	this.types.push(Cat);
-  }
+    constructor() {
+      super();
+      this.membersOnly = false;
+      this.strength = 0;
+      this.dexterity = 0;
+      this.stamina = 0;
+      this.fortitude = 0;
+      this.intelligence = 0;
+      this.charisma = 0;
+      this.speed = 30; //kilometers per hour
+      this.maxHealth = 100;
+      this.health = 100;
+      this.maxMana = 0;
+      this.mana = 0;
+      this.maxEnergy = 0;
+      this.energy = 0;
+      this.affects = [];
+      this.damageResistances.Arcane = 0;
+      this.damageResistances.Cold = 0;
+      this.damageResistances.Fire = 0;
+      this.damageResistances.Holy = 0;
+      this.damageResistances.Lightning = 0;
+      this.damageResistances.Poison = 0;
+      this.damageResistances.Slashing = 0;
+      this.damageResistances.Blunt = 0;
+      this.damageResistances.Piercing = 0;
+      this.damageResistances.Unholy = 0;
+      this.combatProficiencies.Melee = false;
+      this.combatProficiencies.Ranged = false;
+      this.combatProficiencies.Magic = false;
+      this.canFly = false;
+    }
 }
 beings.push(Cat);
 
 export class Dog extends Pet {
   static plural: string = "Dogs";
   static singular: string = "Dog";
-  static description: string = "Dogs are small, furry, and domesticated animals.";
+  static description: string =
+    "Dogs are small, furry, and domesticated animals.";
 
-  constructor() {
-	super();
-	this.types.push(Dog);
-  }
+    constructor() {
+      super();
+      this.membersOnly = false;
+      this.strength = 0;
+      this.dexterity = 0;
+      this.stamina = 0;
+      this.fortitude = 0;
+      this.intelligence = 0;
+      this.charisma = 0;
+      this.speed = 30; //kilometers per hour
+      this.maxHealth = 100;
+      this.health = 100;
+      this.maxMana = 0;
+      this.mana = 0;
+      this.maxEnergy = 0;
+      this.energy = 0;
+      this.affects = [];
+      this.damageResistances.Arcane = 0;
+      this.damageResistances.Cold = 0;
+      this.damageResistances.Fire = 0;
+      this.damageResistances.Holy = 0;
+      this.damageResistances.Lightning = 0;
+      this.damageResistances.Poison = 0;
+      this.damageResistances.Slashing = 0;
+      this.damageResistances.Blunt = 0;
+      this.damageResistances.Piercing = 0;
+      this.damageResistances.Unholy = 0;
+      this.combatProficiencies.Melee = false;
+      this.combatProficiencies.Ranged = false;
+      this.combatProficiencies.Magic = false;
+      this.canFly = false;
+    }
 }
 beings.push(Dog);
 
@@ -622,8 +1860,36 @@ export class Chameleon extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Chameleon);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Chameleon);
@@ -634,8 +1900,36 @@ export class Parrot extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Parrot);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Parrot);
@@ -646,8 +1940,36 @@ export class Ferret extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Ferret);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Ferret);
@@ -658,8 +1980,36 @@ export class Songbird extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Songbird);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Songbird);
@@ -670,8 +2020,36 @@ export class Rabbit extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Rabbit);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Rabbit);
@@ -682,8 +2060,36 @@ export class Mouse extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Mouse);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Mouse);
@@ -694,8 +2100,36 @@ export class Hedgehog extends Pet {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Hedgehog);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Hedgehog);
@@ -704,11 +2138,6 @@ export class FarmAnimal extends Animal {
   static plural: string = "Farm Animals";
   static singular: string = "Farm Animal";
   static description: string;
-
-  constructor() {
-	super();
-	this.types.push(FarmAnimal);
-  }
 }
 beings.push(FarmAnimal);
 
@@ -718,8 +2147,36 @@ export class Horse extends FarmAnimal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Horse);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Horse);
@@ -730,8 +2187,36 @@ export class Llama extends FarmAnimal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Llama);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Llama);
@@ -742,8 +2227,36 @@ export class Donkey extends FarmAnimal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Donkey);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Donkey);
@@ -754,8 +2267,36 @@ export class Ox extends FarmAnimal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Ox);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Ox);
@@ -766,8 +2307,36 @@ export class Fish extends Animal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Fish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Fish);
@@ -778,8 +2347,36 @@ export class Deer extends Animal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Deer);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Deer);
@@ -790,8 +2387,36 @@ export class Reindeer extends Animal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Reindeer);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Reindeer);
@@ -802,8 +2427,36 @@ export class Elk extends Animal {
   static description: string;
 
   constructor() {
-	super();
-	this.types.push(Elk);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Elk);
@@ -814,8 +2467,36 @@ export class Adder extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Adder);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Adder);
@@ -826,8 +2507,36 @@ export class Barracuda extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Barracuda);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Barracuda);
@@ -838,8 +2547,36 @@ export class Carp extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Carp);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Carp);
@@ -850,8 +2587,36 @@ export class Catfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Catfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Catfish);
@@ -862,8 +2627,36 @@ export class Crayfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Crayfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Crayfish);
@@ -874,8 +2667,36 @@ export class Eel extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Eel);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Eel);
@@ -886,8 +2707,36 @@ export class Jewelfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Jewelfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Jewelfish);
@@ -898,8 +2747,36 @@ export class Silverling extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Silverling);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Silverling);
@@ -910,8 +2787,36 @@ export class Swordfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Swordfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Swordfish);
@@ -922,8 +2827,36 @@ export class Trout extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Trout);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Trout);
@@ -934,8 +2867,36 @@ export class RainbowTrout extends Trout {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(RainbowTrout);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(RainbowTrout);
@@ -946,8 +2907,36 @@ export class Salmon extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Salmon);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Salmon);
@@ -958,8 +2947,36 @@ export class Cod extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Cod);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Cod);
@@ -970,8 +2987,36 @@ export class Mahi extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Mahi);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Mahi);
@@ -982,8 +3027,36 @@ export class Jellyfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Jellyfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Jellyfish);
@@ -994,8 +3067,36 @@ export class Anchovy extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Anchovy);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Anchovy);
@@ -1006,8 +3107,36 @@ export class Barrelfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Barrelfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Barrelfish);
@@ -1018,8 +3147,36 @@ export class Octopus extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Octopus);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Octopus);
@@ -1030,8 +3187,36 @@ export class Dolphin extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Dolphin);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Dolphin);
@@ -1042,8 +3227,36 @@ export class Whale extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Whale);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Whale);
@@ -1054,8 +3267,36 @@ export class Squid extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Squid);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Squid);
@@ -1066,8 +3307,36 @@ export class Anglerfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Anglerfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Anglerfish);
@@ -1078,8 +3347,36 @@ export class SandDollar extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(SandDollar);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(SandDollar);
@@ -1090,8 +3387,36 @@ export class Starfish extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Starfish);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Starfish);
@@ -1102,8 +3427,36 @@ export class SeaUrchin extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(SeaUrchin);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(SeaUrchin);
@@ -1114,8 +3467,36 @@ export class Lobster extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Lobster);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Lobster);
@@ -1126,8 +3507,36 @@ export class Clam extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Clam);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Clam);
@@ -1138,8 +3547,36 @@ export class Crab extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Crab);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Crab);
@@ -1150,8 +3587,36 @@ export class Shrimp extends Fish {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Shrimp);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Shrimp);
@@ -1162,8 +3627,36 @@ export class Seal extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Seal);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Seal);
@@ -1173,9 +3666,37 @@ export class Shark extends Fish {
   static singular: string = "Shark";
   static description: string = "";
 
-  constructor() {	
-	super();
-	this.types.push(Shark);
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Shark);
@@ -1186,8 +3707,36 @@ export class Walrus extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Walrus);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Walrus);
@@ -1198,8 +3747,36 @@ export class Ray extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Ray);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Ray);
@@ -1210,8 +3787,36 @@ export class Bird extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Bird);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Bird);
@@ -1222,8 +3827,36 @@ export class Condor extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Condor);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Condor);
@@ -1234,8 +3867,36 @@ export class Dove extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Dove);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Dove);
@@ -1246,8 +3907,36 @@ export class Eagle extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Eagle);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Eagle);
@@ -1258,8 +3947,36 @@ export class Hawk extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Hawk);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Hawk);
@@ -1270,8 +3987,36 @@ export class Owl extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Owl);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Owl);
@@ -1282,8 +4027,36 @@ export class Pheasant extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Pheasant);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Pheasant);
@@ -1294,8 +4067,36 @@ export class Raven extends Bird {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Raven);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Raven);
@@ -1306,8 +4107,36 @@ export class Insect extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Insect);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Insect);
@@ -1318,8 +4147,36 @@ export class Snake extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Snake);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Snake);
@@ -1330,8 +4187,36 @@ export class Anaconda extends Snake {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Anaconda);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Anaconda);
@@ -1342,8 +4227,36 @@ export class RatSnake extends Snake {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(RatSnake);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(RatSnake);
@@ -1354,8 +4267,36 @@ export class RattleSnake extends Snake {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(RattleSnake);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(RattleSnake);
@@ -1366,8 +4307,36 @@ export class Fox extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Fox);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Fox);
@@ -1378,8 +4347,36 @@ export class ArticFox extends Fox {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(ArticFox);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(ArticFox);
@@ -1390,8 +4387,36 @@ export class Baboon extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Baboon);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Baboon);
@@ -1402,8 +4427,36 @@ export class Ape extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Ape);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Ape);
@@ -1414,8 +4467,36 @@ export class Badger extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Badger);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Badger);
@@ -1426,8 +4507,36 @@ export class Bat extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Bat);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Bat);
@@ -1438,8 +4547,36 @@ export class Bear extends Animal {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Bear);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Bear);
@@ -1450,8 +4587,36 @@ export class BlackBear extends Bear {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(BlackBear);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(BlackBear);
@@ -1462,8 +4627,36 @@ export class Grizzly extends Bear {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(Grizzly);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(Grizzly);
@@ -1474,8 +4667,36 @@ export class PolarBear extends Bear {
   static description: string = "";
 
   constructor() {
-	super();
-	this.types.push(PolarBear);
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
   }
 }
 beings.push(PolarBear);

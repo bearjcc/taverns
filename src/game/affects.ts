@@ -17,31 +17,31 @@ export class Affect {
 }
 
 // define new Affect cold
-var cold = new Affect("Cold", "I am cold.");
+export const cold = new Affect("Cold", "I am cold.");
 
 // define new Affect hungry
-var hungry = new Affect("Hungry", "I am hungry.");
+export const hungry = new Affect("Hungry", "I am hungry.");
 
 // define new Affect poisoned
-var poisoned = new Affect("Poisoned", "I am poisoned.");
+export const poisoned = new Affect("Poisoned", "I am poisoned.");
 
 // define new Affect blinded
-var blinded = new Affect("Blinded", "I am blinded.");
+export const blinded = new Affect("Blinded", "I am blinded.");
 
 // define new Affect stunned
-var stunned = new Affect("Stunned", "I am stunned.");
+export const stunned = new Affect("Stunned", "I am stunned.");
 
 // define new Affect thirsty
-var thirsty = new Affect("Thirsty", "I am thirsty.");
+export const thirsty = new Affect("Thirsty", "I am thirsty.");
 
 // define new Affect drunk
-var drunk = new Affect("Drunk", "I am drunk.");
+export const drunk = new Affect("Drunk", "I am drunk.");
 
 // define new Affect confused
-var confused = new Affect("Confused", "I am confused.");
+export const confused = new Affect("Confused", "I am confused.");
 
 // define new Affect invisible
-var invisible = new Affect("Invisible", "I am invisible.");
+export const invisible = new Affect("Invisible", "I am invisible.");
 
 // define new Affect tired
-var tired = new Affect("Tired", "I am tired.");
+export const tired = new Affect("Tired", "I am tired.");
