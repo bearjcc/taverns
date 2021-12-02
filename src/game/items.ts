@@ -1,3 +1,4 @@
+import { Class } from './types';
 // ============================================================================
 // Language: TypeScript
 // Path: ts\items.ts
@@ -6,37 +7,48 @@
 // Owner: Ursa Minor Inc.
 // ============================================================================
 
+export type ItemType = {
+	singular: string;
+	plural: string;
+	description: string;
+} & Class
+
 export class Item {
-	singular: string = "Item";
-	plural: string = "Items";
-	description: string =
+	static singular: string = "Item";
+	static plural: string = "Items";
+	static description: string =
 		"An Item is something that a player can take with them and use.";
+	static sources: Source[] = []; // where a user can obtain the item
+	static membersOnly: boolean = false;
+	
 	quality: number = 0; // (0-100)
-
 	weight: number = 0; // kilograms
-	membersOnly: boolean = false;
-	categories: string[] = [];
-
-	sources: Source[] = []; // where a user can obtain the item
-
-	constructor() {
-		this.categories.push("Item");
-	}
 
 	getInfo(qty: number): string {
 		switch (qty) {
 			case 0:
-				return `No ${this.plural}`;
+				return `No ${this.getType().plural}`;
 			case 1:
 				if (this.getQuality() === "average") {
-					return `An ${this.getQuality()} ${this.singular}`;
+					return `An ${this.getQuality()} ${this.getType().singular}`;
 				} else {
-					return `A ${this.getQuality()} ${this.singular}`;
+					return `A ${this.getQuality()} ${this.getType().singular}`;
 				}
 			default:
-				return `Some ${this.getQuality()} ${this.plural}`;
+				return `Some ${this.getQuality()} ${this.getType().plural}`;
 		}
 	}
+
+	getType(): ItemType | Item & {singular: string, plural: string, description: string} {
+		return Object.getPrototypeOf(this);
+	}
+
+	getTypes(): ItemType[] {
+		let types : ItemType[] = [];
+		for (let prototype = Object.getPrototypeOf(this); prototype !== Object.prototype; prototype = Object.getPrototypeOf(prototype))
+			types.push(prototype);
+		return types;
+	  }
 
 	getQuality() {
 		if (this.quality < 30) {
@@ -76,28 +88,73 @@ export type Source =
 	| "Potions"
 	| "Hunting"
 	| "Religious Ceremony"
-	| "Alchemy";
+	| "Alchemy"
+	| "Woodcutting";
 
-// // Cooking
-// var FryingPan = new Item("Frying Pan", "A pan that can be used to fry food.");
-// var Jar = new Item("Jar", "A jar that can hold liquids.");
-// var BreadTin = new Item("Bread Tin", "A tin that can hold bread.");
-// var Pot = new Item("Pot", "A pot that can hold food.");
-// var PieTin = new Item("Pie Tin", "A tin that can hold pies.");
 
 // // Crafting
 
 // //Weapons
 // var Hammer = new Item("Hammer", "A hammer that can be used to smash things.");
+export class Hammer extends Item {
+	static singular = "Hammer";
+	static plural = "Hammers";
+	static description = "A hammer that can be used to smash things.";
+}
 // var Pick = new Item("Pick", "A pick that can be used to mine things.");
+export class Pick extends Item {
+	static singular = "Pick";
+	static plural = "Picks";
+	static description = "A pick that can be used to mine things.";
+}
 // var Axe = new Item("Axe", "An axe that can be used to chop things.");
+export class Axe extends Item {
+	static singular = "Axe";
+	static plural = "Axes";
+	static description = "An axe that can be used to chop things.";
+}
 // var Saw = new Item("Saw", "A saw that can be used to cut things.");
+export class Saw extends Item {
+	static singular = "Saw";
+	static plural = "Saws";
+	static description = "A saw that can be used to cut things.";
+}
 // var Knife = new Item("Knife", "A knife that can be used to cut things.");
+export class Knife extends Item {
+	static singular = "Knife";
+	static plural = "Knives";
+	static description = "A knife that can be used to cut things.";
+}
 // var Sword = new Item("Sword", "A sword that can be used to cut things.");
+export class Sword extends Item {
+	static singular = "Sword";
+	static plural = "Swords";
+	static description = "A sword that can be used to cut things.";
+}
 // var Mace = new Item("Mace", "A mace that can be used to smash things.");
+export class Mace extends Item {
+	static singular = "Mace";
+	static plural = "Maces";
+	static description = "A mace that can be used to smash things.";
+}
 // var Spear = new Item("Spear", "A spear that can be used to smash things.");
+export class Spear extends Item {
+	static singular = "Spear";
+	static plural = "Spears";
+	static description = "A spear that can be used to smash things.";
+}
 // var Bow = new Item("Bow", "A bow that can be used to shoot things.");
+export class Bow extends Item {
+	static singular = "Bow";
+	static plural = "Bows";
+	static description = "A bow that can be used to shoot things.";
+}
 // var Crossbow = new Item("Crossbow", "A crossbow that can be used to shoot things.");
+export class Crossbow extends Item {
+	static singular = "Crossbow";
+	static plural = "Crossbows";
+	static description = "A crossbow that can be used to shoot things.";
+}
 
 // arsenic
 // azuth

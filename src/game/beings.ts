@@ -5,15 +5,15 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import { Gender, Rarity, DamageType, CombatType } from "./types";
+import { Gender, Rarity, DamageType, CombatType, Class } from "./types";
 import * as Affect from "./affects";
-import { Meat } from "./corpse-items";
+import { Meat, Skeleton, Skull, Feather } from "./being-items";
 
 export type BeingType = {
   singular: string;
   plural: string;
   description: string;
-}
+} & Class;
 
 export class Being {
   static singular: string = "Being";
@@ -57,17 +57,35 @@ export class Being {
   canFly: Boolean = false;
 
   getTypes(): BeingType[] {
-    let types : BeingType[] = [];
-    for (let prototype = Object.getPrototypeOf(this); prototype !== Object.prototype; prototype = Object.getPrototypeOf(prototype))
-        types.push(prototype);
+    let types: BeingType[] = [];
+    for (
+      let prototype = Object.getPrototypeOf(this);
+      prototype !== Object.prototype;
+      prototype = Object.getPrototypeOf(prototype)
+    )
+      types.push(prototype);
     return types;
   }
 
+  getType(): BeingType {
+    return Object.getPrototypeOf(this);
+  }
+
   getMeat(): Meat {
-    return new Meat(this);
+    // TODO: quality and weight of meat
+    return this.health === 0 ? new Meat(this) : null;
+  }
+
+  getSkull(): Skull {
+    // TODO: quality and weight of skull
+    return this.health === 0 ? new Skull(this) : null;
+  }
+
+  getSkeleton(): Skeleton {
+    // TODO: quality and weight of skeleton
+    return this.health === 0 ? new Skeleton(this) : null;
   }
 }
-
 
 export var beings: BeingType[] = [];
 beings.push(Being);
@@ -96,7 +114,7 @@ export type HumanoidType = {
   singular: string;
   plural: string;
   description: string;
-};
+} & Class;
 export var playableRaces: HumanoidType[] = [];
 
 export class Dwarf extends Humanoid {
@@ -916,7 +934,7 @@ export class Ghost extends Undead {
 }
 beings.push(Ghost);
 
-export class Skeleton extends Undead {
+export class WalkingSkeleton extends Undead {
   static plural: string = "Skeletons";
   static singular: string = "Skeleton";
   static description: string = "There is nothing left of this being but bones";
@@ -954,7 +972,7 @@ export class Skeleton extends Undead {
     this.canFly = false;
   }
 }
-beings.push(Skeleton);
+beings.push(WalkingSkeleton);
 
 export class Valkyrie extends Being {
   static plural: string = "Valkyries";
@@ -1453,38 +1471,38 @@ export class Unicorn extends Animal {
   static description: string =
     "Unicorns are mythical creatures that resemble horses.";
 
-    constructor() {
-      super();
-      this.membersOnly = false;
-      this.strength = 0;
-      this.dexterity = 0;
-      this.stamina = 0;
-      this.fortitude = 0;
-      this.intelligence = 0;
-      this.charisma = 0;
-      this.speed = 30; //kilometers per hour
-      this.maxHealth = 100;
-      this.health = 100;
-      this.maxMana = 0;
-      this.mana = 0;
-      this.maxEnergy = 0;
-      this.energy = 0;
-      this.affects = [];
-      this.damageResistances.Arcane = 0;
-      this.damageResistances.Cold = 0;
-      this.damageResistances.Fire = 0;
-      this.damageResistances.Holy = 0;
-      this.damageResistances.Lightning = 0;
-      this.damageResistances.Poison = 0;
-      this.damageResistances.Slashing = 0;
-      this.damageResistances.Blunt = 0;
-      this.damageResistances.Piercing = 0;
-      this.damageResistances.Unholy = 0;
-      this.combatProficiencies.Melee = false;
-      this.combatProficiencies.Ranged = false;
-      this.combatProficiencies.Magic = false;
-      this.canFly = false;
-    }
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Unicorn);
 
@@ -1494,38 +1512,38 @@ export class Phoenix extends Animal {
   static description: string =
     "Phoenixes are mythical creatures reknown for their healing abilities.";
 
-    constructor() {
-      super();
-      this.membersOnly = false;
-      this.strength = 0;
-      this.dexterity = 0;
-      this.stamina = 0;
-      this.fortitude = 0;
-      this.intelligence = 0;
-      this.charisma = 0;
-      this.speed = 30; //kilometers per hour
-      this.maxHealth = 100;
-      this.health = 100;
-      this.maxMana = 0;
-      this.mana = 0;
-      this.maxEnergy = 0;
-      this.energy = 0;
-      this.affects = [];
-      this.damageResistances.Arcane = 0;
-      this.damageResistances.Cold = 0;
-      this.damageResistances.Fire = 0;
-      this.damageResistances.Holy = 0;
-      this.damageResistances.Lightning = 0;
-      this.damageResistances.Poison = 0;
-      this.damageResistances.Slashing = 0;
-      this.damageResistances.Blunt = 0;
-      this.damageResistances.Piercing = 0;
-      this.damageResistances.Unholy = 0;
-      this.combatProficiencies.Melee = false;
-      this.combatProficiencies.Ranged = false;
-      this.combatProficiencies.Magic = false;
-      this.canFly = false;
-    }
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Phoenix);
 
@@ -1535,38 +1553,38 @@ export class Dragon extends Animal {
   static description: string =
     "Dragons are fierce and powerful beings who one should not cross.";
 
-    constructor() {
-      super();
-      this.membersOnly = false;
-      this.strength = 0;
-      this.dexterity = 0;
-      this.stamina = 0;
-      this.fortitude = 0;
-      this.intelligence = 0;
-      this.charisma = 0;
-      this.speed = 30; //kilometers per hour
-      this.maxHealth = 100;
-      this.health = 100;
-      this.maxMana = 0;
-      this.mana = 0;
-      this.maxEnergy = 0;
-      this.energy = 0;
-      this.affects = [];
-      this.damageResistances.Arcane = 0;
-      this.damageResistances.Cold = 0;
-      this.damageResistances.Fire = 0;
-      this.damageResistances.Holy = 0;
-      this.damageResistances.Lightning = 0;
-      this.damageResistances.Poison = 0;
-      this.damageResistances.Slashing = 0;
-      this.damageResistances.Blunt = 0;
-      this.damageResistances.Piercing = 0;
-      this.damageResistances.Unholy = 0;
-      this.combatProficiencies.Melee = false;
-      this.combatProficiencies.Ranged = false;
-      this.combatProficiencies.Magic = false;
-      this.canFly = false;
-    }
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Dragon);
 
@@ -1576,38 +1594,38 @@ export class Gryphon extends Animal {
   static description: string =
     "With the body of a horse and the head of a bird, the gryphon is a mythical creature.";
 
-    constructor() {
-      super();
-      this.membersOnly = false;
-      this.strength = 0;
-      this.dexterity = 0;
-      this.stamina = 0;
-      this.fortitude = 0;
-      this.intelligence = 0;
-      this.charisma = 0;
-      this.speed = 30; //kilometers per hour
-      this.maxHealth = 100;
-      this.health = 100;
-      this.maxMana = 0;
-      this.mana = 0;
-      this.maxEnergy = 0;
-      this.energy = 0;
-      this.affects = [];
-      this.damageResistances.Arcane = 0;
-      this.damageResistances.Cold = 0;
-      this.damageResistances.Fire = 0;
-      this.damageResistances.Holy = 0;
-      this.damageResistances.Lightning = 0;
-      this.damageResistances.Poison = 0;
-      this.damageResistances.Slashing = 0;
-      this.damageResistances.Blunt = 0;
-      this.damageResistances.Piercing = 0;
-      this.damageResistances.Unholy = 0;
-      this.combatProficiencies.Melee = false;
-      this.combatProficiencies.Ranged = false;
-      this.combatProficiencies.Magic = false;
-      this.canFly = false;
-    }
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Gryphon);
 
@@ -1778,38 +1796,38 @@ export class Cat extends Pet {
   static description: string =
     "Cats are small, furry, and domesticated animals.";
 
-    constructor() {
-      super();
-      this.membersOnly = false;
-      this.strength = 0;
-      this.dexterity = 0;
-      this.stamina = 0;
-      this.fortitude = 0;
-      this.intelligence = 0;
-      this.charisma = 0;
-      this.speed = 30; //kilometers per hour
-      this.maxHealth = 100;
-      this.health = 100;
-      this.maxMana = 0;
-      this.mana = 0;
-      this.maxEnergy = 0;
-      this.energy = 0;
-      this.affects = [];
-      this.damageResistances.Arcane = 0;
-      this.damageResistances.Cold = 0;
-      this.damageResistances.Fire = 0;
-      this.damageResistances.Holy = 0;
-      this.damageResistances.Lightning = 0;
-      this.damageResistances.Poison = 0;
-      this.damageResistances.Slashing = 0;
-      this.damageResistances.Blunt = 0;
-      this.damageResistances.Piercing = 0;
-      this.damageResistances.Unholy = 0;
-      this.combatProficiencies.Melee = false;
-      this.combatProficiencies.Ranged = false;
-      this.combatProficiencies.Magic = false;
-      this.canFly = false;
-    }
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Cat);
 
@@ -1819,38 +1837,38 @@ export class Dog extends Pet {
   static description: string =
     "Dogs are small, furry, and domesticated animals.";
 
-    constructor() {
-      super();
-      this.membersOnly = false;
-      this.strength = 0;
-      this.dexterity = 0;
-      this.stamina = 0;
-      this.fortitude = 0;
-      this.intelligence = 0;
-      this.charisma = 0;
-      this.speed = 30; //kilometers per hour
-      this.maxHealth = 100;
-      this.health = 100;
-      this.maxMana = 0;
-      this.mana = 0;
-      this.maxEnergy = 0;
-      this.energy = 0;
-      this.affects = [];
-      this.damageResistances.Arcane = 0;
-      this.damageResistances.Cold = 0;
-      this.damageResistances.Fire = 0;
-      this.damageResistances.Holy = 0;
-      this.damageResistances.Lightning = 0;
-      this.damageResistances.Poison = 0;
-      this.damageResistances.Slashing = 0;
-      this.damageResistances.Blunt = 0;
-      this.damageResistances.Piercing = 0;
-      this.damageResistances.Unholy = 0;
-      this.combatProficiencies.Melee = false;
-      this.combatProficiencies.Ranged = false;
-      this.combatProficiencies.Magic = false;
-      this.canFly = false;
-    }
+  constructor() {
+    super();
+    this.membersOnly = false;
+    this.strength = 0;
+    this.dexterity = 0;
+    this.stamina = 0;
+    this.fortitude = 0;
+    this.intelligence = 0;
+    this.charisma = 0;
+    this.speed = 30; //kilometers per hour
+    this.maxHealth = 100;
+    this.health = 100;
+    this.maxMana = 0;
+    this.mana = 0;
+    this.maxEnergy = 0;
+    this.energy = 0;
+    this.affects = [];
+    this.damageResistances.Arcane = 0;
+    this.damageResistances.Cold = 0;
+    this.damageResistances.Fire = 0;
+    this.damageResistances.Holy = 0;
+    this.damageResistances.Lightning = 0;
+    this.damageResistances.Poison = 0;
+    this.damageResistances.Slashing = 0;
+    this.damageResistances.Blunt = 0;
+    this.damageResistances.Piercing = 0;
+    this.damageResistances.Unholy = 0;
+    this.combatProficiencies.Melee = false;
+    this.combatProficiencies.Ranged = false;
+    this.combatProficiencies.Magic = false;
+    this.canFly = false;
+  }
 }
 beings.push(Dog);
 
@@ -3786,6 +3804,23 @@ export class Bird extends Animal {
   static singular: string = "Bird";
   static description: string = "";
 
+  numFeathers: number;
+
+  getFeathers(): Feather[] {
+    if (!this.health)
+      //only available if dead
+      return null;
+    let feathers: Feather[] = [];
+    for (let i = 0; i < this.numFeathers; i++) {
+      feathers.push(this.getFeather());
+    }
+    return feathers;
+  }
+
+  getFeather(): Feather {
+    return new Feather(this);
+  }
+
   constructor() {
     super();
     this.membersOnly = false;
@@ -3816,7 +3851,8 @@ export class Bird extends Animal {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.canFly = true;
+    this.numFeathers = 10;
   }
 }
 beings.push(Bird);
@@ -3856,7 +3892,7 @@ export class Condor extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 20;
   }
 }
 beings.push(Condor);
@@ -3896,7 +3932,7 @@ export class Dove extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 10;
   }
 }
 beings.push(Dove);
@@ -3936,7 +3972,7 @@ export class Eagle extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 20;
   }
 }
 beings.push(Eagle);
@@ -3976,7 +4012,7 @@ export class Hawk extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 20;
   }
 }
 beings.push(Hawk);
@@ -4016,7 +4052,7 @@ export class Owl extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 20;
   }
 }
 beings.push(Owl);
@@ -4056,7 +4092,7 @@ export class Pheasant extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 20;
   }
 }
 beings.push(Pheasant);
@@ -4096,7 +4132,7 @@ export class Raven extends Bird {
     this.combatProficiencies.Melee = false;
     this.combatProficiencies.Ranged = false;
     this.combatProficiencies.Magic = false;
-    this.canFly = false;
+    this.numFeathers = 20;
   }
 }
 beings.push(Raven);

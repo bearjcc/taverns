@@ -5,37 +5,50 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+
 import { Item } from "./items";
 
+export type ConsumableType = {
+	singular: string;
+	plural: string;
+	description: string;
+}
+
 export class Consumable extends Item {
-	singular = "Consumable";
-	plural = "Consumables";
-	description = "A consumable is something that a player can use up";
+	static singular = "Consumable";
+	static plural = "Consumables";
+	static description = "A consumable is something that a player can use up";
 
 	hasType: boolean = false; // does the consumable have a type?
 	hp: number = 0; // positive number heals, negative number damages
 
-	constructor() {
-		super();
-		this.categories.push("Consumable");
-	}
-
 	consume() {
-		console.log(`You consumed the ${this.singular}`);
+		console.log(`You consumed the ${this.getType().singular}`);
 	}
 }
 
-export var dairies: Consumable[] = [];
+export var dairies: ConsumableType[] = [];
 
-export class Ice extends Consumable {
+export class Water extends Consumable {
+	static singular: string = "Water";
+	static plural: string = "Water";
+	static description: string = "liquid sustenance";
+
 	constructor() {
 		super();
-		this.categories.push("Crushed Ice");
-		this.singular = "crushed ice";
-		this.plural = "crushed ice";
-		this.description = "crushed ice";
 		this.hp = 0;
 		this.weight = 1;
 	}
 }
-export const crushedIce_prototype: Ice = new Ice();
+
+export class Ice extends Consumable {
+	static singular = "crushed ice";
+	static plural = "crushed ice";
+	static description = "crushed ice";
+	
+	constructor() {
+		super();
+		this.hp = 0;
+		this.weight = 1;
+	}
+}
