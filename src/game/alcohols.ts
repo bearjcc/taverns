@@ -6,23 +6,20 @@
 // Owner: Ursa Minor Inc.
 // ============================================================================
 
-import { Drink, drinks } from "./drinks";
-import { Source } from "./items";
-import { Class } from "./types";
+import { Drink, drinks, DrinkType } from "./drinks";
+import { Source } from "./types";
 
 export class Alcohol extends Drink {
+	static readonly alcohol:null;
 	drunkness: number = 0; // positive makes more intoxicated
 }
 
-export type AlcoholType = {
-	singular: string;
-	plural: string;
-	description: string;
-} & Class;
+export type AlcoholType = DrinkType & {alcohol:null};
 
 export var alcohols: AlcoholType[] = [];
 
 export class Wine extends Alcohol {
+	static readonly wine:null;
 	static singular : string = "wine";
 	static plural : string = "wines";
 	static description : string = "A bottle of wine.";
@@ -35,7 +32,7 @@ export class Wine extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 
@@ -50,7 +47,7 @@ export class WhiteWine extends Wine {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(WhiteWine);
@@ -66,7 +63,7 @@ export class RedWine extends Wine {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(RedWine);
@@ -82,7 +79,7 @@ export class MuscadineWine extends Wine {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(MuscadineWine);
@@ -98,7 +95,7 @@ export class Rosé extends Wine {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Rosé);
@@ -116,7 +113,7 @@ export class Beer extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Beer);
@@ -134,7 +131,7 @@ export class Whiskey extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Whiskey);
@@ -152,7 +149,7 @@ export class Vodka extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Vodka);
@@ -170,7 +167,7 @@ export class Rum extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Rum);
@@ -188,7 +185,7 @@ export class Tequila extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Tequila);
@@ -206,7 +203,7 @@ export class Gin extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Gin);
@@ -224,12 +221,13 @@ export class Brandy extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Brandy);
 
 export class Cocktail extends Alcohol {
+	static readonly cocktail:null;
 	static singular : string = "cocktail";
 	static plural : string = "cocktails";
 	static description: string = "A bottle of cocktail.";
@@ -242,7 +240,7 @@ export class Cocktail extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Cocktail);
@@ -260,7 +258,7 @@ export class Grog extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Grog);
@@ -278,12 +276,13 @@ export class DevilsBlood extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(DevilsBlood);
 
 export class Cider extends Alcohol {
+	static readonly cider:null;
 	static singular : string = "cider";
 	static plural : string = "ciders";
 	static description: string = "A bottle of cider.";
@@ -298,7 +297,7 @@ export class Cider extends Alcohol {
 		this.thirst = 0;
 		this.drunkness = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 alcohols.push(Cider);

@@ -9,6 +9,7 @@ import { Recipe } from './recipes';
 import { distillery } from './skills';
 
 export class DistillingRecipe extends Recipe {
+    static readonly distillingrecipe:null;
     notes: string = "";
 
     constructor(name: string, description: string) {

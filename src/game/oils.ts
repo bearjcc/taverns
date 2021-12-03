@@ -1,5 +1,6 @@
 // ============================================================================
 // Language: TypeScript
+// Path: src\game\oils.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.

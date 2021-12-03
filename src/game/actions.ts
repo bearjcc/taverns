@@ -1,16 +1,19 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\game\achievements.ts
+// Path: ts\game\actions.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+import { GameMechanic } from './types';
 
-export class Action {
+export class Action extends GameMechanic {
+	static readonly action:null;
 	name: string;
 	description: string;
 	static readonly description: string = "Action";
 	constructor(name: string, description: string) {
+		super();
 		this.name = name;
 		this.description = description;
 	}

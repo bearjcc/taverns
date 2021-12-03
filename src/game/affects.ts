@@ -5,12 +5,15 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+import { GameMechanic } from './types';
 
-export class Affect {
+export class Affect extends GameMechanic {
+	static readonly affect:null;
 	name: string;
 	description: string;
 	static readonly description: string = "Affect";
 	constructor(name: string, description: string) {
+		super();
 		this.name = name;
 		this.description = description;
 	}

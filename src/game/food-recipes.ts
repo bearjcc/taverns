@@ -1,6 +1,6 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\rcp_cooking.ts
+// Path: ts\game\food-recipes.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
@@ -25,7 +25,7 @@ export class CookingRecipe extends Recipe {
     }
 }
 
-export var cookingRecipes: Array<CookingRecipe> = [];
+export var cookingRecipes: CookingRecipe[] = [];
 
 export var PancakeBatter = new CookingRecipe("Pancake Batter", "Ready to make pancakes");
 PancakeBatter.level = 1;

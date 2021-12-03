@@ -14,8 +14,19 @@ export class BeingItem extends Item {
   plural: string;
   description: string;
 
-  getType(): BeingItem {
-    return this;
+  constructor() {
+    super();
+    this.singular = "";
+    this.plural = "";
+    this.description = "";
+  }
+
+  getName(qty: number): string {
+    return qty === 1 ? this.singular : this.plural;
+  }
+
+  getDescription(): string {
+    return this.description;
   }
 }
 

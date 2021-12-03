@@ -14,7 +14,7 @@ export class OreItem extends Item {
 	constructor(weight: number, quality: number) {
 		super();
 		this.categories.push("Ore");
-		this.weight = weight;
+		this.mass = weight;
 		this.quality = quality; //in this case quality means how much of that element you can get from it
 	}
 }
@@ -59,33 +59,33 @@ export class Geode extends OreItem {
 		//chance of getting a gem of a certain type
 		rdm = Math.ceil(Math.random() * 150);
 		if (rdm < 10) {
-			return new Gems.Ruby(this.weight * 0.75, quality);
+			return new Gems.Ruby(this.mass * 0.75, quality);
 		} else if (rdm < 20) {
-			return new Gems.Sapphire(this.weight * 0.75, quality);
+			return new Gems.Sapphire(this.mass * 0.75, quality);
 		} else if (rdm < 30) {
-			return new Gems.Emerald(this.weight * 0.75, quality);
+			return new Gems.Emerald(this.mass * 0.75, quality);
 		} else if (rdm < 40) {
-			return new Gems.Topaz(this.weight * 0.75, quality);
+			return new Gems.Topaz(this.mass * 0.75, quality);
 		} else if (rdm < 50) {
-			return new Gems.Diamond(this.weight * 0.75, quality);
+			return new Gems.Diamond(this.mass * 0.75, quality);
 		} else if (rdm < 60) {
-			return new Gems.Amethyst(this.weight * 0.75, quality);
+			return new Gems.Amethyst(this.mass * 0.75, quality);
 		} else if (rdm < 70) {
-			return new Gems.Opal(this.weight * 0.75, quality);
+			return new Gems.Opal(this.mass * 0.75, quality);
 		} else if (rdm < 80) {
-			return new Gems.Garnet(this.weight * 0.75, quality);
+			return new Gems.Garnet(this.mass * 0.75, quality);
 		} else if (rdm < 90) {
-			return new Gems.Onyx(this.weight * 0.75, quality);
+			return new Gems.Onyx(this.mass * 0.75, quality);
 		} else if (rdm < 100) {
-			return new Gems.Quartz(this.weight * 0.75, quality);
+			return new Gems.Quartz(this.mass * 0.75, quality);
 		} else if (rdm < 110) {
-			return new Gems.Agate(this.weight * 0.75, quality);
+			return new Gems.Agate(this.mass * 0.75, quality);
 		} else if (rdm < 120) {
-			return new Gems.Jade(this.weight * 0.75, quality);
+			return new Gems.Jade(this.mass * 0.75, quality);
 		} else if (rdm < 130) {
-			return new Gems.Lapis(this.weight * 0.75, quality);
+			return new Gems.Lapis(this.mass * 0.75, quality);
 		} else {
-			return new Gems.Rock(this.weight * 0.75);
+			return new Gems.Rock(this.mass * 0.75);
 		}
 	}
 }

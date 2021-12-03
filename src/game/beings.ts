@@ -5,17 +5,14 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import { Gender, Rarity, DamageType, CombatType, Class } from "./types";
+import { Gender, Rarity, DamageType, CombatType, GameClass, GameMechanic } from './types';
 import * as Affect from "./affects";
 import { Meat, Skeleton, Skull, Feather } from "./being-items";
 
-export type BeingType = {
-  singular: string;
-  plural: string;
-  description: string;
-} & Class;
+export type BeingType = GameClass & {being:null}
 
-export class Being {
+export class Being extends GameMechanic {
+  static readonly being:null;
   static singular: string = "Being";
   static plural: string = "Beings";
   static description: string =
@@ -56,21 +53,6 @@ export class Being {
   };
   canFly: Boolean = false;
 
-  getTypes(): BeingType[] {
-    let types: BeingType[] = [];
-    for (
-      let prototype = Object.getPrototypeOf(this);
-      prototype !== Object.prototype;
-      prototype = Object.getPrototypeOf(prototype)
-    )
-      types.push(prototype);
-    return types;
-  }
-
-  getType(): BeingType {
-    return Object.getPrototypeOf(this);
-  }
-
   getMeat(): Meat {
     // TODO: quality and weight of meat
     return this.health === 0 ? new Meat(this) : null;
@@ -91,6 +73,7 @@ export var beings: BeingType[] = [];
 beings.push(Being);
 
 export class Humanoid extends Being {
+  static readonly humanoid:null;
   static singular: string = "Humanoid";
   static plural: string = "Humanoids";
   static description: string = "Intelligent and bipedal.";
@@ -110,11 +93,7 @@ export class Humanoid extends Being {
 }
 beings.push(Humanoid);
 
-export type HumanoidType = {
-  singular: string;
-  plural: string;
-  description: string;
-} & Class;
+export type HumanoidType = BeingType & {humanoid:null}
 export var playableRaces: HumanoidType[] = [];
 
 export class Dwarf extends Humanoid {

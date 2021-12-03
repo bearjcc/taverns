@@ -1,6 +1,6 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\destinations.ts
+// Path: src\game\destinations.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
@@ -8,6 +8,7 @@
 import { Being } from "./beings";
 
 export class Destination {
+	static readonly destination:null;
 	name: string;
 	description: string;
 	membersOnly: boolean = false;

@@ -5,12 +5,15 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+import { GameMechanic } from './types';
 
-export class Achievment {
+export class Achievment extends GameMechanic {
+	static readonly achievment:null;
 	name: string;
 	description: string;
 
 	constructor(name: string, description: string) {
+		super();
 		this.name = name;
 		this.description = description;
 	}

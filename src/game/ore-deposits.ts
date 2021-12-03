@@ -1,6 +1,6 @@
 // ============================================================================
 // Language: TypeScript
-// Path: ts\ore-deposits.ts
+// Path: ts\game\ore-deposits.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
@@ -13,11 +13,14 @@ import { Gem } from "./gems";
 import * as Gems from "./gems";
 
 export class OreDeposit extends Interactable {
+	static singular: string = "ore deposit";
+	static plural: string = "ore deposits";
+	static description: string = "A large deposit of ore.";
+
 	quantity: number;
 	quality: number;
 	constructor(quantity: number, quality: number) {
 		super();
-		this, this.categories.push("Geode");
 		this.quantity = quantity;
 		this.quality = quality;
 	}
@@ -27,7 +30,7 @@ export class OreDeposit extends Interactable {
 			"You prospect the ore deposit and find " +
 				this.quantity +
 				" " +
-				this.name +
+				this.getName(this.quantity) +
 				"."
 		);
 	}
@@ -107,11 +110,7 @@ export var oreDeposits: OreDeposit[] = [];
 
 //clay
 export class ClayDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Clay";
-		this.categories.push("Clay");
-	}
+	static singular = "Clay";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.Clay(weight, quality);
@@ -122,11 +121,7 @@ oreDeposits.push(clayDeposit_prototype);
 
 //geodes
 export class GeodeDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Geode";
-		this.categories.push("Geode");
-	}
+	static singular = "Geode";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.Geode(weight, quality);
@@ -137,11 +132,7 @@ oreDeposits.push(geodeDeposit_prototype);
 
 //copper ore
 export class CopperOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Copper Ore";
-		this.categories.push("Copper");
-	}
+	static singular = "Copper Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.CopperOre(weight, quality);
@@ -155,11 +146,7 @@ oreDeposits.push(copperOreDeposit_prototype);
 
 //tin ore
 export class TinOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Tin Ore";
-		this.categories.push("Tin");
-	}
+	static singular = "Tin Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.TinOre(weight, quality);
@@ -170,11 +157,7 @@ oreDeposits.push(tinOreDeposit_prototype);
 
 //iron ore
 export class IronOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Iron Ore";
-		this.categories.push("Iron");
-	}
+	static singular = "Iron Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.IronOre(weight, quality);
@@ -188,11 +171,7 @@ oreDeposits.push(ironOreDeposit_prototype);
 
 //coal
 export class CoalDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Coal";
-		this.categories.push("Coal");
-	}
+	static singular = "Coal";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.Coal(weight, quality);
@@ -203,11 +182,7 @@ oreDeposits.push(coalDeposit_prototype);
 
 //silver ore
 export class SilverOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Silver Ore";
-		this.categories.push("Silver");
-	}
+	static singular = "Silver Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.SilverOre(weight, quality);
@@ -221,11 +196,7 @@ oreDeposits.push(silverOreDeposit_prototype);
 
 //gold ore
 export class GoldOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Gold Ore";
-		this.categories.push("Gold");
-	}
+	static singular = "Gold Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.GoldOre(weight, quality);
@@ -239,11 +210,7 @@ oreDeposits.push(goldOreDeposit_prototype);
 
 //limestone
 export class LimestoneDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Limestone";
-		this.categories.push("Limestone");
-	}
+	static singular = "Limestone";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.Limestone(weight, quality);
@@ -257,11 +224,7 @@ oreDeposits.push(limestoneDeposit_prototype);
 
 //platinum ore
 export class PlatinumOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Platinum Ore";
-		this.categories.push("Platinum");
-	}
+	static singular = "Platinum Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.PlatinumOre(weight, quality);
@@ -273,11 +236,7 @@ oreDeposits.push(platinumOreDeposit_prototype);
 
 //mithril ore
 export class MithrilOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Mithril Ore";
-		this.categories.push("Mithril");
-	}
+	static singular = "Mithril Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.MithrilOre(weight, quality);
@@ -289,11 +248,7 @@ oreDeposits.push(mithrilOreDeposit_prototype);
 
 //adamantite ore
 export class AdamantiteOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Adamantite Ore";
-		this.categories.push("Adamantite");
-	}
+	static singular = "Adamantite Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.AdamantiteOre(weight, quality);
@@ -305,11 +260,7 @@ oreDeposits.push(adamantiteOreDeposit_prototype);
 
 //runite ore
 export class RuniteOreDeposit extends OreDeposit {
-	constructor(quantity: number, quality: number) {
-		super(quantity, quality);
-		this.name = "Runite Ore";
-		this.categories.push("Runite");
-	}
+	static singular = "Runite Ore";
 
 	getOre(weight: number, quality: number): OreItem {
 		return new OreItems.RuniteOre(weight, quality);

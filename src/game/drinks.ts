@@ -5,22 +5,19 @@
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
-import { Consumable, dairies } from "./consumables";
-import { Source } from "./items";
-import { Class } from "./types";
+import { Consumable, ConsumableType, dairies } from "./consumables";
+import { Source } from "./types";
 
 export class Drink extends Consumable {
+	static readonly drink:null;
+
 	hunger: number = 0; // negative makes more hungry
 	thirst: number = 0; // negative makes more thirsty
 
 	categories: string[] = [];
 }
 
-export type DrinkType = {
-	singular: string;
-	plural: string;
-	description: string;
-} & Class;
+export type DrinkType = ConsumableType & {drink:null};
 
 export var drinks: DrinkType[] = [];
 
@@ -39,7 +36,7 @@ export class Milk extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(Milk);
@@ -57,7 +54,7 @@ export class Coffee extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(Coffee);
@@ -74,7 +71,7 @@ export class Milkshake extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(Milkshake);
@@ -92,7 +89,7 @@ export class ChocolateMilk extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(ChocolateMilk);
@@ -110,7 +107,7 @@ export class Tea extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(Tea);
@@ -127,7 +124,7 @@ export class SlimeSlurpie extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(SlimeSlurpie);
@@ -144,7 +141,7 @@ export class BugJuice extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(BugJuice);
@@ -161,7 +158,7 @@ export class Water extends Drink {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 drinks.push(Water);

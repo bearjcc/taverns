@@ -6,15 +6,13 @@
 // Owner: Ursa Minor Inc.
 // ============================================================================
 
-import { Item, Source } from "./items";
+import { Item, ItemType } from './items';
+import { Source } from "./types";
 
-export type ConsumableType = {
-	singular: string;
-	plural: string;
-	description: string;
-}
+export type ConsumableType = ItemType & {consumable:null}
 
 export class Consumable extends Item {
+	static readonly consumable: null;
 	static singular = "Consumable";
 	static plural = "Consumables";
 	static description = "A consumable is something that a player can use up";
@@ -38,7 +36,7 @@ export class Water extends Consumable {
 	constructor() {
 		super();
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }
 
@@ -50,6 +48,6 @@ export class Ice extends Consumable {
 	constructor() {
 		super();
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 	}
 }

@@ -1,19 +1,16 @@
-import { Class } from './types';
 // ============================================================================
 // Language: TypeScript
-// Path: ts\items.ts
+// Path: ts\game\items.ts
 // Author: Joseph C. Caswell
 // All rights reserved.
 // Owner: Ursa Minor Inc.
 // ============================================================================
+import { GameClass, GameMechanic, Source } from './types';
 
-export type ItemType = {
-	singular: string;
-	plural: string;
-	description: string;
-} & Class
+export type ItemType = GameClass & {item:null}
 
-export class Item {
+export class Item extends GameMechanic {
+	static readonly item:null;
 	static singular: string = "Item";
 	static plural: string = "Items";
 	static description: string =
@@ -22,33 +19,23 @@ export class Item {
 	static membersOnly: boolean = false;
 	
 	quality: number = 0; // (0-100)
-	weight: number = 0; // kilograms
+	mass: number = 0; // kilograms
 
 	getInfo(qty: number): string {
+		var name = this.getName(qty);
 		switch (qty) {
 			case 0:
-				return `No ${this.getType().plural}`;
+				return `No ${name}`;
 			case 1:
 				if (this.getQuality() === "average") {
-					return `An ${this.getQuality()} ${this.getType().singular}`;
+					return `An ${this.getQuality()} ${name}`;
 				} else {
-					return `A ${this.getQuality()} ${this.getType().singular}`;
+					return `A ${this.getQuality()} ${name}`;
 				}
 			default:
-				return `Some ${this.getQuality()} ${this.getType().plural}`;
+				return `Some ${this.getQuality()} ${name}`;
 		}
 	}
-
-	getType(): ItemType | Item & {singular: string, plural: string, description: string} {
-		return Object.getPrototypeOf(this);
-	}
-
-	getTypes(): ItemType[] {
-		let types : ItemType[] = [];
-		for (let prototype = Object.getPrototypeOf(this); prototype !== Object.prototype; prototype = Object.getPrototypeOf(prototype))
-			types.push(prototype);
-		return types;
-	  }
 
 	getQuality() {
 		if (this.quality < 30) {
@@ -72,24 +59,6 @@ export class Item {
 		}
 	}
 }
-
-export type Source =
-	| "Farming"
-	| "Fishing"
-	| "Foraging"
-	| "Questing"
-	| "Trading"
-	| "Milling"
-	| "Crafting"
-	| "Cooking"
-	| "Distilling"
-	| "Brewing"
-	| "Water"
-	| "Potions"
-	| "Hunting"
-	| "Religious Ceremony"
-	| "Alchemy"
-	| "Woodcutting";
 
 
 // // Crafting

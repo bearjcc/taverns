@@ -24,7 +24,7 @@ export class MilkOfThePoppy extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Foraging"];
 	}
 }
@@ -41,7 +41,7 @@ export class HealthPotion extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 50;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -58,7 +58,7 @@ export class ManaPotion extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -75,7 +75,7 @@ export class StaminaPotion extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -92,7 +92,7 @@ export class SleepingDraught extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -109,7 +109,7 @@ export class StrengthPotion extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -126,7 +126,7 @@ export class Cloud9 extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -143,7 +143,7 @@ export class AquaFortis extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Alchemy"];
 	}
 }
@@ -160,7 +160,7 @@ export class Turpentine extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -177,7 +177,7 @@ export class AquaRegia extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -194,7 +194,7 @@ export class AquaMentalis extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -211,7 +211,7 @@ export class AquaTerra extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -228,7 +228,7 @@ export class AquaVitae extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -245,7 +245,7 @@ export class AquaExorta extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -262,7 +262,7 @@ export class AquaExana extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -279,7 +279,7 @@ export class AquaExevo extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -296,7 +296,7 @@ export class AquaExevoPotentia extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -314,7 +314,7 @@ export class AquaExevoSanctus extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -332,7 +332,7 @@ export class AquaExevoTenebrae extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -350,7 +350,7 @@ export class AquaExevoVitae extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
@@ -367,7 +367,7 @@ export class AquaExevoTerra extends Potion {
 		this.hunger = 0;
 		this.thirst = 0;
 		this.hp = 0;
-		this.weight = 1;
+		this.mass = 1;
 		this.sources = ["Distilling"];
 	}
 }
