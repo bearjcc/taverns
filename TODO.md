@@ -8,7 +8,43 @@
 - [x] Toast notification system
 - [x] Fantasy-themed skills (Combat, Magic, Crafting)
 
-## Phase 2: Core Gameplay Systems
+## Phase 2: Architecture Migration & Engine Separation (Current Priority)
+### Engine Core Extraction
+- [x] Extract GameEngine class from game.js
+- [x] Create StateManager for centralized state management
+- [x] Implement EventSystem for decoupled communication
+- [x] Build AssetLoader with just-in-time loading
+- [x] Add Localization system foundation
+
+### System Separation
+- [x] Extract SkillSystem from game.js
+- [x] Extract InventorySystem from game.js
+- [x] Extract SpeciesSystem from species-manager.js
+- [x] Extract ActionSystem from game.js
+- [x] Create clean APIs for each system
+
+### Mod System Foundation
+- [x] Create mod manifest structure
+- [ ] Convert current game data to mod format
+- [ ] Implement mod loading system
+- [ ] Set up asset organization structure
+- [ ] Add localization file structure
+
+### Migration Testing
+- [ ] Ensure backward compatibility
+- [ ] Test each extracted system independently
+- [ ] Verify asset loading performance
+- [ ] Validate mod system functionality
+- [ ] Update existing tests for new architecture
+
+### Integration & Testing
+- [ ] Create integration test for new engine
+- [ ] Test system communication via events
+- [ ] Verify state persistence works correctly
+- [ ] Test asset loading with real assets
+- [ ] Validate localization system
+
+## Phase 3: Core Gameplay Systems
 ### Quest System
 - [ ] Quest generation and tracking
 - [ ] Story-driven adventure content
@@ -36,7 +72,7 @@
 - [ ] Market system for trading
 - [ ] Currency and pricing
 
-## Phase 3: Advanced Features
+## Phase 4: Advanced Features
 ### Homestead System
 - [ ] Building construction and management
 - [ ] Resource production and storage
@@ -58,7 +94,7 @@
 - [ ] Masterwork trading
 - [ ] Achievement system for creators
 
-## Phase 4: Social & Multiplayer
+## Phase 5: Social & Multiplayer
 ### Group Play
 - [ ] Party formation and management
 - [ ] Shared quests and objectives
@@ -80,7 +116,7 @@
 - [ ] Trade history and analytics
 - [ ] Secure trading protocols
 
-## Phase 5: Business Model Implementation
+## Phase 6: Business Model Implementation
 ### Free-to-Play Features
 - [ ] Core game content (free)
 - [ ] Basic progression system
@@ -101,7 +137,7 @@
 - [ ] Enhanced social features
 - [ ] Priority customer support
 
-## Phase 6: Technical Enhancements
+## Phase 7: Technical Enhancements
 ### Mobile Optimization
 - [ ] Responsive design for mobile
 - [ ] Touch-friendly controls
@@ -123,7 +159,7 @@
 - [ ] CDN integration
 - [ ] Performance monitoring
 
-## Phase 7: Polish & Launch
+## Phase 8: Polish & Launch
 ### Content Creation
 - [ ] Extensive quest library
 - [ ] Rich lore and world-building
@@ -146,14 +182,18 @@
 - [ ] Launch event planning
 
 ## Current Focus
-- Implementing the new fantasy-themed skills (Combat, Magic, Crafting)
-- Testing the updated skill system
-- Preparing for quest system development
-- Planning combat mechanics implementation
+- **Priority**: Integration and testing of extracted engine systems
+- Testing system communication and event handling
+- Converting current game data to mod format
+- Setting up asset organization structure
+- Creating integration tests for the new architecture
 
 ## Notes
 - Follow incremental development approach
 - Test each feature thoroughly before moving to next
 - Maintain clean code principles
 - Keep configuration-driven design
-- Preserve existing functionality while adding new features 
+- Preserve existing functionality while adding new features
+- Architecture migration is critical for long-term success
+- Mod system enables future content expansion without major refactoring
+- All core engine systems have been extracted and are ready for integration 
