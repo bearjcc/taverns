@@ -29,7 +29,8 @@ const CONFIG_MAPPING = {
     'data/config/actions.json': 'schemas/actions.schema.json',
     'data/traits.json': 'schemas/traits.schema.json',
     'data/species.json': 'schemas/species.schema.json',
-    'data/food-categories.json': 'schemas/food-categories.schema.json'
+    'data/food-categories.json': 'schemas/food-categories.schema.json',
+    'data/achievements.json': 'schemas/achievements.schema.json'
 };
 
 // Add all food category files in data/food/ with the new schema

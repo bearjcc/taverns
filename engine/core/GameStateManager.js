@@ -39,6 +39,14 @@ class GameStateManager {
                 };
             }
 
+            // Save achievements if achievementSystem exists
+            if (window.achievementSystem) {
+                gameState.achievements = {
+                    unlocked: Array.from(window.achievementSystem.getUnlockedAchievements()),
+                    progress: window.achievementSystem.getAchievementProgress()
+                };
+            }
+
             localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
             console.log('Game state saved successfully');
             return true;
@@ -87,6 +95,17 @@ class GameStateManager {
                         trait.xp = traitData.experience || 0;
                         trait.xpToNext = trait.getXpToNextLevel(trait.level);
                     }
+                }
+            }
+
+            // Load achievements if achievementSystem exists
+            if (gameState.achievements && window.achievementSystem) {
+                const achievementState = gameState.achievements;
+                if (achievementState.unlocked) {
+                    window.achievementSystem.unlockedAchievements = new Set(achievementState.unlocked);
+                }
+                if (achievementState.progress) {
+                    window.achievementSystem.achievementProgress = achievementState.progress;
                 }
             }
 

@@ -34,6 +34,9 @@ let encyclopediaSystem;
 /** @type {EncyclopediaUI} Global encyclopedia UI instance */
 let encyclopediaUI;
 
+/** @type {AchievementSystem} Global achievement system instance */
+let achievementSystem;
+
 /**
  * Initializes the game by loading configurations, setting up managers, and starting the game loop.
  * This is the main entry point for the game and should be called when the page loads.
@@ -54,6 +57,7 @@ async function initGame() {
         actionManager = new ActionManager();
         uiManager = new UIManager();
         gameStateManager = new GameStateManager();
+        window.configManager = configManager;
         
         // Initialize encyclopedia system
         encyclopediaSystem = new EncyclopediaSystem();
@@ -65,6 +69,41 @@ async function initGame() {
         const skillsConfig = configs.skillsConfig;
         const traitsConfig = configs.traitsConfig;
         const actionsConfig = configs.actionsConfig;
+        
+        // Load achievements data
+        const achievementsData = await loadAchievementsData();
+        
+        // Create a simple state manager for achievements
+        const achievementStateManager = {
+            getState: () => {
+                try {
+                    const savedState = localStorage.getItem('tavernsGameState');
+                    if (savedState) {
+                        const gameState = JSON.parse(savedState);
+                        return gameState.achievements || { unlocked: [], progress: {} };
+                    }
+                    return { unlocked: [], progress: {} };
+                } catch (error) {
+                    console.warn('Failed to load achievement state:', error);
+                    return { unlocked: [], progress: {} };
+                }
+            },
+            setState: (newState) => {
+                try {
+                    const savedState = localStorage.getItem('tavernsGameState');
+                    let gameState = savedState ? JSON.parse(savedState) : {};
+                    gameState.achievements = newState;
+                    localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
+                } catch (error) {
+                    console.error('Failed to save achievement state:', error);
+                }
+            }
+        };
+        
+        // Initialize achievement system
+        achievementSystem = new AchievementSystem(achievementsData, achievementStateManager, new EventSystem());
+        await achievementSystem.initialize();
+        window.achievementSystem = achievementSystem;
         
         // Initialize game objects
         await initializeGameObjects();
@@ -171,6 +210,23 @@ async function loadLocationsData() {
         return await response.json();
     } catch (error) {
         console.error('Failed to load locations data:', error);
+        return {};
+    }
+}
+
+/**
+ * Loads achievements data from the achievements.json file
+ * @returns {Promise<Object>} Achievements data
+ */
+async function loadAchievementsData() {
+    try {
+        const response = await fetch('data/achievements.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to load achievements data:', error);
         return {};
     }
 }

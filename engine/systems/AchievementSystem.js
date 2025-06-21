@@ -178,6 +178,42 @@ class AchievementSystem {
             this.checkAchievements();
         });
         
+        // Listen for trading events
+        this.eventSystem.on('trade:completed', (data) => {
+            this._updateTradingProgress(data);
+            this.checkAchievements();
+        });
+        
+        // Listen for consumption events
+        this.eventSystem.on('item:consumed', (data) => {
+            this._updateConsumptionProgress(data);
+            this.checkAchievements();
+        });
+        
+        // Listen for crafting events
+        this.eventSystem.on('craft:completed', (data) => {
+            this._updateCraftingProgress(data);
+            this.checkAchievements();
+        });
+        
+        // Listen for location visits
+        this.eventSystem.on('location:visited', (data) => {
+            this._updateLocationProgress(data);
+            this.checkAchievements();
+        });
+        
+        // Listen for pet capture events
+        this.eventSystem.on('pet:captured', (data) => {
+            this._updatePetProgress(data);
+            this.checkAchievements();
+        });
+        
+        // Listen for cooking events
+        this.eventSystem.on('cooking:completed', (data) => {
+            this._updateCookingProgress(data);
+            this.checkAchievements();
+        });
+        
         // Listen for game state changes that might affect achievements
         this.eventSystem.on('state:changed', () => {
             this.checkAchievements();
@@ -247,6 +283,35 @@ class AchievementSystem {
                 // This is a placeholder for secret achievements
                 // In a real implementation, this would check for specific game events
                 return false;
+            case 'trade_syrup_maple_run':
+                // Check if player has traded syrup in Maple Run
+                // This would need to be tracked in game state
+                return gameState.tradingHistory?.some(trade => 
+                    trade.itemId === 'syrup' && trade.location === 'maple_run'
+                ) || false;
+            case 'consume_red_mushroom':
+                // Check if player has consumed a red mushroom
+                return gameState.consumptionHistory?.some(consumption => 
+                    consumption.itemId === 'red_mushroom'
+                ) || false;
+            case 'animate_mushroom_pet':
+                // Check if player has used Animation spell on mushroom and captured as pet
+                return gameState.petHistory?.some(pet => 
+                    pet.source === 'animated_mushroom'
+                ) || false;
+            case 'cook_moss_mossy_glade':
+                // Check if player has cooked with moss in Mossy Glade
+                return gameState.cookingHistory?.some(cooking => 
+                    cooking.ingredients?.includes('moss') && cooking.location === 'mossy_glade'
+                ) || false;
+            case 'first_craft':
+                // Check if player has crafted any item
+                return gameState.craftingHistory?.length > 0 || false;
+            case 'visit_locations':
+                // Check if player has visited enough locations
+                const visitedLocations = gameState.visitedLocations || [];
+                const requiredCount = gameState.achievementRequirements?.locationCount || 5;
+                return visitedLocations.length >= requiredCount;
             default:
                 return false;
         }
@@ -352,6 +417,87 @@ class AchievementSystem {
                 this.achievementProgress[achievementId].current = Math.min(uniqueItemCount, requirements.uniqueItems);
             }
         }
+    }
+    
+    _updateTradingProgress(data) {
+        // Update trading history in game state
+        const gameState = this.stateManager.getState();
+        if (!gameState.tradingHistory) {
+            gameState.tradingHistory = [];
+        }
+        gameState.tradingHistory.push({
+            itemId: data.itemId,
+            location: data.location,
+            type: data.type, // buy/sell
+            timestamp: Date.now()
+        });
+        this.stateManager.setState(gameState);
+    }
+    
+    _updateConsumptionProgress(data) {
+        // Update consumption history in game state
+        const gameState = this.stateManager.getState();
+        if (!gameState.consumptionHistory) {
+            gameState.consumptionHistory = [];
+        }
+        gameState.consumptionHistory.push({
+            itemId: data.itemId,
+            timestamp: Date.now()
+        });
+        this.stateManager.setState(gameState);
+    }
+    
+    _updateCraftingProgress(data) {
+        // Update crafting history in game state
+        const gameState = this.stateManager.getState();
+        if (!gameState.craftingHistory) {
+            gameState.craftingHistory = [];
+        }
+        gameState.craftingHistory.push({
+            itemId: data.itemId,
+            timestamp: Date.now()
+        });
+        this.stateManager.setState(gameState);
+    }
+    
+    _updateLocationProgress(data) {
+        // Update visited locations in game state
+        const gameState = this.stateManager.getState();
+        if (!gameState.visitedLocations) {
+            gameState.visitedLocations = [];
+        }
+        if (!gameState.visitedLocations.includes(data.locationId)) {
+            gameState.visitedLocations.push(data.locationId);
+        }
+        this.stateManager.setState(gameState);
+    }
+    
+    _updatePetProgress(data) {
+        // Update pet history in game state
+        const gameState = this.stateManager.getState();
+        if (!gameState.petHistory) {
+            gameState.petHistory = [];
+        }
+        gameState.petHistory.push({
+            source: data.source,
+            petType: data.petType,
+            timestamp: Date.now()
+        });
+        this.stateManager.setState(gameState);
+    }
+    
+    _updateCookingProgress(data) {
+        // Update cooking history in game state
+        const gameState = this.stateManager.getState();
+        if (!gameState.cookingHistory) {
+            gameState.cookingHistory = [];
+        }
+        gameState.cookingHistory.push({
+            ingredients: data.ingredients,
+            location: data.location,
+            timestamp: Date.now()
+        });
+        this.stateManager.setState(gameState);
     }
 }
 

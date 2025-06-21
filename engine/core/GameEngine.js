@@ -248,7 +248,7 @@ class GameEngine {
     
     async _loadModData(modId) {
         // Load all mod data files
-        const dataFiles = ['skills', 'items', 'species', 'actions', 'locations', 'config'];
+        const dataFiles = ['skills', 'items', 'species', 'actions', 'locations', 'config', 'achievements'];
         const data = {};
         
         for (const file of dataFiles) {

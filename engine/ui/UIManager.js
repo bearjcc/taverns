@@ -222,6 +222,64 @@ class UIManager {
         `;
     }
 
+    updateAchievementsDisplay(achievementSystem, gameConfig) {
+        const achievementsContent = document.getElementById('achievements-content');
+        if (!achievementsContent) return;
+
+        const achievementsData = achievementSystem.getAllAchievements();
+        const unlockedAchievements = achievementSystem.getUnlockedAchievements();
+        const achievementProgress = achievementSystem.getAchievementProgress();
+
+        // Group by category
+        const categories = {};
+        for (const [id, achievement] of Object.entries(achievementsData)) {
+            const category = achievement.category || 'General';
+            if (!categories[category]) categories[category] = [];
+            categories[category].push({ ...achievement, id });
+        }
+        // Sort by points descending
+        for (const cat in categories) {
+            categories[cat].sort((a, b) => (b.points || 0) - (a.points || 0));
+        }
+
+        let html = '';
+        Object.entries(categories).forEach(([category, achievements]) => {
+            html += `
+                <div class="skill-category">
+                    <div class="skill-category-header" onclick="uiManager.toggleSkillCategory(this)">
+                        <span class="skill-category-toggle">▶</span>
+                        <span class="skill-category-name">${category.toUpperCase()}</span>
+                    </div>
+                    <div class="skill-items-container">
+            `;
+            achievements.forEach(achievement => {
+                const isUnlocked = unlockedAchievements.has(achievement.id);
+                const progress = achievementProgress[achievement.id] || null;
+                html += `
+                    <div class="skill-item${isUnlocked ? '' : ' locked'}">
+                        <div class="skill-info">
+                            <span class="skill-icon">${achievement.icon || '🏆'}</span>
+                            <span class="skill-name">${(isUnlocked || !achievement.secret) ? achievement.name : '???'}</span>
+                            ${isUnlocked ? '<span class="skill-level-info">Unlocked</span>' : '<span class="skill-lock-icon">🔒</span>'}
+                        </div>
+                        <div class="skill-progress-container">
+                            <div class="skill-progress-bar">
+                                <div class="skill-progress-fill" style="width: ${progress && progress.required > 1 ? Math.min((progress.current / progress.required) * 100, 100) : 0}%"></div>
+                            </div>
+                            ${progress && progress.required > 1 ? `<span class="skill-xp">${progress.current}/${progress.required}</span>` : ''}
+                        </div>
+                        <div class="skill-description" style="color:#aaa;font-size:12px;margin-top:2px;">
+                            ${(isUnlocked || !achievement.secret) ? achievement.description : 'Unlock this secret achievement to reveal its details.'}
+                        </div>
+                        <div class="skill-level-info" style="font-size:11px;color:#888;">${achievement.points || 0} pts</div>
+                    </div>
+                `;
+            });
+            html += `</div></div>`;
+        });
+        achievementsContent.innerHTML = html;
+    }
+
     switchTab(tabName) {
         this.currentTab = tabName;
         
@@ -258,6 +316,9 @@ class UIManager {
             case 'character':
                 // Assuming traitManager is available here
                 // this.updateCharacterDisplay(traitManager, gameConfig);
+                break;
+            case 'achievements':
+                this.updateAchievementsDisplay(window.achievementSystem, window.configManager.getGameConfig());
                 break;
         }
     }
