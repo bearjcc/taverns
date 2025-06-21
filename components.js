@@ -120,12 +120,15 @@ class Modal extends Component {
 
     open() {
         this.element.classList.add('modal-open');
+        document.body.classList.add('modal-active');
         document.body.style.overflow = 'hidden';
     }
 
     close() {
         this.element.classList.remove('modal-open');
+        document.body.classList.remove('modal-active');
         document.body.style.overflow = '';
+        this.element.dispatchEvent(new CustomEvent('modal:close'));
     }
 
     isOpen() {
@@ -466,61 +469,64 @@ window.GameUI = GameUI;
 function createAchievementItem(achievement, isUnlocked = false, progress = null) {
     const achievementItem = document.createElement('div');
     achievementItem.className = 'achievement-item';
-    
+
     if (isUnlocked) {
         achievementItem.classList.add('achievement-unlocked');
     } else {
         achievementItem.classList.add('achievement-locked');
     }
-    
-    // Achievement icon and name
-    const achievementHeader = document.createElement('div');
-    achievementHeader.className = 'achievement-header';
-    
+
+    // Icon
+    const iconWrapper = document.createElement('div');
+    iconWrapper.className = 'achievement-icon-wrapper';
     const achievementIcon = document.createElement('span');
     achievementIcon.className = 'achievement-icon';
     achievementIcon.textContent = achievement.icon || '🏆';
-    
+    iconWrapper.appendChild(achievementIcon);
+
+    // Details
+    const detailsWrapper = document.createElement('div');
+    detailsWrapper.className = 'achievement-details';
+
     const achievementName = document.createElement('span');
     achievementName.className = 'achievement-name';
     achievementName.textContent = achievement.name;
-    
-    achievementHeader.appendChild(achievementIcon);
-    achievementHeader.appendChild(achievementName);
-    
-    // Achievement description
+
     const achievementDescription = document.createElement('div');
     achievementDescription.className = 'achievement-description';
     achievementDescription.textContent = achievement.description;
-    
-    // Achievement points
+
+    detailsWrapper.appendChild(achievementName);
+    detailsWrapper.appendChild(achievementDescription);
+
+    // Points
+    const pointsWrapper = document.createElement('div');
+    pointsWrapper.className = 'achievement-points-wrapper';
     const achievementPoints = document.createElement('div');
     achievementPoints.className = 'achievement-points';
     achievementPoints.textContent = `${achievement.points || 0} pts`;
-    
+    pointsWrapper.appendChild(achievementPoints);
+
     // Progress bar (if applicable)
-    let progressBar = null;
     if (progress && progress.required > 1) {
-        progressBar = createAchievementProgressBar(progress);
+        const progressBar = createAchievementProgressBar(progress);
+        detailsWrapper.appendChild(progressBar);
     }
-    
+
     // Secret indicator
     if (achievement.secret && !isUnlocked) {
         const secretIndicator = document.createElement('div');
         secretIndicator.className = 'achievement-secret';
         secretIndicator.textContent = '🔒 Secret Achievement';
-        achievementItem.appendChild(secretIndicator);
+        detailsWrapper.appendChild(secretIndicator);
+        achievementDescription.textContent = 'Unlock this secret achievement to reveal its details.';
     }
-    
+
     // Assemble achievement item
-    achievementItem.appendChild(achievementHeader);
-    achievementItem.appendChild(achievementDescription);
-    achievementItem.appendChild(achievementPoints);
-    
-    if (progressBar) {
-        achievementItem.appendChild(progressBar);
-    }
-    
+    achievementItem.appendChild(iconWrapper);
+    achievementItem.appendChild(detailsWrapper);
+    achievementItem.appendChild(pointsWrapper);
+
     return achievementItem;
 }
 
@@ -726,111 +732,32 @@ function showAchievementUnlocked(achievement, points, totalPoints) {
 }
 
 /**
- * Modal System
+ * Achievements Modal
  */
-let currentModal = null;
-
-/**
- * Create a modal element
- * @param {HTMLElement|string} content - Content to display in the modal
- * @param {Object} [options] - Modal options (title, onClose, etc.)
- * @returns {HTMLElement} The modal element
- */
-function createModal(content, options = {}) {
-    // Remove any existing modal
-    closeModal();
-
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
-    overlay.tabIndex = -1;
-
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-
-    // Modal header
-    if (options.title) {
-        const header = document.createElement('div');
-        header.className = 'modal-header';
-        const title = document.createElement('span');
-        title.className = 'modal-title';
-        title.textContent = options.title;
-        header.appendChild(title);
-        // Close button
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'modal-close';
-        closeBtn.innerHTML = '&times;';
-        closeBtn.onclick = () => closeModal();
-        header.appendChild(closeBtn);
-        modal.appendChild(header);
-    }
-
-    // Modal content
-    const contentContainer = document.createElement('div');
-    contentContainer.className = 'modal-content';
-    if (typeof content === 'string') {
-        contentContainer.innerHTML = content;
-    } else if (content instanceof HTMLElement) {
-        contentContainer.appendChild(content);
-    }
-    modal.appendChild(contentContainer);
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-    currentModal = overlay;
-
-    // Close on overlay click (not modal click)
-    overlay.addEventListener('mousedown', (e) => {
-        if (e.target === overlay) {
-            closeModal();
-        }
-    });
-    // Close on Escape key
-    overlay.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-    });
-    overlay.focus();
-
-    // Optional onClose callback
-    if (options.onClose) {
-        overlay.dataset.onClose = true;
-        overlay.addEventListener('modal:close', options.onClose, { once: true });
-    }
-
-    return overlay;
-}
-
-/**
- * Open a modal with the given content and options
- * @param {HTMLElement|string} content
- * @param {Object} [options]
- */
-function openModal(content, options = {}) {
-    window.closeModal(); // Close any existing modal
-    const modal = createModal(content, options);
-    document.body.appendChild(modal);
-}
-
-/**
- * Close the currently open modal
- */
-function closeModal() {
-    const modal = document.querySelector('.modal');
-    if (modal) {
-        modal.remove();
-    }
-}
-
 function openAchievementsModal(achievementsData, unlockedAchievements, achievementProgress) {
     const content = createAchievementsTabContent(achievementsData, unlockedAchievements, achievementProgress);
-    const modalContent = document.createElement('div');
-    modalContent.appendChild(content);
-    openModal(modalContent, { title: 'Achievements' });
-}
+    
+    // Create a container for the modal instance
+    const modalElement = document.createElement('div');
+    document.body.appendChild(modalElement);
 
-// Expose modal functions globally for use in other scripts
-window.createModal = createModal;
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.openAchievementsModal = openAchievementsModal;
+    const modal = new Modal(modalElement, {
+        title: 'Achievements',
+        width: '800px'
+    });
+    
+    // Set the content, which is already an HTML element
+    const contentElement = modal.element.querySelector('.modal-content');
+    if (contentElement) {
+        contentElement.innerHTML = ''; // Clear existing template content
+        contentElement.appendChild(content);
+    }
+    
+    modal.open();
+
+    // Add a close listener to destroy the modal element
+    modal.element.addEventListener('modal:close', () => {
+        modal.destroy();
+        modalElement.remove();
+    }, { once: true });
+}

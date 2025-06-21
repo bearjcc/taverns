@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traits System Test</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 20px;
+        }
+        .test-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+        .trait-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            border-left: 4px solid #6a5acd;
+        }
+        .trait-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .trait-icon {
+            font-size: 16px;
+            margin-right: 8px;
+        }
+        .trait-name {
+            font-weight: bold;
+            color: #fff;
+            flex: 1;
+        }
+        .trait-level {
+            color: #888;
+            font-size: 12px;
+        }
+        .trait-description {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        .trait-progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .trait-progress-bar {
+            flex: 1;
+            height: 8px;
+            background-color: #1a1a1a;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .trait-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6a5acd, #9370db);
+            transition: width 0.3s ease;
+        }
+        .trait-xp {
+            color: #888;
+            font-size: 11px;
+            min-width: 60px;
+            text-align: right;
+        }
+        button {
+            background-color: #4a4a4a;
+            color: #fff;
+            border: 1px solid #666;
+            padding: 8px 16px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+        button:hover {
+            background-color: #5a5a5a;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traits System Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="testTraitsLoading()">Test Traits Loading</button>
+        <button onclick="testTraitXP()">Test Trait XP Gain</button>
+        <button onclick="displayTraits()">Display Traits</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Traits Display</h2>
+        <div id="traits-display">
+            <p>Click "Display Traits" to see the traits.</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output</h2>
+        <div id="console-output">
+            <p>Check browser console for detailed output.</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple Trait class for testing
+        class Trait {
+            constructor(name, level = 1, xp = 0, description = '', icon = '') {
+                this.name = name;
+                this.level = level;
+                this.xp = xp;
+                this.description = description;
+                this.icon = icon;
+                this.xpToNext = this.getXpToNextLevel(this.level);
+            }
+
+            getXpToNextLevel(level) {
+                return level * 100;
+            }
+
+            addXp(amount) {
+                this.xp += amount;
+                let levelUps = 0;
+                
+                while (this.xp >= this.xpToNext) {
+                    this.level++;
+                    this.xp -= this.xpToNext;
+                    this.xpToNext = this.getXpToNextLevel(this.level);
+                    levelUps++;
+                }
+                
+                return levelUps;
+            }
+
+            getProgress() {
+                return (this.xp / this.xpToNext) * 100;
+            }
+        }
+
+        // Simple TraitManager for testing
+        class TraitManager {
+            constructor() {
+                this.traits = new Map();
+            }
+
+            loadFromConfig(traitsConfig) {
+                console.log('Loading traits from config:', traitsConfig);
+                this.traits.clear();
+
+                if (traitsConfig && traitsConfig.traits) {
+                    for (const [traitName, traitData] of Object.entries(traitsConfig.traits)) {
+                        const trait = new Trait(
+                            traitName,
+                            traitData.level,
+                            traitData.experience,
+                            traitData.description || '',
+                            traitData.icon || ''
+                        );
+                        this.traits.set(traitName, trait);
+                        console.log(`Loaded trait: ${traitName}`, trait);
+                    }
+                }
+                
+                console.log(`Loaded ${this.traits.size} traits`);
+            }
+
+            getTrait(traitName) {
+                return this.traits.get(traitName);
+            }
+
+            getAllTraits() {
+                return Array.from(this.traits.values());
+            }
+
+            addTraitXp(traitName, xpAmount) {
+                const trait = this.traits.get(traitName);
+                if (trait) {
+                    const fromLevel = trait.level;
+                    const levelUps = trait.addXp(xpAmount);
+                    
+                    if (levelUps > 0) {
+                        console.log(`🎉 ${traitName} trait increased! You are now level ${trait.level}.`);
+                    }
+                    
+                    return levelUps;
+                }
+                return 0;
+            }
+        }
+
+        // Test data
+        const testTraitsConfig = {
+            "traits": {
+                "Strength": {
+                    "level": 1,
+                    "experience": 0,
+                    "description": "Physical power and muscle strength",
+                    "icon": "💪"
+                },
+                "Dexterity": {
+                    "level": 1,
+                    "experience": 0,
+                    "description": "Agility, reflexes, and coordination",
+                    "icon": "🏃"
+                },
+                "Stamina": {
+                    "level": 1,
+                    "experience": 0,
+                    "description": "Endurance and resistance to fatigue",
+                    "icon": "🫁"
+                },
+                "Constitution": {
+                    "level": 1,
+                    "experience": 0,
+                    "description": "Health and resistance to disease",
+                    "icon": "🛡️"
+                },
+                "Intelligence": {
+                    "level": 1,
+                    "experience": 0,
+                    "description": "Mental acuity and problem-solving ability",
+                    "icon": "🧠"
+                },
+                "Charisma": {
+                    "level": 1,
+                    "experience": 0,
+                    "description": "Social influence and personality",
+                    "icon": "✨"
+                }
+            }
+        };
+
+        // Global trait manager for testing
+        const traitManager = new TraitManager();
+
+        function testTraitsLoading() {
+            console.log('Testing traits loading...');
+            traitManager.loadFromConfig(testTraitsConfig);
+            console.log('Traits loaded:', traitManager.getAllTraits());
+        }
+
+        function testTraitXP() {
+            console.log('Testing trait XP gain...');
+            const strengthTrait = traitManager.getTrait('Strength');
+            if (strengthTrait) {
+                console.log('Strength trait before XP:', strengthTrait.level, strengthTrait.xp);
+                traitManager.addTraitXp('Strength', 50);
+                console.log('Strength trait after XP:', strengthTrait.level, strengthTrait.xp);
+            }
+        }
+
+        function displayTraits() {
+            console.log('Displaying traits...');
+            const traits = traitManager.getAllTraits();
+            const display = document.getElementById('traits-display');
+            
+            if (traits.length === 0) {
+                display.innerHTML = '<p>No traits available. Load traits first.</p>';
+                return;
+            }
+            
+            let html = '<div class="traits-section">';
+            html += '<h3>Character Traits</h3>';
+            html += '<p class="trait-description">These are your fundamental character attributes that affect all aspects of your abilities.</p>';
+            
+            traits.forEach(trait => {
+                const progress = trait.getProgress();
+                html += `
+                    <div class="trait-item" data-trait="${trait.name}">
+                        <div class="trait-header">
+                            <span class="trait-icon">${trait.icon}</span>
+                            <span class="trait-name">${trait.name}</span>
+                            <span class="trait-level">Level ${trait.level}</span>
+                        </div>
+                        <div class="trait-description">${trait.description}</div>
+                        <div class="trait-progress-container">
+                            <div class="trait-progress-bar">
+                                <div class="trait-progress-fill" style="width: ${progress}%"></div>
+                            </div>
+                            <span class="trait-xp">${trait.xp}/${trait.xpToNext} XP</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            display.innerHTML = html;
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('Traits test page loaded');
+            testTraitsLoading();
+        });
+    </script>
+</body>
+</html> 

@@ -1,6 +1,7 @@
 // Game configuration - will be loaded asynchronously
 let gameConfig = null;
 let skillsConfig = null;
+let traitsConfig = null;
 
 // Default configuration values for fallback
 const DEFAULT_CONFIG = {
@@ -111,6 +112,97 @@ class Skill {
     getProgress() {
         const progressMax = (gameConfig && gameConfig.constants && gameConfig.constants.progressMax) ? gameConfig.constants.progressMax : 100;
         return (this.xp / this.xpToNext) * progressMax;
+    }
+}
+
+// Trait class for managing individual traits (fundamental character attributes)
+class Trait {
+    constructor(name, level = null, xp = null, description = '', icon = '') {
+        this.name = name;
+        this.level = level !== null ? level : 1;
+        this.xp = xp !== null ? xp : 0;
+        this.description = description;
+        this.icon = icon;
+        this.xpToNext = this.getXpToNextLevel(this.level);
+    }
+
+    getXpToNextLevel(level) {
+        const multiplier = (gameConfig && gameConfig.constants && gameConfig.constants.xpMultiplier) ? gameConfig.constants.xpMultiplier : 100;
+        return level * multiplier;
+    }
+
+    addXp(amount) {
+        this.xp += amount;
+        let levelUps = 0;
+        
+        while (this.xp >= this.xpToNext) {
+            this.level++;
+            this.xp -= this.xpToNext;
+            this.xpToNext = this.getXpToNextLevel(this.level);
+            levelUps++;
+        }
+        
+        return levelUps;
+    }
+
+    getProgress() {
+        const progressMax = (gameConfig && gameConfig.constants && gameConfig.constants.progressMax) ? gameConfig.constants.progressMax : 100;
+        return (this.xp / this.xpToNext) * progressMax;
+    }
+}
+
+// TraitManager class for managing all traits
+class TraitManager {
+    constructor() {
+        this.traits = new Map();
+    }
+
+    loadFromConfig(traitsConfig) {
+        try {
+            console.log('Loading traits...');
+            this.traits.clear();
+
+            if (traitsConfig && traitsConfig.traits) {
+                for (const [traitName, traitData] of Object.entries(traitsConfig.traits)) {
+                    const trait = new Trait(
+                        traitName,
+                        traitData.level,
+                        traitData.experience,
+                        traitData.description || '',
+                        traitData.icon || ''
+                    );
+                    this.traits.set(traitName, trait);
+                }
+            }
+            
+            console.log(`Loaded ${this.traits.size} traits`);
+        } catch (error) {
+            console.error('Error loading traits:', error);
+        }
+    }
+
+    getTrait(traitName) {
+        return this.traits.get(traitName);
+    }
+
+    getAllTraits() {
+        return Array.from(this.traits.values());
+    }
+
+    addTraitXp(traitName, xpAmount) {
+        const trait = this.traits.get(traitName);
+        if (trait) {
+            const fromLevel = trait.level;
+            const levelUps = trait.addXp(xpAmount);
+            
+            if (levelUps > 0) {
+                addNarrationMessage(`🎉 ${traitName} trait increased! You are now level ${trait.level}.`);
+                flashXpGain(traitName, xpAmount);
+            }
+            
+            return levelUps;
+        }
+        return 0;
     }
 }
 
@@ -405,6 +497,7 @@ class SkillManager {
 // Game state object to track all player data
 let gameState = {
     skillManager: new SkillManager(),
+    traitManager: new TraitManager(),
     inventoryManager: new InventoryManager(),
     inventory: {},
     lastSaved: null
@@ -443,6 +536,7 @@ function saveGameState() {
     try {
         const saveData = {
             skills: {},
+            traits: {},
             inventory: {},
             lastSaved: new Date().getTime()
         };
@@ -452,6 +546,14 @@ function saveGameState() {
             saveData.skills[name] = {
                 level: skill.level,
                 xp: skill.xp
+            };
+        });
+        
+        // Save traits data
+        gameState.traitManager.traits.forEach((trait, name) => {
+            saveData.traits[name] = {
+                level: trait.level,
+                xp: trait.xp
             };
         });
         
@@ -495,6 +597,18 @@ function loadGameState() {
                     skill.level = data.level;
                     skill.xp = data.xp;
                     skill.xpToNext = skill.getXpToNextLevel(skill.level);
+                }
+            });
+        }
+        
+        // Load traits data
+        if (parsedData.traits) {
+            Object.entries(parsedData.traits).forEach(([name, data]) => {
+                const trait = gameState.traitManager.getTrait(name);
+                if (trait) {
+                    trait.level = data.level;
+                    trait.xp = data.xp;
+                    trait.xpToNext = trait.getXpToNextLevel(trait.level);
                 }
             });
         }
@@ -575,6 +689,20 @@ async function loadSkillsConfig() {
     } catch (error) {
         console.error(gameConfig.messages.skillsConfigError, error);
         // In case of error, skillsConfig will remain null
+    }
+}
+
+async function loadTraitsConfig() {
+    try {
+        const response = await fetch('data/traits.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        traitsConfig = await response.json();
+        console.log('Traits configuration loaded successfully');
+    } catch (error) {
+        console.error('Error loading traits config:', error);
+        // In case of error, traitsConfig will remain null
     }
 }
 
@@ -724,6 +852,70 @@ function updateInventoryDisplay() {
     });
 }
 
+// Update character display to show traits
+function updateCharacterDisplay() {
+    const characterContent = document.getElementById('character-content');
+    if (!characterContent) {
+        console.error('Character content element not found');
+        return;
+    }
+    
+    const traits = gameState.traitManager.getAllTraits();
+    
+    if (traits.length === 0) {
+        characterContent.innerHTML = '<p class="text-muted">No traits available.</p>';
+        return;
+    }
+    
+    let html = '<div class="traits-section">';
+    html += '<h3>Character Traits</h3>';
+    html += '<p class="trait-description">These are your fundamental character attributes that affect all aspects of your abilities.</p>';
+    
+    traits.forEach(trait => {
+        const progress = trait.getProgress();
+        html += `
+            <div class="trait-item" data-trait="${trait.name}">
+                <div class="trait-header">
+                    <span class="trait-icon">${trait.icon}</span>
+                    <span class="trait-name">${trait.name}</span>
+                    <span class="trait-level">Level ${trait.level}</span>
+                </div>
+                <div class="trait-description">${trait.description}</div>
+                <div class="trait-progress-container">
+                    <div class="trait-progress-bar">
+                        <div class="trait-progress-fill" style="width: ${progress}%"></div>
+                    </div>
+                    <span class="trait-xp">${trait.xp}/${trait.xpToNext} XP</span>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    
+    // Add save game section
+    html += `
+        <div class="save-game-container">
+            <button id="save-game-button" class="save-button">💾 Save Game</button>
+            <p id="last-saved-time"></p>
+        </div>
+    `;
+    
+    characterContent.innerHTML = html;
+    
+    // Re-add event listener for save button
+    const saveButton = document.getElementById('save-game-button');
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            const success = saveGameState();
+            if (success) {
+                showToast(gameConfig.messages.gameSaved, 'success');
+                updateLastSavedTime();
+            }
+        });
+    }
+}
+
 // Show context menu for inventory items
 function showItemContextMenu(event, itemId, inventoryItem) {
     // Remove any existing context menu
@@ -854,6 +1046,7 @@ function handleSkillAction(action) {
     updateSkillsDisplay();
     updateActionsDisplay();
     updateInventoryDisplay();
+    updateCharacterDisplay();
     
     // Save game after each action
     saveGameState();
@@ -1001,16 +1194,10 @@ function generateTabsFromConfig() {
     const characterPanel = document.createElement('div');
     characterPanel.id = 'character-panel';
     characterPanel.className = gameConfig.ui.cssClasses.tabPanel;
-    
-    // Add save game button to character panel
     characterPanel.innerHTML = `
         <h2>Character</h2>
         <div id="character-content">
             <p>Your character information will appear here.</p>
-            <div class="save-game-container">
-                <button id="save-game-button" class="save-button">💾 Save Game</button>
-                <p id="last-saved-time"></p>
-            </div>
         </div>
     `;
     tabContent.appendChild(characterPanel);
@@ -1039,18 +1226,6 @@ function generateTabsFromConfig() {
         </div>
     `;
     tabContent.appendChild(questsPanel);
-    
-    // Add event listener for save button
-    const saveButton = document.getElementById('save-game-button');
-    if (saveButton) {
-        saveButton.addEventListener('click', () => {
-            const success = saveGameState();
-            if (success) {
-                showToast(gameConfig.messages.gameSaved, 'success');
-                updateLastSavedTime();
-            }
-        });
-    }
     
     // Add event listener for achievements modal button
     const achievementsButton = document.getElementById('open-achievements-modal');
@@ -1093,6 +1268,7 @@ async function initGame() {
         // Load game and skills configurations
         await loadGameConfig();
         await loadSkillsConfig();
+        await loadTraitsConfig();
         
         // Check for config loading errors
         if (!gameConfig || !skillsConfig) {
@@ -1103,6 +1279,7 @@ async function initGame() {
         // Initialize game state
         gameState = {
             skillManager: new SkillManager(),
+            traitManager: new TraitManager(),
             inventoryManager: new InventoryManager(),
             inventory: {},
             lastSaved: null
@@ -1119,6 +1296,9 @@ async function initGame() {
 
         // Load skills and actions from configs
         gameState.skillManager.loadFromConfig(skillsConfig, gameConfig);
+        
+        // Load traits from config
+        gameState.traitManager.loadFromConfig(traitsConfig);
         
         // Try to load saved game state
         const loaded = loadGameState();
@@ -1141,6 +1321,7 @@ async function initGame() {
         updateSkillsDisplay();
         updateActionsDisplay();
         updateInventoryDisplay();
+        updateCharacterDisplay();
         
         // Setup auto-save
         setupAutoSave();
@@ -1182,4 +1363,58 @@ function testInventorySystem() {
     updateInventoryDisplay();
     
     console.log('Inventory system test complete!');
+}
+
+// Test function for traits system (can be called from browser console)
+function testTraitsSystem() {
+    console.log('Testing traits system...');
+    
+    // Test getting all traits
+    const traits = gameState.traitManager.getAllTraits();
+    console.log('All traits:', traits);
+    
+    // Test adding XP to a trait
+    const strengthTrait = gameState.traitManager.getTrait('Strength');
+    if (strengthTrait) {
+        console.log('Strength trait before XP:', strengthTrait.level, strengthTrait.xp);
+        gameState.traitManager.addTraitXp('Strength', 50);
+        console.log('Strength trait after XP:', strengthTrait.level, strengthTrait.xp);
+    }
+    
+    // Update display
+    updateCharacterDisplay();
+    
+    console.log('Traits system test complete!');
+}
+
+// Simple AchievementSystem for browser compatibility
+class AchievementSystem {
+    constructor(achievementsData) {
+        this.achievementsData = achievementsData || {};
+        this.unlockedAchievements = new Set();
+        this.progress = {};
+    }
+
+    unlock(achievementId) {
+        if (this.achievementsData[achievementId]) {
+            this.unlockedAchievements.add(achievementId);
+            console.log(`Achievement unlocked: ${achievementId}`);
+        }
+    }
+
+    isUnlocked(achievementId) {
+        return this.unlockedAchievements.has(achievementId);
+    }
+
+    getAllAchievements() {
+        return this.achievementsData;
+    }
+
+    getUnlockedAchievements() {
+        return this.unlockedAchievements;
+    }
+
+    getAchievementProgress() {
+        return this.progress;
+    }
 } 

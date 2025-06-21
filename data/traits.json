@@ -1,0 +1,40 @@
+{
+  "traits": {
+    "Strength": {
+      "level": 1,
+      "experience": 0,
+      "description": "Physical power and muscle strength",
+      "icon": "💪"
+    },
+    "Dexterity": {
+      "level": 1,
+      "experience": 0,
+      "description": "Agility, reflexes, and coordination",
+      "icon": "🏃"
+    },
+    "Stamina": {
+      "level": 1,
+      "experience": 0,
+      "description": "Endurance and resistance to fatigue",
+      "icon": "🫁"
+    },
+    "Constitution": {
+      "level": 1,
+      "experience": 0,
+      "description": "Health and resistance to disease",
+      "icon": "🛡️"
+    },
+    "Intelligence": {
+      "level": 1,
+      "experience": 0,
+      "description": "Mental acuity and problem-solving ability",
+      "icon": "🧠"
+    },
+    "Charisma": {
+      "level": 1,
+      "experience": 0,
+      "description": "Social influence and personality",
+      "icon": "✨"
+    }
+  }
+} 
