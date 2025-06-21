@@ -6,13 +6,13 @@ class Skill {
     constructor(name, level = null, xp = null) {
         this.name = name;
         // Use fallback values if gameConfig isn't loaded yet
-        this.level = level ?? (gameConfig?.constants?.defaultLevel ?? 1);
-        this.xp = x ?? (gameConfig?.constants?.defaultXp ?? 0);
+        this.level = level !== null ? level : (gameConfig && gameConfig.constants ? gameConfig.constants.defaultLevel : 1);
+        this.xp = x !== null ? x : (gameConfig && gameConfig.constants ? gameConfig.constants.defaultXp : 0);
         this.xpToNext = this.getXpToNextLevel(this.level);
     }
 
     getXpToNextLevel(level) {
-        const multiplier = gameConfig?.constants?.xpMultiplier ?? 100;
+        const multiplier = (gameConfig && gameConfig.constants && gameConfig.constants.xpMultiplier) ? gameConfig.constants.xpMultiplier : 100;
         return level * multiplier;
     }
 
@@ -31,7 +31,7 @@ class Skill {
     }
 
     getProgress() {
-        const progressMax = gameConfig?.constants?.progressMax ?? 100;
+        const progressMax = (gameConfig && gameConfig.constants && gameConfig.constants.progressMax) ? gameConfig.constants.progressMax : 100;
         return (this.xp / this.xpToNext) * progressMax;
     }
 }
