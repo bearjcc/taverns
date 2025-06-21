@@ -233,4 +233,51 @@ if (!skillsConfig || !gameConfig) {
 - **Next Focus**: Implementing sidebar tabs and expanding skill actions
 - **Future**: Social features and advanced game mechanics
 
-This project emphasizes clean, maintainable code with a focus on user experience and incremental development. All changes should preserve existing functionality while building toward the long-term vision of a comprehensive text-based adventure game. 
+This project emphasizes clean, maintainable code with a focus on user experience and incremental development. All changes should preserve existing functionality while building toward the long-term vision of a comprehensive text-based adventure game.
+
+# Cursor Development Environment Configuration
+
+## Operating System
+- **OS**: Windows 11 Home (version 10.0.22631, build 22631)
+- **Shell**: PowerShell (C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe)
+- **Terminal**: Windows PowerShell
+
+## Development Setup
+- **Package Manager**: npm
+- **Development Command**: `npm run dev`
+- **Development Server**: live-server running on port 3000 (with fallback to other ports if busy)
+- **Hot Reload**: Enabled via live-server for automatic browser refresh
+
+## Project Structure
+- **Framework**: Plain HTML/CSS/JavaScript (no frameworks)
+- **Build Tool**: None (direct file serving via live-server)
+- **Deployment**: GitHub Pages with automatic deployment
+
+## Development Workflow
+1. Run `npm run dev` to start development server
+2. Server automatically opens browser to local development URL
+3. Live-server watches for file changes and auto-reloads
+4. Development URL typically: http://127.0.0.1:62829 (or similar port)
+
+## File Paths
+- **Workspace**: C:\GitHub\Self\taverns
+- **Absolute Path**: /c%3A/GitHub/Self/taverns
+- **File Separator**: Use Windows-style paths (backslashes) when needed
+
+## Terminal Commands
+- Use PowerShell syntax for terminal commands
+- npm commands work as expected in PowerShell
+- File paths should use Windows conventions when necessary
+
+## Browser Development
+- Development server serves files directly
+- No build step required
+- Changes are reflected immediately via live-server
+- Browser console available for debugging
+
+## Notes for AI Assistant
+- Always use Windows PowerShell commands when suggesting terminal operations
+- npm is the primary package manager
+- Development server runs via live-server with hot reload
+- File paths should respect Windows conventions
+- No build process - direct file serving for development 
