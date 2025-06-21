@@ -1,0 +1,127 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Game container */
+.game-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Column styles */
+.narration-column {
+    flex: 2;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.actions-column {
+    flex: 1;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Content areas */
+.narration-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #0a0a0a;
+}
+
+.actions-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+.sidebar-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #1a1a1a;
+}
+
+/* Narration messages */
+.narration-message {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #cccccc;
+    font-size: 14px;
+}
+
+.narration-message:last-child {
+    margin-bottom: 0;
+}
+
+/* Action buttons */
+.action-button {
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border: 1px solid #444;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    width: 100%;
+    text-align: left;
+}
+
+.action-button:hover {
+    background-color: #3a3a3a;
+}
+
+.action-button:active {
+    background-color: #4a4a4a;
+}
+
+/* Sidebar placeholder */
+.sidebar-placeholder {
+    color: #666;
+    text-align: center;
+    padding: 20px;
+}
+
+.sidebar-placeholder h3 {
+    margin-bottom: 10px;
+    color: #888;
+}
+
+/* Scrollbar styling */
+.narration-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.narration-content::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+.narration-content::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+.narration-content::-webkit-scrollbar-thumb:hover {
+    background: #444;
+} 

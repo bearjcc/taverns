@@ -1,14 +1,15 @@
 # Taverns Game - TODO
 
 ## Immediate Tasks (Phase 1)
-- [ ] Set up project structure
-- [ ] Choose technology stack
+- [x] Set up project structure
+- [x] Choose technology stack
 - [ ] Set up development environment
 - [ ] Create basic build system
 - [ ] Set up testing framework
 - [ ] Analyze existing files and lore
 - [ ] Extract game directives from existing content
 - [ ] Create detailed technical specifications
+- [ ] **Implement basic 3-column layout with narration system**
 
 ## Phase Planning
 - [ ] Define UI framework requirements
@@ -23,6 +24,8 @@
 - [ ] Dynamic world events
 - [ ] User-generated content
 - [ ] Modding support
+- [ ] **Sidebar tabs (backpack, gear, character info)**
+- [ ] **Advanced action system**
 
 ## Technical Debt
 *[To be identified during development]*
@@ -38,4 +41,5 @@
 - Focus on Phase 1 completion before moving to Phase 2
 - All future features documented but not implemented yet
 - Social features and complex systems planned for Phase 5
-- Each task should be small and testable 
+- Each task should be small and testable
+- **Current focus: Basic 3-column layout with narration (A Dark Room style)** 

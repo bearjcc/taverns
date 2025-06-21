@@ -1,0 +1,16 @@
+{
+  "name": "taverns-game",
+  "version": "1.0.0",
+  "description": "A text-based adventure game with 3-column layout",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/",
+    "start": "live-server --port=3000 --open=/"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "keywords": ["game", "adventure", "text-based"],
+  "author": "",
+  "license": "MIT"
+} 
