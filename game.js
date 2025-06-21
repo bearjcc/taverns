@@ -5,13 +5,15 @@ let gameConfig = null;
 class Skill {
     constructor(name, level = null, xp = null) {
         this.name = name;
-        this.level = level ?? gameConfig.constants.defaultLevel;
-        this.xp = x ?? gameConfig.constants.defaultXp;
+        // Use fallback values if gameConfig isn't loaded yet
+        this.level = level ?? (gameConfig?.constants?.defaultLevel ?? 1);
+        this.xp = x ?? (gameConfig?.constants?.defaultXp ?? 0);
         this.xpToNext = this.getXpToNextLevel(this.level);
     }
 
     getXpToNextLevel(level) {
-        return level * gameConfig.constants.xpMultiplier;
+        const multiplier = gameConfig?.constants?.xpMultiplier ?? 100;
+        return level * multiplier;
     }
 
     addXp(amount) {
@@ -29,7 +31,8 @@ class Skill {
     }
 
     getProgress() {
-        return (this.xp / this.xpToNext) * gameConfig.constants.progressMax;
+        const progressMax = gameConfig?.constants?.progressMax ?? 100;
+        return (this.xp / this.xpToNext) * progressMax;
     }
 }
 
@@ -172,23 +175,110 @@ const gameState = {
 // Load game configuration
 async function loadGameConfig() {
     try {
-        const response = await fetch('data/game-config.json');
-        gameConfig = await response.json();
+        console.log('Attempting to load game configuration...');
+        const response = await fetch('./data/game-config.json');
+        console.log('Response status:', response.status, response.statusText);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const configText = await response.text();
+        console.log('Config file content length:', configText.length);
+        
+        gameConfig = JSON.parse(configText);
+        console.log('Configuration parsed successfully');
+        
         gameState.skillManager.loadFromConfig(gameConfig);
         console.log(gameConfig.messages.configLoaded);
+        return true;
     } catch (error) {
         console.error('Failed to load game configuration:', error);
+        console.error('Error details:', error.message);
+        
+        // Try alternative paths
+        try {
+            console.log('Trying alternative path...');
+            const altResponse = await fetch('data/game-config.json');
+            if (altResponse.ok) {
+                gameConfig = await altResponse.json();
+                gameState.skillManager.loadFromConfig(gameConfig);
+                console.log('Configuration loaded with alternative path');
+                return true;
+            }
+        } catch (altError) {
+            console.error('Alternative path also failed:', altError);
+        }
+        
         // Fallback to hardcoded config if JSON fails to load
         loadFallbackConfig();
+        return false;
     }
 }
 
 // Fallback configuration if JSON fails to load
 function loadFallbackConfig() {
     console.log('Loading fallback configuration');
-    // This would contain the original hardcoded data
-    // For now, we'll just show an error message
-    addNarrationMessage(gameConfig?.messages?.configError || 'Error: Could not load game configuration. Please refresh the page.');
+    // Create a minimal fallback config
+    gameConfig = {
+        ui: {
+            cssClasses: {
+                skillItem: 'skill-item',
+                skillHeader: 'skill-header',
+                skillName: 'skill-name',
+                skillLevel: 'skill-level',
+                skillProgressContainer: 'skill-progress-container',
+                skillProgressBar: 'skill-progress-bar',
+                skillProgressFill: 'skill-progress-fill',
+                skillXp: 'skill-xp',
+                actionButton: 'action-button',
+                newUnlock: 'new-unlock',
+                narrationMessage: 'narration-message',
+                tabButton: 'tab-button',
+                tabPanel: 'tab-panel',
+                active: 'active'
+            },
+            elementIds: {
+                narrationContent: 'narration-content',
+                skillsContent: 'skills-content',
+                actionsContent: 'actions-content'
+            },
+            tabs: [
+                {
+                    id: 'skills',
+                    displayName: 'Skills',
+                    icon: '⚔️'
+                },
+                {
+                    id: 'inventory',
+                    displayName: 'Inventory',
+                    icon: '🎒'
+                },
+                {
+                    id: 'character',
+                    displayName: 'Character',
+                    icon: '👤'
+                }
+            ]
+        },
+        constants: {
+            xpMultiplier: 100,
+            defaultLevel: 1,
+            defaultXp: 0,
+            progressMax: 100
+        },
+        skills: {},
+        messages: {
+            welcome: 'Hello world',
+            levelUp: '🎉 {skillName} level up! You are now level {level}.',
+            actionUnlocked: '🔓 New action unlocked: {actionName} (Level {level})',
+            actionCompleted: 'You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})',
+            configError: 'Error: Could not load game configuration. Please refresh the page.',
+            configLoaded: 'Game configuration loaded successfully'
+        }
+    };
+    
+    addNarrationMessage('Warning: Using fallback configuration. Some features may not work properly.');
 }
 
 // Update the skills display in the sidebar
