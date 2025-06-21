@@ -26,6 +26,10 @@
     }
   },
   "combat": {
+    "Combat": {
+      "level": 1,
+      "experience": 0
+    },
     "Hunting": {
       "level": 1,
       "experience": 0
@@ -42,11 +46,55 @@
       "level": 1,
       "experience": 0
     },
-    "Magic Combat": {
+    "Stealth": {
+      "level": 1,
+      "experience": 0
+    }
+  },
+  "magic": {
+    "Magic": {
       "level": 1,
       "experience": 0
     },
-    "Stealth": {
+    "Basic Magic": {
+      "level": 1,
+      "experience": 0
+    },
+    "Fire Magic": {
+      "level": 1,
+      "experience": 0
+    },
+    "Healing Magic": {
+      "level": 1,
+      "experience": 0
+    },
+    "Summoning": {
+      "level": 1,
+      "experience": 0
+    },
+    "Enchantment": {
+      "level": 1,
+      "experience": 0
+    }
+  },
+  "crafting": {
+    "Crafting": {
+      "level": 1,
+      "experience": 0
+    },
+    "Blacksmithing": {
+      "level": 1,
+      "experience": 0
+    },
+    "Armorsmithing": {
+      "level": 1,
+      "experience": 0
+    },
+    "Enchanting": {
+      "level": 1,
+      "experience": 0
+    },
+    "Jewelcrafting": {
       "level": 1,
       "experience": 0
     }
@@ -73,10 +121,6 @@
       "experience": 0
     },
     "Woodcutting": {
-      "level": 1,
-      "experience": 0
-    },
-    "Basic Magic": {
       "level": 1,
       "experience": 0
     }
@@ -203,217 +247,86 @@
         "level": 25
       },
       "sub_skills": {
-        "Fishing": {
+        "Beasts": {
           "level": 1,
           "experience": 0
         },
-        "Big Game": {
+        "Monsters": {
           "level": 1,
           "experience": 0
         },
-        "Whaling": {
-          "level": 1,
-          "experience": 0
-        },
-        "Witching": {
+        "Dragons": {
           "level": 1,
           "experience": 0
         }
       }
     },
-    "Geoworking": {
-      "description": "Skills related to working with earth materials.",
+    "Advanced Combat": {
+      "description": "Advanced combat techniques and strategies.",
+      "requires": {
+        "skill": "Combat",
+        "level": 25
+      },
       "sub_skills": {
-        "Prospecting": {
+        "Sword Mastery": {
           "level": 1,
           "experience": 0
         },
-        "Mining": {
+        "Shield Mastery": {
           "level": 1,
           "experience": 0
         },
-        "Smithing": {
+        "Dual Wielding": {
           "level": 1,
           "experience": 0
         },
-        "Jewelcrafting": {
-          "level": 1,
-          "experience": 0
-        },
-        "Precious Metal": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Crafting": {
-      "description": "The skill of making decorative or functional items by hand.",
-      "sub_skills": {
-        "Pottery": {
-          "level": 1,
-          "experience": 0
-        },
-        "Fabrics": {
-          "level": 1,
-          "experience": 0
-        },
-        "Leatherworking": {
-          "level": 1,
-          "experience": 0
-        },
-        "Alchemy": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Engineering": {
-      "description": "The branch of science and technology concerned with the design, building, and use of engines, machines, and structures.",
-      "sub_skills": {
-        "Assault": {
-          "level": 1,
-          "experience": 0
-        },
-        "Defense": {
-          "level": 1,
-          "experience": 0
-        },
-        "Civil": {
-          "level": 1,
-          "experience": 0
-        },
-        "Tinkering": {
+        "Battle Tactics": {
           "level": 1,
           "experience": 0
         }
       }
     },
     "Advanced Magic": {
-      "description": "The study and practice of advanced magical arts.",
+      "description": "Advanced magical techniques and spellcraft.",
+      "requires": {
+        "skill": "Magic",
+        "level": 25
+      },
       "sub_skills": {
-        "Siphoning": {
+        "Elemental Mastery": {
           "level": 1,
           "experience": 0
         },
-        "Runecrafting": {
+        "Necromancy": {
           "level": 1,
           "experience": 0
         },
-        "Teleportation": {
+        "Divination": {
           "level": 1,
           "experience": 0
         },
-        "Defense": {
-          "level": 1,
-          "experience": 0
-        },
-        "Assault": {
-          "level": 1,
-          "experience": 0
-        },
-        "Assists": {
-          "level": 1,
-          "experience": 0
-        },
-        "Dark Magic": {
+        "Transmutation": {
           "level": 1,
           "experience": 0
         }
       }
     },
-    "Naval": {
-      "description": "Skills related to seafaring.",
+    "Master Crafting": {
+      "description": "The pinnacle of crafting skill, allowing creation of legendary items.",
+      "requires": {
+        "skill": "Crafting",
+        "level": 25
+      },
       "sub_skills": {
-        "Navigation": {
+        "Masterwork Creation": {
           "level": 1,
           "experience": 0
         },
-        "Combat": {
+        "Legendary Forging": {
           "level": 1,
           "experience": 0
         },
-        "Piracy": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Athletics": {
-      "description": "The practice of physical exercises and sports.",
-      "sub_skills": {
-        "Swimming": {
-          "level": 1,
-          "experience": 0
-        },
-        "Acrobatics": {
-          "level": 1,
-          "experience": 0
-        },
-        "Sports": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Medicine": {
-      "description": "The science and practice of the diagnosis, treatment, and prevention of disease.",
-      "sub_skills": {
-        "Healing arts": {
-          "level": 1,
-          "experience": 0
-        },
-        "herbology": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Deception": {
-      "description": "The art of misleading or tricking someone.",
-      "sub_skills": {
-        "Stealth": {
-          "level": 1,
-          "experience": 0
-        },
-        "Sleight of Hand": {
-          "level": 1,
-          "experience": 0
-        },
-        "Lockpicking": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Scholar": {
-      "description": "A person who is highly educated or has an aptitude for study.",
-      "sub_skills": {
-        "Arcana": {
-          "level": 1,
-          "experience": 0
-        },
-        "History": {
-          "level": 1,
-          "experience": 0
-        },
-        "Linguistics": {
-          "level": 1,
-          "experience": 0
-        },
-        "Music": {
-          "level": 1,
-          "experience": 0
-        }
-      }
-    },
-    "Spirituality": {
-      "description": "The quality of being concerned with the human spirit or soul as opposed to material or physical things.",
-      "sub_skills": {
-        "Religion": {
-          "level": 1,
-          "experience": 0
-        },
-        "Planeshifting": {
+        "Artifact Crafting": {
           "level": 1,
           "experience": 0
         }

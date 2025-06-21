@@ -44,6 +44,11 @@ const DEFAULT_CONFIG = {
                 id: 'character',
                 displayName: 'Character',
                 icon: '👤'
+            },
+            {
+                id: 'quests',
+                displayName: 'Quests',
+                icon: '🗺️'
             }
         ]
     },
@@ -55,7 +60,7 @@ const DEFAULT_CONFIG = {
     },
     skills: {},
     messages: {
-        welcome: 'Hello world',
+        welcome: 'Welcome to Taverns and Treasures! Your adventure begins...',
         levelUp: '🎉 {skillName} level up! You are now level {level}.',
         actionUnlocked: '🔓 New action unlocked: {actionName} (Level {level})',
         actionCompleted: 'You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})',
@@ -595,6 +600,8 @@ function switchTab(tabName) {
     } else if (tabName === 'character') {
         // Update character display and last saved time
         updateLastSavedTime();
+    } else if (tabName === 'quests') {
+        // Update quests display when implemented
     }
 }
 
@@ -719,6 +726,18 @@ function generateTabsFromConfig() {
     `;
     tabContent.appendChild(characterPanel);
     
+    // Add quests tab panel
+    const questsPanel = document.createElement('div');
+    questsPanel.id = 'quests-panel';
+    questsPanel.className = gameConfig.ui.cssClasses.tabPanel;
+    questsPanel.innerHTML = `
+        <h2>Quests</h2>
+        <div id="quests-content">
+            <p>No active quests. Quest system coming soon!</p>
+        </div>
+    `;
+    tabContent.appendChild(questsPanel);
+    
     // Add event listener for save button
     const saveButton = document.getElementById('save-game-button');
     if (saveButton) {
@@ -784,7 +803,7 @@ async function initGame() {
         // If no saved state, show welcome message
         if (!loaded) {
             // Add welcome message to narration
-            addNarrationMessage('Welcome to Taverns! Click on actions to begin your adventure.');
+            addNarrationMessage('Welcome to Taverns and Treasures! Your adventure in this fantasy world begins now. Choose your path - master combat and magic, learn trades and crafts, or explore the world seeking rare treasures. But remember, danger lurks around every corner and death is permanent!');
         }
         
         // Generate UI

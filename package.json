@@ -1,18 +1,25 @@
 {
-  "name": "taverns-game",
+  "name": "taverns-and-treasures",
   "version": "1.0.0",
-  "description": "A text-based adventure game with 3-column layout",
+  "description": "A text-based RPG based around questing and skilling in a traditional fantasy setting",
   "main": "index.html",
   "scripts": {
     "dev": "live-server --port=3000 --open=/",
-    "start": "live-server --port=3000 --open=/",
-    "build": "echo 'No build step needed for plain HTML/CSS/JS'",
-    "deploy": "npm run build"
+    "build": "echo 'No build step required for static files'",
+    "deploy": "echo 'Deployment handled by GitHub Actions'"
   },
+  "keywords": [
+    "rpg",
+    "text-adventure",
+    "fantasy",
+    "questing",
+    "skilling",
+    "multiplayer",
+    "free-to-play"
+  ],
+  "author": "bearjcc",
+  "license": "MIT",
   "devDependencies": {
     "live-server": "^1.2.2"
-  },
-  "keywords": ["game", "adventure", "text-based"],
-  "author": "",
-  "license": "MIT"
+  }
 } 

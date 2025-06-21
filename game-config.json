@@ -15,6 +15,11 @@
         "id": "character",
         "displayName": "Character", 
         "icon": "👤"
+      },
+      {
+        "id": "quests",
+        "displayName": "Quests",
+        "icon": "🗺️"
       }
     ],
     "cssClasses": {
@@ -42,6 +47,7 @@
       "skillsTab": "skills-tab",
       "inventoryTab": "inventory-tab", 
       "characterTab": "character-tab",
+      "questsTab": "quests-tab",
       "toastContainer": "toast-container"
     }
   },
@@ -52,6 +58,159 @@
     "progressMax": 100
   },
   "skills": {
+    "combat": {
+      "name": "Combat",
+      "displayName": "Combat",
+      "description": "Master the art of battle with various weapons and techniques",
+      "actions": [
+        {
+          "name": "Practice Swordplay",
+          "displayName": "Practice Swordplay",
+          "description": "Train with a wooden sword",
+          "levelRequired": 1,
+          "xpReward": 15,
+          "itemReward": "combat_experience",
+          "itemCount": 1,
+          "unlockMessage": "You begin training with the sword!",
+          "flavorText": "You practice your sword forms in the training yard, feeling more confident with each swing."
+        },
+        {
+          "name": "Spar with Partner",
+          "displayName": "Spar with Partner",
+          "description": "Engage in controlled combat training",
+          "levelRequired": 5,
+          "xpReward": 25,
+          "itemReward": "combat_experience",
+          "itemCount": 1,
+          "unlockMessage": "You can now spar with training partners!",
+          "flavorText": "You and your training partner exchange blows, learning from each other's techniques."
+        },
+        {
+          "name": "Hunt Bandits",
+          "displayName": "Hunt Bandits",
+          "description": "Track down and defeat bandit groups",
+          "levelRequired": 10,
+          "xpReward": 50,
+          "itemReward": "bandit_loot",
+          "itemCount": 1,
+          "unlockMessage": "You can now hunt dangerous bandits!",
+          "flavorText": "You track a group of bandits through the forest and engage them in combat."
+        },
+        {
+          "name": "Slay Monsters",
+          "displayName": "Slay Monsters",
+          "description": "Face dangerous creatures in battle",
+          "levelRequired": 20,
+          "xpReward": 100,
+          "itemReward": "monster_parts",
+          "itemCount": 1,
+          "unlockMessage": "You can now face monstrous creatures!",
+          "flavorText": "You engage a fearsome monster in combat, testing your skills against its strength."
+        }
+      ]
+    },
+    "magic": {
+      "name": "Magic",
+      "displayName": "Magic",
+      "description": "Learn the arcane arts and mystical spells",
+      "actions": [
+        {
+          "name": "Study Spellbook",
+          "displayName": "Study Spellbook",
+          "description": "Learn basic magical theory",
+          "levelRequired": 1,
+          "xpReward": 12,
+          "itemReward": "magical_knowledge",
+          "itemCount": 1,
+          "unlockMessage": "You begin studying the arcane arts!",
+          "flavorText": "You pore over ancient spellbooks, memorizing incantations and magical theory."
+        },
+        {
+          "name": "Cast Fireball",
+          "displayName": "Cast Fireball",
+          "description": "Practice destructive fire magic",
+          "levelRequired": 5,
+          "xpReward": 20,
+          "itemReward": "magical_knowledge",
+          "itemCount": 1,
+          "unlockMessage": "You can now cast fire spells!",
+          "flavorText": "A ball of flame erupts from your hands, illuminating the darkness."
+        },
+        {
+          "name": "Heal Wounds",
+          "displayName": "Heal Wounds",
+          "description": "Practice restorative magic",
+          "levelRequired": 10,
+          "xpReward": 30,
+          "itemReward": "magical_knowledge",
+          "itemCount": 1,
+          "unlockMessage": "You can now heal with magic!",
+          "flavorText": "Warm healing energy flows from your hands, mending wounds and restoring vitality."
+        },
+        {
+          "name": "Summon Familiar",
+          "displayName": "Summon Familiar",
+          "description": "Call forth a magical companion",
+          "levelRequired": 15,
+          "xpReward": 60,
+          "itemReward": "magical_knowledge",
+          "itemCount": 1,
+          "unlockMessage": "You can now summon magical familiars!",
+          "flavorText": "A magical creature materializes before you, ready to serve as your companion."
+        }
+      ]
+    },
+    "crafting": {
+      "name": "Crafting",
+      "displayName": "Crafting",
+      "description": "Create weapons, armor, and magical items",
+      "actions": [
+        {
+          "name": "Forge Iron Sword",
+          "displayName": "Forge Iron Sword",
+          "description": "Create a basic iron sword",
+          "levelRequired": 1,
+          "xpReward": 20,
+          "itemReward": "iron_sword",
+          "itemCount": 1,
+          "unlockMessage": "You can now forge basic weapons!",
+          "flavorText": "You heat the iron in your forge and hammer it into a serviceable sword."
+        },
+        {
+          "name": "Craft Leather Armor",
+          "displayName": "Craft Leather Armor",
+          "description": "Create protective leather armor",
+          "levelRequired": 5,
+          "xpReward": 25,
+          "itemReward": "leather_armor",
+          "itemCount": 1,
+          "unlockMessage": "You can now craft leather armor!",
+          "flavorText": "You carefully stitch together pieces of leather to create protective armor."
+        },
+        {
+          "name": "Enchant Weapon",
+          "displayName": "Enchant Weapon",
+          "description": "Add magical properties to weapons",
+          "levelRequired": 10,
+          "xpReward": 40,
+          "itemReward": "enchanted_weapon",
+          "itemCount": 1,
+          "unlockMessage": "You can now enchant weapons!",
+          "flavorText": "You channel magical energy into the weapon, imbuing it with supernatural power."
+        },
+        {
+          "name": "Create Masterwork",
+          "displayName": "Create Masterwork",
+          "description": "Craft an exceptional item of legendary quality",
+          "levelRequired": 25,
+          "xpReward": 200,
+          "itemReward": "masterwork_item",
+          "itemCount": 1,
+          "unlockMessage": "You can now create masterwork items!",
+          "flavorText": "You pour your heart and soul into crafting, creating an item of exceptional quality."
+        }
+      ]
+    },
     "woodcutting": {
       "name": "Woodcutting",
       "displayName": "Woodcutting",
@@ -284,7 +443,7 @@
     }
   },
   "messages": {
-    "welcome": "Hello world",
+    "welcome": "Welcome to Taverns and Treasures! Your adventure begins...",
     "levelUp": "🎉 {skillName} level up! You are now level {level}.",
     "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
     "actionCompleted": "{flavorText}",
