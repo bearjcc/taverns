@@ -129,6 +129,135 @@ class SkillAction {
     }
 }
 
+// Game Object class for items in the game
+class GameObject {
+    constructor(id, name, displayName, description, icon, examineText, stackable = true, maxStack = 999) {
+        this.id = id;
+        this.name = name;
+        this.displayName = displayName;
+        this.description = description;
+        this.icon = icon;
+        this.examineText = examineText;
+        this.stackable = stackable;
+        this.maxStack = maxStack;
+    }
+}
+
+// Inventory Item class for items in player's inventory
+class InventoryItem {
+    constructor(gameObject, quantity = 1) {
+        this.gameObject = gameObject;
+        this.quantity = quantity;
+    }
+
+    addQuantity(amount) {
+        const newQuantity = this.quantity + amount;
+        if (newQuantity <= this.gameObject.maxStack) {
+            this.quantity = newQuantity;
+            return true;
+        }
+        return false;
+    }
+
+    removeQuantity(amount) {
+        if (this.quantity >= amount) {
+            this.quantity -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    getDisplayName() {
+        if (this.quantity > 1 && this.gameObject.stackable) {
+            return `${this.gameObject.displayName} (${this.quantity})`;
+        }
+        return this.gameObject.displayName;
+    }
+}
+
+// Inventory Manager class for managing player's inventory
+class InventoryManager {
+    constructor() {
+        this.items = new Map(); // Map of itemId -> InventoryItem
+        this.gameObjects = new Map(); // Map of itemId -> GameObject
+    }
+
+    // Register a game object definition
+    registerGameObject(gameObject) {
+        this.gameObjects.set(gameObject.id, gameObject);
+    }
+
+    // Add items to inventory
+    addItem(itemId, quantity = 1) {
+        const gameObject = this.gameObjects.get(itemId);
+        if (!gameObject) {
+            console.error(`GameObject with id '${itemId}' not found`);
+            return false;
+        }
+
+        if (gameObject.stackable) {
+            // Try to add to existing stack
+            const existingItem = this.items.get(itemId);
+            if (existingItem) {
+                return existingItem.addQuantity(quantity);
+            } else {
+                // Create new stack
+                this.items.set(itemId, new InventoryItem(gameObject, quantity));
+                return true;
+            }
+        } else {
+            // Non-stackable items - add as separate entries
+            for (let i = 0; i < quantity; i++) {
+                const uniqueId = `${itemId}_${Date.now()}_${i}`;
+                this.items.set(uniqueId, new InventoryItem(gameObject, 1));
+            }
+            return true;
+        }
+    }
+
+    // Remove items from inventory
+    removeItem(itemId, quantity = 1) {
+        const existingItem = this.items.get(itemId);
+        if (!existingItem) {
+            return false;
+        }
+
+        if (existingItem.removeQuantity(quantity)) {
+            if (existingItem.quantity <= 0) {
+                this.items.delete(itemId);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    // Get item by ID
+    getItem(itemId) {
+        return this.items.get(itemId);
+    }
+
+    // Get all items
+    getAllItems() {
+        return Array.from(this.items.entries());
+    }
+
+    // Get item count
+    getItemCount(itemId) {
+        const item = this.items.get(itemId);
+        return item ? item.quantity : 0;
+    }
+
+    // Check if player has item
+    hasItem(itemId, quantity = 1) {
+        return this.getItemCount(itemId) >= quantity;
+    }
+
+    // Get game object definition
+    getGameObject(itemId) {
+        return this.gameObjects.get(itemId);
+    }
+}
+
 // SkillManager class for managing all skills and their actions
 class SkillManager {
     constructor() {
@@ -276,16 +405,36 @@ class SkillManager {
 // Game state object to track all player data
 let gameState = {
     skillManager: new SkillManager(),
+    inventoryManager: new InventoryManager(),
     inventory: {},
     lastSaved: null
 };
+
+// Initialize game objects
+function initializeGameObjects() {
+    // Register the oak log game object
+    const oakLog = new GameObject(
+        'oak_logs',
+        'oak_logs',
+        'Oak Log',
+        'A sturdy oak log, good for building and crafting.',
+        '🟫', // Brown square emoji as icon
+        'A solid piece of oak wood. The bark is rough and the wood grain is clearly visible. This would make excellent building material or firewood.',
+        true, // stackable
+        999   // max stack
+    );
+    
+    gameState.inventoryManager.registerGameObject(oakLog);
+    
+    console.log('Game objects initialized');
+}
 
 // Game state persistence functions
 function saveGameState() {
     try {
         const saveData = {
             skills: {},
-            inventory: gameState.inventory,
+            inventory: {},
             lastSaved: new Date().getTime()
         };
         
@@ -294,6 +443,13 @@ function saveGameState() {
             saveData.skills[name] = {
                 level: skill.level,
                 xp: skill.xp
+            };
+        });
+        
+        // Save inventory data
+        gameState.inventoryManager.getAllItems().forEach(([itemId, inventoryItem]) => {
+            saveData.inventory[itemId] = {
+                quantity: inventoryItem.quantity
             };
         });
         
@@ -336,7 +492,9 @@ function loadGameState() {
         
         // Load inventory data
         if (parsedData.inventory) {
-            gameState.inventory = parsedData.inventory;
+            Object.entries(parsedData.inventory).forEach(([itemId, data]) => {
+                gameState.inventoryManager.addItem(itemId, data.quantity);
+            });
         }
         
         // Load last saved timestamp
@@ -515,6 +673,121 @@ function updateActionsDisplay() {
     });
 }
 
+// Update inventory display
+function updateInventoryDisplay() {
+    const inventoryContent = document.getElementById('inventory-content');
+    if (!inventoryContent) return;
+    
+    const items = gameState.inventoryManager.getAllItems();
+    
+    if (items.length === 0) {
+        inventoryContent.innerHTML = '<p class="text-muted">Your inventory is empty.</p>';
+        return;
+    }
+    
+    inventoryContent.innerHTML = '';
+    
+    items.forEach(([itemId, inventoryItem]) => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'inventory-item';
+        itemElement.setAttribute('data-item-id', itemId);
+        
+        const gameObject = inventoryItem.gameObject;
+        
+        itemElement.innerHTML = `
+            <div class="item-icon">${gameObject.icon}</div>
+            <div class="item-info">
+                <div class="item-name">${inventoryItem.getDisplayName()}</div>
+                <div class="item-description">${gameObject.description}</div>
+            </div>
+        `;
+        
+        // Add tooltip
+        itemElement.title = gameObject.description;
+        
+        // Add right-click context menu
+        itemElement.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            showItemContextMenu(e, itemId, inventoryItem);
+        });
+        
+        inventoryContent.appendChild(itemElement);
+    });
+}
+
+// Show context menu for inventory items
+function showItemContextMenu(event, itemId, inventoryItem) {
+    // Remove any existing context menu
+    removeContextMenu();
+    
+    const gameObject = inventoryItem.gameObject;
+    
+    const contextMenu = document.createElement('div');
+    contextMenu.className = 'context-menu';
+    contextMenu.id = 'item-context-menu';
+    
+    contextMenu.innerHTML = `
+        <div class="context-menu-item" data-action="use">Use</div>
+        <div class="context-menu-item" data-action="examine">Examine</div>
+        <div class="context-menu-item" data-action="drop">Drop</div>
+    `;
+    
+    // Position the menu
+    contextMenu.style.left = event.pageX + 'px';
+    contextMenu.style.top = event.pageY + 'px';
+    
+    // Add event listeners
+    contextMenu.addEventListener('click', (e) => {
+        const action = e.target.getAttribute('data-action');
+        if (action) {
+            handleItemAction(action, itemId, inventoryItem);
+        }
+        removeContextMenu();
+    });
+    
+    document.body.appendChild(contextMenu);
+    
+    // Close menu when clicking outside
+    setTimeout(() => {
+        document.addEventListener('click', removeContextMenu, { once: true });
+    }, 0);
+}
+
+// Remove context menu
+function removeContextMenu() {
+    const existingMenu = document.getElementById('item-context-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+    }
+}
+
+// Handle item actions
+function handleItemAction(action, itemId, inventoryItem) {
+    const gameObject = inventoryItem.gameObject;
+    
+    switch (action) {
+        case 'use':
+            // Use action - for now just show a message
+            addNarrationMessage(`You attempt to use the ${gameObject.displayName}, but nothing happens.`);
+            break;
+            
+        case 'examine':
+            // Examine action - show examine text in narration
+            addNarrationMessage(gameObject.examineText);
+            break;
+            
+        case 'drop':
+            // Drop action - remove item from inventory
+            const success = gameState.inventoryManager.removeItem(itemId, 1);
+            if (success) {
+                addNarrationMessage(`You drop the ${gameObject.displayName}.`);
+                updateInventoryDisplay();
+                saveGameState();
+            }
+            break;
+    }
+}
+
 // Generic action handler for any skill
 function handleSkillAction(action) {
     // Get the skill associated with this action
@@ -527,11 +800,17 @@ function handleSkillAction(action) {
     // Add XP to the skill
     const levelUps = gameState.skillManager.addSkillXp(action.skillType, action.xpReward);
     
-    // Update inventory
-    if (!gameState.inventory[action.itemReward]) {
-        gameState.inventory[action.itemReward] = 0;
+    // Add items to inventory using the inventory manager
+    if (action.itemReward && action.itemCount > 0) {
+        const success = gameState.inventoryManager.addItem(action.itemReward, action.itemCount);
+        if (success) {
+            const gameObject = gameState.inventoryManager.getGameObject(action.itemReward);
+            if (gameObject) {
+                const itemMessage = `You received ${action.itemCount}x ${gameObject.displayName}`;
+                addNarrationMessage(itemMessage);
+            }
+        }
     }
-    gameState.inventory[action.itemReward] += action.itemCount;
     
     // Display flavor text message in narration
     if (action.flavorText) {
@@ -565,6 +844,7 @@ function handleSkillAction(action) {
     // Update the UI
     updateSkillsDisplay();
     updateActionsDisplay();
+    updateInventoryDisplay();
     
     // Save game after each action
     saveGameState();
@@ -596,7 +876,7 @@ function switchTab(tabName) {
     if (tabName === 'skills') {
         updateSkillsDisplay();
     } else if (tabName === 'inventory') {
-        // Update inventory display when implemented
+        updateInventoryDisplay();
     } else if (tabName === 'character') {
         // Update character display and last saved time
         updateLastSavedTime();
@@ -787,9 +1067,13 @@ async function initGame() {
         // Initialize game state
         gameState = {
             skillManager: new SkillManager(),
+            inventoryManager: new InventoryManager(),
             inventory: {},
             lastSaved: null
         };
+        
+        // Initialize game objects
+        initializeGameObjects();
         
         // Initialize UI component system
         gameState.ui = new GameUI();
@@ -804,12 +1088,17 @@ async function initGame() {
         if (!loaded) {
             // Add welcome message to narration
             addNarrationMessage('Welcome to Taverns and Treasures! Your adventure in this fantasy world begins now. Choose your path - master combat and magic, learn trades and crafts, or explore the world seeking rare treasures. But remember, danger lurks around every corner and death is permanent!');
+            
+            // Add a test oak log for testing the inventory system
+            gameState.inventoryManager.addItem('oak_logs', 3);
+            addNarrationMessage('You find 3 oak logs in your inventory. Right-click on them to see the context menu!');
         }
         
         // Generate UI
         generateTabsFromConfig();
         updateSkillsDisplay();
         updateActionsDisplay();
+        updateInventoryDisplay();
         
         // Setup auto-save
         setupAutoSave();
@@ -825,4 +1114,30 @@ async function initGame() {
 }
 
 // Start the game when page loads
-document.addEventListener('DOMContentLoaded', initGame); 
+document.addEventListener('DOMContentLoaded', initGame);
+
+// Test function for inventory system (can be called from browser console)
+function testInventorySystem() {
+    console.log('Testing inventory system...');
+    
+    // Test adding items
+    gameState.inventoryManager.addItem('oak_logs', 5);
+    console.log('Added 5 oak logs');
+    
+    // Test getting items
+    const items = gameState.inventoryManager.getAllItems();
+    console.log('All items:', items);
+    
+    // Test item count
+    const count = gameState.inventoryManager.getItemCount('oak_logs');
+    console.log('Oak logs count:', count);
+    
+    // Test has item
+    const hasItem = gameState.inventoryManager.hasItem('oak_logs', 3);
+    console.log('Has 3 oak logs:', hasItem);
+    
+    // Update display
+    updateInventoryDisplay();
+    
+    console.log('Inventory system test complete!');
+} 
