@@ -114,8 +114,7 @@ class ConfigManager {
     }
 
     /**
-     * Loads the main game configuration file from data/config/game-config.json.
-     * Merges with default configuration and validates the structure.
+     * Loads the game configuration file from data/config/game-config.json.
      * 
      * @async
      * @returns {Promise<Object>} The loaded and merged game configuration
@@ -123,7 +122,7 @@ class ConfigManager {
      */
     async loadGameConfig() {
         try {
-            const response = await fetch('../data/config/game-config.json');
+            const response = await fetch('data/config/game-config.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -147,7 +146,7 @@ class ConfigManager {
      */
     async loadSkillsConfig() {
         try {
-            const response = await fetch('../data/skills.json');
+            const response = await fetch('data/skills.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -170,7 +169,7 @@ class ConfigManager {
      */
     async loadTraitsConfig() {
         try {
-            const response = await fetch('../data/traits.json');
+            const response = await fetch('data/traits.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -193,7 +192,7 @@ class ConfigManager {
      */
     async loadActionsConfig() {
         try {
-            const response = await fetch('../data/config/actions.json');
+            const response = await fetch('data/config/actions.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

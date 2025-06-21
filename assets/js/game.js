@@ -110,7 +110,7 @@ async function initGame() {
  */
 async function initializeGameObjects() {
     try {
-        const response = await fetch('../data/items.json');
+        const response = await fetch('data/items.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
