@@ -32,13 +32,14 @@ class Skill {
 
 // Action class for skill actions
 class SkillAction {
-    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1) {
+    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1, skillType) {
         this.name = name;
         this.description = description;
         this.levelRequired = levelRequired;
         this.xpReward = xpReward;
         this.itemReward = itemReward;
         this.itemCount = itemCount;
+        this.skillType = skillType; // Add skill type to identify which skill this action belongs to
     }
 }
 
@@ -57,14 +58,46 @@ class SkillManager {
         
         // Define woodcutting actions
         const woodcuttingActions = [
-            new SkillAction('Chop Oak', 'Chop oak logs', 1, 10, 'oak_logs'),
-            new SkillAction('Chop Willow', 'Chop willow logs', 5, 15, 'willow_logs'),
-            new SkillAction('Chop Maple', 'Chop maple logs', 10, 25, 'maple_logs'),
-            new SkillAction('Chop Yew', 'Chop yew logs', 20, 50, 'yew_logs'),
-            new SkillAction('Chop Magic', 'Chop magic logs', 30, 100, 'magic_logs')
+            new SkillAction('Chop Oak', 'Chop oak logs', 1, 10, 'oak_logs', 1, 'woodcutting'),
+            new SkillAction('Chop Willow', 'Chop willow logs', 5, 15, 'willow_logs', 1, 'woodcutting'),
+            new SkillAction('Chop Maple', 'Chop maple logs', 10, 25, 'maple_logs', 1, 'woodcutting'),
+            new SkillAction('Chop Yew', 'Chop yew logs', 20, 50, 'yew_logs', 1, 'woodcutting'),
+            new SkillAction('Chop Magic', 'Chop magic logs', 30, 100, 'magic_logs', 1, 'woodcutting')
         ];
         
         this.skillActions.set('woodcutting', woodcuttingActions);
+
+        // Initialize fishing skill
+        this.skills.set('fishing', new Skill('Fishing'));
+        
+        // Define fishing actions
+        const fishingActions = [
+            new SkillAction('Fish Shrimp', 'Catch shrimp', 1, 8, 'shrimp', 1, 'fishing'),
+            new SkillAction('Fish Sardine', 'Catch sardines', 5, 12, 'sardine', 1, 'fishing'),
+            new SkillAction('Fish Herring', 'Catch herring', 10, 20, 'herring', 1, 'fishing'),
+            new SkillAction('Fish Salmon', 'Catch salmon', 20, 40, 'salmon', 1, 'fishing'),
+            new SkillAction('Fish Lobster', 'Catch lobster', 40, 80, 'lobster', 1, 'fishing'),
+            new SkillAction('Fish Shark', 'Catch shark', 76, 150, 'shark', 1, 'fishing')
+        ];
+        
+        this.skillActions.set('fishing', fishingActions);
+
+        // Initialize mining skill
+        this.skills.set('mining', new Skill('Mining'));
+        
+        // Define mining actions
+        const miningActions = [
+            new SkillAction('Mine Copper', 'Mine copper ore', 1, 12, 'copper_ore', 1, 'mining'),
+            new SkillAction('Mine Tin', 'Mine tin ore', 1, 12, 'tin_ore', 1, 'mining'),
+            new SkillAction('Mine Iron', 'Mine iron ore', 15, 25, 'iron_ore', 1, 'mining'),
+            new SkillAction('Mine Coal', 'Mine coal', 30, 50, 'coal', 1, 'mining'),
+            new SkillAction('Mine Gold', 'Mine gold ore', 40, 80, 'gold_ore', 1, 'mining'),
+            new SkillAction('Mine Mithril', 'Mine mithril ore', 55, 120, 'mithril_ore', 1, 'mining'),
+            new SkillAction('Mine Adamantite', 'Mine adamantite ore', 70, 200, 'adamantite_ore', 1, 'mining'),
+            new SkillAction('Mine Runite', 'Mine runite ore', 85, 400, 'runite_ore', 1, 'mining')
+        ];
+        
+        this.skillActions.set('mining', miningActions);
     }
 
     addSkill(skillName, skill) {
@@ -127,6 +160,16 @@ class SkillManager {
     getAllSkills() {
         return Array.from(this.skills.values());
     }
+
+    // Get all available actions from all skills
+    getAllAvailableActions() {
+        const allActions = [];
+        for (const [skillName, actions] of this.skillActions) {
+            const availableActions = this.getAvailableActions(skillName);
+            allActions.push(...availableActions);
+        }
+        return allActions;
+    }
 }
 
 // Game state
@@ -175,11 +218,7 @@ function updateActionsDisplay() {
     actionsContent.innerHTML = '';
     
     // Get all available actions from all skills
-    const allActions = [];
-    
-    // For now, just show woodcutting actions
-    const woodcuttingActions = gameState.skillManager.getAvailableActions('woodcutting');
-    allActions.push(...woodcuttingActions);
+    const allActions = gameState.skillManager.getAllAvailableActions();
     
     allActions.forEach(action => {
         const actionButton = document.createElement('button');
@@ -189,6 +228,7 @@ function updateActionsDisplay() {
         actionButton.setAttribute('data-xp', action.xpReward);
         actionButton.setAttribute('data-item', action.itemReward);
         actionButton.setAttribute('data-count', action.itemCount);
+        actionButton.setAttribute('data-skill', action.skillType);
         
         // Add visual feedback for newly unlocked actions
         if (gameState.skillManager.isNewlyUnlocked(action.name)) {
@@ -202,8 +242,8 @@ function updateActionsDisplay() {
 
 // Generic action handler for any skill
 function handleSkillAction(action) {
-    // Determine which skill this action belongs to
-    let skillName = 'woodcutting'; // For now, hardcoded. Could be improved with skill mapping
+    // Use the skill type from the action to determine which skill to add XP to
+    const skillName = action.skillType;
     
     // Add XP to the skill
     const levelUps = gameState.skillManager.addSkillXp(skillName, action.xpReward);
