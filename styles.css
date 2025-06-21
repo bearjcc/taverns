@@ -57,10 +57,12 @@ body {
 
 .sidebar-content {
     flex: 1;
-    padding: 20px;
+    padding-top: 20px;
     background-color: #1a1a1a;
     display: flex;
     flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
 }
 
 /* Narration messages */
@@ -132,6 +134,8 @@ body {
     display: flex;
     border-bottom: 1px solid #333;
     margin-bottom: 15px;
+    flex-shrink: 0; /* Prevent tabs from shrinking */
+    padding: 0 20px;
 }
 
 .tab-button {
@@ -161,10 +165,13 @@ body {
 .tab-content {
     flex: 1;
     overflow-y: auto;
+    min-height: 0;
+    max-height: 100%;
 }
 
 .tab-panel {
     display: none;
+    padding: 0 20px 20px 20px;
 }
 
 .tab-panel.active {
