@@ -1,0 +1,236 @@
+# Taverns Game - Cursor Rules
+
+## Project Overview
+Taverns is a text-based adventure game inspired by "A Dark Room" with a 3-column layout. The game features a skill-based progression system with RPG elements, focusing on incremental development and clean code practices.
+
+## Architecture & Structure
+
+### Core Layout (3-Column Design)
+- **Left Column (Narration)**: Game messages, story text, and feedback
+- **Middle Column (Actions)**: Interactive buttons for player actions
+- **Right Column (Sidebar)**: Player information with tabbed interface (Skills, Inventory, Character)
+
+### Technology Stack
+- **Frontend**: Plain HTML/CSS/JavaScript (no frameworks)
+- **Development**: Live-server for hot reloading
+- **Deployment**: GitHub Pages with automatic deployment
+- **Data Storage**: localStorage for game state persistence
+
+### File Organization
+```
+taverns/
+├── index.html          # Main game interface
+├── styles.css          # Dark theme styling and layout
+├── game.js            # Core game logic and systems
+├── game-config.json   # Game configuration and skill definitions
+├── data/
+│   ├── skills.json    # Skill tree structure and requirements
+│   └── game-config.json # Additional game data
+├── package.json       # Project dependencies and scripts
+└── Documentation files (README, TODO, etc.)
+```
+
+## Core Systems
+
+### 1. Skill System
+- **Skill Class**: Manages individual skills with level, XP, and progression
+- **SkillManager Class**: Central manager for all skills and actions
+- **SkillAction Class**: Defines actions that can be performed with skill requirements
+- **Progression**: XP-based leveling with configurable multipliers
+
+### 2. Configuration-Driven Design
+- **game-config.json**: Contains UI configuration, constants, and skill action definitions
+- **data/skills.json**: Defines skill tree structure with categories, requirements, and sub-skills
+- **Dynamic Loading**: Configuration loaded asynchronously with fallback defaults
+
+### 3. State Management
+- **localStorage Persistence**: Automatic save/load with manual save option
+- **Auto-save**: Configurable interval (default: 2 minutes)
+- **Deep Merge**: Sophisticated state merging for configuration updates
+
+### 4. UI System
+- **Toast Notifications**: User feedback system with different message types
+- **Tab System**: Dynamic sidebar tabs generated from configuration
+- **Responsive Design**: Dark theme with monospace font (Courier New)
+- **Animation**: CSS animations for new unlocks and XP gains
+
+## Development Patterns
+
+### 1. Incremental Development
+- Small, testable changes
+- Frequent commits with descriptive messages
+- Phase-based development approach
+- Future-proofing with placeholders
+
+### 2. Clean Code Principles
+- Single responsibility for classes and functions
+- Meaningful variable and function names
+- Constants over magic numbers
+- DRY (Don't Repeat Yourself) principle
+- Self-documenting code with minimal comments
+
+### 3. Error Handling
+- Graceful fallbacks for missing configuration
+- Try-catch blocks for async operations
+- User-friendly error messages
+- Console logging for debugging
+
+### 4. Configuration Management
+- Default configuration fallbacks
+- Deep merging for updates
+- Async loading with error handling
+- Separation of concerns (UI config vs game data)
+
+## Key Classes & Functions
+
+### Core Classes
+- **Skill**: Individual skill management with XP and leveling
+- **SkillManager**: Central skill and action management
+- **SkillAction**: Action definition with requirements and rewards
+
+### Important Functions
+- **initGame()**: Main initialization sequence
+- **loadGameConfig()**: Async configuration loading
+- **saveGameState() / loadGameState()**: Persistence management
+- **updateSkillsDisplay() / updateActionsDisplay()**: UI updates
+- **handleSkillAction()**: Action execution and rewards
+- **addNarrationMessage()**: Story and feedback system
+
+## Configuration Structure
+
+### game-config.json
+```json
+{
+  "ui": {
+    "tabs": [...],           // Sidebar tab definitions
+    "cssClasses": {...},     // CSS class mappings
+    "elementIds": {...}      // DOM element IDs
+  },
+  "constants": {
+    "xpMultiplier": 100,     // XP calculation multiplier
+    "defaultLevel": 1,       // Starting level
+    "progressMax": 100       // Progress bar maximum
+  },
+  "skills": {
+    "skillName": {
+      "actions": [...]       // Available actions for skill
+    }
+  },
+  "messages": {...}          // User-facing messages
+}
+```
+
+### data/skills.json
+```json
+{
+  "category": {
+    "skillName": {
+      "level": 1,
+      "experience": 0,
+      "sub_skills": {...},   // Nested skill structure
+      "requires": {...}      // Skill requirements
+    }
+  }
+}
+```
+
+## Development Guidelines
+
+### 1. Adding New Skills
+1. Add skill definition to `data/skills.json`
+2. Add skill actions to `game-config.json`
+3. Update UI configuration if needed
+4. Test skill progression and unlocks
+
+### 2. Adding New Actions
+1. Define action in `game-config.json` under appropriate skill
+2. Include: name, description, levelRequired, xpReward, itemReward
+3. Add flavor text and unlock messages
+4. Test action availability and rewards
+
+### 3. UI Modifications
+1. Update CSS classes in `game-config.json` if adding new elements
+2. Follow existing dark theme patterns
+3. Use monospace font (Courier New) for consistency
+4. Test responsive behavior across columns
+
+### 4. Configuration Changes
+1. Always provide fallback defaults in `DEFAULT_CONFIG`
+2. Use deep merge for configuration updates
+3. Handle missing configuration gracefully
+4. Test with both valid and invalid configurations
+
+## Future Considerations
+
+### Planned Features
+- Sidebar tabs implementation (backpack, gear, character info)
+- Advanced action system with cooldowns
+- Social features and multiplayer
+- User accounts and cloud saves
+- More complex game mechanics
+
+### Technical Debt
+- Modularize large game.js file
+- Add comprehensive error handling
+- Implement proper testing framework
+- Optimize performance for larger skill trees
+
+## Common Patterns
+
+### 1. Configuration Loading
+```javascript
+// Always check for configuration before use
+const multiplier = (gameConfig && gameConfig.constants && gameConfig.constants.xpMultiplier) 
+  ? gameConfig.constants.xpMultiplier 
+  : 100;
+```
+
+### 2. State Persistence
+```javascript
+// Save state with error handling
+try {
+  localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
+  showToast('Game saved successfully', 'success');
+} catch (error) {
+  console.error('Save failed:', error);
+  showToast('Failed to save game', 'error');
+}
+```
+
+### 3. UI Updates
+```javascript
+// Update displays after state changes
+updateSkillsDisplay();
+updateActionsDisplay();
+addNarrationMessage('Action completed!');
+```
+
+### 4. Error Handling
+```javascript
+// Graceful fallbacks for missing data
+if (!skillsConfig || !gameConfig) {
+  console.error('Configuration missing');
+  showToast('Configuration error', 'error');
+  return;
+}
+```
+
+## Notes for Future AI Agents
+
+1. **Always check existing configuration** before making changes
+2. **Follow the 3-column layout** - don't break the established UI pattern
+3. **Use the skill system** for any new progression mechanics
+4. **Maintain dark theme** and monospace font consistency
+5. **Test localStorage persistence** when adding new state
+6. **Follow incremental development** - small, testable changes
+7. **Update this file** when adding new systems or patterns
+8. **Preserve existing functionality** - don't remove working features
+9. **Use configuration-driven design** for new features
+10. **Maintain clean code principles** and meaningful naming
+
+## Current Development Phase
+- **Phase 1**: Foundation complete (basic layout, skill system, persistence)
+- **Next Focus**: Implementing sidebar tabs and expanding skill actions
+- **Future**: Social features and advanced game mechanics
+
+This project emphasizes clean, maintainable code with a focus on user experience and incremental development. All changes should preserve existing functionality while building toward the long-term vision of a comprehensive text-based adventure game. 

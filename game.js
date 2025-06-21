@@ -486,51 +486,28 @@ function updateActionsDisplay() {
     const actionsContent = document.querySelector('.actions-content');
     if (!actionsContent) return;
     
-    // Clear existing content
     actionsContent.innerHTML = '';
-    
-    if (!gameState.skillManager) {
-        actionsContent.innerHTML = '<p>Actions not loaded yet...</p>';
-        return;
-    }
     
     const allActions = gameState.skillManager.getAllAvailableActions();
     
     if (allActions.length === 0) {
-        actionsContent.innerHTML = '<p>No actions available yet.</p>';
+        actionsContent.innerHTML = '<p class="text-muted">No actions available. Level up your skills to unlock more actions!</p>';
         return;
     }
     
-    // Group actions by skill type
-    const actionsBySkill = {};
     allActions.forEach(action => {
-        if (!actionsBySkill[action.skillType]) {
-            actionsBySkill[action.skillType] = [];
-        }
-        actionsBySkill[action.skillType].push(action);
-    });
-    
-    // Create action buttons grouped by skill
-    for (const skillType in actionsBySkill) {
-        const skillHeader = document.createElement('h3');
-        skillHeader.textContent = skillType;
-        actionsContent.appendChild(skillHeader);
+        const button = document.createElement('button');
+        button.className = gameConfig.ui.cssClasses.actionButton;
+        button.textContent = action.name;
         
-        actionsBySkill[skillType].forEach(action => {
-            const button = document.createElement('button');
-            button.className = gameConfig.ui.cssClasses.actionButton;
-            button.textContent = action.name;
-            button.title = action.description;
-            
-            // Add new unlock highlight if needed
-            if (gameState.skillManager.isNewlyUnlocked(action.name)) {
-                button.classList.add(gameConfig.ui.cssClasses.newUnlock);
-            }
-            
-            button.addEventListener('click', () => handleSkillAction(action));
-            actionsContent.appendChild(button);
-        });
-    }
+        // Add new unlock styling if this action was recently unlocked
+        if (gameState.skillManager.isNewlyUnlocked(action.name)) {
+            button.classList.add(gameConfig.ui.cssClasses.newUnlock);
+        }
+        
+        button.addEventListener('click', () => handleSkillAction(action));
+        actionsContent.appendChild(button);
+    });
 }
 
 // Generic action handler for any skill
@@ -794,6 +771,9 @@ async function initGame() {
             inventory: {},
             lastSaved: null
         };
+        
+        // Initialize UI component system
+        gameState.ui = new GameUI();
         
         // Load skills and actions from configs
         gameState.skillManager.loadFromConfig(skillsConfig, gameConfig);
