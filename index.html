@@ -25,9 +25,26 @@
         <!-- Third Column: Sidebar -->
         <div class="sidebar-column">
             <div class="sidebar-content">
-                <div class="sidebar-placeholder">
-                    <h3>Sidebar</h3>
-                    <p>Backpack, gear, character info will go here</p>
+                <div class="sidebar-tabs">
+                    <button class="tab-button active" data-tab="skills">Skills</button>
+                    <button class="tab-button" data-tab="inventory">Inventory</button>
+                    <button class="tab-button" data-tab="character">Character</button>
+                </div>
+                <div class="tab-content">
+                    <div id="skills-tab" class="tab-panel active">
+                        <h3>Skills</h3>
+                        <div id="skills-content">
+                            <!-- Skills will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    <div id="inventory-tab" class="tab-panel">
+                        <h3>Inventory</h3>
+                        <p>Inventory system coming soon...</p>
+                    </div>
+                    <div id="character-tab" class="tab-panel">
+                        <h3>Character</h3>
+                        <p>Character info coming soon...</p>
+                    </div>
                 </div>
             </div>
         </div>
