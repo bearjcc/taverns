@@ -3,6 +3,7 @@ class ConfigManager {
         this.gameConfig = null;
         this.skillsConfig = null;
         this.traitsConfig = null;
+        this.actionsConfig = null;
         this.defaultConfig = this.getDefaultConfig();
     }
 
@@ -137,17 +138,35 @@ class ConfigManager {
         }
     }
 
+    async loadActionsConfig() {
+        try {
+            const response = await fetch('../data/config/actions.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            this.actionsConfig = await response.json();
+            console.log('Actions configuration loaded successfully');
+            return this.actionsConfig;
+        } catch (error) {
+            console.error('Failed to load actions configuration:', error);
+            this.actionsConfig = {};
+            return this.actionsConfig;
+        }
+    }
+
     async loadAllConfigs() {
-        const [gameConfig, skillsConfig, traitsConfig] = await Promise.all([
+        const [gameConfig, skillsConfig, traitsConfig, actionsConfig] = await Promise.all([
             this.loadGameConfig(),
             this.loadSkillsConfig(),
-            this.loadTraitsConfig()
+            this.loadTraitsConfig(),
+            this.loadActionsConfig()
         ]);
 
         return {
             gameConfig,
             skillsConfig,
-            traitsConfig
+            traitsConfig,
+            actionsConfig
         };
     }
 
@@ -161,6 +180,10 @@ class ConfigManager {
 
     getTraitsConfig() {
         return this.traitsConfig || { traits: {} };
+    }
+
+    getActionsConfig() {
+        return this.actionsConfig || {};
     }
 
     getMessage(key, replacements = {}) {
@@ -181,10 +204,6 @@ class ConfigManager {
 
     getUIConfig() {
         return this.getGameConfig().ui || {};
-    }
-
-    getActionsConfig() {
-        return this.getGameConfig().actions || {};
     }
 
     deepMerge(target, source) {

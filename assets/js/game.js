@@ -26,6 +26,7 @@ async function initGame() {
         const gameConfig = configs.gameConfig;
         const skillsConfig = configs.skillsConfig;
         const traitsConfig = configs.traitsConfig;
+        const actionsConfig = configs.actionsConfig;
         
         // Initialize game objects
         await initializeGameObjects();
@@ -33,7 +34,7 @@ async function initGame() {
         // Load configurations into managers
         skillManager.loadFromConfig(skillsConfig, gameConfig);
         traitManager.loadFromConfig(traitsConfig);
-        actionManager.loadFromConfig(gameConfig.actions);
+        actionManager.loadFromConfig(actionsConfig);
         
         // Load saved game state
         const saveLoaded = gameStateManager.loadGameState(skillManager, inventoryManager, traitManager);

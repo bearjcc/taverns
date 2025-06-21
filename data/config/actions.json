@@ -1,0 +1,143 @@
+{
+  "woodcutting": {
+    "name": "Woodcutting",
+    "displayName": "Woodcutting",
+    "description": "Cut down trees and gather wood",
+    "actions": [
+      {
+        "name": "Chop Oak",
+        "displayName": "Chop Oak Tree",
+        "description": "Chop down an oak tree for logs",
+        "icon": "🌳",
+        "tooltip": "Chop oak logs for basic woodworking",
+        "levelRequired": 1,
+        "xpReward": 10,
+        "timeRequired": 1,
+        "timeUnit": "hours",
+        "itemReward": "oak_logs",
+        "itemCount": 1,
+        "itemConsumption": {},
+        "unlockMessage": "You can now chop oak trees!",
+        "flavorText": "You swing your axe at the oak tree and collect some logs.",
+        "skillType": "Woodcutting"
+      },
+      {
+        "name": "Chop Willow",
+        "displayName": "Chop Willow Tree", 
+        "description": "Chop down a willow tree for logs",
+        "icon": "🌿",
+        "tooltip": "Chop willow logs for flexible wood",
+        "levelRequired": 5,
+        "xpReward": 15,
+        "timeRequired": 1,
+        "timeUnit": "hours",
+        "itemReward": "willow_logs",
+        "itemCount": 1,
+        "itemConsumption": {},
+        "unlockMessage": "You can now chop willow trees!",
+        "flavorText": "The willow tree's branches bend as you gather some logs.",
+        "skillType": "Woodcutting"
+      },
+      {
+        "name": "Chop Maple",
+        "displayName": "Chop Maple Tree",
+        "description": "Chop down a maple tree for logs", 
+        "icon": "🍁",
+        "tooltip": "Chop maple logs for quality wood",
+        "levelRequired": 10,
+        "xpReward": 25,
+        "timeRequired": 1.5,
+        "timeUnit": "hours",
+        "itemReward": "maple_logs",
+        "itemCount": 1,
+        "itemConsumption": {},
+        "unlockMessage": "You can now chop maple trees!",
+        "flavorText": "The maple tree's sturdy trunk yields some quality logs.",
+        "skillType": "Woodcutting"
+      },
+      {
+        "name": "Chop Yew",
+        "displayName": "Chop Yew Tree",
+        "description": "Chop down a yew tree for logs",
+        "icon": "🌲",
+        "tooltip": "Chop yew logs for premium wood",
+        "levelRequired": 20,
+        "xpReward": 50,
+        "timeRequired": 2,
+        "timeUnit": "hours",
+        "itemReward": "yew_logs",
+        "itemCount": 1,
+        "itemConsumption": {},
+        "unlockMessage": "You can now chop yew trees!",
+        "flavorText": "The ancient yew tree slowly gives up some of its precious wood.",
+        "skillType": "Woodcutting"
+      },
+      {
+        "name": "Chop Magic",
+        "displayName": "Chop Magic Tree",
+        "description": "Chop down a magic tree for logs",
+        "icon": "✨",
+        "tooltip": "Chop magic logs for enchanted wood",
+        "levelRequired": 30,
+        "xpReward": 100,
+        "timeRequired": 3,
+        "timeUnit": "hours",
+        "itemReward": "magic_logs",
+        "itemCount": 1,
+        "itemConsumption": {},
+        "unlockMessage": "You can now chop magic trees!",
+        "flavorText": "The magic tree shimmers as your axe connects, releasing mystical logs.",
+        "skillType": "Woodcutting"
+      }
+    ]
+  },
+  "cooking": {
+    "name": "Cooking",
+    "displayName": "Cooking",
+    "description": "Prepare meals and cook food",
+    "actions": [
+      {
+        "name": "Cook Stew",
+        "displayName": "Cook Stew",
+        "description": "Cook a hearty stew using various ingredients",
+        "icon": "🍲",
+        "tooltip": "Cook stew to restore health and energy",
+        "levelRequired": 1,
+        "xpReward": 15,
+        "timeRequired": 0.5,
+        "timeUnit": "hours",
+        "itemReward": "stew",
+        "itemCount": 1,
+        "itemConsumption": {
+          "oak_logs": 1,
+          "shrimp": 2,
+          "water": 1
+        },
+        "unlockMessage": "You can now cook stew!",
+        "flavorText": "You prepare a delicious stew over the fire, the aroma filling the air.",
+        "skillType": "Cooking"
+      },
+      {
+        "name": "Bake Bread",
+        "displayName": "Bake Bread",
+        "description": "Bake fresh bread from flour",
+        "icon": "🍞",
+        "tooltip": "Bake bread for sustenance",
+        "levelRequired": 5,
+        "xpReward": 20,
+        "timeRequired": 1,
+        "timeUnit": "hours",
+        "itemReward": "bread",
+        "itemCount": 2,
+        "itemConsumption": {
+          "flour": 2,
+          "water": 1,
+          "oak_logs": 1
+        },
+        "unlockMessage": "You can now bake bread!",
+        "flavorText": "The smell of fresh bread fills the air as you pull the loaves from the oven.",
+        "skillType": "Cooking"
+      }
+    ]
+  }
+} 
