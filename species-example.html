@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Species System Example - Taverns Game</title>
+    <link rel="stylesheet" href="species.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #e0e0e0;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #b0b0b0;
+            font-size: 16px;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .section {
+            background-color: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .section h2 {
+            color: #e0e0e0;
+            font-size: 20px;
+            margin: 0 0 20px 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            background-color: #333;
+            border: 1px solid #555;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .stats h3 {
+            color: #e0e0e0;
+            font-size: 16px;
+            margin: 0 0 10px 0;
+        }
+        
+        .stats p {
+            color: #b0b0b0;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Species System Example</h1>
+            <p>Demonstrating the species system with separation of concerns</p>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h2>Species Selection</h2>
+                
+                <div class="controls">
+                    <select id="species-selector" class="species-selector">
+                        <option value="">Select a species...</option>
+                    </select>
+                    
+                    <button id="randomize-species" class="randomize-species">
+                        Randomize Species
+                    </button>
+                    
+                    <input type="text" id="species-search" class="species-search" 
+                           placeholder="Search species...">
+                </div>
+                
+                <div id="species-list" class="species-list">
+                    <!-- Species cards will be populated here -->
+                </div>
+                
+                <div class="stats">
+                    <h3>System Statistics</h3>
+                    <p id="stats-display">Loading...</p>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Species Details</h2>
+                
+                <div id="species-info" class="species-info">
+                    <p>Select a species to view details</p>
+                </div>
+                
+                <div class="controls">
+                    <button id="generate-attributes" class="select-species-btn" disabled>
+                        Generate Random Attributes
+                    </button>
+                </div>
+                
+                <div id="generated-attributes" class="stats" style="display: none;">
+                    <h3>Generated Attributes</h3>
+                    <div id="attributes-display"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load the species system classes -->
+    <script src="species.js"></script>
+    <script src="species-manager.js"></script>
+    <script src="species-ui.js"></script>
+    
+    <script>
+        // Example usage of the species system
+        class SpeciesExample {
+            constructor() {
+                this.speciesManager = new SpeciesManager();
+                this.speciesUI = new SpeciesUI(this.speciesManager);
+                this.currentSpecies = null;
+                this.generatedAttributes = null;
+                
+                this.initialize();
+            }
+            
+            async initialize() {
+                // Show loading state
+                this.speciesUI.showLoading();
+                
+                // Load species data
+                const success = await this.speciesManager.loadSpeciesData();
+                
+                if (success) {
+                    // Initialize UI
+                    this.speciesUI.initialize({
+                        speciesSelector: 'species-selector',
+                        speciesInfo: 'species-info',
+                        speciesList: 'species-list',
+                        randomizeButton: 'randomize-species',
+                        searchInput: 'species-search'
+                    });
+                    
+                    // Setup event listeners
+                    this.setupEventListeners();
+                    
+                    // Update statistics
+                    this.updateStatistics();
+                    
+                    console.log('Species system initialized successfully');
+                } else {
+                    this.speciesUI.showError('Failed to load species data');
+                    console.error('Failed to initialize species system');
+                }
+            }
+            
+            setupEventListeners() {
+                // Species selection callback
+                this.speciesUI.on('onSpeciesSelected', (species) => {
+                    this.onSpeciesSelected(species);
+                });
+                
+                // Generate attributes button
+                const generateBtn = document.getElementById('generate-attributes');
+                if (generateBtn) {
+                    generateBtn.addEventListener('click', () => {
+                        this.generateRandomAttributes();
+                    });
+                }
+            }
+            
+            onSpeciesSelected(species) {
+                this.currentSpecies = species;
+                
+                // Enable/disable generate button
+                const generateBtn = document.getElementById('generate-attributes');
+                if (generateBtn) {
+                    generateBtn.disabled = !species;
+                }
+                
+                // Hide generated attributes when species changes
+                const attributesDiv = document.getElementById('generated-attributes');
+                if (attributesDiv) {
+                    attributesDiv.style.display = 'none';
+                }
+                
+                console.log(`Selected species: ${species.name}`);
+            }
+            
+            generateRandomAttributes() {
+                if (!this.currentSpecies) return;
+                
+                this.generatedAttributes = this.currentSpecies.generateAttributes();
+                this.displayGeneratedAttributes();
+                
+                console.log('Generated attributes:', this.generatedAttributes);
+            }
+            
+            displayGeneratedAttributes() {
+                const attributesDiv = document.getElementById('generated-attributes');
+                const displayDiv = document.getElementById('attributes-display');
+                
+                if (!attributesDiv || !displayDiv) return;
+                
+                attributesDiv.style.display = 'block';
+                
+                const attributesHTML = Object.entries(this.generatedAttributes)
+                    .map(([attr, value]) => `
+                        <div class="attribute-item">
+                            <span class="attribute-name">${attr}</span>
+                            <span class="attribute-range">${value}</span>
+                        </div>
+                    `).join('');
+                
+                displayDiv.innerHTML = attributesHTML;
+            }
+            
+            updateStatistics() {
+                const stats = this.speciesManager.getStatistics();
+                const statsDisplay = document.getElementById('stats-display');
+                
+                if (statsDisplay) {
+                    statsDisplay.innerHTML = `
+                        <p><strong>Total Species:</strong> ${stats.total}</p>
+                        <p><strong>Playable:</strong> ${stats.playable}</p>
+                        <p><strong>Non-Playable:</strong> ${stats.nonPlayable}</p>
+                        <p><strong>Data Loaded:</strong> ${stats.loaded ? 'Yes' : 'No'}</p>
+                    `;
+                }
+            }
+        }
+        
+        // Initialize the example when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SpeciesExample();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,443 @@
+{
+  "playable": {
+    "dragonborn": {
+      "name": "Dragonborn",
+      "description": "Humanoid lizardfolk",
+      "attributes": {
+        "strength": { "min": 30, "max": 100 },
+        "dexterity": { "min": 1, "max": 65 },
+        "stamina": { "min": 10, "max": 90 },
+        "vitality": { "min": 50, "max": 100 },
+        "intelligence": { "min": 20, "max": 80 },
+        "charisma": { "min": 40, "max": 90 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Politician", "Firebuilding"],
+      "playable": true
+    },
+    "dwarf": {
+      "name": "Dwarf",
+      "description": "Stocky mountain dwellers",
+      "attributes": {
+        "strength": { "min": 25, "max": 90 },
+        "dexterity": { "min": 5, "max": 6 },
+        "stamina": { "min": 10, "max": 90 },
+        "vitality": { "min": 40, "max": 90 },
+        "intelligence": { "min": 20, "max": 80 },
+        "charisma": { "min": 20, "max": 85 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 10
+      },
+      "professions": ["Geoworking"],
+      "playable": true
+    },
+    "elf": {
+      "name": "Elf",
+      "description": "Haughty, artsy, and slender",
+      "attributes": {
+        "strength": { "min": 1, "max": 45 },
+        "dexterity": { "min": 50, "max": 100 },
+        "stamina": { "min": 20, "max": 100 },
+        "vitality": { "min": 10, "max": 60 },
+        "intelligence": { "min": 30, "max": 100 },
+        "charisma": { "min": 30, "max": 100 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Adv. Magic", "Spirituality"],
+      "playable": true
+    },
+    "gnome": {
+      "name": "Gnome",
+      "description": "Playful, inventive, and friendly",
+      "attributes": {
+        "strength": { "min": 1, "max": 45 },
+        "dexterity": { "min": 20, "max": 80 },
+        "stamina": { "min": 10, "max": 90 },
+        "vitality": { "min": 10, "max": 50 },
+        "intelligence": { "min": 50, "max": 100 },
+        "charisma": { "min": 30, "max": 95 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 10,
+        "combat": 0
+      },
+      "professions": ["Engineering", "Geoworking"],
+      "playable": true
+    },
+    "goliath": {
+      "name": "Goliath",
+      "description": "Nomadic and under civilized",
+      "attributes": {
+        "strength": { "min": 35, "max": 100 },
+        "dexterity": { "min": 1, "max": 60 },
+        "stamina": { "min": 10, "max": 90 },
+        "vitality": { "min": 50, "max": 100 },
+        "intelligence": { "min": 1, "max": 55 },
+        "charisma": { "min": 1, "max": 60 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Tracking", "Animal Handling"],
+      "playable": true
+    },
+    "halfling": {
+      "name": "Halfling",
+      "description": "Fun loving, cheerful, and compassionate",
+      "attributes": {
+        "strength": { "min": 1, "max": 40 },
+        "dexterity": { "min": 35, "max": 100 },
+        "stamina": { "min": 10, "max": 90 },
+        "vitality": { "min": 5, "max": 50 },
+        "intelligence": { "min": 20, "max": 80 },
+        "charisma": { "min": 30, "max": 90 }
+      },
+      "bonuses": {
+        "luck": 2,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Music", "Pyrotechnics"],
+      "playable": true
+    },
+    "human": {
+      "name": "Human",
+      "description": "Driven by power, money, and profession",
+      "attributes": {
+        "strength": { "min": 15, "max": 90 },
+        "dexterity": { "min": 15, "max": 90 },
+        "stamina": { "min": 10, "max": 80 },
+        "vitality": { "min": 25, "max": 75 },
+        "intelligence": { "min": 25, "max": 90 },
+        "charisma": { "min": 20, "max": 90 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["All"],
+      "playable": true
+    },
+    "orc": {
+      "name": "Orc",
+      "description": "Combative hordes without homes",
+      "attributes": {
+        "strength": { "min": 40, "max": 100 },
+        "dexterity": { "min": 1, "max": 50 },
+        "stamina": { "min": 20, "max": 100 },
+        "vitality": { "min": 50, "max": 100 },
+        "intelligence": { "min": 5, "max": 55 },
+        "charisma": { "min": 10, "max": 60 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 10,
+        "combat": 20
+      },
+      "professions": ["Combat"],
+      "playable": true
+    },
+    "satyr": {
+      "name": "Satyr",
+      "description": "Lustful, musical, half goats",
+      "attributes": {
+        "strength": { "min": 15, "max": 45 },
+        "dexterity": { "min": 10, "max": 70 },
+        "stamina": { "min": 10, "max": 80 },
+        "vitality": { "min": 25, "max": 50 },
+        "intelligence": { "min": 20, "max": 80 },
+        "charisma": { "min": 50, "max": 100 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 10,
+        "combat": 0
+      },
+      "professions": ["Music"],
+      "playable": true
+    },
+    "tabaxi": {
+      "name": "Tabaxi",
+      "description": "Humanoid cats",
+      "attributes": {
+        "strength": { "min": 15, "max": 50 },
+        "dexterity": { "min": 50, "max": 100 },
+        "stamina": { "min": 5, "max": 65 },
+        "vitality": { "min": 30, "max": 80 },
+        "intelligence": { "min": 25, "max": 90 },
+        "charisma": { "min": 50, "max": 100 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Scholar"],
+      "playable": true
+    },
+    "tiefling": {
+      "name": "Tiefling",
+      "description": "Self centered half demons",
+      "attributes": {
+        "strength": { "min": 15, "max": 90 },
+        "dexterity": { "min": 35, "max": 90 },
+        "stamina": { "min": 10, "max": 80 },
+        "vitality": { "min": 40, "max": 90 },
+        "intelligence": { "min": 30, "max": 100 },
+        "charisma": { "min": 50, "max": 100 }
+      },
+      "bonuses": {
+        "luck": 1,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Adv. Magic"],
+      "playable": true
+    }
+  },
+  "non_playable": {
+    "aarakocra": {
+      "name": "Aarakocra",
+      "description": "Regal, rare birdfolk",
+      "attributes": {
+        "strength": { "min": 5, "max": 50 },
+        "dexterity": { "min": 50, "max": 100 },
+        "stamina": { "min": 10, "max": 60 },
+        "vitality": { "min": 10, "max": 50 },
+        "intelligence": { "min": 50, "max": 100 },
+        "charisma": { "min": 30, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "genasi": {
+      "name": "Genasi",
+      "description": "Elemental masters",
+      "attributes": {
+        "strength": { "min": 1, "max": 100 },
+        "dexterity": { "min": 1, "max": 100 },
+        "stamina": { "min": 1, "max": 100 },
+        "vitality": { "min": 1, "max": 50 },
+        "intelligence": { "min": 30, "max": 80 },
+        "charisma": { "min": 1, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "bugbear": {
+      "name": "BugBear",
+      "description": "Nightmarish fiend of the forrest",
+      "attributes": {
+        "strength": { "min": 50, "max": 100 },
+        "dexterity": { "min": 5, "max": 50 },
+        "stamina": { "min": 10, "max": 40 },
+        "vitality": { "min": 20, "max": 100 },
+        "intelligence": { "min": 1, "max": 50 },
+        "charisma": { "min": 10, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "firbolg": {
+      "name": "Firbolg",
+      "description": "Forrest dwelling magical naturalists",
+      "attributes": {
+        "strength": { "min": 5, "max": 50 },
+        "dexterity": { "min": 30, "max": 80 },
+        "stamina": { "min": 20, "max": 80 },
+        "vitality": { "min": 20, "max": 80 },
+        "intelligence": { "min": 30, "max": 80 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "goblin": {
+      "name": "Goblin",
+      "description": "Short, fiesty, pests",
+      "attributes": {
+        "strength": { "min": 5, "max": 30 },
+        "dexterity": { "min": 40, "max": 80 },
+        "stamina": { "min": 10, "max": 40 },
+        "vitality": { "min": 10, "max": 50 },
+        "intelligence": { "min": 1, "max": 50 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "hobgoblin": {
+      "name": "Hobgoblin",
+      "description": "Warmongering devils",
+      "attributes": {
+        "strength": { "min": 30, "max": 100 },
+        "dexterity": { "min": 10, "max": 60 },
+        "stamina": { "min": 30, "max": 80 },
+        "vitality": { "min": 20, "max": 70 },
+        "intelligence": { "min": 25, "max": 60 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "kenku": {
+      "name": "Kenku",
+      "description": "Vagabond ravenfolk",
+      "attributes": {
+        "strength": { "min": 1, "max": 30 },
+        "dexterity": { "min": 90, "max": 130 },
+        "stamina": { "min": 10, "max": 50 },
+        "vitality": { "min": 1, "max": 35 },
+        "intelligence": { "min": 20, "max": 65 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "kobold": {
+      "name": "Kobold",
+      "description": "Timid lizardfolk pests",
+      "attributes": {
+        "strength": { "min": 15, "max": 50 },
+        "dexterity": { "min": 40, "max": 90 },
+        "stamina": { "min": 10, "max": 70 },
+        "vitality": { "min": 20, "max": 60 },
+        "intelligence": { "min": 1, "max": 50 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "triton": {
+      "name": "Triton",
+      "description": "Guardians of the ocean",
+      "attributes": {
+        "strength": { "min": 20, "max": 100 },
+        "dexterity": { "min": 30, "max": 90 },
+        "stamina": { "min": 10, "max": 100 },
+        "vitality": { "min": 40, "max": 100 },
+        "intelligence": { "min": 30, "max": 80 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "centaur": {
+      "name": "Centaur",
+      "description": "Half human half horse",
+      "attributes": {
+        "strength": { "min": 20, "max": 80 },
+        "dexterity": { "min": 10, "max": 80 },
+        "stamina": { "min": 10, "max": 130 },
+        "vitality": { "min": 25, "max": 75 },
+        "intelligence": { "min": 25, "max": 80 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "minotaur": {
+      "name": "Minotaur",
+      "description": "Bullish beasts of battle",
+      "attributes": {
+        "strength": { "min": 50, "max": 130 },
+        "dexterity": { "min": 5, "max": 80 },
+        "stamina": { "min": 50, "max": 100 },
+        "vitality": { "min": 80, "max": 130 },
+        "intelligence": { "min": 1, "max": 40 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "werewolf": {
+      "name": "Werewolf",
+      "description": "Wolf turned dieased creature",
+      "attributes": {
+        "strength": { "min": 30, "max": 90 },
+        "dexterity": { "min": 40, "max": 90 },
+        "stamina": { "min": 20, "max": 100 },
+        "vitality": { "min": 50, "max": 100 },
+        "intelligence": { "min": 10, "max": 45 },
+        "charisma": { "min": 0, "max": 0 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    }
+  }
+} 
