@@ -23,6 +23,25 @@
 - [x] Extract ActionSystem from game.js
 - [x] Create clean APIs for each system
 
+### Action System Enhancement
+- [x] Enhanced action configuration with icons, descriptions, tooltips
+- [x] Time-based actions with duration requirements
+- [x] Item consumption and production system
+- [x] Variable action components (e.g., sleep in bed vs cot)
+- [x] Improved UI with scrollable action list
+- [ ] **TODO: Implement dynamic action availability system**
+  - [ ] Create action availability rules engine
+  - [ ] Implement location-based action availability
+  - [ ] Add time-of-day restrictions for certain actions
+  - [ ] Create weather/environmental action modifiers
+  - [ ] Implement quest-based action unlocks
+  - [ ] Add NPC interaction requirements for actions
+  - [ ] Create action cooldown system
+  - [ ] Implement action prerequisites and dependencies
+  - [ ] Add action availability based on player status (health, energy, etc.)
+  - [ ] Create action availability based on equipment and tools
+  - [ ] Test dynamic action system with various scenarios
+
 ### Achievement System Implementation
 - [x] Add achievements data to game configuration
 - [x] Create AchievementSystem class with progress tracking

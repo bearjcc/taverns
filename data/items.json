@@ -9,6 +9,96 @@
     "stackable": true,
     "maxStack": 999
   },
+  "water": {
+    "id": "water",
+    "name": "water",
+    "displayName": "Water",
+    "description": "Fresh water, essential for survival and cooking.",
+    "icon": "💧",
+    "examineText": "Clear, fresh water. You can drink this or use it for cooking.",
+    "stackable": true,
+    "maxStack": 999
+  },
+  "flour": {
+    "id": "flour",
+    "name": "flour",
+    "displayName": "Flour",
+    "description": "Ground grain flour, used for baking bread and other foods.",
+    "icon": "🌾",
+    "examineText": "Fine flour made from ground grain. Essential for baking.",
+    "stackable": true,
+    "maxStack": 999
+  },
+  "stew": {
+    "id": "stew",
+    "name": "stew",
+    "displayName": "Stew",
+    "description": "A hearty stew made from various ingredients.",
+    "icon": "🍲",
+    "examineText": "A delicious stew that smells wonderful. This will restore your energy.",
+    "stackable": true,
+    "maxStack": 999
+  },
+  "bread": {
+    "id": "bread",
+    "name": "bread",
+    "displayName": "Bread",
+    "description": "Freshly baked bread, a staple food.",
+    "icon": "🍞",
+    "examineText": "Warm, freshly baked bread. The crust is golden and the inside is soft.",
+    "stackable": true,
+    "maxStack": 999
+  },
+  "magical_knowledge": {
+    "id": "magical_knowledge",
+    "name": "magical_knowledge",
+    "displayName": "Magical Knowledge",
+    "description": "Knowledge gained from studying the arcane arts.",
+    "icon": "📚",
+    "examineText": "A token representing your magical knowledge and understanding.",
+    "stackable": true,
+    "maxStack": 9999
+  },
+  "bandit_loot": {
+    "id": "bandit_loot",
+    "name": "bandit_loot",
+    "displayName": "Bandit Loot",
+    "description": "Valuable items taken from defeated bandits.",
+    "icon": "💰",
+    "examineText": "A collection of valuables taken from defeated bandits.",
+    "stackable": true,
+    "maxStack": 999
+  },
+  "monster_parts": {
+    "id": "monster_parts",
+    "name": "monster_parts",
+    "displayName": "Monster Parts",
+    "description": "Parts taken from defeated monsters.",
+    "icon": "🦴",
+    "examineText": "Various parts from defeated monsters. Some may be valuable for crafting.",
+    "stackable": true,
+    "maxStack": 999
+  },
+  "masterwork_item": {
+    "id": "masterwork_item",
+    "name": "masterwork_item",
+    "displayName": "Masterwork Item",
+    "description": "An exceptional item of legendary quality.",
+    "icon": "👑",
+    "examineText": "A masterwork item of exceptional quality. This represents the pinnacle of craftsmanship.",
+    "stackable": false,
+    "maxStack": 1
+  },
+  "exploration_knowledge": {
+    "id": "exploration_knowledge",
+    "name": "exploration_knowledge",
+    "displayName": "Exploration Knowledge",
+    "description": "Knowledge gained from exploring the world.",
+    "icon": "🗺️",
+    "examineText": "A token representing your knowledge of the world and its secrets.",
+    "stackable": true,
+    "maxStack": 9999
+  },
   "combat_experience": {
     "id": "combat_experience",
     "name": "combat_experience",

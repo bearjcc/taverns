@@ -32,6 +32,11 @@
       "skillProgressFill": "skill-progress-fill",
       "skillXp": "skill-xp",
       "actionButton": "action-button",
+      "actionIcon": "action-icon",
+      "actionTitle": "action-title",
+      "actionDescription": "action-description",
+      "actionTime": "action-time",
+      "actionVariable": "action-variable",
       "newUnlock": "new-unlock",
       "narrationMessage": "narration-message",
       "tabButton": "tab-button",
@@ -57,7 +62,215 @@
     "defaultXp": 0,
     "progressMax": 100
   },
-  "skills": {
+  "actions": {
+    "woodcutting": {
+      "name": "Woodcutting",
+      "displayName": "Woodcutting",
+      "description": "Cut down trees and gather wood",
+      "actions": [
+        {
+          "name": "Chop Oak",
+          "displayName": "Chop Oak Tree",
+          "description": "Chop down an oak tree for logs",
+          "icon": "🌳",
+          "tooltip": "Chop oak logs for basic woodworking",
+          "levelRequired": 1,
+          "xpReward": 10,
+          "timeRequired": 1,
+          "timeUnit": "hours",
+          "itemReward": "oak_logs",
+          "itemCount": 1,
+          "itemConsumption": {},
+          "unlockMessage": "You can now chop oak trees!",
+          "flavorText": "You swing your axe at the oak tree and collect some logs.",
+          "skillType": "Woodcutting"
+        },
+        {
+          "name": "Chop Willow",
+          "displayName": "Chop Willow Tree", 
+          "description": "Chop down a willow tree for logs",
+          "icon": "🌿",
+          "tooltip": "Chop willow logs for flexible wood",
+          "levelRequired": 5,
+          "xpReward": 15,
+          "timeRequired": 1,
+          "timeUnit": "hours",
+          "itemReward": "willow_logs",
+          "itemCount": 1,
+          "itemConsumption": {},
+          "unlockMessage": "You can now chop willow trees!",
+          "flavorText": "The willow tree's branches bend as you gather some logs.",
+          "skillType": "Woodcutting"
+        },
+        {
+          "name": "Chop Maple",
+          "displayName": "Chop Maple Tree",
+          "description": "Chop down a maple tree for logs", 
+          "icon": "🍁",
+          "tooltip": "Chop maple logs for quality wood",
+          "levelRequired": 10,
+          "xpReward": 25,
+          "timeRequired": 1.5,
+          "timeUnit": "hours",
+          "itemReward": "maple_logs",
+          "itemCount": 1,
+          "itemConsumption": {},
+          "unlockMessage": "You can now chop maple trees!",
+          "flavorText": "The maple tree's sturdy trunk yields some quality logs.",
+          "skillType": "Woodcutting"
+        },
+        {
+          "name": "Chop Yew",
+          "displayName": "Chop Yew Tree",
+          "description": "Chop down a yew tree for logs",
+          "icon": "🌲",
+          "tooltip": "Chop yew logs for premium wood",
+          "levelRequired": 20,
+          "xpReward": 50,
+          "timeRequired": 2,
+          "timeUnit": "hours",
+          "itemReward": "yew_logs",
+          "itemCount": 1,
+          "itemConsumption": {},
+          "unlockMessage": "You can now chop yew trees!",
+          "flavorText": "The ancient yew tree slowly gives up some of its precious wood.",
+          "skillType": "Woodcutting"
+        },
+        {
+          "name": "Chop Magic",
+          "displayName": "Chop Magic Tree",
+          "description": "Chop down a magic tree for logs",
+          "icon": "✨",
+          "tooltip": "Chop magic logs for enchanted wood",
+          "levelRequired": 30,
+          "xpReward": 100,
+          "timeRequired": 3,
+          "timeUnit": "hours",
+          "itemReward": "magic_logs",
+          "itemCount": 1,
+          "itemConsumption": {},
+          "unlockMessage": "You can now chop magic trees!",
+          "flavorText": "The magic tree shimmers as your axe connects, releasing mystical logs.",
+          "skillType": "Woodcutting"
+        }
+      ]
+    },
+    "cooking": {
+      "name": "Cooking",
+      "displayName": "Cooking",
+      "description": "Prepare meals and cook food",
+      "actions": [
+        {
+          "name": "Cook Stew",
+          "displayName": "Cook Stew",
+          "description": "Cook a hearty stew using various ingredients",
+          "icon": "🍲",
+          "tooltip": "Cook stew to restore health and energy",
+          "levelRequired": 1,
+          "xpReward": 15,
+          "timeRequired": 0.5,
+          "timeUnit": "hours",
+          "itemReward": "stew",
+          "itemCount": 1,
+          "itemConsumption": {
+            "oak_logs": 1,
+            "shrimp": 2,
+            "water": 1
+          },
+          "unlockMessage": "You can now cook stew!",
+          "flavorText": "You prepare a delicious stew over the fire, the aroma filling the air.",
+          "skillType": "Cooking"
+        },
+        {
+          "name": "Bake Bread",
+          "displayName": "Bake Bread",
+          "description": "Bake fresh bread from flour",
+          "icon": "🍞",
+          "tooltip": "Bake bread for sustenance",
+          "levelRequired": 5,
+          "xpReward": 20,
+          "timeRequired": 1,
+          "timeUnit": "hours",
+          "itemReward": "bread",
+          "itemCount": 2,
+          "itemConsumption": {
+            "flour": 2,
+            "water": 1,
+            "oak_logs": 1
+          },
+          "unlockMessage": "You can now bake bread!",
+          "flavorText": "The smell of freshly baked bread wafts through the kitchen.",
+          "skillType": "Cooking"
+        }
+      ]
+    },
+    "survival": {
+      "name": "Survival",
+      "displayName": "Survival",
+      "description": "Basic survival activities",
+      "actions": [
+        {
+          "name": "Sleep",
+          "displayName": "Sleep",
+          "description": "Rest to recover energy",
+          "icon": "😴",
+          "tooltip": "Sleep to restore energy and health",
+          "levelRequired": 1,
+          "xpReward": 5,
+          "timeRequired": 8,
+          "timeUnit": "hours",
+          "itemReward": null,
+          "itemCount": 0,
+          "itemConsumption": {},
+          "unlockMessage": "You can now sleep to rest!",
+          "flavorText": "You drift off to sleep and wake up feeling refreshed.",
+          "skillType": "Fire making",
+          "variables": [
+            {
+              "name": "Sleep in Bed",
+              "displayName": "Sleep in Bed",
+              "description": "Sleep in a comfortable bed",
+              "icon": "🛏️",
+              "timeRequired": 8,
+              "energyRestore": 100
+            },
+            {
+              "name": "Sleep on Cot",
+              "displayName": "Sleep on Cot", 
+              "description": "Sleep on a basic cot",
+              "icon": "🛌",
+              "timeRequired": 8,
+              "energyRestore": 75
+            },
+            {
+              "name": "Sleep on Ground",
+              "displayName": "Sleep on Ground",
+              "description": "Sleep on the hard ground",
+              "icon": "🌙",
+              "timeRequired": 8,
+              "energyRestore": 50
+            }
+          ]
+        },
+        {
+          "name": "Explore",
+          "displayName": "Explore",
+          "description": "Explore the surrounding area",
+          "icon": "🗺️",
+          "tooltip": "Explore to discover new locations and resources",
+          "levelRequired": 1,
+          "xpReward": 10,
+          "timeRequired": 2,
+          "timeUnit": "hours",
+          "itemReward": "exploration_knowledge",
+          "itemCount": 1,
+          "itemConsumption": {},
+          "unlockMessage": "You can now explore the world!",
+          "flavorText": "You venture into the unknown, discovering new paths and landmarks.",
+          "skillType": "Foraging"
+        }
+      ]
+    },
     "combat": {
       "name": "Combat",
       "displayName": "Combat",
@@ -67,45 +280,52 @@
           "name": "Practice Swordplay",
           "displayName": "Practice Swordplay",
           "description": "Train with a wooden sword",
+          "icon": "⚔️",
+          "tooltip": "Practice sword fighting techniques",
           "levelRequired": 1,
           "xpReward": 15,
+          "timeRequired": 1,
+          "timeUnit": "hours",
           "itemReward": "combat_experience",
           "itemCount": 1,
+          "itemConsumption": {},
           "unlockMessage": "You begin training with the sword!",
-          "flavorText": "You practice your sword forms in the training yard, feeling more confident with each swing."
+          "flavorText": "You practice your sword forms in the training yard, feeling more confident with each swing.",
+          "skillType": "Combat"
         },
         {
           "name": "Spar with Partner",
           "displayName": "Spar with Partner",
           "description": "Engage in controlled combat training",
+          "icon": "🤺",
+          "tooltip": "Spar with a training partner",
           "levelRequired": 5,
           "xpReward": 25,
+          "timeRequired": 1.5,
+          "timeUnit": "hours",
           "itemReward": "combat_experience",
           "itemCount": 1,
+          "itemConsumption": {},
           "unlockMessage": "You can now spar with training partners!",
-          "flavorText": "You and your training partner exchange blows, learning from each other's techniques."
+          "flavorText": "You and your training partner exchange blows, learning from each other's techniques.",
+          "skillType": "Combat"
         },
         {
           "name": "Hunt Bandits",
           "displayName": "Hunt Bandits",
           "description": "Track down and defeat bandit groups",
+          "icon": "👥",
+          "tooltip": "Hunt dangerous bandits for loot",
           "levelRequired": 10,
           "xpReward": 50,
+          "timeRequired": 3,
+          "timeUnit": "hours",
           "itemReward": "bandit_loot",
           "itemCount": 1,
+          "itemConsumption": {},
           "unlockMessage": "You can now hunt dangerous bandits!",
-          "flavorText": "You track a group of bandits through the forest and engage them in combat."
-        },
-        {
-          "name": "Slay Monsters",
-          "displayName": "Slay Monsters",
-          "description": "Face dangerous creatures in battle",
-          "levelRequired": 20,
-          "xpReward": 100,
-          "itemReward": "monster_parts",
-          "itemCount": 1,
-          "unlockMessage": "You can now face monstrous creatures!",
-          "flavorText": "You engage a fearsome monster in combat, testing your skills against its strength."
+          "flavorText": "You track a group of bandits through the forest and engage them in combat.",
+          "skillType": "Hunting"
         }
       ]
     },
@@ -118,345 +338,49 @@
           "name": "Study Spellbook",
           "displayName": "Study Spellbook",
           "description": "Learn basic magical theory",
+          "icon": "📚",
+          "tooltip": "Study magic theory and spells",
           "levelRequired": 1,
           "xpReward": 12,
+          "timeRequired": 1,
+          "timeUnit": "hours",
           "itemReward": "magical_knowledge",
           "itemCount": 1,
+          "itemConsumption": {},
           "unlockMessage": "You begin studying the arcane arts!",
-          "flavorText": "You pore over ancient spellbooks, memorizing incantations and magical theory."
+          "flavorText": "You pore over ancient spellbooks, memorizing incantations and magical theory.",
+          "skillType": "Magic"
         },
         {
           "name": "Cast Fireball",
           "displayName": "Cast Fireball",
           "description": "Practice destructive fire magic",
+          "icon": "🔥",
+          "tooltip": "Cast fireball spell",
           "levelRequired": 5,
           "xpReward": 20,
+          "timeRequired": 0.5,
+          "timeUnit": "hours",
           "itemReward": "magical_knowledge",
           "itemCount": 1,
+          "itemConsumption": {},
           "unlockMessage": "You can now cast fire spells!",
-          "flavorText": "A ball of flame erupts from your hands, illuminating the darkness."
-        },
-        {
-          "name": "Heal Wounds",
-          "displayName": "Heal Wounds",
-          "description": "Practice restorative magic",
-          "levelRequired": 10,
-          "xpReward": 30,
-          "itemReward": "magical_knowledge",
-          "itemCount": 1,
-          "unlockMessage": "You can now heal with magic!",
-          "flavorText": "Warm healing energy flows from your hands, mending wounds and restoring vitality."
-        },
-        {
-          "name": "Summon Familiar",
-          "displayName": "Summon Familiar",
-          "description": "Call forth a magical companion",
-          "levelRequired": 15,
-          "xpReward": 60,
-          "itemReward": "magical_knowledge",
-          "itemCount": 1,
-          "unlockMessage": "You can now summon magical familiars!",
-          "flavorText": "A magical creature materializes before you, ready to serve as your companion."
-        }
-      ]
-    },
-    "crafting": {
-      "name": "Crafting",
-      "displayName": "Crafting",
-      "description": "Create weapons, armor, and magical items",
-      "actions": [
-        {
-          "name": "Forge Iron Sword",
-          "displayName": "Forge Iron Sword",
-          "description": "Create a basic iron sword",
-          "levelRequired": 1,
-          "xpReward": 20,
-          "itemReward": "iron_sword",
-          "itemCount": 1,
-          "unlockMessage": "You can now forge basic weapons!",
-          "flavorText": "You heat the iron in your forge and hammer it into a serviceable sword."
-        },
-        {
-          "name": "Craft Leather Armor",
-          "displayName": "Craft Leather Armor",
-          "description": "Create protective leather armor",
-          "levelRequired": 5,
-          "xpReward": 25,
-          "itemReward": "leather_armor",
-          "itemCount": 1,
-          "unlockMessage": "You can now craft leather armor!",
-          "flavorText": "You carefully stitch together pieces of leather to create protective armor."
-        },
-        {
-          "name": "Enchant Weapon",
-          "displayName": "Enchant Weapon",
-          "description": "Add magical properties to weapons",
-          "levelRequired": 10,
-          "xpReward": 40,
-          "itemReward": "enchanted_weapon",
-          "itemCount": 1,
-          "unlockMessage": "You can now enchant weapons!",
-          "flavorText": "You channel magical energy into the weapon, imbuing it with supernatural power."
-        },
-        {
-          "name": "Create Masterwork",
-          "displayName": "Create Masterwork",
-          "description": "Craft an exceptional item of legendary quality",
-          "levelRequired": 25,
-          "xpReward": 200,
-          "itemReward": "masterwork_item",
-          "itemCount": 1,
-          "unlockMessage": "You can now create masterwork items!",
-          "flavorText": "You pour your heart and soul into crafting, creating an item of exceptional quality."
-        }
-      ]
-    },
-    "woodcutting": {
-      "name": "Woodcutting",
-      "displayName": "Woodcutting",
-      "description": "Cut down trees and gather wood",
-      "actions": [
-        {
-          "name": "Chop Oak",
-          "displayName": "Chop Oak",
-          "description": "Chop oak logs",
-          "levelRequired": 1,
-          "xpReward": 10,
-          "itemReward": "oak_logs",
-          "itemCount": 1,
-          "unlockMessage": "You can now chop oak trees!",
-          "flavorText": "You swing your axe at the oak tree and collect some logs."
-        },
-        {
-          "name": "Chop Willow",
-          "displayName": "Chop Willow", 
-          "description": "Chop willow logs",
-          "levelRequired": 5,
-          "xpReward": 15,
-          "itemReward": "willow_logs",
-          "itemCount": 1,
-          "unlockMessage": "You can now chop willow trees!",
-          "flavorText": "The willow tree's branches bend as you gather some logs."
-        },
-        {
-          "name": "Chop Maple",
-          "displayName": "Chop Maple",
-          "description": "Chop maple logs", 
-          "levelRequired": 10,
-          "xpReward": 25,
-          "itemReward": "maple_logs",
-          "itemCount": 1,
-          "unlockMessage": "You can now chop maple trees!",
-          "flavorText": "The maple tree's sturdy trunk yields some quality logs."
-        },
-        {
-          "name": "Chop Yew",
-          "displayName": "Chop Yew",
-          "description": "Chop yew logs",
-          "levelRequired": 20,
-          "xpReward": 50,
-          "itemReward": "yew_logs",
-          "itemCount": 1,
-          "unlockMessage": "You can now chop yew trees!",
-          "flavorText": "The ancient yew tree slowly gives up some of its precious wood."
-        },
-        {
-          "name": "Chop Magic",
-          "displayName": "Chop Magic",
-          "description": "Chop magic logs",
-          "levelRequired": 30,
-          "xpReward": 100,
-          "itemReward": "magic_logs",
-          "itemCount": 1,
-          "unlockMessage": "You can now chop magic trees!",
-          "flavorText": "The magic tree shimmers as your axe connects, releasing mystical logs."
-        }
-      ]
-    },
-    "fishing": {
-      "name": "Fishing",
-      "displayName": "Fishing", 
-      "description": "Catch fish from various locations",
-      "actions": [
-        {
-          "name": "Fish Shrimp",
-          "displayName": "Fish Shrimp",
-          "description": "Catch shrimp",
-          "levelRequired": 1,
-          "xpReward": 8,
-          "itemReward": "shrimp",
-          "itemCount": 1,
-          "unlockMessage": "You can now fish for shrimp!",
-          "flavorText": "You cast your net into the shallow water and catch some shrimp."
-        },
-        {
-          "name": "Fish Sardine",
-          "displayName": "Fish Sardine",
-          "description": "Catch sardines",
-          "levelRequired": 5,
-          "xpReward": 12,
-          "itemReward": "sardine",
-          "itemCount": 1,
-          "unlockMessage": "You can now fish for sardines!",
-          "flavorText": "Your fishing rod bends slightly as you reel in a sardine."
-        },
-        {
-          "name": "Fish Herring",
-          "displayName": "Fish Herring",
-          "description": "Catch herring",
-          "levelRequired": 10,
-          "xpReward": 20,
-          "itemReward": "herring",
-          "itemCount": 1,
-          "unlockMessage": "You can now fish for herring!",
-          "flavorText": "The water ripples as you pull a herring from the depths."
-        },
-        {
-          "name": "Fish Salmon",
-          "displayName": "Fish Salmon",
-          "description": "Catch salmon",
-          "levelRequired": 20,
-          "xpReward": 40,
-          "itemReward": "salmon",
-          "itemCount": 1,
-          "unlockMessage": "You can now fish for salmon!",
-          "flavorText": "After a brief struggle, you catch a salmon from the rushing river."
-        },
-        {
-          "name": "Fish Lobster",
-          "displayName": "Fish Lobster",
-          "description": "Catch lobster",
-          "levelRequired": 40,
-          "xpReward": 80,
-          "itemReward": "lobster",
-          "itemCount": 1,
-          "unlockMessage": "You can now fish for lobster!",
-          "flavorText": "Your lobster pot successfully traps a large lobster."
-        },
-        {
-          "name": "Fish Shark",
-          "displayName": "Fish Shark",
-          "description": "Catch shark",
-          "levelRequired": 76,
-          "xpReward": 150,
-          "itemReward": "shark",
-          "itemCount": 1,
-          "unlockMessage": "You can now fish for shark!",
-          "flavorText": "With great effort, you manage to haul in a thrashing shark."
-        }
-      ]
-    },
-    "mining": {
-      "name": "Mining",
-      "displayName": "Mining",
-      "description": "Mine various ores from the earth",
-      "actions": [
-        {
-          "name": "Mine Copper",
-          "displayName": "Mine Copper",
-          "description": "Mine copper ore",
-          "levelRequired": 1,
-          "xpReward": 12,
-          "itemReward": "copper_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine copper ore!",
-          "flavorText": "You swing your pickaxe at the rock and extract some copper ore."
-        },
-        {
-          "name": "Mine Tin",
-          "displayName": "Mine Tin",
-          "description": "Mine tin ore",
-          "levelRequired": 1,
-          "xpReward": 12,
-          "itemReward": "tin_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine tin ore!",
-          "flavorText": "You swing your pickaxe at the rock and obtain some tin."
-        },
-        {
-          "name": "Mine Iron",
-          "displayName": "Mine Iron",
-          "description": "Mine iron ore",
-          "levelRequired": 15,
-          "xpReward": 25,
-          "itemReward": "iron_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine iron ore!",
-          "flavorText": "The rock crumbles under your pickaxe, revealing iron ore."
-        },
-        {
-          "name": "Mine Coal",
-          "displayName": "Mine Coal",
-          "description": "Mine coal",
-          "levelRequired": 30,
-          "xpReward": 50,
-          "itemReward": "coal",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine coal!",
-          "flavorText": "You chip away at the dark vein and collect some coal."
-        },
-        {
-          "name": "Mine Gold",
-          "displayName": "Mine Gold",
-          "description": "Mine gold ore",
-          "levelRequired": 40,
-          "xpReward": 80,
-          "itemReward": "gold_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine gold ore!",
-          "flavorText": "A glint catches your eye as you mine a piece of gold ore."
-        },
-        {
-          "name": "Mine Mithril",
-          "displayName": "Mine Mithril",
-          "description": "Mine mithril ore",
-          "levelRequired": 55,
-          "xpReward": 120,
-          "itemReward": "mithril_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine mithril ore!",
-          "flavorText": "The blue-tinted mithril ore breaks free after several strong strikes."
-        },
-        {
-          "name": "Mine Adamantite",
-          "displayName": "Mine Adamantite",
-          "description": "Mine adamantite ore",
-          "levelRequired": 70,
-          "xpReward": 200,
-          "itemReward": "adamantite_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine adamantite ore!",
-          "flavorText": "With great effort, your pickaxe manages to dislodge some adamantite ore."
-        },
-        {
-          "name": "Mine Runite",
-          "displayName": "Mine Runite",
-          "description": "Mine runite ore",
-          "levelRequired": 85,
-          "xpReward": 400,
-          "itemReward": "runite_ore",
-          "itemCount": 1,
-          "unlockMessage": "You can now mine runite ore!",
-          "flavorText": "The rare runite ore gleams as you extract it from the ancient rock."
+          "flavorText": "A ball of flame erupts from your hands, illuminating the darkness.",
+          "skillType": "Fire Magic"
         }
       ]
     }
   },
   "messages": {
-    "welcome": "Welcome to Taverns and Treasures! Your adventure begins...",
-    "levelUp": "🎉 {skillName} level up! You are now level {level}.",
-    "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
-    "actionCompleted": "{flavorText}",
-    "unlockMessage": "{unlockMessage}",
-    "configError": "Error: Could not load game configuration. Please refresh the page.",
-    "configLoaded": "Game configuration loaded successfully",
-    "skillsConfigLoaded": "Skills configuration loaded successfully",
-    "skillsConfigError": "Error: Could not load skills configuration.",
-    "gameSaved": "🔄 Game progress saved",
-    "gameLoaded": "📥 Welcome back! Your progress has been loaded",
-    "noSaveFound": "🆕 No saved game found. Starting a new game",
-    "saveError": "⚠️ Failed to save game progress",
-    "loadError": "⚠️ Failed to load saved game"
+    "actionUnlocked": "🎉 New action unlocked: {actionName} at level {level}!",
+    "skillLevelUp": "🎉 {skillName} increased to level {level}!",
+    "itemGained": "You gained {itemName} x{quantity}",
+    "itemUsed": "You used {itemName} x{quantity}",
+    "saveSuccess": "Game saved successfully!",
+    "saveError": "Failed to save game",
+    "noSaveFound": "No saved game found",
+    "loadSuccess": "Game loaded successfully!",
+    "loadError": "Failed to load game"
   },
   "gameSettings": {
     "xpFormula": "level * 100",

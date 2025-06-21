@@ -73,7 +73,11 @@ const DEFAULT_CONFIG = {
         gameLoaded: '📥 Welcome back! Your progress has been loaded',
         noSaveFound: '🆕 No saved game found. Starting a new game',
         saveError: '⚠️ Failed to save game progress',
-        loadError: '⚠️ Failed to load saved game'
+        loadError: '⚠️ Failed to load saved game',
+        actionInsufficientItems: 'Insufficient items to perform the action: {itemName}',
+        actionItemsConsumed: 'You consumed {itemCount}x {itemName}',
+        actionItemsGained: 'You gained {itemCount}x {itemName}',
+        actionTimeRequired: 'This action requires {time} {timeUnit} to complete'
     },
     gameSettings: {
         initialWood: 0
@@ -206,18 +210,149 @@ class TraitManager {
     }
 }
 
-// Action class for skill actions
-class SkillAction {
-    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1, skillType, unlockMessage, flavorText) {
+// Action class for managing individual actions
+class Action {
+    constructor(name, displayName, description, icon, tooltip, levelRequired, xpReward, timeRequired, timeUnit, itemReward, itemCount, itemConsumption, unlockMessage, flavorText, skillType, variables = null) {
         this.name = name;
+        this.displayName = displayName;
         this.description = description;
+        this.icon = icon;
+        this.tooltip = tooltip;
         this.levelRequired = levelRequired;
         this.xpReward = xpReward;
+        this.timeRequired = timeRequired;
+        this.timeUnit = timeUnit;
         this.itemReward = itemReward;
         this.itemCount = itemCount;
-        this.skillType = skillType;
+        this.itemConsumption = itemConsumption || {};
         this.unlockMessage = unlockMessage;
         this.flavorText = flavorText;
+        this.skillType = skillType;
+        this.variables = variables; // For actions with multiple options (e.g., sleep in bed vs cot)
+        this.isNewlyUnlocked = false;
+    }
+
+    canPerform(skillLevel, inventoryManager) {
+        // Check skill level requirement
+        if (skillLevel < this.levelRequired) {
+            return false;
+        }
+
+        // Check if player has required items
+        for (const [itemId, requiredCount] of Object.entries(this.itemConsumption)) {
+            if (!inventoryManager.hasItem(itemId, requiredCount)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    getTimeDisplay() {
+        if (!this.timeRequired) return '';
+        return `${this.timeRequired} ${this.timeUnit}`;
+    }
+
+    hasVariables() {
+        return this.variables && this.variables.length > 0;
+    }
+}
+
+// ActionManager class for managing all actions
+class ActionManager {
+    constructor() {
+        this.actions = new Map();
+        this.newlyUnlockedActions = new Set();
+    }
+
+    loadFromConfig(actionsConfig) {
+        try {
+            console.log('Loading actions...');
+            this.actions.clear();
+
+            // Load actions from the new actions section
+            if (actionsConfig && actionsConfig.actions) {
+                for (const [categoryName, categoryData] of Object.entries(actionsConfig.actions)) {
+                    if (categoryData.actions) {
+                        for (const actionData of categoryData.actions) {
+                            const action = new Action(
+                                actionData.name,
+                                actionData.displayName,
+                                actionData.description,
+                                actionData.icon,
+                                actionData.tooltip,
+                                actionData.levelRequired,
+                                actionData.xpReward,
+                                actionData.timeRequired,
+                                actionData.timeUnit,
+                                actionData.itemReward,
+                                actionData.itemCount,
+                                actionData.itemConsumption,
+                                actionData.unlockMessage,
+                                actionData.flavorText,
+                                actionData.skillType,
+                                actionData.variables
+                            );
+                            this.actions.set(actionData.name, action);
+                        }
+                    }
+                }
+            }
+            
+            console.log(`Loaded ${this.actions.size} actions`);
+        } catch (error) {
+            console.error('Error loading actions:', error);
+        }
+    }
+
+    getAction(actionName) {
+        return this.actions.get(actionName);
+    }
+
+    getAllActions() {
+        return Array.from(this.actions.values());
+    }
+
+    getAvailableActions(skillManager, inventoryManager) {
+        const availableActions = [];
+        
+        console.log('Checking available actions...');
+        console.log('All skills:', Array.from(skillManager.skills.keys()));
+        
+        for (const action of this.actions.values()) {
+            const skill = skillManager.getSkill(action.skillType);
+            const skillLevel = skill ? skill.level : 0;
+            
+            console.log(`Action ${action.name} requires skill ${action.skillType} at level ${action.levelRequired}, player has level ${skillLevel}`);
+            
+            if (action.canPerform(skillLevel, inventoryManager)) {
+                availableActions.push(action);
+            }
+        }
+        
+        return availableActions;
+    }
+
+    markActionAsNewlyUnlocked(actionName) {
+        this.newlyUnlockedActions.add(actionName);
+    }
+
+    isNewlyUnlocked(actionName) {
+        return this.newlyUnlockedActions.has(actionName);
+    }
+
+    markActionUsed(actionName) {
+        this.newlyUnlockedActions.delete(actionName);
+    }
+
+    checkForNewUnlocks(skillName, fromLevel, toLevel) {
+        for (const action of this.actions.values()) {
+            if (action.skillType === skillName && 
+                action.levelRequired > fromLevel && 
+                action.levelRequired <= toLevel) {
+                this.markActionAsNewlyUnlocked(action.name);
+            }
+        }
     }
 }
 
@@ -354,7 +489,6 @@ class InventoryManager {
 class SkillManager {
     constructor() {
         this.skills = new Map();
-        this.skillActions = new Map();
         this.newlyUnlockedActions = new Set();
     }
 
@@ -362,54 +496,28 @@ class SkillManager {
         try {
             console.log('Loading skills and actions...');
             this.skills.clear();
-            this.skillActions.clear();
-    
-            // 1. Load all skills from skillsConfig
-            const processCategory = (categoryData) => {
-                for (const [key, data] of Object.entries(categoryData)) {
-                    if (data.hasOwnProperty('level')) {
-                        this.skills.set(key, new Skill(key, data.level, data.experience));
-                    }
-                    if (data.sub_skills) {
-                        processCategory(data.sub_skills);
-                    }
-                }
-            };
-    
+
+            // Process skills from the skills configuration
             if (skillsConfig) {
-                for (const category in skillsConfig) {
-                    processCategory(skillsConfig[category]);
-                }
-            } else {
-                 console.error("Skills configuration is missing.");
-            }
-    
-            // 2. Load actions from gameConfig and associate them with skills
-            if (gameConfig && gameConfig.skills) {
-                Object.entries(gameConfig.skills).forEach(([skillKey, skillData]) => {
-                    const managerSkillKey = Array.from(this.skills.keys()).find(k => k.toLowerCase() === skillKey.toLowerCase());
-    
-                    if (managerSkillKey) {
-                        const actions = (skillData.actions || []).map(actionData => {
-                            return new SkillAction(
-                                actionData.name,
-                                actionData.description,
-                                actionData.levelRequired,
-                                actionData.xpReward,
-                                actionData.itemReward,
-                                actionData.itemCount,
-                                managerSkillKey, // Use the key from the skills map
-                                actionData.unlockMessage,
-                                actionData.flavorText
-                            );
+                Object.entries(skillsConfig).forEach(([categoryName, categoryData]) => {
+                    const processCategory = (categoryData) => {
+                        Object.entries(categoryData).forEach(([skillName, skillData]) => {
+                            if (skillData.level !== undefined) {
+                                // This is a skill
+                                const skill = new Skill(skillName, skillData.level, skillData.experience);
+                                this.skills.set(skillName, skill);
+                            } else if (skillData.sub_skills) {
+                                // This is a category with sub-skills
+                                processCategory(skillData.sub_skills);
+                            }
                         });
-                        this.skillActions.set(managerSkillKey, actions);
-                    }
+                    };
+                    
+                    processCategory(categoryData);
                 });
             }
             
             console.log('Skills loaded:', this.skills);
-            console.log('Skill actions loaded:', this.skillActions);
     
         } catch (error) {
             console.error('Error loading configuration into SkillManager:', error);
@@ -420,21 +528,8 @@ class SkillManager {
         this.skills.set(skillName, skill);
     }
 
-    addSkillActions(skillName, actions) {
-        this.skillActions.set(skillName, actions);
-    }
-
     getSkill(skillName) {
         return this.skills.get(skillName);
-    }
-
-    getAvailableActions(skillName) {
-        const skill = this.skills.get(skillName);
-        const actions = this.skillActions.get(skillName);
-        
-        if (!skill || !actions) return [];
-        
-        return actions.filter(action => skill.level >= action.levelRequired);
     }
 
     addSkillXp(skillName, xpAmount) {
@@ -444,53 +539,11 @@ class SkillManager {
         const oldLevel = skill.level;
         const levelUps = skill.addXp(xpAmount);
         
-        // Check for new unlocks
-        if (levelUps > 0) {
-            this.checkForNewUnlocks(skillName, oldLevel + 1, skill.level);
-        }
-        
         return levelUps;
-    }
-
-    checkForNewUnlocks(skillName, fromLevel, toLevel) {
-        const actions = this.skillActions.get(skillName);
-        if (!actions) return;
-        
-        for (let level = fromLevel; level <= toLevel; level++) {
-            const unlock = actions.find(action => action.levelRequired === level);
-            if (unlock) {
-                this.newlyUnlockedActions.add(unlock.name);
-                
-                // Use custom unlock message if available, otherwise use default
-                const message = unlock.unlockMessage || 
-                    gameConfig.messages.actionUnlocked
-                        .replace('{actionName}', unlock.name)
-                        .replace('{level}', level);
-                
-                addNarrationMessage(message);
-            }
-        }
-    }
-
-    isNewlyUnlocked(actionName) {
-        return this.newlyUnlockedActions.has(actionName);
-    }
-
-    markActionUsed(actionName) {
-        this.newlyUnlockedActions.delete(actionName);
     }
 
     getAllSkills() {
         return Array.from(this.skills.values());
-    }
-
-    getAllAvailableActions() {
-        const allActions = [];
-        this.skills.forEach((skill, skillName) => {
-            const availableActions = this.getAvailableActions(skillName);
-            allActions.push(...availableActions);
-        });
-        return allActions;
     }
 }
 
@@ -499,6 +552,7 @@ let gameState = {
     skillManager: new SkillManager(),
     traitManager: new TraitManager(),
     inventoryManager: new InventoryManager(),
+    actionManager: new ActionManager(),
     inventory: {},
     lastSaved: null
 };
@@ -538,6 +592,7 @@ function saveGameState() {
             skills: {},
             traits: {},
             inventory: {},
+            newlyUnlockedActions: Array.from(gameState.actionManager.newlyUnlockedActions),
             lastSaved: new Date().getTime()
         };
         
@@ -620,6 +675,13 @@ function loadGameState() {
             });
         }
         
+        // Load newly unlocked actions
+        if (parsedData.newlyUnlockedActions) {
+            parsedData.newlyUnlockedActions.forEach(actionName => {
+                gameState.actionManager.markActionAsNewlyUnlocked(actionName);
+            });
+        }
+        
         // Load last saved timestamp
         if (parsedData.lastSaved) {
             gameState.lastSaved = parsedData.lastSaved;
@@ -661,7 +723,7 @@ function deepMerge(target, source) {
 // Load game configuration using proper error handling
 async function loadGameConfig() {
     try {
-        const response = await fetch('data/game-config.json');
+        const response = await fetch('game-config.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -788,7 +850,7 @@ function updateActionsDisplay() {
     
     actionsContent.innerHTML = '';
     
-    const allActions = gameState.skillManager.getAllAvailableActions();
+    const allActions = gameState.actionManager.getAllActions();
     
     if (allActions.length === 0) {
         actionsContent.innerHTML = '<p class="text-muted">No actions available. Level up your skills to unlock more actions!</p>';
@@ -798,14 +860,141 @@ function updateActionsDisplay() {
     allActions.forEach(action => {
         const button = document.createElement('button');
         button.className = gameConfig.ui.cssClasses.actionButton;
-        button.textContent = action.name;
+        button.title = action.tooltip || action.description;
+        
+        // Check if action is available
+        const skill = gameState.skillManager.getSkill(action.skillType);
+        const skillLevel = skill ? skill.level : 0;
+        const canPerform = action.canPerform(skillLevel, gameState.inventoryManager);
+        
+        // Disable button if action is not available
+        if (!canPerform) {
+            button.disabled = true;
+        }
         
         // Add new unlock styling if this action was recently unlocked
-        if (gameState.skillManager.isNewlyUnlocked(action.name)) {
+        if (gameState.actionManager.isNewlyUnlocked(action.name)) {
             button.classList.add(gameConfig.ui.cssClasses.newUnlock);
         }
         
-        button.addEventListener('click', () => handleSkillAction(action));
+        // Create action header with icon, title, and time
+        const header = document.createElement('div');
+        header.className = 'action-header';
+        
+        const icon = document.createElement('span');
+        icon.className = 'action-icon';
+        icon.textContent = action.icon;
+        
+        const title = document.createElement('span');
+        title.className = 'action-title';
+        title.textContent = action.displayName;
+        
+        const time = document.createElement('span');
+        time.className = 'action-time';
+        time.textContent = action.getTimeDisplay();
+        
+        header.appendChild(icon);
+        header.appendChild(title);
+        header.appendChild(time);
+        
+        // Create description
+        const description = document.createElement('div');
+        description.className = 'action-description';
+        description.textContent = action.description;
+        
+        // Add requirement info if action is not available
+        if (!canPerform) {
+            const requirement = document.createElement('div');
+            requirement.className = 'action-requirement';
+            requirement.style.color = '#888';
+            requirement.style.fontSize = '12px';
+            requirement.style.fontStyle = 'italic';
+            
+            if (skillLevel < action.levelRequired) {
+                requirement.textContent = `Requires ${action.skillType} level ${action.levelRequired} (you have ${skillLevel})`;
+            } else {
+                // Check for missing items
+                const missingItems = [];
+                for (const [itemId, requiredCount] of Object.entries(action.itemConsumption)) {
+                    if (!gameState.inventoryManager.hasItem(itemId, requiredCount)) {
+                        const gameObject = gameState.inventoryManager.getGameObject(itemId);
+                        const itemName = gameObject ? gameObject.displayName : itemId;
+                        missingItems.push(`${itemName} x${requiredCount}`);
+                    }
+                }
+                if (missingItems.length > 0) {
+                    requirement.textContent = `Missing: ${missingItems.join(', ')}`;
+                }
+            }
+            
+            description.appendChild(requirement);
+        }
+        
+        button.appendChild(header);
+        button.appendChild(description);
+        
+        // Add variable options if the action has them
+        if (action.hasVariables()) {
+            const variablesContainer = document.createElement('div');
+            variablesContainer.className = 'action-variables';
+            
+            action.variables.forEach(variable => {
+                const variableButton = document.createElement('div');
+                variableButton.className = 'action-variable';
+                variableButton.title = variable.description;
+                
+                // Disable variable if main action is disabled
+                if (!canPerform) {
+                    variableButton.style.opacity = '0.5';
+                    variableButton.style.pointerEvents = 'none';
+                }
+                
+                const variableIcon = document.createElement('span');
+                variableIcon.className = 'action-variable-icon';
+                variableIcon.textContent = variable.icon;
+                
+                const variableInfo = document.createElement('div');
+                variableInfo.className = 'action-variable-info';
+                
+                const variableName = document.createElement('div');
+                variableName.className = 'action-variable-name';
+                variableName.textContent = variable.displayName;
+                
+                const variableDescription = document.createElement('div');
+                variableDescription.className = 'action-variable-description';
+                variableDescription.textContent = variable.description;
+                
+                const variableTime = document.createElement('span');
+                variableTime.className = 'action-variable-time';
+                variableTime.textContent = `${variable.timeRequired} ${action.timeUnit}`;
+                
+                variableInfo.appendChild(variableName);
+                variableInfo.appendChild(variableDescription);
+                variableButton.appendChild(variableIcon);
+                variableButton.appendChild(variableInfo);
+                variableButton.appendChild(variableTime);
+                
+                // Add click handler for variable option
+                variableButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (canPerform) {
+                        handleAction(action, variable);
+                    }
+                });
+                
+                variablesContainer.appendChild(variableButton);
+            });
+            
+            button.appendChild(variablesContainer);
+        } else {
+            // Add click handler for regular action
+            button.addEventListener('click', () => {
+                if (canPerform) {
+                    handleAction(action);
+                }
+            });
+        }
+        
         actionsContent.appendChild(button);
     });
 }
@@ -990,7 +1179,32 @@ function handleItemAction(action, itemId, inventoryItem) {
 }
 
 // Generic action handler for any skill
-function handleSkillAction(action) {
+function handleAction(action, variable = null) {
+    // Check if player has required items
+    for (const [itemId, requiredCount] of Object.entries(action.itemConsumption)) {
+        if (!gameState.inventoryManager.hasItem(itemId, requiredCount)) {
+            const gameObject = gameState.inventoryManager.getGameObject(itemId);
+            const itemName = gameObject ? gameObject.displayName : itemId;
+            const message = gameConfig.messages.actionInsufficientItems.replace('{itemName}', itemName);
+            addNarrationMessage(message);
+            showToast(message, 'error');
+            return;
+        }
+    }
+    
+    // Consume required items
+    for (const [itemId, requiredCount] of Object.entries(action.itemConsumption)) {
+        const success = gameState.inventoryManager.removeItem(itemId, requiredCount);
+        if (success) {
+            const gameObject = gameState.inventoryManager.getGameObject(itemId);
+            const itemName = gameObject ? gameObject.displayName : itemId;
+            const message = gameConfig.messages.actionItemsConsumed
+                .replace('{itemName}', itemName)
+                .replace('{itemCount}', requiredCount);
+            addNarrationMessage(message);
+        }
+    }
+    
     // Get the skill associated with this action
     const skill = gameState.skillManager.getSkill(action.skillType);
     if (!skill) {
@@ -1007,40 +1221,45 @@ function handleSkillAction(action) {
         if (success) {
             const gameObject = gameState.inventoryManager.getGameObject(action.itemReward);
             if (gameObject) {
-                const itemMessage = `You received ${action.itemCount}x ${gameObject.displayName}`;
-                addNarrationMessage(itemMessage);
+                const message = gameConfig.messages.actionItemsGained
+                    .replace('{itemName}', gameObject.displayName)
+                    .replace('{itemCount}', action.itemCount);
+                addNarrationMessage(message);
             }
         }
+    }
+    
+    // Display time requirement message
+    if (action.timeRequired) {
+        const timeMessage = gameConfig.messages.actionTimeRequired
+            .replace('{time}', action.timeRequired)
+            .replace('{timeUnit}', action.timeUnit);
+        addNarrationMessage(timeMessage);
     }
     
     // Display flavor text message in narration
     if (action.flavorText) {
         addNarrationMessage(action.flavorText);
-    } else {
-        // Fallback to old message format if flavorText is not available
-        const message = gameConfig.messages.actionCompleted
-            .replace('{actionName}', action.name.toLowerCase())
-            .replace('{xpReward}', action.xpReward)
-            .replace('{itemReward}', action.itemReward)
-            .replace('{itemCount}', action.itemCount);
-        
-        addNarrationMessage(message);
     }
     
     // Flash XP gain in the skill UI
     flashXpGain(action.skillType, action.xpReward);
     
-    // If there were level ups, display those messages
+    // If there were level ups, display those messages and check for new unlocks
     if (levelUps > 0) {
         const levelUpMessage = gameConfig.messages.levelUp
             .replace('{skillName}', action.skillType)
             .replace('{level}', skill.level);
         
         addNarrationMessage(levelUpMessage);
+        
+        // Check for new action unlocks
+        const fromLevel = skill.level - levelUps;
+        gameState.actionManager.checkForNewUnlocks(action.skillType, fromLevel, skill.level);
     }
     
     // Mark this action as no longer newly unlocked
-    gameState.skillManager.markActionUsed(action.name);
+    gameState.actionManager.markActionUsed(action.name);
     
     // Update the UI
     updateSkillsDisplay();
@@ -1281,6 +1500,7 @@ async function initGame() {
             skillManager: new SkillManager(),
             traitManager: new TraitManager(),
             inventoryManager: new InventoryManager(),
+            actionManager: new ActionManager(),
             inventory: {},
             lastSaved: null
         };
@@ -1296,6 +1516,9 @@ async function initGame() {
 
         // Load skills and actions from configs
         gameState.skillManager.loadFromConfig(skillsConfig, gameConfig);
+        
+        // Load actions from config
+        gameState.actionManager.loadFromConfig(gameConfig);
         
         // Load traits from config
         gameState.traitManager.loadFromConfig(traitsConfig);
