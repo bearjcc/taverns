@@ -12,10 +12,12 @@ class SkillManager {
             if (skillsConfig) {
                 const processCategory = (categoryData) => {
                     for (const [key, data] of Object.entries(categoryData)) {
-                        if (data.hasOwnProperty('level')) {
-                            const skill = new Skill(key, data.level, data.experience);
-                            this.skills.set(key, skill);
-                        }
+                        // Create skill with default values if level/experience not specified
+                        const level = data.hasOwnProperty('level') ? data.level : null;
+                        const experience = data.hasOwnProperty('experience') ? data.experience : null;
+                        const skill = new Skill(key, level, experience);
+                        this.skills.set(key, skill);
+                        
                         if (data.sub_skills) {
                             processCategory(data.sub_skills);
                         }
