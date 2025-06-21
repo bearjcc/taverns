@@ -104,4 +104,35 @@ This is a personal project, but feedback and suggestions are welcome!
 
 ## 📄 License
 
-MIT License - feel free to use this code for your own projects. 
+MIT License - feel free to use this code for your own projects.
+
+## Development
+
+- Run `npm run dev` to start the development server (live-server)
+- All changes are hot-reloaded in the browser
+
+## Testing (Core Practice)
+
+This project uses [Jest](https://jestjs.io/) for unit testing. All core game logic is covered by unit tests, and testing is a required part of development.
+
+### Running Tests
+
+- Run all tests: `npm test`
+- Watch mode: `npm run test:watch`
+- Coverage report: `npm run test:coverage`
+
+Test files are located in the `tests/` directory. All new features and bug fixes should include appropriate unit tests.
+
+## Project Structure
+
+- `index.html` - Main game interface
+- `styles.css` - Dark theme styling and layout
+- `game.js` - Core game logic and systems
+- `data/` - Game configuration and data
+- `tests/` - Unit tests and test utilities
+
+## Contributing
+
+- Follow clean code and incremental development practices
+- Write and maintain unit tests for all core logic
+- See [DEVELOPMENT_ROADMAP.md](DEVELOPMENT_ROADMAP.md) for current goals 
