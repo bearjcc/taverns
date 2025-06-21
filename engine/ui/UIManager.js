@@ -299,17 +299,7 @@ class UIManager {
         tabsHtml += '</div>';
         panelsHtml += '</div>';
 
-        // Add manual save button
-        const saveButtonHtml = `
-            <div class="manual-save-container">
-                <button class="manual-save-button" onclick="uiManager.manualSave(skillManager, inventoryManager, traitManager)">
-                    💾 Save Game
-                </button>
-                <div id="last-saved-time" class="last-saved-time"></div>
-            </div>
-        `;
-
-        sidebar.innerHTML = tabsHtml + panelsHtml + saveButtonHtml;
+        sidebar.innerHTML = tabsHtml + panelsHtml;
     }
 
     addNarrationMessage(message) {
