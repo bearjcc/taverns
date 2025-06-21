@@ -41,6 +41,31 @@
         </div>
     </div>
     
+    <button id="open-achievements-modal-btn" style="position:fixed;bottom:32px;right:32px;z-index:2100;display:none;min-width:48px;min-height:48px;font-size:1.5em;border-radius:50%;background:#333;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;">🏆</button>
+    <script>
+        // Wait for game engine and achievements system to be available
+        window.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('open-achievements-modal-btn');
+            function tryEnableAchievementsBtn() {
+                if (window.gameEngine && window.gameEngine.getSystem && window.openAchievementsModal) {
+                    const achievementSystem = window.gameEngine.getSystem('achievements');
+                    if (achievementSystem) {
+                        btn.style.display = 'block';
+                        btn.onclick = function() {
+                            const data = achievementSystem.getAllAchievements();
+                            const unlocked = achievementSystem.getUnlockedAchievements();
+                            const progress = achievementSystem.getAchievementProgress();
+                            window.openAchievementsModal(data, unlocked, progress);
+                        };
+                    }
+                } else {
+                    setTimeout(tryEnableAchievementsBtn, 500);
+                }
+            }
+            tryEnableAchievementsBtn();
+        });
+    </script>
+    <script src="engine/systems/AchievementSystem.js"></script>
     <script src="components.js"></script>
     <script src="game.js"></script>
 </body>

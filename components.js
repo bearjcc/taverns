@@ -617,7 +617,7 @@ function createAchievementCategorySection(category, achievements, unlockedAchiev
     // Add achievements to category
     for (const achievement of achievements) {
         const isUnlocked = unlockedAchievements.has(achievement.id);
-        const progress = achievementProgress[achievement.id] || null;
+        const progress = (achievementProgress && achievementProgress[achievement.id]) ? achievementProgress[achievement.id] : null;
         
         const achievementItem = createAchievementItem(achievement, isUnlocked, progress);
         categorySection.appendChild(achievementItem);
@@ -723,4 +723,114 @@ function showAchievementUnlocked(achievement, points, totalPoints) {
             }
         }, 300);
     }, 3000);
-} 
+}
+
+/**
+ * Modal System
+ */
+let currentModal = null;
+
+/**
+ * Create a modal element
+ * @param {HTMLElement|string} content - Content to display in the modal
+ * @param {Object} [options] - Modal options (title, onClose, etc.)
+ * @returns {HTMLElement} The modal element
+ */
+function createModal(content, options = {}) {
+    // Remove any existing modal
+    closeModal();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.tabIndex = -1;
+
+    const modal = document.createElement('div');
+    modal.className = 'modal';
+
+    // Modal header
+    if (options.title) {
+        const header = document.createElement('div');
+        header.className = 'modal-header';
+        const title = document.createElement('span');
+        title.className = 'modal-title';
+        title.textContent = options.title;
+        header.appendChild(title);
+        // Close button
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'modal-close';
+        closeBtn.innerHTML = '&times;';
+        closeBtn.onclick = () => closeModal();
+        header.appendChild(closeBtn);
+        modal.appendChild(header);
+    }
+
+    // Modal content
+    const contentContainer = document.createElement('div');
+    contentContainer.className = 'modal-content';
+    if (typeof content === 'string') {
+        contentContainer.innerHTML = content;
+    } else if (content instanceof HTMLElement) {
+        contentContainer.appendChild(content);
+    }
+    modal.appendChild(contentContainer);
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    currentModal = overlay;
+
+    // Close on overlay click (not modal click)
+    overlay.addEventListener('mousedown', (e) => {
+        if (e.target === overlay) {
+            closeModal();
+        }
+    });
+    // Close on Escape key
+    overlay.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+    overlay.focus();
+
+    // Optional onClose callback
+    if (options.onClose) {
+        overlay.dataset.onClose = true;
+        overlay.addEventListener('modal:close', options.onClose, { once: true });
+    }
+
+    return overlay;
+}
+
+/**
+ * Open a modal with the given content and options
+ * @param {HTMLElement|string} content
+ * @param {Object} [options]
+ */
+function openModal(content, options = {}) {
+    window.closeModal(); // Close any existing modal
+    const modal = createModal(content, options);
+    document.body.appendChild(modal);
+}
+
+/**
+ * Close the currently open modal
+ */
+function closeModal() {
+    const modal = document.querySelector('.modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+function openAchievementsModal(achievementsData, unlockedAchievements, achievementProgress) {
+    const content = createAchievementsTabContent(achievementsData, unlockedAchievements, achievementProgress);
+    const modalContent = document.createElement('div');
+    modalContent.appendChild(content);
+    openModal(modalContent, { title: 'Achievements' });
+}
+
+// Expose modal functions globally for use in other scripts
+window.createModal = createModal;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.openAchievementsModal = openAchievementsModal;

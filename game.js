@@ -1015,6 +1015,19 @@ function generateTabsFromConfig() {
     `;
     tabContent.appendChild(characterPanel);
     
+    // Add achievements tab panel
+    const achievementsPanel = document.createElement('div');
+    achievementsPanel.id = 'achievements-panel';
+    achievementsPanel.className = gameConfig.ui.cssClasses.tabPanel;
+    achievementsPanel.innerHTML = `
+        <h2>Achievements</h2>
+        <div id="achievements-content">
+            <p>Track your progress and unlock achievements!</p>
+            <button id="open-achievements-modal" class="achievement-button">🏆 View All Achievements</button>
+        </div>
+    `;
+    tabContent.appendChild(achievementsPanel);
+    
     // Add quests tab panel
     const questsPanel = document.createElement('div');
     questsPanel.id = 'quests-panel';
@@ -1035,6 +1048,20 @@ function generateTabsFromConfig() {
             if (success) {
                 showToast(gameConfig.messages.gameSaved, 'success');
                 updateLastSavedTime();
+            }
+        });
+    }
+    
+    // Add event listener for achievements modal button
+    const achievementsButton = document.getElementById('open-achievements-modal');
+    if (achievementsButton) {
+        achievementsButton.addEventListener('click', () => {
+            // Open the achievements modal using the global modal system
+            if (window.openAchievementsModal) {
+                const achievementsData = gameConfig.achievements;
+                const unlockedAchievements = gameState.achievementSystem.unlockedAchievements;
+                const achievementProgress = gameState.achievementSystem.progress;
+                window.openAchievementsModal(achievementsData, unlockedAchievements, achievementProgress);
             }
         });
     }
@@ -1087,6 +1114,9 @@ async function initGame() {
         // Initialize UI component system
         gameState.ui = new GameUI();
         
+        // Initialize Achievement System
+        gameState.achievementSystem = new AchievementSystem(gameConfig.achievements);
+
         // Load skills and actions from configs
         gameState.skillManager.loadFromConfig(skillsConfig, gameConfig);
         
@@ -1101,6 +1131,9 @@ async function initGame() {
             // Add a test oak log for testing the inventory system
             gameState.inventoryManager.addItem('oak_logs', 3);
             addNarrationMessage('You find 3 oak logs in your inventory. Right-click on them to see the context menu!');
+
+            // Test achievement
+            gameState.achievementSystem.unlock('first_login');
         }
         
         // Generate UI

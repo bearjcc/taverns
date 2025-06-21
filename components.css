@@ -17,89 +17,92 @@
     --info-color: #2196F3;
 }
 
-/* Modal Component */
+/* Modal System Styles */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(2px);
-}
-
-.modal-open .modal-overlay {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 2000;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: modal-fade-in 0.2s;
 }
 
-.modal-container {
-    background-color: var(--background-dark);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    animation: modalSlideIn 0.3s ease-out;
+@keyframes modal-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+.modal {
+    background: var(--card-bg, #222);
+    color: var(--text-color, #fff);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    min-width: 320px;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modal-pop-in 0.2s;
+}
+
+@keyframes modal-pop-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
 .modal-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    border-bottom: 1px solid var(--border-color);
-    background-color: var(--background-light);
+    justify-content: space-between;
+    background: var(--border-color, #333);
+    padding: 16px 20px 12px 20px;
+    border-bottom: 1px solid var(--border-color, #333);
 }
 
-.modal-header h3 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 16px;
-    font-weight: bold;
+.modal-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-color, #fff);
 }
 
 .modal-close {
     background: none;
     border: none;
-    color: var(--text-secondary);
-    font-size: 24px;
+    color: var(--text-color, #fff);
+    font-size: 1.5em;
     cursor: pointer;
-    padding: 0;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0 8px;
+    line-height: 1;
     border-radius: 4px;
-    transition: all 0.2s;
+    transition: background 0.2s;
 }
-
 .modal-close:hover {
-    background-color: var(--border-color);
-    color: var(--text-primary);
+    background: var(--accent-color, #444);
 }
 
 .modal-content {
     padding: 20px;
-    color: var(--text-secondary);
-    line-height: 1.6;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+@media (max-width: 600px) {
+    .modal {
+        width: 98vw;
+        min-width: unset;
+        max-width: 98vw;
+        max-height: 98vh;
+    }
+    .modal-content {
+        padding: 10px;
+    }
 }
 
 /* Tooltip Component */
@@ -528,53 +531,58 @@
 /* Achievement System Styles */
 
 .achievement-item {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 8px;
-    transition: all 0.3s ease;
-}
-
-.achievement-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.achievement-unlocked {
-    border-color: var(--success-color);
-    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(76, 175, 80, 0.1) 100%);
-}
-
-.achievement-locked {
-    opacity: 0.7;
-    filter: grayscale(0.5);
-}
-
-.achievement-header {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
-    gap: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #333;
+    border-radius: 4px;
+    border-left: 5px solid #444;
+}
+
+.achievement-item.achievement-unlocked {
+    background-color: #4CAF50;
+    border-left-color: #81C784;
 }
 
 .achievement-icon {
-    font-size: 1.2em;
-    width: 24px;
-    text-align: center;
+    font-size: 3em;
+    margin-right: 15px;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #222;
+    border-radius: 4px;
+}
+
+.achievement-item.achievement-unlocked .achievement-icon {
+    background-color: #388E3C;
+}
+
+.achievement-details {
+    flex-grow: 1;
 }
 
 .achievement-name {
-    font-weight: 600;
-    color: var(--text-color);
-    flex: 1;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #eee;
 }
 
 .achievement-description {
-    color: var(--text-secondary);
+    color: #ccc;
     font-size: 0.9em;
-    margin-bottom: 8px;
-    line-height: 1.4;
+}
+
+.achievement-locked .achievement-details {
+    opacity: 0.6;
+}
+
+.achievement-locked .achievement-name,
+.achievement-locked .achievement-description {
+    color: #999;
 }
 
 .achievement-points {
@@ -739,4 +747,44 @@
     .achievement-item {
         padding: 10px;
     }
+}
+
+/* Achievement Button Styles */
+.achievement-button {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #2c2c2c;
+    border: 2px solid #b8860b;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 10px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.achievement-button:hover {
+    background: linear-gradient(135deg, #ffed4e, #ffd700);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.achievement-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Achievements Tab Content */
+#achievements-content {
+    padding: 15px;
+}
+
+#achievements-content p {
+    margin-bottom: 15px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.4;
 } 
