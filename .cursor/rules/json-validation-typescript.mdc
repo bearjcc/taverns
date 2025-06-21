@@ -1,0 +1,349 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Guidelines for JSON validation, TypeScript usage, and inheritance patterns for game development
+globs: **/*.{js,ts,json}
+alwaysApply: true
+---
+# JSON Validation & TypeScript Guidelines
+
+## JSON Schema Validation
+
+### Required Validation Patterns
+- **Always validate JSON data** before creating game objects
+- **Use Ajv library** for schema validation
+- **Define schemas for all data types** (items, skills, species, etc.)
+- **Provide fallback defaults** for missing or invalid data
+
+### Schema Implementation
+```javascript
+// Example schema for items
+const itemSchema = {
+  type: "object",
+  properties: {
+    id: { type: "string" },
+    name: { type: "string" },
+    displayName: { type: "string" },
+    description: { type: "string" },
+    icon: { type: "string" },
+    stackable: { type: "boolean" },
+    maxStack: { type: "number", minimum: 1 }
+  },
+  required: ["id", "name", "displayName"]
+};
+
+// Validate before creating objects
+function createGameObject(data) {
+  if (!ajv.validate(itemSchema, data)) {
+    console.error('Invalid item data:', ajv.errors);
+    return createDefaultGameObject(data.id);
+  }
+  return new GameObject(data);
+}
+```
+
+### Error Handling
+- **Log validation errors** with detailed information
+- **Provide user-friendly error messages**
+- **Fall back to default values** when validation fails
+- **Never crash the game** due to invalid JSON
+
+## TypeScript Integration
+
+### Migration Strategy
+- **Start with JSDoc comments** for existing JavaScript
+- **Gradually add TypeScript files** alongside JavaScript
+- **Use strict TypeScript configuration**
+- **Maintain backward compatibility** during migration
+
+### JSDoc Type Annotations
+```javascript
+/**
+ * @typedef {Object} GameItem
+ * @property {string} id - Unique identifier
+ * @property {string} name - Internal name
+ * @property {string} displayName - User-facing name
+ * @property {string} description - Item description
+ * @property {string} icon - Emoji or icon representation
+ * @property {boolean} [stackable=true] - Whether item can stack
+ * @property {number} [maxStack=999] - Maximum stack size
+ */
+
+/**
+ * Creates a new game object from validated data
+ * @param {GameItem} itemData - Validated item data
+ * @returns {GameObject} The created game object
+ * @throws {Error} If data validation fails
+ */
+function createGameObject(itemData) {
+  // Implementation
+}
+```
+
+### Type Definitions
+```typescript
+// When migrating to TypeScript
+interface GameItem {
+  id: string;
+  name: string;
+  displayName: string;
+  description: string;
+  icon: string;
+  stackable?: boolean;
+  maxStack?: number;
+}
+
+interface LogItem extends GameItem {
+  type: 'log';
+  woodType: string;
+  hardness: number;
+}
+
+interface WeaponItem extends GameItem {
+  type: 'weapon';
+  damage: number;
+  durability: number;
+}
+```
+
+## Inheritance Patterns
+
+### Class Hierarchy Implementation
+- **Use inheritance for similar item types** (Log → WoodLog → OakLog)
+- **Implement base classes** for common functionality
+- **Override methods** for specific behavior
+- **Maintain single responsibility** principle
+
+### Recommended Class Structure
+```javascript
+/**
+ * Base class for all game objects
+ */
+class GameObject {
+  /**
+   * @param {Object} data - Validated object data
+   */
+  constructor(data) {
+    this.validateData(data);
+    Object.assign(this, data);
+  }
+
+  /**
+   * Validates object data against schema
+   * @param {Object} data - Data to validate
+   * @throws {Error} If validation fails
+   */
+  validateData(data) {
+    // Schema validation implementation
+  }
+
+  /**
+   * Gets display name for UI
+   * @returns {string} Display name
+   */
+  getDisplayName() {
+    return this.displayName || this.name;
+  }
+}
+
+/**
+ * Base class for all log items
+ */
+class Log extends GameObject {
+  constructor(data) {
+    super(data);
+    this.type = 'log';
+    this.validateLogData(data);
+  }
+
+  /**
+   * @param {Object} data - Log-specific data
+   */
+  validateLogData(data) {
+    if (!data.woodType) {
+      throw new Error('Log items must have woodType property');
+    }
+  }
+
+  /**
+   * Gets log-specific properties
+   * @returns {Object} Log properties
+   */
+  getLogProperties() {
+    return {
+      woodType: this.woodType,
+      hardness: this.hardness || 1
+    };
+  }
+}
+
+/**
+ * Specific log type
+ */
+class OakLog extends Log {
+  constructor(data) {
+    super({
+      ...data,
+      woodType: 'oak',
+      hardness: 3
+    });
+  }
+}
+```
+
+## Configuration Management
+
+### JSON File Organization
+- **Group related items** in separate files (logs.json, weapons.json)
+- **Use consistent naming conventions** across all JSON files
+- **Include schema references** in JSON comments
+- **Version your schemas** for compatibility
+
+### Configuration Loading
+```javascript
+/**
+ * Loads and validates configuration files
+ * @param {string} configPath - Path to configuration file
+ * @param {Object} schema - JSON schema for validation
+ * @returns {Promise<Object>} Validated configuration data
+ */
+async function loadValidatedConfig(configPath, schema) {
+  try {
+    const response = await fetch(configPath);
+    const data = await response.json();
+    
+    if (!ajv.validate(schema, data)) {
+      console.error(`Validation failed for ${configPath}:`, ajv.errors);
+      return getDefaultConfig();
+    }
+    
+    return data;
+  } catch (error) {
+    console.error(`Failed to load config ${configPath}:`, error);
+    return getDefaultConfig();
+  }
+}
+```
+
+## Best Practices
+
+### 1. Data Validation
+- **Validate at load time** not runtime
+- **Cache validated data** to avoid repeated validation
+- **Provide meaningful error messages**
+- **Log validation failures** for debugging
+
+### 2. Type Safety
+- **Use JSDoc comments** for all public methods
+- **Define interfaces** for complex data structures
+- **Avoid 'any' type** when possible
+- **Use generics** for reusable components
+
+### 3. Inheritance
+- **Keep inheritance shallow** (max 3 levels)
+- **Use composition over inheritance** when appropriate
+- **Override methods carefully** to maintain Liskov substitution
+- **Document inheritance relationships**
+
+### 4. Error Handling
+- **Never let invalid data crash the game**
+- **Provide fallback values** for missing properties
+- **Log errors with context** for debugging
+- **Show user-friendly error messages**
+
+### 5. Performance
+- **Validate once at load time**
+- **Cache validation results**
+- **Use efficient data structures**
+- **Avoid repeated JSON parsing**
+
+## Migration Checklist
+
+### Phase 1: JSDoc Documentation
+- [ ] Add JSDoc comments to all classes
+- [ ] Define type interfaces for all data structures
+- [ ] Document method parameters and return types
+- [ ] Add validation error handling
+
+### Phase 2: Schema Validation
+- [ ] Create JSON schemas for all data types
+- [ ] Implement validation in data loaders
+- [ ] Add fallback mechanisms for invalid data
+- [ ] Test validation with edge cases
+
+### Phase 3: Class Hierarchy
+- [ ] Identify similar item types
+- [ ] Create base classes for common functionality
+- [ ] Implement inheritance for similar items
+- [ ] Update factory methods to use inheritance
+
+### Phase 4: TypeScript Migration
+- [ ] Add TypeScript configuration
+- [ ] Convert core classes to TypeScript
+- [ ] Add type definitions for external data
+- [ ] Maintain backward compatibility
+
+## Common Patterns
+
+### Factory Pattern for Game Objects
+```javascript
+/**
+ * Factory for creating game objects with validation
+ */
+class GameObjectFactory {
+  /**
+   * Creates a game object based on type
+   * @param {string} type - Object type
+   * @param {Object} data - Object data
+   * @returns {GameObject} Created object
+   */
+  static create(type, data) {
+    switch (type) {
+      case 'log':
+        return new Log(data);
+      case 'weapon':
+        return new Weapon(data);
+      default:
+        return new GameObject(data);
+    }
+  }
+}
+```
+
+### Configuration Validation
+```javascript
+/**
+ * Validates game configuration on startup
+ * @param {Object} config - Game configuration
+ * @returns {boolean} True if valid
+ */
+function validateGameConfig(config) {
+  const requiredSections = ['ui', 'constants', 'skills', 'messages'];
+  
+  for (const section of requiredSections) {
+    if (!config[section]) {
+      console.error(`Missing required config section: ${section}`);
+      return false;
+    }
+  }
+  
+  return true;
+}
+```
+
+## Notes for Future AI Agents
+
+1. **Always validate JSON data** before creating objects
+2. **Use inheritance for similar item types** (Log → WoodLog → OakLog)
+3. **Add JSDoc comments** for all public methods and classes
+4. **Implement schema validation** for all configuration files
+5. **Provide fallback values** for missing or invalid data
+6. **Log validation errors** with detailed context
+7. **Never crash the game** due to invalid configuration
+8. **Use TypeScript gradually** starting with JSDoc comments
+9. **Maintain backward compatibility** during migrations
+10. **Follow single responsibility** principle in class design
+
