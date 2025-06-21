@@ -28,6 +28,7 @@ class GameEngine {
         this.actionSystem = null;
         this.achievementSystem = null;
         this.locationSystem = null;
+        this.encyclopediaSystem = null;
         
         // Game state
         this.isRunning = false;
@@ -152,6 +153,7 @@ class GameEngine {
             actions: this.actionSystem,
             achievements: this.achievementSystem,
             locations: this.locationSystem,
+            encyclopedia: this.encyclopediaSystem,
             state: this.stateManager,
             events: this.eventSystem,
             assets: this.assetLoader,
@@ -195,6 +197,7 @@ class GameEngine {
         this.actionSystem = new ActionSystem(this.gameData.actions, this.stateManager, this.eventSystem);
         this.achievementSystem = new AchievementSystem(this.gameData.achievements, this.stateManager, this.eventSystem);
         this.locationSystem = new LocationSystem(this.gameData.locations, this.stateManager, this.eventSystem);
+        this.encyclopediaSystem = new EncyclopediaSystem();
         
         // Initialize each system
         await Promise.all([
@@ -203,7 +206,8 @@ class GameEngine {
             this.speciesSystem.initialize(),
             this.actionSystem.initialize(),
             this.achievementSystem.initialize(),
-            this.locationSystem.initialize()
+            this.locationSystem.initialize(),
+            this.encyclopediaSystem.initialize(this.gameData)
         ]);
     }
     
@@ -215,6 +219,13 @@ class GameEngine {
         if (this.actionSystem && this.locationSystem) {
             this.actionSystem.setLocationSystem(this.locationSystem);
         }
+        
+        // Set up cross-system references
+        this.skillSystem.setInventorySystem(this.inventorySystem);
+        this.actionSystem.setSkillSystem(this.skillSystem);
+        this.actionSystem.setInventorySystem(this.inventorySystem);
+        this.achievementSystem.setSkillSystem(this.skillSystem);
+        this.achievementSystem.setInventorySystem(this.inventorySystem);
     }
     
     async _loadMod(modId) {

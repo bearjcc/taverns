@@ -22,6 +22,14 @@
         "icon": "🗺️"
       }
     ],
+    "encyclopedia": {
+      "button": {
+        "id": "encyclopedia-btn",
+        "displayName": "Encyclopedia",
+        "icon": "📚",
+        "tooltip": "Open the game encyclopedia"
+      }
+    },
     "cssClasses": {
       "skillItem": "skill-item",
       "skillHeader": "skill-header",
@@ -43,7 +51,8 @@
       "tabPanel": "tab-panel",
       "active": "active",
       "toast": "toast",
-      "toastContainer": "toast-container"
+      "toastContainer": "toast-container",
+      "encyclopediaButton": "encyclopedia-button"
     },
     "elementIds": {
       "narrationContent": "narration-content",
@@ -53,7 +62,8 @@
       "inventoryTab": "inventory-tab", 
       "characterTab": "character-tab",
       "questsTab": "quests-tab",
-      "toastContainer": "toast-container"
+      "toastContainer": "toast-container",
+      "encyclopediaButton": "encyclopedia-btn"
     }
   },
   "constants": {
@@ -79,7 +89,9 @@
     "actionInsufficientItems": "Insufficient items to perform the action: {itemName}",
     "actionItemsConsumed": "You consumed {itemCount}x {itemName}",
     "actionItemsGained": "You gained {itemCount}x {itemName}",
-    "actionTimeRequired": "This action requires {time} {timeUnit} to complete"
+    "actionTimeRequired": "This action requires {time} {timeUnit} to complete",
+    "encyclopediaOpened": "📚 Encyclopedia opened",
+    "encyclopediaClosed": "📚 Encyclopedia closed"
   },
   "gameSettings": {
     "initialWood": 0

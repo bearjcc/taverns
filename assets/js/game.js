@@ -28,6 +28,12 @@ let uiManager;
 /** @type {GameStateManager} Global game state manager instance */
 let gameStateManager;
 
+/** @type {EncyclopediaSystem} Global encyclopedia system instance */
+let encyclopediaSystem;
+
+/** @type {EncyclopediaUI} Global encyclopedia UI instance */
+let encyclopediaUI;
+
 /**
  * Initializes the game by loading configurations, setting up managers, and starting the game loop.
  * This is the main entry point for the game and should be called when the page loads.
@@ -49,6 +55,10 @@ async function initGame() {
         uiManager = new UIManager();
         gameStateManager = new GameStateManager();
         
+        // Initialize encyclopedia system
+        encyclopediaSystem = new EncyclopediaSystem();
+        encyclopediaUI = new EncyclopediaUI(encyclopediaSystem);
+        
         // Load configurations
         const configs = await configManager.loadAllConfigs();
         const gameConfig = configs.gameConfig;
@@ -64,11 +74,25 @@ async function initGame() {
         traitManager.loadFromConfig(traitsConfig);
         actionManager.loadFromConfig(actionsConfig);
         
+        // Initialize encyclopedia with game data
+        await encyclopediaSystem.initialize({
+            skills: skillsConfig,
+            items: await loadItemsData(),
+            species: await loadSpeciesData(),
+            traits: traitsConfig,
+            locations: await loadLocationsData(),
+            actions: actionsConfig
+        });
+        
+        // Initialize encyclopedia UI
+        encyclopediaUI.initialize();
+        
         // Load saved game state
         const saveLoaded = gameStateManager.loadGameState(skillManager, inventoryManager, traitManager);
         
         // Setup UI
         uiManager.generateTabsFromConfig(gameConfig);
+        createEncyclopediaButton(gameConfig);
         
         // Update displays
         updateAllDisplays();
@@ -97,6 +121,95 @@ async function initGame() {
     } catch (error) {
         console.error('Failed to initialize game:', error);
         uiManager.showToast(configManager.getMessage('configError'), 'error');
+    }
+}
+
+/**
+ * Loads items data from the items.json file
+ * @returns {Promise<Object>} Items data
+ */
+async function loadItemsData() {
+    try {
+        const response = await fetch('data/items.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to load items data:', error);
+        return {};
+    }
+}
+
+/**
+ * Loads species data from the species.json file
+ * @returns {Promise<Object>} Species data
+ */
+async function loadSpeciesData() {
+    try {
+        const response = await fetch('data/species.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to load species data:', error);
+        return {};
+    }
+}
+
+/**
+ * Loads locations data from the locations.json file
+ * @returns {Promise<Object>} Locations data
+ */
+async function loadLocationsData() {
+    try {
+        const response = await fetch('data/locations.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Failed to load locations data:', error);
+        return {};
+    }
+}
+
+/**
+ * Creates the encyclopedia button in the game UI
+ * @param {Object} gameConfig - Game configuration
+ */
+function createEncyclopediaButton(gameConfig) {
+    const encyclopediaConfig = gameConfig.ui.encyclopedia;
+    if (!encyclopediaConfig) return;
+
+    // Create encyclopedia button
+    const encyclopediaBtn = document.createElement('button');
+    encyclopediaBtn.id = encyclopediaConfig.button.id;
+    encyclopediaBtn.className = gameConfig.ui.cssClasses.encyclopediaButton || 'encyclopedia-button';
+    encyclopediaBtn.title = encyclopediaConfig.button.tooltip;
+    encyclopediaBtn.innerHTML = `
+        <span class="encyclopedia-button-icon">${encyclopediaConfig.button.icon}</span>
+        <span class="encyclopedia-button-text">${encyclopediaConfig.button.displayName}</span>
+    `;
+
+    // Add click event
+    encyclopediaBtn.addEventListener('click', () => {
+        openEncyclopedia();
+    });
+
+    // Add to the game interface (you may need to adjust this based on your layout)
+    const gameInterface = document.querySelector('.game-interface') || document.body;
+    gameInterface.appendChild(encyclopediaBtn);
+}
+
+/**
+ * Opens the encyclopedia
+ */
+function openEncyclopedia() {
+    if (encyclopediaUI) {
+        encyclopediaUI.show();
+        uiManager.showToast(configManager.getMessage('encyclopediaOpened'), 'info');
     }
 }
 
@@ -201,51 +314,36 @@ function handleAction(actionName, variable = null) {
             uiManager.addNarrationMessage(message);
         }
         
-        // Add XP to skill
-        const fromLevel = skill.level;
-        const levelUps = skillManager.addSkillXp(action.skillType, action.xpReward);
+        // Perform action and gain XP
+        const xpGained = action.performAction(skill, variable);
+        const itemReward = action.itemReward;
+        const itemCount = action.itemRewardQuantity || 1;
         
-        // Add item reward
-        if (action.itemReward) {
-            inventoryManager.addItem(action.itemReward, action.itemCount);
-            const itemName = inventoryManager.getGameObject(action.itemReward)?.displayName || action.itemReward;
+        if (itemReward) {
+            inventoryManager.addItem(itemReward, itemCount);
+            const itemName = inventoryManager.getGameObject(itemReward)?.displayName || itemReward;
             const message = configManager.getMessage('actionItemsGained', { 
                 itemName, 
-                itemCount: action.itemCount 
+                itemCount: itemCount 
             });
             uiManager.addNarrationMessage(message);
         }
         
-        // Check for new unlocks
-        actionManager.checkForNewUnlocks(action.skillType, fromLevel, skill.level);
-        
-        // Add narration
-        uiManager.addNarrationMessage(action.flavorText);
-        
-        // Show completion message in narration instead of toast
-        const itemName = action.itemReward ? 
-            inventoryManager.getGameObject(action.itemReward)?.displayName || action.itemReward : 
-            'nothing';
-        const message = configManager.getMessage('actionCompleted', {
-            actionName: action.displayName,
-            xpReward: action.xpReward,
-            itemReward: itemName,
-            itemCount: action.itemCount
+        // Show action completion message
+        const actionMessage = configManager.getMessage('actionCompleted', {
+            actionName: action.displayName || actionName,
+            xpReward: xpGained,
+            itemReward: itemReward || 'none',
+            itemCount: itemCount
         });
-        uiManager.addNarrationMessage(message);
-        
-        // Flash XP gain
-        uiManager.flashXpGain(action.skillType, action.xpReward);
+        uiManager.addNarrationMessage(actionMessage);
         
         // Update displays
         updateAllDisplays();
         
-        // Save game state
-        gameStateManager.saveGameState(skillManager, inventoryManager, traitManager);
-        
     } catch (error) {
-        console.error('Error executing action:', error);
-        uiManager.showToast('An error occurred while executing the action', 'error');
+        console.error('Error handling action:', error);
+        uiManager.addNarrationMessage('An error occurred while performing the action.');
     }
 }
 

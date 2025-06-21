@@ -863,4 +863,66 @@ body {
     0% { box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); }
     50% { box-shadow: 0 0 20px rgba(74, 158, 255, 0.6); }
     100% { box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); }
+}
+
+/* Encyclopedia Button Styles */
+.encyclopedia-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    border: 2px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.encyclopedia-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    border-color: #666;
+    background: linear-gradient(135deg, #333 0%, #222 100%);
+}
+
+.encyclopedia-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.encyclopedia-button-icon {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
+}
+
+.encyclopedia-button-text {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive design for encyclopedia button */
+@media (max-width: 768px) {
+    .encyclopedia-button {
+        top: 10px;
+        right: 10px;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .encyclopedia-button-text {
+        display: none;
+    }
+    
+    .encyclopedia-button-icon {
+        font-size: 1.5rem;
+    }
 } 
