@@ -59,30 +59,45 @@ class SkillManager {
     }
 
     loadFromConfig(config) {
-        this.skills.clear();
-        this.skillActions.clear();
-        
-        // Load skills from configuration
-        Object.entries(config.skills).forEach(([skillKey, skillData]) => {
-            // Create skill
-            this.skills.set(skillKey, new Skill(skillData.name));
+        try {
+            console.log('Starting to load configuration into SkillManager...');
+            this.skills.clear();
+            this.skillActions.clear();
             
-            // Create actions for this skill
-            const actions = skillData.actions.map(actionData => 
-                new SkillAction(
-                    actionData.name,
-                    actionData.description,
-                    actionData.levelRequired,
-                    actionData.xpReward,
-                    actionData.itemReward,
-                    actionData.itemCount,
-                    skillKey,
-                    actionData.unlockMessage
-                )
-            );
+            console.log('Configuration keys:', Object.keys(config));
+            console.log('Skills keys:', Object.keys(config.skills || {}));
             
-            this.skillActions.set(skillKey, actions);
-        });
+            // Load skills from configuration
+            Object.entries(config.skills || {}).forEach(([skillKey, skillData]) => {
+                console.log(`Loading skill: ${skillKey}`, skillData);
+                
+                // Create skill
+                this.skills.set(skillKey, new Skill(skillData.name));
+                
+                // Create actions for this skill
+                const actions = (skillData.actions || []).map(actionData => {
+                    console.log(`Creating action: ${actionData.name}`);
+                    return new SkillAction(
+                        actionData.name,
+                        actionData.description,
+                        actionData.levelRequired,
+                        actionData.xpReward,
+                        actionData.itemReward,
+                        actionData.itemCount,
+                        skillKey,
+                        actionData.unlockMessage
+                    );
+                });
+                
+                this.skillActions.set(skillKey, actions);
+                console.log(`Loaded ${actions.length} actions for skill ${skillKey}`);
+            });
+            
+            console.log('Configuration loaded successfully into SkillManager');
+        } catch (error) {
+            console.error('Error in loadFromConfig:', error);
+            throw error;
+        }
     }
 
     addSkill(skillName, skill) {
@@ -194,9 +209,18 @@ async function loadGameConfig() {
                 console.log(`Config file content length from ${path}:`, configText.length);
                 
                 try {
-                    gameConfig = JSON.parse(configText);
+                    const parsedConfig = JSON.parse(configText);
                     console.log('Configuration parsed successfully');
                     
+                    // Validate the configuration structure
+                    if (!parsedConfig.ui || !parsedConfig.skills || !parsedConfig.messages) {
+                        throw new Error('Invalid configuration structure - missing required sections');
+                    }
+                    
+                    // Set the global config
+                    gameConfig = parsedConfig;
+                    
+                    // Load skills from configuration
                     gameState.skillManager.loadFromConfig(gameConfig);
                     console.log(gameConfig.messages.configLoaded);
                     return true;
@@ -218,10 +242,22 @@ async function loadGameConfig() {
                 if (xhr.status === 200) {
                     console.log(`XMLHttpRequest succeeded for ${path}`);
                     const configText = xhr.responseText;
-                    gameConfig = JSON.parse(configText);
-                    gameState.skillManager.loadFromConfig(gameConfig);
-                    console.log('Configuration loaded via XMLHttpRequest');
-                    return true;
+                    
+                    try {
+                        const parsedConfig = JSON.parse(configText);
+                        
+                        // Validate the configuration structure
+                        if (!parsedConfig.ui || !parsedConfig.skills || !parsedConfig.messages) {
+                            throw new Error('Invalid configuration structure - missing required sections');
+                        }
+                        
+                        gameConfig = parsedConfig;
+                        gameState.skillManager.loadFromConfig(gameConfig);
+                        console.log('Configuration loaded via XMLHttpRequest');
+                        return true;
+                    } catch (parseError) {
+                        console.error(`XMLHttpRequest JSON parse error for ${path}:`, parseError.message);
+                    }
                 } else {
                     console.error(`XMLHttpRequest failed for ${path}:`, xhr.status, xhr.statusText);
                 }
