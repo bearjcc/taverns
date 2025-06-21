@@ -2,6 +2,7 @@ class ActionManager {
     constructor() {
         this.actions = new Map();
         this.newlyUnlockedActions = new Set();
+        this.locationSystem = null;
     }
 
     loadFromConfig(actionsConfig) {
@@ -28,7 +29,8 @@ class ActionManager {
                                 actionData.itemConsumption,
                                 actionData.unlockMessage,
                                 actionData.flavorText,
-                                actionData.skillType
+                                actionData.skillType,
+                                actionData.variables
                             );
                             this.actions.set(actionData.name, action);
                         }
@@ -42,6 +44,14 @@ class ActionManager {
         }
     }
 
+    /**
+     * Set the location system reference
+     * @param {LocationSystem} locationSystem - The location system instance
+     */
+    setLocationSystem(locationSystem) {
+        this.locationSystem = locationSystem;
+    }
+
     getAction(actionName) {
         return this.actions.get(actionName);
     }
@@ -53,14 +63,94 @@ class ActionManager {
     getAvailableActions(skillManager, inventoryManager) {
         const availableActions = [];
         
+        // Get location-based actions if location system is available
+        let locationActions = [];
+        if (this.locationSystem) {
+            locationActions = this.locationSystem.getAvailableActions();
+        }
+        
         for (const action of this.actions.values()) {
             const skill = skillManager.getSkill(action.skillType);
             if (skill) {
-                availableActions.push(action);
+                // Check if action is available at current location
+                if (locationActions.length === 0 || locationActions.includes(action.name)) {
+                    availableActions.push(action);
+                }
             }
         }
         
         return availableActions;
+    }
+
+    /**
+     * Get actions available at a specific spot
+     * @param {string} spotId - The spot ID
+     * @param {SkillManager} skillManager - The skill manager
+     * @param {InventoryManager} inventoryManager - The inventory manager
+     * @returns {Array} Array of available actions
+     */
+    getActionsForSpot(spotId, skillManager, inventoryManager) {
+        if (!this.locationSystem) {
+            return this.getAvailableActions(skillManager, inventoryManager);
+        }
+
+        const spot = this.locationSystem._findSpotById(spotId);
+        if (!spot || !spot.actions) {
+            return [];
+        }
+
+        const availableActions = [];
+        for (const actionName of spot.actions) {
+            const action = this.actions.get(actionName);
+            if (action) {
+                const skill = skillManager.getSkill(action.skillType);
+                if (skill) {
+                    availableActions.push(action);
+                }
+            }
+        }
+
+        return availableActions;
+    }
+
+    /**
+     * Get travel actions for current location
+     * @param {LocationSystem} locationSystem - The location system
+     * @param {Object} playerState - Current player state
+     * @returns {Array} Array of travel actions
+     */
+    getTravelActions(locationSystem, playerState) {
+        if (!locationSystem) return [];
+
+        const availableSpots = locationSystem.getAvailableSpots();
+        const travelActions = [];
+
+        for (const spot of availableSpots) {
+            const travelCheck = locationSystem.canTravelToSpot(spot.id, playerState);
+            if (travelCheck.canTravel) {
+                travelActions.push({
+                    name: `travel_to_${spot.id}`,
+                    displayName: `Travel to ${spot.name}`,
+                    description: spot.description,
+                    icon: "🚶",
+                    tooltip: `Travel to ${spot.name} (${spot.travelTime} minutes)`,
+                    levelRequired: 1,
+                    xpReward: 0,
+                    timeRequired: spot.travelTime || 1,
+                    timeUnit: "minutes",
+                    itemReward: null,
+                    itemCount: 0,
+                    itemConsumption: spot.travelCost?.items || {},
+                    unlockMessage: "",
+                    flavorText: `You travel to ${spot.name}.`,
+                    skillType: "travel",
+                    isTravelAction: true,
+                    targetSpotId: spot.id
+                });
+            }
+        }
+
+        return travelActions;
     }
 
     markActionAsNewlyUnlocked(actionName) {
@@ -110,6 +200,8 @@ class Action {
         this.flavorText = flavorText;
         this.skillType = skillType;
         this.variables = variables;
+        this.isTravelAction = false;
+        this.targetSpotId = null;
     }
 
     canPerform(skillLevel, inventoryManager) {

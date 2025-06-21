@@ -1,0 +1,278 @@
+{
+  "earth": {
+    "name": "Earth",
+    "description": "A diverse world with many lands and peoples",
+    "continents": {
+      "europe": {
+        "name": "Europe",
+        "description": "A continent of ancient kingdoms and modern nations",
+        "countries": {
+          "britain": {
+            "name": "Britain",
+            "description": "A green and pleasant land with rolling hills",
+            "regions": {
+              "southwest": {
+                "name": "Southwest England",
+                "description": "A region of moors, coasts, and ancient stone circles",
+                "spots": {
+                  "river_avon_bank": {
+                    "name": "River Avon Bank",
+                    "description": "You stand beside the gentle River Avon. The water flows steadily, and you can see fish occasionally breaking the surface. A small wooden bridge crosses the river upstream, and there's a path leading into the nearby woods.",
+                    "actions": [
+                      "swim_across",
+                      "net_fish",
+                      "line_fish", 
+                      "look_around",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "avon_bridge",
+                        "travelTime": 5,
+                        "description": "Walk to the bridge"
+                      },
+                      {
+                        "spotId": "woodland_path",
+                        "travelTime": 3,
+                        "description": "Follow the path into the woods"
+                      }
+                    ]
+                  },
+                  "avon_bridge": {
+                    "name": "Avon Bridge",
+                    "description": "A sturdy wooden bridge spans the River Avon. From here you have a good view of the river in both directions. The bridge leads to a small village on the other side.",
+                    "actions": [
+                      "cross_bridge",
+                      "look_downstream",
+                      "look_upstream",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "river_avon_bank",
+                        "travelTime": 5,
+                        "description": "Return to the river bank"
+                      },
+                      {
+                        "spotId": "village_square",
+                        "travelTime": 2,
+                        "description": "Cross to the village"
+                      }
+                    ]
+                  },
+                  "woodland_path": {
+                    "name": "Woodland Path",
+                    "description": "A narrow path winds through ancient oak trees. The canopy filters the sunlight, creating dappled shadows on the forest floor. You can hear birds singing overhead.",
+                    "actions": [
+                      "gather_herbs",
+                      "look_for_game",
+                      "climb_tree",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "river_avon_bank",
+                        "travelTime": 3,
+                        "description": "Return to the river"
+                      },
+                      {
+                        "spotId": "ancient_oak",
+                        "travelTime": 4,
+                        "description": "Follow the path deeper into the woods"
+                      }
+                    ]
+                  },
+                  "ancient_oak": {
+                    "name": "Ancient Oak",
+                    "description": "A massive oak tree stands before you, its trunk wider than a man is tall. The tree's branches spread wide, creating a natural canopy. There's a hollow in the trunk that looks large enough to shelter in.",
+                    "actions": [
+                      "climb_oak",
+                      "explore_hollow",
+                      "rest_under_tree",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "woodland_path",
+                        "travelTime": 4,
+                        "description": "Return to the woodland path"
+                      }
+                    ]
+                  },
+                  "village_square": {
+                    "name": "Village Square",
+                    "description": "A small village square with a stone well in the center. Several cottages surround the square, and there's a small tavern with a sign showing a red fox. Villagers go about their daily business.",
+                    "actions": [
+                      "enter_tavern",
+                      "talk_to_villagers",
+                      "draw_water",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "avon_bridge",
+                        "travelTime": 2,
+                        "description": "Return to the bridge"
+                      },
+                      {
+                        "spotId": "red_fox_tavern",
+                        "travelTime": 1,
+                        "description": "Enter the tavern"
+                      }
+                    ]
+                  },
+                  "red_fox_tavern": {
+                    "name": "Red Fox Tavern",
+                    "description": "A cozy tavern with low wooden beams and a crackling fireplace. The air is filled with the smell of ale and roasted meat. Several locals sit at tables, and the innkeeper stands behind a polished wooden bar.",
+                    "actions": [
+                      "order_drink",
+                      "order_meal",
+                      "talk_to_innkeeper",
+                      "listen_to_gossip",
+                      "rent_room",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "village_square",
+                        "travelTime": 1,
+                        "description": "Return to the village square"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "asia": {
+        "name": "Asia",
+        "description": "A vast continent of ancient civilizations and diverse cultures",
+        "countries": {
+          "japan": {
+            "name": "Japan",
+            "description": "A land of cherry blossoms, samurai, and modern technology",
+            "regions": {
+              "kyoto": {
+                "name": "Kyoto",
+                "description": "The ancient capital, home to countless temples and traditional gardens",
+                "spots": {
+                  "bamboo_forest": {
+                    "name": "Bamboo Forest",
+                    "description": "A serene bamboo grove where tall stalks sway gently in the breeze. The filtered sunlight creates a peaceful atmosphere, and the sound of rustling leaves is almost musical.",
+                    "actions": [
+                      "meditate",
+                      "gather_bamboo",
+                      "listen_to_wind",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "temple_garden",
+                        "travelTime": 3,
+                        "description": "Follow the stone path to the temple"
+                      }
+                    ]
+                  },
+                  "temple_garden": {
+                    "name": "Temple Garden",
+                    "description": "A meticulously maintained Zen garden with carefully placed rocks, raked gravel, and a small pond. The garden radiates tranquility and invites contemplation.",
+                    "actions": [
+                      "meditate",
+                      "observe_garden",
+                      "drink_tea",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "bamboo_forest",
+                        "travelTime": 3,
+                        "description": "Return to the bamboo forest"
+                      },
+                      {
+                        "spotId": "temple_interior",
+                        "travelTime": 1,
+                        "description": "Enter the temple"
+                      }
+                    ]
+                  },
+                  "temple_interior": {
+                    "name": "Temple Interior",
+                    "description": "A peaceful temple hall with tatami mats and sliding paper doors. Incense burns gently, and the air is filled with the sound of distant chanting.",
+                    "actions": [
+                      "pray",
+                      "light_incense",
+                      "talk_to_monk",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "temple_garden",
+                        "travelTime": 1,
+                        "description": "Return to the garden"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "africa": {
+        "name": "Africa",
+        "description": "A continent of vast savannas, dense jungles, and ancient kingdoms",
+        "countries": {
+          "egypt": {
+            "name": "Egypt",
+            "description": "Land of the pharaohs, pyramids, and the mighty Nile",
+            "regions": {
+              "nile_delta": {
+                "name": "Nile Delta",
+                "description": "Where the great Nile River meets the sea, creating fertile lands",
+                "spots": {
+                  "nile_riverbank": {
+                    "name": "Nile Riverbank",
+                    "description": "You stand on the banks of the mighty Nile River. The water flows steadily northward, carrying silt that has nourished this land for millennia. Fishing boats dot the water, and palm trees line the shore.",
+                    "actions": [
+                      "fish_nile",
+                      "swim_nile",
+                      "observe_boats",
+                      "gather_reeds",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "fishing_village",
+                        "travelTime": 4,
+                        "description": "Walk to the nearby fishing village"
+                      }
+                    ]
+                  },
+                  "fishing_village": {
+                    "name": "Fishing Village",
+                    "description": "A small village of mud-brick houses where fishermen live and work. Nets hang to dry, and the smell of cooking fish fills the air. Children play in the dusty streets.",
+                    "actions": [
+                      "talk_to_fishermen",
+                      "buy_fish",
+                      "help_repair_nets",
+                      "leave"
+                    ],
+                    "connections": [
+                      {
+                        "spotId": "nile_riverbank",
+                        "travelTime": 4,
+                        "description": "Return to the river"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

@@ -27,6 +27,7 @@ class GameEngine {
         this.speciesSystem = null;
         this.actionSystem = null;
         this.achievementSystem = null;
+        this.locationSystem = null;
         
         // Game state
         this.isRunning = false;
@@ -52,6 +53,9 @@ class GameEngine {
             
             // Initialize game systems with mod data
             await this._initializeGameSystems();
+            
+            // Set up cross-system references
+            this._setupSystemReferences();
             
             // Set up event listeners
             this._setupEventListeners();
@@ -147,6 +151,7 @@ class GameEngine {
             species: this.speciesSystem,
             actions: this.actionSystem,
             achievements: this.achievementSystem,
+            locations: this.locationSystem,
             state: this.stateManager,
             events: this.eventSystem,
             assets: this.assetLoader,
@@ -189,6 +194,7 @@ class GameEngine {
         this.speciesSystem = new SpeciesSystem(this.gameData.species, this.stateManager, this.eventSystem);
         this.actionSystem = new ActionSystem(this.gameData.actions, this.stateManager, this.eventSystem);
         this.achievementSystem = new AchievementSystem(this.gameData.achievements, this.stateManager, this.eventSystem);
+        this.locationSystem = new LocationSystem(this.gameData.locations, this.stateManager, this.eventSystem);
         
         // Initialize each system
         await Promise.all([
@@ -196,8 +202,19 @@ class GameEngine {
             this.inventorySystem.initialize(),
             this.speciesSystem.initialize(),
             this.actionSystem.initialize(),
-            this.achievementSystem.initialize()
+            this.achievementSystem.initialize(),
+            this.locationSystem.initialize()
         ]);
+    }
+    
+    /**
+     * Set up cross-system references
+     */
+    _setupSystemReferences() {
+        // Set location system reference in action system
+        if (this.actionSystem && this.locationSystem) {
+            this.actionSystem.setLocationSystem(this.locationSystem);
+        }
     }
     
     async _loadMod(modId) {
@@ -220,7 +237,7 @@ class GameEngine {
     
     async _loadModData(modId) {
         // Load all mod data files
-        const dataFiles = ['skills', 'items', 'species', 'actions', 'config'];
+        const dataFiles = ['skills', 'items', 'species', 'actions', 'locations', 'config'];
         const data = {};
         
         for (const file of dataFiles) {
@@ -244,6 +261,13 @@ class GameEngine {
         
         this.eventSystem.on('error', (error) => {
             console.error('Game engine error:', error);
+        });
+        
+        // Set up location change events
+        this.eventSystem.on('location:changed', (data) => {
+            console.log('Location changed:', data);
+            // Emit event for UI updates
+            this.eventSystem.emit('ui:locationChanged', data);
         });
     }
     
