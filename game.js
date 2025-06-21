@@ -1,3 +1,6 @@
+// Game configuration
+let gameConfig = null;
+
 // Skill class for managing individual skills
 class Skill {
     constructor(name, level = 1, xp = 0) {
@@ -32,14 +35,15 @@ class Skill {
 
 // Action class for skill actions
 class SkillAction {
-    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1, skillType) {
+    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1, skillType, unlockMessage) {
         this.name = name;
         this.description = description;
         this.levelRequired = levelRequired;
         this.xpReward = xpReward;
         this.itemReward = itemReward;
         this.itemCount = itemCount;
-        this.skillType = skillType; // Add skill type to identify which skill this action belongs to
+        this.skillType = skillType;
+        this.unlockMessage = unlockMessage;
     }
 }
 
@@ -49,55 +53,33 @@ class SkillManager {
         this.skills = new Map();
         this.skillActions = new Map();
         this.newlyUnlockedActions = new Set();
-        this.initializeSkills();
     }
 
-    initializeSkills() {
-        // Initialize woodcutting skill
-        this.skills.set('woodcutting', new Skill('Woodcutting'));
+    loadFromConfig(config) {
+        this.skills.clear();
+        this.skillActions.clear();
         
-        // Define woodcutting actions
-        const woodcuttingActions = [
-            new SkillAction('Chop Oak', 'Chop oak logs', 1, 10, 'oak_logs', 1, 'woodcutting'),
-            new SkillAction('Chop Willow', 'Chop willow logs', 5, 15, 'willow_logs', 1, 'woodcutting'),
-            new SkillAction('Chop Maple', 'Chop maple logs', 10, 25, 'maple_logs', 1, 'woodcutting'),
-            new SkillAction('Chop Yew', 'Chop yew logs', 20, 50, 'yew_logs', 1, 'woodcutting'),
-            new SkillAction('Chop Magic', 'Chop magic logs', 30, 100, 'magic_logs', 1, 'woodcutting')
-        ];
-        
-        this.skillActions.set('woodcutting', woodcuttingActions);
-
-        // Initialize fishing skill
-        this.skills.set('fishing', new Skill('Fishing'));
-        
-        // Define fishing actions
-        const fishingActions = [
-            new SkillAction('Fish Shrimp', 'Catch shrimp', 1, 8, 'shrimp', 1, 'fishing'),
-            new SkillAction('Fish Sardine', 'Catch sardines', 5, 12, 'sardine', 1, 'fishing'),
-            new SkillAction('Fish Herring', 'Catch herring', 10, 20, 'herring', 1, 'fishing'),
-            new SkillAction('Fish Salmon', 'Catch salmon', 20, 40, 'salmon', 1, 'fishing'),
-            new SkillAction('Fish Lobster', 'Catch lobster', 40, 80, 'lobster', 1, 'fishing'),
-            new SkillAction('Fish Shark', 'Catch shark', 76, 150, 'shark', 1, 'fishing')
-        ];
-        
-        this.skillActions.set('fishing', fishingActions);
-
-        // Initialize mining skill
-        this.skills.set('mining', new Skill('Mining'));
-        
-        // Define mining actions
-        const miningActions = [
-            new SkillAction('Mine Copper', 'Mine copper ore', 1, 12, 'copper_ore', 1, 'mining'),
-            new SkillAction('Mine Tin', 'Mine tin ore', 1, 12, 'tin_ore', 1, 'mining'),
-            new SkillAction('Mine Iron', 'Mine iron ore', 15, 25, 'iron_ore', 1, 'mining'),
-            new SkillAction('Mine Coal', 'Mine coal', 30, 50, 'coal', 1, 'mining'),
-            new SkillAction('Mine Gold', 'Mine gold ore', 40, 80, 'gold_ore', 1, 'mining'),
-            new SkillAction('Mine Mithril', 'Mine mithril ore', 55, 120, 'mithril_ore', 1, 'mining'),
-            new SkillAction('Mine Adamantite', 'Mine adamantite ore', 70, 200, 'adamantite_ore', 1, 'mining'),
-            new SkillAction('Mine Runite', 'Mine runite ore', 85, 400, 'runite_ore', 1, 'mining')
-        ];
-        
-        this.skillActions.set('mining', miningActions);
+        // Load skills from configuration
+        Object.entries(config.skills).forEach(([skillKey, skillData]) => {
+            // Create skill
+            this.skills.set(skillKey, new Skill(skillData.name));
+            
+            // Create actions for this skill
+            const actions = skillData.actions.map(actionData => 
+                new SkillAction(
+                    actionData.name,
+                    actionData.description,
+                    actionData.levelRequired,
+                    actionData.xpReward,
+                    actionData.itemReward,
+                    actionData.itemCount,
+                    skillKey,
+                    actionData.unlockMessage
+                )
+            );
+            
+            this.skillActions.set(skillKey, actions);
+        });
     }
 
     addSkill(skillName, skill) {
@@ -144,7 +126,14 @@ class SkillManager {
             const unlock = actions.find(action => action.levelRequired === level);
             if (unlock) {
                 this.newlyUnlockedActions.add(unlock.name);
-                addNarrationMessage(`🔓 New action unlocked: ${unlock.name} (Level ${level})`);
+                
+                // Use custom unlock message if available, otherwise use default
+                const message = unlock.unlockMessage || 
+                    gameConfig.messages.actionUnlocked
+                        .replace('{actionName}', unlock.name)
+                        .replace('{level}', level);
+                
+                addNarrationMessage(message);
             }
         }
     }
@@ -179,6 +168,28 @@ const gameState = {
     inventory: {},
     skillManager: new SkillManager()
 };
+
+// Load game configuration
+async function loadGameConfig() {
+    try {
+        const response = await fetch('data/game-config.json');
+        gameConfig = await response.json();
+        gameState.skillManager.loadFromConfig(gameConfig);
+        console.log('Game configuration loaded successfully');
+    } catch (error) {
+        console.error('Failed to load game configuration:', error);
+        // Fallback to hardcoded config if JSON fails to load
+        loadFallbackConfig();
+    }
+}
+
+// Fallback configuration if JSON fails to load
+function loadFallbackConfig() {
+    console.log('Loading fallback configuration');
+    // This would contain the original hardcoded data
+    // For now, we'll just show an error message
+    addNarrationMessage('Error: Could not load game configuration. Please refresh the page.');
+}
 
 // Update the skills display in the sidebar
 function updateSkillsDisplay() {
@@ -254,8 +265,14 @@ function handleSkillAction(action) {
     }
     gameState.inventory[action.itemReward] += action.itemCount;
     
-    // Add narration message
-    addNarrationMessage(`You ${action.name.toLowerCase()} and gained ${action.xpReward} XP. (${action.itemReward}: ${gameState.inventory[action.itemReward]})`);
+    // Add narration message using config template
+    const message = gameConfig.messages.actionCompleted
+        .replace('{actionName}', action.name.toLowerCase())
+        .replace('{xpReward}', action.xpReward)
+        .replace('{itemReward}', action.itemReward)
+        .replace('{itemCount}', gameState.inventory[action.itemReward]);
+    
+    addNarrationMessage(message);
     
     // Remove from newly unlocked actions after first use
     if (gameState.skillManager.isNewlyUnlocked(action.name)) {
@@ -308,8 +325,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Initialize game
-function initGame() {
-    addNarrationMessage('Hello world');
+async function initGame() {
+    // Load configuration first
+    await loadGameConfig();
+    
+    // Add welcome message from config
+    const welcomeMessage = gameConfig.messages.welcome;
+    addNarrationMessage(welcomeMessage);
+    
     updateSkillsDisplay();
     updateActionsDisplay();
 }

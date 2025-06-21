@@ -1,0 +1,227 @@
+{
+  "skills": {
+    "woodcutting": {
+      "name": "Woodcutting",
+      "displayName": "Woodcutting",
+      "description": "Cut down trees and gather wood",
+      "actions": [
+        {
+          "name": "Chop Oak",
+          "displayName": "Chop Oak",
+          "description": "Chop oak logs",
+          "levelRequired": 1,
+          "xpReward": 10,
+          "itemReward": "oak_logs",
+          "itemCount": 1,
+          "unlockMessage": "You can now chop oak trees!"
+        },
+        {
+          "name": "Chop Willow",
+          "displayName": "Chop Willow", 
+          "description": "Chop willow logs",
+          "levelRequired": 5,
+          "xpReward": 15,
+          "itemReward": "willow_logs",
+          "itemCount": 1,
+          "unlockMessage": "You can now chop willow trees!"
+        },
+        {
+          "name": "Chop Maple",
+          "displayName": "Chop Maple",
+          "description": "Chop maple logs", 
+          "levelRequired": 10,
+          "xpReward": 25,
+          "itemReward": "maple_logs",
+          "itemCount": 1,
+          "unlockMessage": "You can now chop maple trees!"
+        },
+        {
+          "name": "Chop Yew",
+          "displayName": "Chop Yew",
+          "description": "Chop yew logs",
+          "levelRequired": 20,
+          "xpReward": 50,
+          "itemReward": "yew_logs",
+          "itemCount": 1,
+          "unlockMessage": "You can now chop yew trees!"
+        },
+        {
+          "name": "Chop Magic",
+          "displayName": "Chop Magic",
+          "description": "Chop magic logs",
+          "levelRequired": 30,
+          "xpReward": 100,
+          "itemReward": "magic_logs",
+          "itemCount": 1,
+          "unlockMessage": "You can now chop magic trees!"
+        }
+      ]
+    },
+    "fishing": {
+      "name": "Fishing",
+      "displayName": "Fishing", 
+      "description": "Catch fish from various locations",
+      "actions": [
+        {
+          "name": "Fish Shrimp",
+          "displayName": "Fish Shrimp",
+          "description": "Catch shrimp",
+          "levelRequired": 1,
+          "xpReward": 8,
+          "itemReward": "shrimp",
+          "itemCount": 1,
+          "unlockMessage": "You can now fish for shrimp!"
+        },
+        {
+          "name": "Fish Sardine",
+          "displayName": "Fish Sardine",
+          "description": "Catch sardines",
+          "levelRequired": 5,
+          "xpReward": 12,
+          "itemReward": "sardine",
+          "itemCount": 1,
+          "unlockMessage": "You can now fish for sardines!"
+        },
+        {
+          "name": "Fish Herring",
+          "displayName": "Fish Herring",
+          "description": "Catch herring",
+          "levelRequired": 10,
+          "xpReward": 20,
+          "itemReward": "herring",
+          "itemCount": 1,
+          "unlockMessage": "You can now fish for herring!"
+        },
+        {
+          "name": "Fish Salmon",
+          "displayName": "Fish Salmon",
+          "description": "Catch salmon",
+          "levelRequired": 20,
+          "xpReward": 40,
+          "itemReward": "salmon",
+          "itemCount": 1,
+          "unlockMessage": "You can now fish for salmon!"
+        },
+        {
+          "name": "Fish Lobster",
+          "displayName": "Fish Lobster",
+          "description": "Catch lobster",
+          "levelRequired": 40,
+          "xpReward": 80,
+          "itemReward": "lobster",
+          "itemCount": 1,
+          "unlockMessage": "You can now fish for lobster!"
+        },
+        {
+          "name": "Fish Shark",
+          "displayName": "Fish Shark",
+          "description": "Catch shark",
+          "levelRequired": 76,
+          "xpReward": 150,
+          "itemReward": "shark",
+          "itemCount": 1,
+          "unlockMessage": "You can now fish for shark!"
+        }
+      ]
+    },
+    "mining": {
+      "name": "Mining",
+      "displayName": "Mining",
+      "description": "Mine various ores from the earth",
+      "actions": [
+        {
+          "name": "Mine Copper",
+          "displayName": "Mine Copper",
+          "description": "Mine copper ore",
+          "levelRequired": 1,
+          "xpReward": 12,
+          "itemReward": "copper_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine copper ore!"
+        },
+        {
+          "name": "Mine Tin",
+          "displayName": "Mine Tin",
+          "description": "Mine tin ore",
+          "levelRequired": 1,
+          "xpReward": 12,
+          "itemReward": "tin_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine tin ore!"
+        },
+        {
+          "name": "Mine Iron",
+          "displayName": "Mine Iron",
+          "description": "Mine iron ore",
+          "levelRequired": 15,
+          "xpReward": 25,
+          "itemReward": "iron_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine iron ore!"
+        },
+        {
+          "name": "Mine Coal",
+          "displayName": "Mine Coal",
+          "description": "Mine coal",
+          "levelRequired": 30,
+          "xpReward": 50,
+          "itemReward": "coal",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine coal!"
+        },
+        {
+          "name": "Mine Gold",
+          "displayName": "Mine Gold",
+          "description": "Mine gold ore",
+          "levelRequired": 40,
+          "xpReward": 80,
+          "itemReward": "gold_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine gold ore!"
+        },
+        {
+          "name": "Mine Mithril",
+          "displayName": "Mine Mithril",
+          "description": "Mine mithril ore",
+          "levelRequired": 55,
+          "xpReward": 120,
+          "itemReward": "mithril_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine mithril ore!"
+        },
+        {
+          "name": "Mine Adamantite",
+          "displayName": "Mine Adamantite",
+          "description": "Mine adamantite ore",
+          "levelRequired": 70,
+          "xpReward": 200,
+          "itemReward": "adamantite_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine adamantite ore!"
+        },
+        {
+          "name": "Mine Runite",
+          "displayName": "Mine Runite",
+          "description": "Mine runite ore",
+          "levelRequired": 85,
+          "xpReward": 400,
+          "itemReward": "runite_ore",
+          "itemCount": 1,
+          "unlockMessage": "You can now mine runite ore!"
+        }
+      ]
+    }
+  },
+  "messages": {
+    "welcome": "Hello world",
+    "levelUp": "🎉 {skillName} level up! You are now level {level}.",
+    "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
+    "actionCompleted": "You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})",
+    "unlockMessage": "{unlockMessage}"
+  },
+  "gameSettings": {
+    "xpFormula": "level * 100",
+    "defaultLevel": 1,
+    "defaultXp": 0
+  }
+} 
