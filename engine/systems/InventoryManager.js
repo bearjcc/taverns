@@ -72,15 +72,13 @@ class InventoryManager {
 
 // GameObject class for defining items
 class GameObject {
-    constructor(id, name, displayName, description, icon, examineText, stackable = true, maxStack = 999) {
+    constructor(id, name, displayName, description, icon, examineText) {
         this.id = id;
         this.name = name;
         this.displayName = displayName;
         this.description = description;
         this.icon = icon;
         this.examineText = examineText;
-        this.stackable = stackable;
-        this.maxStack = maxStack;
     }
 }
 
@@ -88,12 +86,11 @@ class GameObject {
 class InventoryItem {
     constructor(gameObject, quantity = 1) {
         this.gameObject = gameObject;
-        this.quantity = Math.min(quantity, gameObject.maxStack);
+        this.quantity = quantity;
     }
 
     addQuantity(amount) {
-        const newQuantity = this.quantity + amount;
-        this.quantity = Math.min(newQuantity, this.gameObject.maxStack);
+        this.quantity += amount;
         return this.quantity;
     }
 
@@ -103,7 +100,7 @@ class InventoryItem {
     }
 
     getDisplayName() {
-        if (this.quantity > 1 && this.gameObject.stackable) {
+        if (this.quantity > 1) {
             return `${this.gameObject.displayName} (${this.quantity})`;
         }
         return this.gameObject.displayName;

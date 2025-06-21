@@ -5,49 +5,7 @@
     "displayName": "Oak Log",
     "description": "A sturdy oak log, good for building and crafting.",
     "icon": "🟫",
-    "examineText": "A solid piece of oak wood. The bark is rough and the wood grain is clearly visible. This would make excellent building material or firewood.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "water": {
-    "id": "water",
-    "name": "water",
-    "displayName": "Water",
-    "description": "Fresh water, essential for survival and cooking.",
-    "icon": "💧",
-    "examineText": "Clear, fresh water. You can drink this or use it for cooking.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "flour": {
-    "id": "flour",
-    "name": "flour",
-    "displayName": "Flour",
-    "description": "Ground grain flour, used for baking bread and other foods.",
-    "icon": "🌾",
-    "examineText": "Fine flour made from ground grain. Essential for baking.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "stew": {
-    "id": "stew",
-    "name": "stew",
-    "displayName": "Stew",
-    "description": "A hearty stew made from various ingredients.",
-    "icon": "🍲",
-    "examineText": "A delicious stew that smells wonderful. This will restore your energy.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "bread": {
-    "id": "bread",
-    "name": "bread",
-    "displayName": "Bread",
-    "description": "Freshly baked bread, a staple food.",
-    "icon": "🍞",
-    "examineText": "Warm, freshly baked bread. The crust is golden and the inside is soft.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A solid piece of oak wood. The bark is rough and the wood grain is clearly visible. This would make excellent building material or firewood."
   },
   "iron_sword": {
     "id": "iron_sword",
@@ -55,9 +13,7 @@
     "displayName": "Iron Sword",
     "description": "A basic iron sword.",
     "icon": "🗡️",
-    "examineText": "A sturdy sword forged from iron.",
-    "stackable": false,
-    "maxStack": 1
+    "examineText": "A sturdy sword forged from iron."
   },
   "leather_armor": {
     "id": "leather_armor",
@@ -65,9 +21,7 @@
     "displayName": "Leather Armor",
     "description": "Protective armor made from leather.",
     "icon": "🥋",
-    "examineText": "A set of armor crafted from tough leather.",
-    "stackable": false,
-    "maxStack": 1
+    "examineText": "A set of armor crafted from tough leather."
   },
   "enchanted_weapon": {
     "id": "enchanted_weapon",
@@ -75,9 +29,7 @@
     "displayName": "Enchanted Weapon",
     "description": "A weapon imbued with magical power.",
     "icon": "🔮",
-    "examineText": "A weapon that glows with magical energy.",
-    "stackable": false,
-    "maxStack": 1
+    "examineText": "A weapon that glows with magical energy."
   },
   "willow_logs": {
     "id": "willow_logs",
@@ -85,9 +37,7 @@
     "displayName": "Willow Log",
     "description": "A log from a willow tree.",
     "icon": "🟩",
-    "examineText": "A flexible log from a willow tree.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A flexible log from a willow tree."
   },
   "maple_logs": {
     "id": "maple_logs",
@@ -95,9 +45,7 @@
     "displayName": "Maple Log",
     "description": "A log from a maple tree.",
     "icon": "🟧",
-    "examineText": "A sturdy log from a maple tree.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A sturdy log from a maple tree."
   },
   "yew_logs": {
     "id": "yew_logs",
@@ -105,9 +53,7 @@
     "displayName": "Yew Log",
     "description": "A log from a yew tree.",
     "icon": "🟪",
-    "examineText": "A rare log from an ancient yew tree.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A rare log from an ancient yew tree."
   },
   "magic_logs": {
     "id": "magic_logs",
@@ -115,69 +61,7 @@
     "displayName": "Magic Log",
     "description": "A log from a magical tree.",
     "icon": "🟦",
-    "examineText": "A log that shimmers with magical energy.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "shrimp": {
-    "id": "shrimp",
-    "name": "shrimp",
-    "displayName": "Shrimp",
-    "description": "A small freshwater shrimp.",
-    "icon": "🦐",
-    "examineText": "A freshly caught shrimp.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "sardine": {
-    "id": "sardine",
-    "name": "sardine",
-    "displayName": "Sardine",
-    "description": "A small, oily fish.",
-    "icon": "🐟",
-    "examineText": "A silvery sardine, fresh from the water.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "herring": {
-    "id": "herring",
-    "name": "herring",
-    "displayName": "Herring",
-    "description": "A common fish found in rivers.",
-    "icon": "🐠",
-    "examineText": "A plump herring, ready to eat.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "salmon": {
-    "id": "salmon",
-    "name": "salmon",
-    "displayName": "Salmon",
-    "description": "A prized fish known for its flavor.",
-    "icon": "🐡",
-    "examineText": "A large, delicious salmon.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "lobster": {
-    "id": "lobster",
-    "name": "lobster",
-    "displayName": "Lobster",
-    "description": "A large, tasty crustacean.",
-    "icon": "🦞",
-    "examineText": "A lobster with powerful claws.",
-    "stackable": true,
-    "maxStack": 999
-  },
-  "shark": {
-    "id": "shark",
-    "name": "shark",
-    "displayName": "Shark",
-    "description": "A dangerous predator from the sea.",
-    "icon": "🦈",
-    "examineText": "A fearsome shark, caught after a tough battle.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A log that shimmers with magical energy."
   },
   "copper_ore": {
     "id": "copper_ore",
@@ -185,9 +69,7 @@
     "displayName": "Copper Ore",
     "description": "Ore mined from copper veins.",
     "icon": "🥉",
-    "examineText": "A chunk of copper ore, ready for smelting.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of copper ore, ready for smelting."
   },
   "tin_ore": {
     "id": "tin_ore",
@@ -195,9 +77,7 @@
     "displayName": "Tin Ore",
     "description": "Ore mined from tin veins.",
     "icon": "🥈",
-    "examineText": "A chunk of tin ore, ready for smelting.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of tin ore, ready for smelting."
   },
   "iron_ore": {
     "id": "iron_ore",
@@ -205,9 +85,7 @@
     "displayName": "Iron Ore",
     "description": "Ore mined from iron veins.",
     "icon": "⛏️",
-    "examineText": "A chunk of iron ore, ready for smelting.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of iron ore, ready for smelting."
   },
   "coal": {
     "id": "coal",
@@ -215,9 +93,7 @@
     "displayName": "Coal",
     "description": "A lump of coal, useful for smelting.",
     "icon": "⚫",
-    "examineText": "A black lump of coal.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A black lump of coal."
   },
   "gold_ore": {
     "id": "gold_ore",
@@ -225,9 +101,7 @@
     "displayName": "Gold Ore",
     "description": "Ore mined from gold veins.",
     "icon": "🥇",
-    "examineText": "A chunk of gold ore, ready for smelting.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of gold ore, ready for smelting."
   },
   "mithril_ore": {
     "id": "mithril_ore",
@@ -235,9 +109,7 @@
     "displayName": "Mithril Ore",
     "description": "A rare, blue-tinted ore.",
     "icon": "🔷",
-    "examineText": "A chunk of rare mithril ore.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of rare mithril ore."
   },
   "adamantite_ore": {
     "id": "adamantite_ore",
@@ -245,9 +117,7 @@
     "displayName": "Adamantite Ore",
     "description": "A very hard, greenish ore.",
     "icon": "🟩",
-    "examineText": "A chunk of adamantite ore, extremely tough.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of adamantite ore, extremely tough."
   },
   "runite_ore": {
     "id": "runite_ore",
@@ -255,8 +125,6 @@
     "displayName": "Runite Ore",
     "description": "A legendary ore, rare and valuable.",
     "icon": "🔶",
-    "examineText": "A chunk of runite ore, legendary among smiths.",
-    "stackable": true,
-    "maxStack": 999
+    "examineText": "A chunk of runite ore, legendary among smiths."
   }
 } 

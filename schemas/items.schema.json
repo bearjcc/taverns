@@ -31,15 +31,6 @@
           "type": "string",
           "minLength": 1
         },
-        "stackable": {
-          "type": "boolean",
-          "default": true
-        },
-        "maxStack": {
-          "type": "number",
-          "minimum": 1,
-          "default": 999
-        },
         "type": {
           "type": "string",
           "enum": ["resource", "tool", "weapon", "armor", "consumable", "quest", "misc"],

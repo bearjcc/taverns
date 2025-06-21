@@ -28,8 +28,19 @@ const CONFIG_MAPPING = {
     'data/items.json': 'schemas/items.schema.json',
     'data/config/actions.json': 'schemas/actions.schema.json',
     'data/traits.json': 'schemas/traits.schema.json',
-    'data/species.json': 'schemas/species.schema.json'
+    'data/species.json': 'schemas/species.schema.json',
+    'data/food-categories.json': 'schemas/food-categories.schema.json'
 };
+
+// Add all food category files in data/food/ with the new schema
+const foodDir = path.resolve('data/food');
+const foodCategoryFileSchema = 'schemas/food-category-file.schema.json';
+if (fs.existsSync(foodDir)) {
+    const foodFiles = fs.readdirSync(foodDir).filter(f => f.endsWith('.json'));
+    for (const file of foodFiles) {
+        CONFIG_MAPPING[`data/food/${file}`] = foodCategoryFileSchema;
+    }
+}
 
 /**
  * Loads a JSON file

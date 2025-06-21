@@ -1,0 +1,9 @@
+{
+  "cooking_equipment": [
+    { "id": "frying_pan", "name": "Frying Pan", "description": "A pan that can be used to fry food." },
+    { "id": "jar", "name": "Jar", "description": "A jar that can hold liquids." },
+    { "id": "bread_tin", "name": "Bread Tin", "description": "A tin that can hold bread." },
+    { "id": "pot", "name": "Pot", "description": "A pot that can hold food." },
+    { "id": "pie_tin", "name": "Pie Tin", "description": "A tin that can hold pies." }
+  ]
+} 
