@@ -1,0 +1,42 @@
+{
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": [
+      "assets/js",
+      "engine"
+    ],
+    "includePattern": "\\.js$",
+    "excludePattern": "(node_modules/|tests/|docs/)"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "default": {
+      "outputSourceFiles": true,
+      "includeDate": false
+    }
+  },
+  "opts": {
+    "destination": "./docs/jsdoc",
+    "recurse": true,
+    "readme": "./docs/README.md",
+    "template": "node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "title": "Taverns and Treasures API Documentation",
+      "menu": {
+        "GitHub repo": {
+          "href": "https://github.com/bearjcc/taverns",
+          "target": "_blank",
+          "class": "menu-item",
+          "id": "repository"
+        }
+      }
+    }
+  }
+} 

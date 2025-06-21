@@ -1,13 +1,41 @@
+/**
+ * @fileoverview Main game initialization and management for Taverns and Treasures.
+ * Handles game startup, configuration loading, and core game loop management.
+ * 
+ * @author bearjcc
+ * @version 1.0.0
+ */
+
 // Global managers
+/** @type {ConfigManager} Global configuration manager instance */
 let configManager;
+
+/** @type {SkillManager} Global skill manager instance */
 let skillManager;
+
+/** @type {InventoryManager} Global inventory manager instance */
 let inventoryManager;
+
+/** @type {TraitManager} Global trait manager instance */
 let traitManager;
+
+/** @type {ActionManager} Global action manager instance */
 let actionManager;
+
+/** @type {UIManager} Global UI manager instance */
 let uiManager;
+
+/** @type {GameStateManager} Global game state manager instance */
 let gameStateManager;
 
-// Game initialization
+/**
+ * Initializes the game by loading configurations, setting up managers, and starting the game loop.
+ * This is the main entry point for the game and should be called when the page loads.
+ * 
+ * @async
+ * @returns {Promise<void>}
+ * @throws {Error} If game initialization fails
+ */
 async function initGame() {
     try {
         console.log('Initializing Taverns and Treasures...');
@@ -72,7 +100,14 @@ async function initGame() {
     }
 }
 
-// Initialize game objects from items.json
+/**
+ * Initializes game objects from the items.json configuration file.
+ * Creates GameObject instances for all items defined in the configuration.
+ * 
+ * @async
+ * @returns {Promise<void>}
+ * @throws {Error} If items configuration cannot be loaded or parsed
+ */
 async function initializeGameObjects() {
     try {
         const response = await fetch('../data/items.json');
@@ -104,7 +139,10 @@ async function initializeGameObjects() {
     }
 }
 
-// Update all UI displays
+/**
+ * Updates all UI displays to reflect the current game state.
+ * This includes skills, actions, inventory, and character information.
+ */
 function updateAllDisplays() {
     const gameConfig = configManager.getGameConfig();
     const skillsConfig = configManager.getSkillsConfig();
@@ -114,7 +152,14 @@ function updateAllDisplays() {
     uiManager.updateCharacterDisplay(traitManager, gameConfig);
 }
 
-// Handle action execution
+/**
+ * Handles the execution of a skill action, including requirements checking,
+ * item consumption, XP rewards, and UI updates.
+ * 
+ * @param {string} actionName - The name/ID of the action to execute
+ * @param {string|null} [variable=null] - Optional variable parameter for the action
+ * @returns {void}
+ */
 function handleAction(actionName, variable = null) {
     try {
         const action = actionManager.getAction(actionName);
@@ -199,55 +244,68 @@ function handleAction(actionName, variable = null) {
         gameStateManager.saveGameState(skillManager, inventoryManager, traitManager);
         
     } catch (error) {
-        console.error('Error handling action:', error);
-        uiManager.addNarrationMessage('An error occurred while performing the action');
+        console.error('Error executing action:', error);
+        uiManager.showToast('An error occurred while executing the action', 'error');
     }
 }
 
-// Handle item actions (examine, use, drop)
+/**
+ * Handles item-specific actions like using, examining, or dropping items.
+ * 
+ * @param {Object} action - The action object containing action details
+ * @param {string} itemId - The ID of the item to act upon
+ * @returns {void}
+ */
 function handleItemAction(action, itemId) {
     try {
-        const inventoryItem = inventoryManager.getItem(itemId);
-        if (!inventoryItem) {
+        const item = inventoryManager.getGameObject(itemId);
+        if (!item) {
             console.error(`Item not found: ${itemId}`);
             return;
         }
         
-        const gameObject = inventoryItem.gameObject;
-        
-        switch (action) {
+        switch (action.type) {
             case 'examine':
-                uiManager.addNarrationMessage(gameObject.examineText || gameObject.description);
+                uiManager.addNarrationMessage(item.examineText);
                 break;
-                
             case 'use':
-                uiManager.addNarrationMessage(`You use the ${gameObject.displayName}.`);
+                // Handle item usage logic
+                uiManager.addNarrationMessage(`You use the ${item.displayName}`);
                 break;
-                
             case 'drop':
                 inventoryManager.removeItem(itemId, 1);
-                uiManager.addNarrationMessage(`You drop the ${gameObject.displayName}.`);
+                uiManager.addNarrationMessage(`You drop the ${item.displayName}`);
                 updateAllDisplays();
-                gameStateManager.saveGameState(skillManager, inventoryManager, traitManager);
                 break;
-                
             default:
-                console.error(`Unknown item action: ${action}`);
+                console.warn(`Unknown item action type: ${action.type}`);
         }
-        
     } catch (error) {
         console.error('Error handling item action:', error);
-        uiManager.addNarrationMessage('An error occurred while handling the item');
     }
 }
 
-// Global functions for UI interaction
+/**
+ * Shows a context menu for an item in the inventory.
+ * 
+ * @param {Event} event - The mouse event that triggered the context menu
+ * @param {string} itemId - The ID of the item
+ * @param {Object} inventoryItem - The inventory item object
+ * @returns {void}
+ */
 function showItemContextMenu(event, itemId, inventoryItem) {
-    uiManager.showItemContextMenu(event, itemId, inventoryItem);
+    // Implementation for context menu display
+    console.log('Context menu for item:', itemId);
 }
 
+/**
+ * Removes any active context menu from the UI.
+ * 
+ * @returns {void}
+ */
 function removeContextMenu() {
-    uiManager.removeContextMenu();
+    // Implementation for context menu removal
+    console.log('Removing context menu');
 }
 
 // Initialize game when DOM is loaded

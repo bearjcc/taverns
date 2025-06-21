@@ -1,12 +1,36 @@
+/**
+ * Manages all game configuration files and provides centralized access to game settings.
+ * Handles loading, validation, and merging of configuration data with fallback defaults.
+ * 
+ * @class ConfigManager
+ */
 class ConfigManager {
+    /**
+     * Creates a new ConfigManager instance.
+     * Initializes configuration storage and loads default configuration.
+     */
     constructor() {
+        /** @type {Object|null} The loaded game configuration */
         this.gameConfig = null;
+        
+        /** @type {Object|null} The loaded skills configuration */
         this.skillsConfig = null;
+        
+        /** @type {Object|null} The loaded traits configuration */
         this.traitsConfig = null;
+        
+        /** @type {Object|null} The loaded actions configuration */
         this.actionsConfig = null;
+        
+        /** @type {Object} The default configuration fallback */
         this.defaultConfig = this.getDefaultConfig();
     }
 
+    /**
+     * Returns the default configuration object used as fallback when loading fails.
+     * 
+     * @returns {Object} The default configuration object
+     */
     getDefaultConfig() {
         return {
             ui: {
@@ -89,6 +113,14 @@ class ConfigManager {
         };
     }
 
+    /**
+     * Loads the main game configuration file from data/config/game-config.json.
+     * Merges with default configuration and validates the structure.
+     * 
+     * @async
+     * @returns {Promise<Object>} The loaded and merged game configuration
+     * @throws {Error} If the configuration file cannot be loaded or parsed
+     */
     async loadGameConfig() {
         try {
             const response = await fetch('../data/config/game-config.json');
@@ -106,6 +138,13 @@ class ConfigManager {
         }
     }
 
+    /**
+     * Loads the skills configuration file from data/skills.json.
+     * 
+     * @async
+     * @returns {Promise<Object>} The loaded skills configuration
+     * @throws {Error} If the skills configuration file cannot be loaded or parsed
+     */
     async loadSkillsConfig() {
         try {
             const response = await fetch('../data/skills.json');
@@ -122,6 +161,13 @@ class ConfigManager {
         }
     }
 
+    /**
+     * Loads the traits configuration file from data/traits.json.
+     * 
+     * @async
+     * @returns {Promise<Object>} The loaded traits configuration
+     * @throws {Error} If the traits configuration file cannot be loaded or parsed
+     */
     async loadTraitsConfig() {
         try {
             const response = await fetch('../data/traits.json');
@@ -138,6 +184,13 @@ class ConfigManager {
         }
     }
 
+    /**
+     * Loads the actions configuration file from data/config/actions.json.
+     * 
+     * @async
+     * @returns {Promise<Object>} The loaded actions configuration
+     * @throws {Error} If the actions configuration file cannot be loaded or parsed
+     */
     async loadActionsConfig() {
         try {
             const response = await fetch('../data/config/actions.json');
@@ -154,6 +207,12 @@ class ConfigManager {
         }
     }
 
+    /**
+     * Loads all configuration files concurrently.
+     * 
+     * @async
+     * @returns {Promise<Object>} Object containing all loaded configurations
+     */
     async loadAllConfigs() {
         const [gameConfig, skillsConfig, traitsConfig, actionsConfig] = await Promise.all([
             this.loadGameConfig(),
@@ -170,22 +229,49 @@ class ConfigManager {
         };
     }
 
+    /**
+     * Gets the current game configuration, falling back to default if not loaded.
+     * 
+     * @returns {Object} The game configuration object
+     */
     getGameConfig() {
         return this.gameConfig || this.defaultConfig;
     }
 
+    /**
+     * Gets the current skills configuration, falling back to empty object if not loaded.
+     * 
+     * @returns {Object} The skills configuration object
+     */
     getSkillsConfig() {
         return this.skillsConfig || {};
     }
 
+    /**
+     * Gets the current traits configuration, falling back to empty object if not loaded.
+     * 
+     * @returns {Object} The traits configuration object
+     */
     getTraitsConfig() {
         return this.traitsConfig || { traits: {} };
     }
 
+    /**
+     * Gets the current actions configuration, falling back to empty object if not loaded.
+     * 
+     * @returns {Object} The actions configuration object
+     */
     getActionsConfig() {
         return this.actionsConfig || {};
     }
 
+    /**
+     * Gets a message from the configuration and replaces placeholders with provided values.
+     * 
+     * @param {string} key - The message key to retrieve
+     * @param {Object} [replacements={}] - Object containing placeholder replacements
+     * @returns {string} The processed message with replacements applied
+     */
     getMessage(key, replacements = {}) {
         const messages = this.getGameConfig().messages || {};
         let message = messages[key] || key;
@@ -197,36 +283,70 @@ class ConfigManager {
         return message;
     }
 
+    /**
+     * Gets a constant value from the configuration with optional default fallback.
+     * 
+     * @param {string} key - The constant key to retrieve
+     * @param {*} [defaultValue=null] - Default value if key is not found
+     * @returns {*} The constant value or default
+     */
     getConstant(key, defaultValue = null) {
         const constants = this.getGameConfig().constants || {};
         return constants[key] !== undefined ? constants[key] : defaultValue;
     }
 
+    /**
+     * Gets the UI configuration section from the game configuration.
+     * 
+     * @returns {Object} The UI configuration object
+     */
     getUIConfig() {
         return this.getGameConfig().ui || {};
     }
 
+    /**
+     * Performs a deep merge of two objects, with source properties overriding target properties.
+     * Arrays in the source completely replace arrays in the target.
+     *
+     * @param {Object} target - The target object to merge into
+     * @param {Object} source - The source object to merge from
+     * @returns {Object} The merged object
+     */
     deepMerge(target, source) {
         const result = { ...target };
-        
         for (const key in source) {
-            if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
-                result[key] = this.deepMerge(result[key] || {}, source[key]);
-            } else {
-                result[key] = source[key];
+            if (source.hasOwnProperty(key)) {
+                if (Array.isArray(source[key])) {
+                    // Replace arrays entirely
+                    result[key] = source[key].slice();
+                } else if (
+                    source[key] instanceof Object &&
+                    key in target &&
+                    target[key] instanceof Object &&
+                    !Array.isArray(target[key])
+                ) {
+                    result[key] = this.deepMerge(target[key], source[key]);
+                } else {
+                    result[key] = source[key];
+                }
             }
         }
-        
         return result;
     }
 
+    /**
+     * Updates the current configuration with new configuration data.
+     * 
+     * @param {Object} newConfig - The new configuration to merge
+     */
     updateConfig(newConfig) {
         this.gameConfig = this.deepMerge(this.gameConfig || this.defaultConfig, newConfig);
-        return this.gameConfig;
     }
 
+    /**
+     * Resets the configuration to the default values.
+     */
     resetToDefault() {
         this.gameConfig = this.defaultConfig;
-        return this.gameConfig;
     }
 } 

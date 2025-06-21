@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Game Configuration Schema",
+  "description": "Schema for the main game configuration file",
+  "type": "object",
+  "properties": {
+    "ui": {
+      "type": "object",
+      "properties": {
+        "tabs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9_-]+$"
+              },
+              "displayName": {
+                "type": "string",
+                "minLength": 1
+              },
+              "icon": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": ["id", "displayName", "icon"],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        "cssClasses": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_-]+$": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "elementIds": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_-]+$": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["tabs", "cssClasses", "elementIds"],
+      "additionalProperties": false
+    },
+    "constants": {
+      "type": "object",
+      "properties": {
+        "xpMultiplier": {
+          "type": "number",
+          "minimum": 1,
+          "default": 100
+        },
+        "defaultLevel": {
+          "type": "number",
+          "minimum": 1,
+          "default": 1
+        },
+        "defaultXp": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        },
+        "progressMax": {
+          "type": "number",
+          "minimum": 1,
+          "default": 100
+        }
+      },
+      "required": ["xpMultiplier", "defaultLevel", "defaultXp", "progressMax"],
+      "additionalProperties": false
+    },
+    "messages": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+$": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "gameSettings": {
+      "type": "object",
+      "properties": {
+        "initialWood": {
+          "type": "number",
+          "minimum": 0,
+          "default": 0
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "required": ["ui", "constants", "messages"],
+  "additionalProperties": false
+} 
