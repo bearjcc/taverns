@@ -1,4 +1,53 @@
 {
+  "ui": {
+    "tabs": [
+      {
+        "id": "skills",
+        "displayName": "Skills",
+        "icon": "⚔️"
+      },
+      {
+        "id": "inventory", 
+        "displayName": "Inventory",
+        "icon": "🎒"
+      },
+      {
+        "id": "character",
+        "displayName": "Character", 
+        "icon": "👤"
+      }
+    ],
+    "cssClasses": {
+      "skillItem": "skill-item",
+      "skillHeader": "skill-header",
+      "skillName": "skill-name",
+      "skillLevel": "skill-level",
+      "skillProgressContainer": "skill-progress-container",
+      "skillProgressBar": "skill-progress-bar",
+      "skillProgressFill": "skill-progress-fill",
+      "skillXp": "skill-xp",
+      "actionButton": "action-button",
+      "newUnlock": "new-unlock",
+      "narrationMessage": "narration-message",
+      "tabButton": "tab-button",
+      "tabPanel": "tab-panel",
+      "active": "active"
+    },
+    "elementIds": {
+      "narrationContent": "narration-content",
+      "skillsContent": "skills-content",
+      "actionsContent": "actions-content",
+      "skillsTab": "skills-tab",
+      "inventoryTab": "inventory-tab", 
+      "characterTab": "character-tab"
+    }
+  },
+  "constants": {
+    "xpMultiplier": 100,
+    "defaultLevel": 1,
+    "defaultXp": 0,
+    "progressMax": 100
+  },
   "skills": {
     "woodcutting": {
       "name": "Woodcutting",
@@ -217,7 +266,9 @@
     "levelUp": "🎉 {skillName} level up! You are now level {level}.",
     "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
     "actionCompleted": "You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})",
-    "unlockMessage": "{unlockMessage}"
+    "unlockMessage": "{unlockMessage}",
+    "configError": "Error: Could not load game configuration. Please refresh the page.",
+    "configLoaded": "Game configuration loaded successfully"
   },
   "gameSettings": {
     "xpFormula": "level * 100",

@@ -4,7 +4,7 @@ This folder contains all the game data that can be easily edited by non-coders.
 
 ## 📁 Files
 
-- **`game-config.json`** - Main game configuration (skills, actions, messages)
+- **`game-config.json`** - Main game configuration (skills, actions, messages, UI, constants)
 - **`README.md`** - This guide
 
 ## 🎮 Editing Game Data
@@ -46,6 +46,40 @@ Change the text that appears when players unlock new actions.
 ```
 Change how actions appear in the game interface.
 
+#### 6. **Game Constants** (NEW!)
+```json
+"constants": {
+  "xpMultiplier": 100,
+  "defaultLevel": 1,
+  "defaultXp": 0,
+  "progressMax": 100
+}
+```
+Change the XP formula, default values, and progress calculations.
+
+#### 7. **UI Elements** (NEW!)
+```json
+"ui": {
+  "tabs": [
+    {
+      "id": "skills",
+      "displayName": "Skills", 
+      "icon": "⚔️"
+    }
+  ]
+}
+```
+Add new tabs, change tab names, or modify icons.
+
+#### 8. **CSS Classes** (NEW!)
+```json
+"cssClasses": {
+  "skillItem": "skill-item",
+  "actionButton": "action-button"
+}
+```
+Change CSS class names if needed for styling.
+
 ### 📝 How to Edit
 
 1. **Open** `game-config.json` in any text editor (Notepad, VS Code, etc.)
@@ -78,6 +112,27 @@ To translate the game:
 "levelRequired": 3  // Was 5, now unlocks earlier
 ```
 
+#### Change XP Formula:
+```json
+"constants": {
+  "xpMultiplier": 150  // Was 100, now requires more XP per level
+}
+```
+
+#### Add New Tab:
+```json
+"ui": {
+  "tabs": [
+    // ... existing tabs ...
+    {
+      "id": "quests",
+      "displayName": "Quests",
+      "icon": "📜"
+    }
+  ]
+}
+```
+
 #### Change Messages:
 ```json
 "unlockMessage": "Congratulations! You can now chop oak trees!"
@@ -98,7 +153,24 @@ To translate the game:
 #### Adding New Skills:
 1. Copy an existing skill section
 2. Change the skill name and actions
-3. Update the game code to load the new skill
+3. The game will automatically load the new skill!
+
+#### Adding New Tabs:
+1. Add a new tab to the `ui.tabs` array
+2. The game will automatically generate the tab
+3. Add content handling in the game code if needed
+
+### 🎯 Magic Numbers Eliminated
+
+The following magic numbers/strings have been moved to configuration:
+
+- **XP Formula**: `level * 100` → `level * xpMultiplier`
+- **Default Values**: `level = 1, xp = 0` → `defaultLevel, defaultXp`
+- **Progress Calculation**: `* 100` → `* progressMax`
+- **CSS Classes**: Hardcoded → `cssClasses` object
+- **Element IDs**: Hardcoded → `elementIds` object
+- **Tab Names**: Hardcoded → `tabs` array
+- **Message Templates**: Hardcoded → `messages` object
 
 ### 📞 Need Help?
 
@@ -114,4 +186,5 @@ If you break something:
 - **Test** small changes first
 - **Keep** a copy of working configurations
 - **Document** your changes
-- **Use** consistent naming for items 
+- **Use** consistent naming for items
+- **Add** new skills/actions by copying existing ones 

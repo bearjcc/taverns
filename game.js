@@ -3,15 +3,15 @@ let gameConfig = null;
 
 // Skill class for managing individual skills
 class Skill {
-    constructor(name, level = 1, xp = 0) {
+    constructor(name, level = null, xp = null) {
         this.name = name;
-        this.level = level;
-        this.xp = xp;
-        this.xpToNext = this.getXpToNextLevel(level);
+        this.level = level ?? gameConfig.constants.defaultLevel;
+        this.xp = x ?? gameConfig.constants.defaultXp;
+        this.xpToNext = this.getXpToNextLevel(this.level);
     }
 
     getXpToNextLevel(level) {
-        return level * 100;
+        return level * gameConfig.constants.xpMultiplier;
     }
 
     addXp(amount) {
@@ -29,7 +29,7 @@ class Skill {
     }
 
     getProgress() {
-        return (this.xp / this.xpToNext) * 100;
+        return (this.xp / this.xpToNext) * gameConfig.constants.progressMax;
     }
 }
 
@@ -175,7 +175,7 @@ async function loadGameConfig() {
         const response = await fetch('data/game-config.json');
         gameConfig = await response.json();
         gameState.skillManager.loadFromConfig(gameConfig);
-        console.log('Game configuration loaded successfully');
+        console.log(gameConfig.messages.configLoaded);
     } catch (error) {
         console.error('Failed to load game configuration:', error);
         // Fallback to hardcoded config if JSON fails to load
@@ -188,32 +188,32 @@ function loadFallbackConfig() {
     console.log('Loading fallback configuration');
     // This would contain the original hardcoded data
     // For now, we'll just show an error message
-    addNarrationMessage('Error: Could not load game configuration. Please refresh the page.');
+    addNarrationMessage(gameConfig?.messages?.configError || 'Error: Could not load game configuration. Please refresh the page.');
 }
 
 // Update the skills display in the sidebar
 function updateSkillsDisplay() {
-    const skillsContent = document.getElementById('skills-content');
+    const skillsContent = document.getElementById(gameConfig.ui.elementIds.skillsContent);
     if (!skillsContent) return;
     
     skillsContent.innerHTML = '';
     
     gameState.skillManager.getAllSkills().forEach(skill => {
         const skillElement = document.createElement('div');
-        skillElement.className = 'skill-item';
+        skillElement.className = gameConfig.ui.cssClasses.skillItem;
         
         const progress = skill.getProgress();
         
         skillElement.innerHTML = `
-            <div class="skill-header">
-                <span class="skill-name">${skill.name}</span>
-                <span class="skill-level">Level ${skill.level}</span>
+            <div class="${gameConfig.ui.cssClasses.skillHeader}">
+                <span class="${gameConfig.ui.cssClasses.skillName}">${skill.name}</span>
+                <span class="${gameConfig.ui.cssClasses.skillLevel}">Level ${skill.level}</span>
             </div>
-            <div class="skill-progress-container">
-                <div class="skill-progress-bar">
-                    <div class="skill-progress-fill" style="width: ${progress}%"></div>
+            <div class="${gameConfig.ui.cssClasses.skillProgressContainer}">
+                <div class="${gameConfig.ui.cssClasses.skillProgressBar}">
+                    <div class="${gameConfig.ui.cssClasses.skillProgressFill}" style="width: ${progress}%"></div>
                 </div>
-                <span class="skill-xp">${skill.xp}/${skill.xpToNext} XP</span>
+                <span class="${gameConfig.ui.cssClasses.skillXp}">${skill.xp}/${skill.xpToNext} XP</span>
             </div>
         `;
         
@@ -233,7 +233,7 @@ function updateActionsDisplay() {
     
     allActions.forEach(action => {
         const actionButton = document.createElement('button');
-        actionButton.className = 'action-button';
+        actionButton.className = gameConfig.ui.cssClasses.actionButton;
         actionButton.textContent = `${action.name} (${action.xpReward} XP)`;
         actionButton.setAttribute('data-action', action.name.toLowerCase().replace(/\s+/g, '-'));
         actionButton.setAttribute('data-xp', action.xpReward);
@@ -243,7 +243,7 @@ function updateActionsDisplay() {
         
         // Add visual feedback for newly unlocked actions
         if (gameState.skillManager.isNewlyUnlocked(action.name)) {
-            actionButton.classList.add('new-unlock');
+            actionButton.classList.add(gameConfig.ui.cssClasses.newUnlock);
         }
         
         actionButton.addEventListener('click', () => handleSkillAction(action));
@@ -288,21 +288,25 @@ function handleSkillAction(action) {
 // Tab switching functionality
 function switchTab(tabName) {
     // Remove active class from all tabs and panels
-    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+    document.querySelectorAll(`.${gameConfig.ui.cssClasses.tabButton}`).forEach(btn => 
+        btn.classList.remove(gameConfig.ui.cssClasses.active)
+    );
+    document.querySelectorAll(`.${gameConfig.ui.cssClasses.tabPanel}`).forEach(panel => 
+        panel.classList.remove(gameConfig.ui.cssClasses.active)
+    );
     
     // Add active class to selected tab and panel
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
-    document.getElementById(`${tabName}-tab`).classList.add('active');
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add(gameConfig.ui.cssClasses.active);
+    document.getElementById(`${tabName}-tab`).classList.add(gameConfig.ui.cssClasses.active);
 }
 
 // DOM elements
-const narrationContent = document.getElementById('narration-content');
+const narrationContent = document.getElementById(gameConfig?.ui?.elementIds?.narrationContent || 'narration-content');
 
 // Narration system
 function addNarrationMessage(message) {
     const messageElement = document.createElement('div');
-    messageElement.className = 'narration-message';
+    messageElement.className = gameConfig?.ui?.cssClasses?.narrationMessage || 'narration-message';
     messageElement.textContent = message;
     
     narrationContent.appendChild(messageElement);
@@ -314,20 +318,13 @@ function addNarrationMessage(message) {
     gameState.narration.push(message);
 }
 
-// Tab event listeners
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.tab-button').forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-            switchTab(tabName);
-        });
-    });
-});
-
 // Initialize game
 async function initGame() {
     // Load configuration first
     await loadGameConfig();
+    
+    // Generate UI from configuration
+    generateTabsFromConfig();
     
     // Add welcome message from config
     const welcomeMessage = gameConfig.messages.welcome;
@@ -335,6 +332,83 @@ async function initGame() {
     
     updateSkillsDisplay();
     updateActionsDisplay();
+}
+
+// Generate tabs dynamically from configuration
+function generateTabsFromConfig() {
+    const sidebarTabs = document.getElementById('sidebar-tabs');
+    const tabContent = document.getElementById('tab-content');
+    
+    if (!sidebarTabs || !tabContent) return;
+    
+    // Clear existing content
+    sidebarTabs.innerHTML = '';
+    tabContent.innerHTML = '';
+    
+    // Generate tabs from configuration
+    gameConfig.ui.tabs.forEach((tab, index) => {
+        // Create tab button
+        const tabButton = document.createElement('button');
+        tabButton.className = gameConfig.ui.cssClasses.tabButton;
+        tabButton.setAttribute('data-tab', tab.id);
+        tabButton.innerHTML = `${tab.icon} ${tab.displayName}`;
+        
+        // Make first tab active by default
+        if (index === 0) {
+            tabButton.classList.add(gameConfig.ui.cssClasses.active);
+        }
+        
+        sidebarTabs.appendChild(tabButton);
+        
+        // Create tab panel
+        const tabPanel = document.createElement('div');
+        tabPanel.id = `${tab.id}-tab`;
+        tabPanel.className = gameConfig.ui.cssClasses.tabPanel;
+        
+        // Make first panel active by default
+        if (index === 0) {
+            tabPanel.classList.add(gameConfig.ui.cssClasses.active);
+        }
+        
+        // Add content based on tab type
+        switch (tab.id) {
+            case 'skills':
+                tabPanel.innerHTML = `
+                    <h3>${tab.displayName}</h3>
+                    <div id="${gameConfig.ui.elementIds.skillsContent}">
+                        <!-- Skills will be populated by JavaScript -->
+                    </div>
+                `;
+                break;
+            case 'inventory':
+                tabPanel.innerHTML = `
+                    <h3>${tab.displayName}</h3>
+                    <p>Inventory system coming soon...</p>
+                `;
+                break;
+            case 'character':
+                tabPanel.innerHTML = `
+                    <h3>${tab.displayName}</h3>
+                    <p>Character info coming soon...</p>
+                `;
+                break;
+            default:
+                tabPanel.innerHTML = `
+                    <h3>${tab.displayName}</h3>
+                    <p>Content for ${tab.displayName} coming soon...</p>
+                `;
+        }
+        
+        tabContent.appendChild(tabPanel);
+    });
+    
+    // Add event listeners to tabs
+    document.querySelectorAll(`.${gameConfig.ui.cssClasses.tabButton}`).forEach(button => {
+        button.addEventListener('click', function() {
+            const tabName = this.getAttribute('data-tab');
+            switchTab(tabName);
+        });
+    });
 }
 
 // Start the game when page loads
