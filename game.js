@@ -9,8 +9,65 @@ const gameState = {
             level: 1,
             xpToNext: 100
         }
+    },
+    newlyUnlockedActions: [] // Track newly unlocked actions for visual feedback
+};
+
+// Woodcutting progression unlocks
+const woodcuttingUnlocks = {
+    1: {
+        name: "Chop Oak",
+        description: "Chop oak logs",
+        xpReward: 10,
+        itemReward: "oak_logs",
+        itemCount: 1
+    },
+    5: {
+        name: "Chop Willow",
+        description: "Chop willow logs",
+        xpReward: 15,
+        itemReward: "willow_logs",
+        itemCount: 1
+    },
+    10: {
+        name: "Chop Maple",
+        description: "Chop maple logs",
+        xpReward: 25,
+        itemReward: "maple_logs",
+        itemCount: 1
+    },
+    20: {
+        name: "Chop Yew",
+        description: "Chop yew logs",
+        xpReward: 50,
+        itemReward: "yew_logs",
+        itemCount: 1
+    },
+    30: {
+        name: "Chop Magic",
+        description: "Chop magic logs",
+        xpReward: 100,
+        itemReward: "magic_logs",
+        itemCount: 1
     }
 };
+
+// Get available actions based on current woodcutting level
+function getAvailableWoodcuttingActions() {
+    const woodcuttingLevel = gameState.skills.woodcutting.level;
+    const availableActions = [];
+    
+    Object.entries(woodcuttingUnlocks).forEach(([level, action]) => {
+        if (woodcuttingLevel >= parseInt(level)) {
+            availableActions.push({
+                level: parseInt(level),
+                ...action
+            });
+        }
+    });
+    
+    return availableActions;
+}
 
 // XP requirements for each level (simple formula: level * 100)
 function getXpToNextLevel(level) {
@@ -32,10 +89,27 @@ function addSkillXp(skillName, xpAmount) {
         
         // Add level up message to narration
         addNarrationMessage(`🎉 ${skill.name} level up! You are now level ${skill.level}.`);
+        
+        // Check for new unlocks
+        checkForNewUnlocks(skillName, skill.level);
     }
     
     // Update skills display
     updateSkillsDisplay();
+    // Update actions display
+    updateActionsDisplay();
+}
+
+// Check for new skill unlocks
+function checkForNewUnlocks(skillName, newLevel) {
+    if (skillName === 'woodcutting') {
+        const unlock = woodcuttingUnlocks[newLevel];
+        if (unlock) {
+            addNarrationMessage(`🔓 New action unlocked: ${unlock.name} (Level ${newLevel})`);
+            // Add to newly unlocked actions for visual feedback
+            gameState.newlyUnlockedActions.push(unlock.name);
+        }
+    }
 }
 
 // Calculate progress percentage for skill bar
@@ -75,6 +149,61 @@ function updateSkillsDisplay() {
     });
 }
 
+// Update the actions display
+function updateActionsDisplay() {
+    const actionsContent = document.querySelector('.actions-content');
+    if (!actionsContent) return;
+    
+    actionsContent.innerHTML = '';
+    
+    const availableActions = getAvailableWoodcuttingActions();
+    
+    availableActions.forEach(action => {
+        const actionButton = document.createElement('button');
+        actionButton.className = 'action-button';
+        actionButton.textContent = `${action.name} (${action.xpReward} XP)`;
+        actionButton.setAttribute('data-action', action.name.toLowerCase().replace(/\s+/g, '-'));
+        actionButton.setAttribute('data-xp', action.xpReward);
+        actionButton.setAttribute('data-item', action.itemReward);
+        actionButton.setAttribute('data-count', action.itemCount);
+        
+        // Add visual feedback for newly unlocked actions
+        if (gameState.newlyUnlockedActions.includes(action.name)) {
+            actionButton.classList.add('new-unlock');
+        }
+        
+        actionButton.addEventListener('click', () => handleWoodcuttingAction(action));
+        actionsContent.appendChild(actionButton);
+    });
+}
+
+// Handle woodcutting actions
+function handleWoodcuttingAction(action) {
+    // Add XP to woodcutting skill
+    addSkillXp('woodcutting', action.xpReward);
+    
+    // Add item to inventory (placeholder for now)
+    if (!gameState.inventory) {
+        gameState.inventory = {};
+    }
+    
+    if (!gameState.inventory[action.itemReward]) {
+        gameState.inventory[action.itemReward] = 0;
+    }
+    
+    gameState.inventory[action.itemReward] += action.itemCount;
+    
+    // Add narration message
+    addNarrationMessage(`You ${action.name.toLowerCase()} and gained ${action.xpReward} XP. (${action.itemReward}: ${gameState.inventory[action.itemReward]})`);
+    
+    // Remove from newly unlocked actions after first use
+    const index = gameState.newlyUnlockedActions.indexOf(action.name);
+    if (index > -1) {
+        gameState.newlyUnlockedActions.splice(index, 1);
+        updateActionsDisplay(); // Refresh to remove the visual effect
+    }
+}
+
 // Tab switching functionality
 function switchTab(tabName) {
     // Remove active class from all tabs and panels
@@ -88,7 +217,6 @@ function switchTab(tabName) {
 
 // DOM elements
 const narrationContent = document.getElementById('narration-content');
-const chopWoodBtn = document.getElementById('chop-wood-btn');
 
 // Narration system
 function addNarrationMessage(message) {
@@ -105,18 +233,6 @@ function addNarrationMessage(message) {
     gameState.narration.push(message);
 }
 
-// Action handlers
-function handleChopWood() {
-    gameState.woodCount++;
-    addNarrationMessage(`You chopped some wood. (Total: ${gameState.woodCount})`);
-    
-    // Add XP to woodcutting skill
-    addSkillXp('woodcutting', 10);
-}
-
-// Event listeners
-chopWoodBtn.addEventListener('click', handleChopWood);
-
 // Tab event listeners
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.tab-button').forEach(button => {
@@ -131,6 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initGame() {
     addNarrationMessage('Hello world');
     updateSkillsDisplay();
+    updateActionsDisplay();
 }
 
 // Start the game when page loads
