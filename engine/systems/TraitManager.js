@@ -10,10 +10,13 @@ class TraitManager {
 
             if (traitsConfig && traitsConfig.traits) {
                 for (const [traitName, traitData] of Object.entries(traitsConfig.traits)) {
+                    // Create trait with default values if level/experience not specified
+                    const level = traitData.hasOwnProperty('level') ? traitData.level : null;
+                    const experience = traitData.hasOwnProperty('experience') ? traitData.experience : null;
                     const trait = new Trait(
                         traitName,
-                        traitData.level,
-                        traitData.experience,
+                        level,
+                        experience,
                         traitData.description || '',
                         traitData.icon || ''
                     );
