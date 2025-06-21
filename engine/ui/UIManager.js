@@ -106,40 +106,41 @@ class UIManager {
     }
 
     updateInventoryDisplay(inventoryManager, gameConfig) {
-        const inventoryTab = document.getElementById('inventory-tab');
-        if (!inventoryTab) return;
+        const inventoryContent = document.getElementById('inventory-content');
+        if (!inventoryContent) return;
 
         const items = inventoryManager.getAllItems();
-        let html = '<h3>Inventory</h3>';
+        let html = '';
 
         if (items.length === 0) {
-            html += '<p>Your inventory is empty.</p>';
+            html += '<p class="text-muted">Your inventory is empty.</p>';
         } else {
-            html += '<div class="inventory-grid">';
             for (const item of items) {
                 html += this.createInventoryItemHtml(item, gameConfig);
             }
-            html += '</div>';
         }
 
-        inventoryTab.innerHTML = html;
+        inventoryContent.innerHTML = html;
     }
 
     createInventoryItemHtml(inventoryItem, gameConfig) {
         const gameObject = inventoryItem.gameObject;
+        const itemJson = JSON.stringify(inventoryItem).replace(/"/g, '&quot;');
         return `
             <div class="inventory-item" 
-                 onclick="showItemContextMenu(event, '${gameObject.id}', ${JSON.stringify(inventoryItem).replace(/"/g, '&quot;')})">
+                 onclick="uiManager.showItemContextMenu(event, '${gameObject.id}', ${itemJson})">
                 <div class="item-icon">${gameObject.icon}</div>
-                <div class="item-name">${gameObject.displayName}</div>
-                <div class="item-quantity">x${inventoryItem.quantity}</div>
+                <div class="item-info">
+                    <span class="item-name">${gameObject.displayName}</span>
+                    <span class="item-quantity">x${inventoryItem.quantity}</span>
+                </div>
             </div>
         `;
     }
 
     updateCharacterDisplay(traitManager, gameConfig) {
-        const characterTab = document.getElementById('character-tab');
-        if (!characterTab) return;
+        const characterContent = document.getElementById('character-content');
+        if (!characterContent) return;
 
         const traits = traitManager.getAllTraits();
         let html = '<h3>Character</h3>';
@@ -154,7 +155,7 @@ class UIManager {
             html += '</div>';
         }
 
-        characterTab.innerHTML = html;
+        characterContent.innerHTML = html;
     }
 
     createTraitHtml(trait, gameConfig) {
@@ -201,6 +202,22 @@ class UIManager {
         const selectedButton = document.querySelector(`[data-tab="${tabName}"]`);
         if (selectedButton) {
             selectedButton.classList.add('active');
+        }
+
+        // After switching tab, we might need to update its content
+        switch(tabName) {
+            case 'skills':
+                // Assuming skillManager is available here
+                // this.updateSkillsDisplay(skillManager, gameConfig);
+                break;
+            case 'inventory':
+                // Assuming inventoryManager is available here
+                // this.updateInventoryDisplay(inventoryManager, gameConfig);
+                break;
+            case 'character':
+                // Assuming traitManager is available here
+                // this.updateCharacterDisplay(traitManager, gameConfig);
+                break;
         }
     }
 
