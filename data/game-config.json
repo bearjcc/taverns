@@ -15,6 +15,11 @@
         "id": "character",
         "displayName": "Character", 
         "icon": "👤"
+      },
+      {
+        "id": "achievements",
+        "displayName": "Achievements",
+        "icon": "🏆"
       }
     ],
     "cssClasses": {
@@ -42,6 +47,7 @@
       "skillsTab": "skills-tab",
       "inventoryTab": "inventory-tab", 
       "characterTab": "character-tab",
+      "achievementsTab": "achievements-tab",
       "toastContainer": "toast-container"
     }
   },
@@ -304,5 +310,100 @@
     "defaultLevel": 1,
     "defaultXp": 0,
     "initialWood": 0
+  },
+  "achievements": {
+    "woodcutting_master": {
+      "id": "woodcutting_master",
+      "name": "Woodcutter's Mastery",
+      "description": "Reach level 50 in Woodcutting",
+      "category": "skills",
+      "icon": "🪓",
+      "points": 50,
+      "secret": false,
+      "requirements": {
+        "skillLevel": {
+          "woodcutting": 50
+        }
+      }
+    },
+    "fishing_master": {
+      "id": "fishing_master", 
+      "name": "Master Angler",
+      "description": "Reach level 50 in Fishing",
+      "category": "skills",
+      "icon": "🎣",
+      "points": 50,
+      "secret": false,
+      "requirements": {
+        "skillLevel": {
+          "fishing": 50
+        }
+      }
+    },
+    "mining_master": {
+      "id": "mining_master",
+      "name": "Master Miner", 
+      "description": "Reach level 50 in Mining",
+      "category": "skills",
+      "icon": "⛏️",
+      "points": 50,
+      "secret": false,
+      "requirements": {
+        "skillLevel": {
+          "mining": 50
+        }
+      }
+    },
+    "first_skill": {
+      "id": "first_skill",
+      "name": "Getting Started",
+      "description": "Reach level 10 in any skill",
+      "category": "progression",
+      "icon": "⭐",
+      "points": 10,
+      "secret": false,
+      "requirements": {
+        "anySkillLevel": 10
+      }
+    },
+    "skill_diversity": {
+      "id": "skill_diversity",
+      "name": "Jack of All Trades",
+      "description": "Reach level 20 in three different skills",
+      "category": "progression", 
+      "icon": "🎭",
+      "points": 25,
+      "secret": false,
+      "requirements": {
+        "multipleSkillLevels": {
+          "count": 3,
+          "level": 20
+        }
+      }
+    },
+    "inventory_collector": {
+      "id": "inventory_collector",
+      "name": "Collector",
+      "description": "Collect 10 different types of items",
+      "category": "collection",
+      "icon": "📦",
+      "points": 15,
+      "secret": false,
+      "requirements": {
+        "uniqueItems": 10
+      }
+    },
+    "secret_discovery": {
+      "id": "secret_discovery",
+      "name": "Hidden Secrets",
+      "description": "Discover a secret achievement",
+      "category": "secrets",
+      "icon": "🔍",
+      "points": 100,
+      "secret": true,
+      "requirements": {
+        "custom": "secret_discovery"
+      }
+    }
   }
 } 

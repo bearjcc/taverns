@@ -3,3 +3,65 @@ description:
 globs:
 alwaysApply: false
 ---
+# Task Management Guidelines
+
+## Development Workflow
+
+### Phase-Based Development
+- Follow the current development phase outlined in TODO.md
+- Complete phase deliverables before moving to next phase
+- Document progress and update TODO.md regularly
+
+### Task Prioritization
+1. **Current Phase Tasks**: Focus on immediate phase objectives
+2. **Bug Fixes**: Address critical issues promptly
+3. **Technical Debt**: Address when it blocks progress
+4. **Future Features**: Document but don't implement until appropriate phase
+
+### Task Documentation
+- Update TODO.md with completed items
+- Add new tasks to appropriate phases
+- Document decisions and rationale
+- Keep development roadmap current
+
+## File Management
+
+### Documentation Updates
+- Update relevant markdown files when making architectural changes
+- Document new patterns and systems
+- Keep README.md current with project status
+- Maintain clear separation between documentation types
+
+### Code Organization
+- Follow established file structure
+- Use appropriate file extensions
+- Maintain consistent naming conventions
+- Organize related functionality together
+
+## Communication Protocol
+
+### Status Updates
+- Provide regular progress updates
+- Highlight completed milestones
+- Identify blockers or issues
+- Suggest next steps
+
+### Decision Points
+- Present clear choices when needed
+- Explain trade-offs and implications
+- Document decisions for future reference
+- Consider long-term impact
+
+## Quality Assurance
+
+### Testing Requirements
+- Test all changes before committing
+- Maintain existing test coverage
+- Add tests for new functionality
+- Verify backward compatibility
+
+### Code Review
+- Review changes before finalizing
+- Check for architectural compliance
+- Verify performance impact
+- Ensure documentation updates

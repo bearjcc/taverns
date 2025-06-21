@@ -3,3 +3,325 @@ description:
 globs:
 alwaysApply: false
 ---
+# UI Component Guidelines
+
+## Component Library Overview
+
+A lightweight, vanilla JavaScript component library designed specifically for the Taverns game. This library provides reusable UI components without external dependencies.
+
+## Core Features
+
+- **No Dependencies**: Pure vanilla JavaScript and CSS
+- **Dark Theme**: Matches the game's aesthetic
+- **Lightweight**: Minimal bundle size impact
+- **Customizable**: Easy to modify and extend
+- **Accessible**: Built with accessibility in mind
+
+## Component Patterns
+
+### Modal Component
+A modal dialog component for displaying content over the game interface.
+
+```javascript
+// Basic usage
+const modal = gameState.ui.showModal('Title', 'Content');
+
+// Advanced usage
+const modal = gameState.ui.components.create('modal', element, {
+    title: 'Custom Title',
+    content: '<p>HTML content</p>',
+    width: '600px',
+    closeOnOverlay: true,
+    showCloseButton: true
+});
+
+modal.open();
+modal.close();
+modal.setContent('New content');
+modal.setTitle('New title');
+```
+
+### Tooltip Component
+Contextual information that appears on hover or focus.
+
+```javascript
+// Add tooltip to any element
+gameState.ui.addTooltip(element, 'Tooltip text', {
+    position: 'top', // 'top', 'bottom', 'left', 'right'
+    delay: 200,
+    maxWidth: '200px'
+});
+```
+
+### Progress Bar Component
+Animated progress indicators with customizable labels.
+
+```javascript
+// Create progress bar
+const progressBar = gameState.ui.createProgressBar(element, {
+    value: 25,
+    max: 100,
+    showLabel: true,
+    labelFormat: '{value}/{max}',
+    color: 'var(--primary-color)'
+});
+
+// Update progress
+progressBar.setValue(50);
+progressBar.setMax(200);
+```
+
+### Dropdown Component
+Select dropdown with customizable options.
+
+```javascript
+// Create dropdown
+const dropdown = gameState.ui.createDropdown(element, {
+    options: [
+        { value: 'option1', label: 'Option 1' },
+        { value: 'option2', label: 'Option 2' }
+    ],
+    placeholder: 'Select an option',
+    onChange: (value) => console.log('Selected:', value)
+});
+
+// Set value programmatically
+dropdown.setValue('option1');
+```
+
+## Utility CSS Classes
+
+### Layout Classes
+- `.flex` - Display flex
+- `.flex-column` - Flex direction column
+- `.flex-center` - Center content
+- `.flex-between` - Space between
+- `.flex-1` - Flex grow 1
+
+### Spacing Classes
+- `.mt-10`, `.mb-10`, `.ml-10`, `.mr-10` - Margins
+- `.p-10`, `.p-15`, `.p-20` - Padding
+- `.gap-10`, `.gap-15` - Gap between flex items
+
+### Text Classes
+- `.text-center`, `.text-right` - Text alignment
+- `.text-muted`, `.text-primary`, `.text-success`, `.text-warning`, `.text-error` - Text colors
+
+### Component Classes
+- `.card` - Card container
+- `.card-header` - Card header
+- `.card-title` - Card title
+- `.card-content` - Card content
+- `.button` - Base button
+- `.button-primary`, `.button-success`, `.button-warning`, `.button-error` - Button variants
+- `.form-group` - Form group container
+- `.form-label` - Form label
+- `.form-input` - Form input
+- `.form-textarea` - Form textarea
+
+## Usage Patterns
+
+### Creating Custom Modals
+```javascript
+function showSkillDetails(skillName) {
+    const skill = gameState.skillManager.getSkill(skillName);
+    const content = `
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">${skillName}</h3>
+            </div>
+            <div class="card-content">
+                <p>Level: ${skill.level}</p>
+                <p>Experience: ${skill.xp}/${skill.xpToNext}</p>
+                <div id="skill-progress"></div>
+            </div>
+        </div>
+    `;
+    
+    const modal = gameState.ui.showModal(`${skillName} Details`, content);
+    
+    // Add progress bar to modal
+    setTimeout(() => {
+        const progressElement = modal.element.querySelector('#skill-progress');
+        if (progressElement) {
+            gameState.ui.createProgressBar(progressElement, {
+                value: skill.xp,
+                max: skill.xpToNext,
+                labelFormat: '{value}/{max} XP'
+            });
+        }
+    }, 100);
+}
+```
+
+### Adding Tooltips to Action Buttons
+```javascript
+function addActionTooltips() {
+    const actionButtons = document.querySelectorAll('.action-button');
+    actionButtons.forEach(button => {
+        const actionName = button.textContent;
+        const action = findActionByName(actionName);
+        if (action) {
+            gameState.ui.addTooltip(button, action.description, {
+                position: 'left',
+                maxWidth: '250px'
+            });
+        }
+    });
+}
+```
+
+### Creating Settings Panels
+```javascript
+function showSettings() {
+    const content = `
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Game Settings</h3>
+            </div>
+            <div class="card-content">
+                <div class="form-group">
+                    <label class="form-label">Auto-save Interval:</label>
+                    <div id="autosave-dropdown"></div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Sound Volume:</label>
+                    <div id="volume-progress"></div>
+                </div>
+                <div class="flex gap-10 mt-15">
+                    <button class="button button-primary" id="save-settings">Save Settings</button>
+                    <button class="button" id="reset-settings">Reset to Default</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    const modal = gameState.ui.showModal('Settings', content);
+    
+    setTimeout(() => {
+        // Add dropdown
+        const dropdownElement = modal.element.querySelector('#autosave-dropdown');
+        if (dropdownElement) {
+            gameState.ui.createDropdown(dropdownElement, {
+                options: [
+                    { value: 1, label: '1 minute' },
+                    { value: 2, label: '2 minutes' },
+                    { value: 5, label: '5 minutes' }
+                ],
+                placeholder: 'Select interval',
+                value: 2
+            });
+        }
+        
+        // Add progress bar
+        const progressElement = modal.element.querySelector('#volume-progress');
+        if (progressElement) {
+            gameState.ui.createProgressBar(progressElement, {
+                value: 75,
+                max: 100,
+                labelFormat: '{value}%'
+            });
+        }
+    }, 100);
+}
+```
+
+## Extending the Library
+
+### Creating New Components
+```javascript
+class CustomComponent extends Component {
+    get defaultConfig() {
+        return {
+            // Default configuration
+        };
+    }
+
+    init() {
+        this.render();
+        this.bindEvents();
+    }
+
+    render() {
+        this.element.innerHTML = `
+            <!-- Component HTML -->
+        `;
+    }
+
+    bindEvents() {
+        // Add event listeners
+    }
+}
+
+// Register the component
+gameState.ui.components.register('custom', CustomComponent);
+```
+
+### Adding Custom Styles
+```css
+/* Add to components.css */
+.custom-component {
+    /* Component styles */
+}
+
+.custom-component-header {
+    /* Header styles */
+}
+
+.custom-component-content {
+    /* Content styles */
+}
+```
+
+## Best Practices
+
+### 1. Component Usage
+- Always check for UI availability: `if (gameState.ui) { ... }`
+- Use setTimeout for dynamic content: When adding components to modals
+- Clean up components: Use `destroy()` method when removing components
+- Follow the dark theme: Use CSS custom properties for colors
+- Maintain accessibility: Include proper ARIA labels and keyboard navigation
+
+### 2. Performance
+- Components are lightweight and optimized for the game's needs
+- No virtual DOM or complex state management
+- Direct DOM manipulation for maximum performance
+- Minimal memory footprint
+
+### 3. Styling
+- Use existing utility classes when possible
+- Follow the dark theme color scheme
+- Use monospace font (Courier New) for consistency
+- Maintain responsive design principles
+
+### 4. Error Handling
+- Provide fallback content for failed component creation
+- Handle missing UI system gracefully
+- Show loading states for async operations
+- Validate component configuration
+
+## Browser Support
+
+- Modern browsers with ES6+ support
+- CSS Grid and Flexbox support required
+- No IE11 support (by design)
+
+## Integration Guidelines
+
+### 1. Game State Integration
+- Components should integrate with existing game state
+- Use event system for communication
+- Maintain separation of concerns
+- Follow existing patterns
+
+### 2. Configuration
+- Use configuration-driven component creation
+- Support dynamic content loading
+- Maintain backward compatibility
+- Document component APIs
+
+### 3. Testing
+- Test components in isolation
+- Verify integration with game systems
+- Test accessibility features
+- Validate performance impact

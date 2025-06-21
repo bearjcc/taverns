@@ -450,4 +450,277 @@ window.Modal = Modal;
 window.Tooltip = Tooltip;
 window.ProgressBar = ProgressBar;
 window.Dropdown = Dropdown;
-window.GameUI = GameUI; 
+window.GameUI = GameUI;
+
+/**
+ * Achievement Components
+ */
+
+/**
+ * Create an achievement item element
+ * @param {Object} achievement - Achievement data
+ * @param {boolean} isUnlocked - Whether the achievement is unlocked
+ * @param {Object} progress - Progress data for the achievement
+ * @returns {HTMLElement} Achievement item element
+ */
+function createAchievementItem(achievement, isUnlocked = false, progress = null) {
+    const achievementItem = document.createElement('div');
+    achievementItem.className = 'achievement-item';
+    
+    if (isUnlocked) {
+        achievementItem.classList.add('achievement-unlocked');
+    } else {
+        achievementItem.classList.add('achievement-locked');
+    }
+    
+    // Achievement icon and name
+    const achievementHeader = document.createElement('div');
+    achievementHeader.className = 'achievement-header';
+    
+    const achievementIcon = document.createElement('span');
+    achievementIcon.className = 'achievement-icon';
+    achievementIcon.textContent = achievement.icon || '🏆';
+    
+    const achievementName = document.createElement('span');
+    achievementName.className = 'achievement-name';
+    achievementName.textContent = achievement.name;
+    
+    achievementHeader.appendChild(achievementIcon);
+    achievementHeader.appendChild(achievementName);
+    
+    // Achievement description
+    const achievementDescription = document.createElement('div');
+    achievementDescription.className = 'achievement-description';
+    achievementDescription.textContent = achievement.description;
+    
+    // Achievement points
+    const achievementPoints = document.createElement('div');
+    achievementPoints.className = 'achievement-points';
+    achievementPoints.textContent = `${achievement.points || 0} pts`;
+    
+    // Progress bar (if applicable)
+    let progressBar = null;
+    if (progress && progress.required > 1) {
+        progressBar = createAchievementProgressBar(progress);
+    }
+    
+    // Secret indicator
+    if (achievement.secret && !isUnlocked) {
+        const secretIndicator = document.createElement('div');
+        secretIndicator.className = 'achievement-secret';
+        secretIndicator.textContent = '🔒 Secret Achievement';
+        achievementItem.appendChild(secretIndicator);
+    }
+    
+    // Assemble achievement item
+    achievementItem.appendChild(achievementHeader);
+    achievementItem.appendChild(achievementDescription);
+    achievementItem.appendChild(achievementPoints);
+    
+    if (progressBar) {
+        achievementItem.appendChild(progressBar);
+    }
+    
+    return achievementItem;
+}
+
+/**
+ * Create achievement progress bar
+ * @param {Object} progress - Progress data
+ * @returns {HTMLElement} Progress bar element
+ */
+function createAchievementProgressBar(progress) {
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'achievement-progress-container';
+    
+    const progressBar = document.createElement('div');
+    progressBar.className = 'achievement-progress-bar';
+    
+    const progressFill = document.createElement('div');
+    progressFill.className = 'achievement-progress-fill';
+    
+    const progressText = document.createElement('div');
+    progressText.className = 'achievement-progress-text';
+    progressText.textContent = `${progress.current}/${progress.required}`;
+    
+    // Calculate progress percentage
+    const percentage = Math.min((progress.current / progress.required) * 100, 100);
+    progressFill.style.width = `${percentage}%`;
+    
+    progressBar.appendChild(progressFill);
+    progressContainer.appendChild(progressBar);
+    progressContainer.appendChild(progressText);
+    
+    return progressContainer;
+}
+
+/**
+ * Create achievements tab content
+ * @param {Object} achievementsData - All achievements data
+ * @param {Set} unlockedAchievements - Set of unlocked achievement IDs
+ * @param {Object} achievementProgress - Progress data for achievements
+ * @returns {HTMLElement} Achievements tab content
+ */
+function createAchievementsTabContent(achievementsData, unlockedAchievements, achievementProgress) {
+    const achievementsContent = document.createElement('div');
+    achievementsContent.className = 'achievements-content';
+    achievementsContent.id = 'achievements-content';
+    
+    // Header with total points
+    const header = document.createElement('div');
+    header.className = 'achievements-header';
+    
+    const totalPoints = calculateTotalPoints(achievementsData, unlockedAchievements);
+    const totalAchievements = Object.keys(achievementsData).length;
+    const unlockedCount = unlockedAchievements.size;
+    
+    header.innerHTML = `
+        <h3>Achievements</h3>
+        <div class="achievements-summary">
+            <span class="achievements-progress">${unlockedCount}/${totalAchievements}</span>
+            <span class="achievements-points">${totalPoints} pts</span>
+        </div>
+    `;
+    
+    achievementsContent.appendChild(header);
+    
+    // Group achievements by category
+    const categories = groupAchievementsByCategory(achievementsData);
+    
+    // Create category sections
+    for (const [category, achievements] of Object.entries(categories)) {
+        const categorySection = createAchievementCategorySection(category, achievements, unlockedAchievements, achievementProgress);
+        achievementsContent.appendChild(categorySection);
+    }
+    
+    return achievementsContent;
+}
+
+/**
+ * Create achievement category section
+ * @param {string} category - Category name
+ * @param {Array} achievements - Achievements in this category
+ * @param {Set} unlockedAchievements - Set of unlocked achievement IDs
+ * @param {Object} achievementProgress - Progress data for achievements
+ * @returns {HTMLElement} Category section element
+ */
+function createAchievementCategorySection(category, achievements, unlockedAchievements, achievementProgress) {
+    const categorySection = document.createElement('div');
+    categorySection.className = 'achievement-category';
+    
+    const categoryHeader = document.createElement('h4');
+    categoryHeader.className = 'achievement-category-header';
+    categoryHeader.textContent = formatCategoryName(category);
+    
+    categorySection.appendChild(categoryHeader);
+    
+    // Add achievements to category
+    for (const achievement of achievements) {
+        const isUnlocked = unlockedAchievements.has(achievement.id);
+        const progress = achievementProgress[achievement.id] || null;
+        
+        const achievementItem = createAchievementItem(achievement, isUnlocked, progress);
+        categorySection.appendChild(achievementItem);
+    }
+    
+    return categorySection;
+}
+
+/**
+ * Calculate total achievement points
+ * @param {Object} achievementsData - All achievements data
+ * @param {Set} unlockedAchievements - Set of unlocked achievement IDs
+ * @returns {number} Total points
+ */
+function calculateTotalPoints(achievementsData, unlockedAchievements) {
+    let total = 0;
+    for (const achievementId of unlockedAchievements) {
+        const achievement = achievementsData[achievementId];
+        if (achievement) {
+            total += achievement.points || 0;
+        }
+    }
+    return total;
+}
+
+/**
+ * Group achievements by category
+ * @param {Object} achievementsData - All achievements data
+ * @returns {Object} Achievements grouped by category
+ */
+function groupAchievementsByCategory(achievementsData) {
+    const categories = {};
+    
+    for (const [id, achievement] of Object.entries(achievementsData)) {
+        const category = achievement.category || 'general';
+        if (!categories[category]) {
+            categories[category] = [];
+        }
+        categories[category].push({ ...achievement, id });
+    }
+    
+    // Sort achievements within each category by points (descending)
+    for (const category in categories) {
+        categories[category].sort((a, b) => (b.points || 0) - (a.points || 0));
+    }
+    
+    return categories;
+}
+
+/**
+ * Format category name for display
+ * @param {string} category - Category name
+ * @returns {string} Formatted category name
+ */
+function formatCategoryName(category) {
+    const categoryNames = {
+        'skills': 'Skill Mastery',
+        'progression': 'Progression',
+        'collection': 'Collection',
+        'secrets': 'Secrets',
+        'general': 'General'
+    };
+    
+    return categoryNames[category] || category.charAt(0).toUpperCase() + category.slice(1);
+}
+
+/**
+ * Show achievement unlocked notification
+ * @param {Object} achievement - Achievement data
+ * @param {number} points - Points earned
+ * @param {number} totalPoints - Total points after unlock
+ */
+function showAchievementUnlocked(achievement, points, totalPoints) {
+    const notification = document.createElement('div');
+    notification.className = 'achievement-notification';
+    
+    notification.innerHTML = `
+        <div class="achievement-notification-content">
+            <div class="achievement-notification-icon">${achievement.icon || '🏆'}</div>
+            <div class="achievement-notification-text">
+                <div class="achievement-notification-title">Achievement Unlocked!</div>
+                <div class="achievement-notification-name">${achievement.name}</div>
+                <div class="achievement-notification-points">+${points} points</div>
+            </div>
+        </div>
+    `;
+    
+    // Add to notification container
+    const container = document.getElementById('toast-container') || document.body;
+    container.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.classList.add('achievement-notification-show');
+    }, 100);
+    
+    // Remove after animation
+    setTimeout(() => {
+        notification.classList.remove('achievement-notification-show');
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+} 

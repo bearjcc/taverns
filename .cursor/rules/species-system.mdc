@@ -3,3 +3,251 @@ description:
 globs:
 alwaysApply: false
 ---
+# Species System Implementation Guidelines
+
+## Architecture Overview
+
+The Species System follows **Separation of Concerns** with three distinct layers:
+
+### 1. Data Layer (`data/species.json`)
+- **Purpose**: Stores all species data in structured JSON format
+- **Responsibilities**: Pure data storage, no logic
+- **Structure**: Playable and non-playable species with attributes, bonuses, professions
+
+### 2. Engine Layer
+- **Species Class**: Individual species with business logic
+- **SpeciesManager Class**: High-level species operations and data management
+- **Responsibilities**: Business logic, no UI dependencies
+
+### 3. UI Layer
+- **SpeciesUI Class**: User interface and interaction handling
+- **Responsibilities**: Presentation logic, no data manipulation
+
+## Data Structure Patterns
+
+### Species JSON Structure
+```json
+{
+  "playable": {
+    "species_id": {
+      "name": "Species Name",
+      "description": "Species description",
+      "attributes": {
+        "strength": { "min": 1, "max": 100 },
+        "dexterity": { "min": 1, "max": 100 }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": ["Profession1", "Profession2"],
+      "playable": true
+    }
+  }
+}
+```
+
+## Implementation Patterns
+
+### Species Class Methods
+- `generateAttributes()`: Generate random attributes within species ranges
+- `validateAttributes(attributes)`: Validate attribute values
+- `getAttributeRange(attributeName)`: Get min/max for specific attribute
+- `getBonus(bonusType)`: Get bonus value for specific type
+- `hasProfession(profession)`: Check if species has specific profession
+
+### SpeciesManager Class Methods
+- `loadSpeciesData(path)`: Load species data from JSON file
+- `getSpecies(speciesId)`: Get species by ID
+- `getPlayableSpecies()`: Get all playable species
+- `getSpeciesByProfession(profession)`: Filter species by profession
+- `getRandomPlayableSpecies()`: Get random playable species
+- `searchSpecies(term)`: Search species by name/description
+
+### SpeciesUI Class Methods
+- `initialize(elementIds)`: Setup UI elements and event listeners
+- `updateSpeciesSelector()`: Update dropdown with available species
+- `createSpeciesCard(species)`: Create species display card
+- `updateSpeciesInfo(species)`: Update detailed species information
+- `onSpeciesSelected(speciesId)`: Handle species selection
+- `filterSpecies(searchTerm)`: Filter species by search term
+
+## Usage Patterns
+
+### Basic Setup
+```javascript
+// Create instances
+const speciesManager = new SpeciesManager();
+const speciesUI = new SpeciesUI(speciesManager);
+
+// Load data and initialize
+async function initializeSpeciesSystem() {
+    const success = await speciesManager.loadSpeciesData();
+    if (success) {
+        speciesUI.initialize({
+            speciesSelector: 'species-selector',
+            speciesInfo: 'species-info',
+            speciesList: 'species-list'
+        });
+    }
+}
+```
+
+### Species Selection
+```javascript
+// Get species by ID
+const dragonborn = speciesManager.getSpecies('dragonborn');
+
+// Get random playable species
+const randomSpecies = speciesManager.getRandomPlayableSpecies();
+```
+
+### Attribute Generation
+```javascript
+// Generate random attributes for a species
+const attributes = dragonborn.generateAttributes();
+
+// Validate attributes
+const validation = dragonborn.validateAttributes(attributes);
+if (validation.isValid) {
+    console.log('Attributes are valid');
+}
+```
+
+### Filtering and Searching
+```javascript
+// Get species with specific profession
+const magicUsers = speciesManager.getSpeciesByProfession('Adv. Magic');
+
+// Search species by name/description
+const searchResults = speciesManager.searchSpecies('elf');
+```
+
+## Integration Patterns
+
+### Adding to Main Game
+1. **Include files in HTML**:
+```html
+<link rel="stylesheet" href="species.css">
+<script src="species.js"></script>
+<script src="species-manager.js"></script>
+<script src="species-ui.js"></script>
+```
+
+2. **Initialize in game.js**:
+```javascript
+// Add to game state
+let speciesManager;
+let speciesUI;
+
+// Initialize in initGame()
+async function initGame() {
+    // ... existing initialization ...
+    
+    // Initialize species system
+    speciesManager = new SpeciesManager();
+    speciesUI = new SpeciesUI(speciesManager);
+    
+    const speciesLoaded = await speciesManager.loadSpeciesData();
+    if (speciesLoaded) {
+        speciesUI.initialize({
+            speciesSelector: 'species-selector',
+            speciesInfo: 'species-info',
+            speciesList: 'species-list'
+        });
+    }
+}
+```
+
+3. **Add to game state persistence**:
+```javascript
+// Save species selection
+function saveGameState() {
+    const gameState = {
+        // ... existing state ...
+        selectedSpecies: speciesUI.getCurrentSpecies()?.id || null
+    };
+    localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
+}
+```
+
+## Best Practices
+
+### 1. Data Management
+- Always validate data before use
+- Use consistent naming conventions
+- Provide fallback values for missing data
+- Separate playable from non-playable species
+
+### 2. Error Handling
+- Graceful degradation when data fails to load
+- User-friendly error messages
+- Console logging for debugging
+- Fallback to default species if needed
+
+### 3. UI Design
+- Follow existing dark theme
+- Use consistent font (Courier New)
+- Provide loading and error states
+- Maintain responsive design
+
+### 4. Code Organization
+- Single responsibility for each class
+- Clear method names and documentation
+- Consistent code style
+- Separation of concerns maintained
+
+## Performance Considerations
+
+### 1. Data Loading
+- Load data once and cache
+- Use async/await for data loading
+- Implement error handling for failed loads
+- Provide loading indicators
+
+### 2. UI Updates
+- Efficient filtering and searching
+- Minimal DOM manipulation
+- Debounce search inputs
+- Use event delegation where appropriate
+
+### 3. Memory Management
+- Clean up event listeners
+- Avoid memory leaks in UI components
+- Efficient data structures
+- Proper garbage collection
+
+## Future Enhancements
+
+### 1. Additional Features
+- Species-specific abilities
+- Attribute modifiers from equipment
+- Species evolution/progression
+- Cultural information
+
+### 2. UI Improvements
+- Drag-and-drop species selection
+- Attribute point allocation
+- Visual attribute charts
+- Advanced filtering options
+
+### 3. Integration
+- Character creation system
+- Save/load functionality
+- Multiplayer considerations
+- Mod system compatibility
+
+## Troubleshooting
+
+### Common Issues
+1. **Data not loading**: Check file path and JSON syntax
+2. **UI not updating**: Verify element IDs match initialization
+3. **Attributes out of range**: Validate species data structure
+4. **Performance issues**: Check for memory leaks in event listeners
+
+### Debug Tips
+1. Use browser console to check for errors
+2. Verify data loading with `speciesManager.getStatistics()`
+3. Test individual components in isolation
+4. Check network tab for failed requests

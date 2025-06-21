@@ -3,3 +3,98 @@ description:
 globs:
 alwaysApply: false
 ---
+# Architecture Separation of Concerns
+
+## Core Architectural Layers
+
+### 1. Website Layer (Presentation)
+- **Purpose**: UI rendering, user interaction, and loading of CSS, JS, and small static assets
+- **Contains**: Only code and assets related to the website's appearance and user experience
+- **Must NOT contain**: Game logic or game data
+
+### 2. Game Engine (Core Logic)
+- **Purpose**: Contains all core game logic, state management, and system orchestration
+- **Modularized into subsystems**:
+  - SkillSystem: Manages skills, XP, and progression
+  - InventorySystem: Handles inventory, items, and item management
+  - ActionSystem: Manages skill actions and their execution
+  - SpeciesSystem: Handles species data and operations
+  - StateManager: Centralized state persistence and change notification
+  - EventSystem: Decoupled event-driven communication between systems
+  - AssetLoader: Just-in-time asset loading and caching
+  - Localization: Multi-language support and fallback
+- **Data-agnostic**: Can run any game data set loaded as a "mod"
+
+### 3. Game Data (Content)
+- **Purpose**: All game content stored in JSON files
+- **Dynamic loading**: Data loaded dynamically and can be swapped out
+- **Asset organization**: Organized for just-in-time loading
+- **Localization**: Organized by language for easy internationalization
+
+### 4. Mod System (Extensibility)
+- **Purpose**: Base game structured as a "mod" loaded by the engine
+- **Mod definition**: Manifest file with data, assets, and localization
+- **Compatibility**: Engine can load and run any compatible mod
+
+## Implementation Principles
+
+### Single Responsibility
+- Each class/module does one thing only
+- Clear separation between data, logic, and presentation
+
+### Event-Driven Communication
+- Systems communicate via events, not direct calls
+- Use EventSystem for decoupled communication
+
+### Configuration-Driven Design
+- All game content and UI structure defined in configuration/data files
+- No hardcoded game content in engine code
+
+### Just-in-Time Loading
+- Assets and localization loaded as needed, not all at once
+- Implement caching for performance
+
+### Internationalization-Ready
+- All user-facing text loaded from language files
+- No hardcoded strings in engine code
+
+### Backward Compatibility
+- Migration is incremental, preserving existing functionality
+- No breaking changes to user experience
+
+### Testability
+- Each system can be tested independently
+- Mock data can be easily substituted
+
+## Directory Structure Guidelines
+
+```
+taverns/
+├── website/              # Presentation layer
+├── engine/               # Game engine core and systems
+├── data/                 # Game data, assets, localization
+├── mods/                 # Mod system and base game mod
+└── tests/                # Test suite
+```
+
+## Critical Rules for AI Agents
+
+1. **Preserve Separation**: Do not mix UI, engine logic, and data. Each must remain in its own layer.
+
+2. **Extend via Modules**: Add new features as new engine systems or mods, not by expanding monolithic files.
+
+3. **Use Events**: Communicate between systems using the EventSystem, not direct function calls.
+
+4. **Keep Data External**: All game content and configuration should remain in JSON or mod files, not hardcoded.
+
+5. **Support Mods**: Any new game content or mechanics should be possible to implement as a mod.
+
+6. **Internationalize**: All new user-facing text must be added to localization files, not hardcoded.
+
+7. **Test in Isolation**: Test new systems independently before integrating.
+
+8. **Plan for Scale**: Assume the game will eventually require server-side logic, CDN asset delivery, and multi-language support.
+
+9. **Never Break the Layers**: UI must not access engine internals directly; engine must not access UI or data directly; data must not contain logic.
+
+10. **Document Changes**: Update architectural documentation with any new patterns or systems.

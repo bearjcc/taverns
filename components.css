@@ -523,4 +523,220 @@
     .dropdown-menu {
         max-height: 150px;
     }
+}
+
+/* Achievement System Styles */
+
+.achievement-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.achievement-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.achievement-unlocked {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(76, 175, 80, 0.1) 100%);
+}
+
+.achievement-locked {
+    opacity: 0.7;
+    filter: grayscale(0.5);
+}
+
+.achievement-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.achievement-icon {
+    font-size: 1.2em;
+    width: 24px;
+    text-align: center;
+}
+
+.achievement-name {
+    font-weight: 600;
+    color: var(--text-color);
+    flex: 1;
+}
+
+.achievement-description {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.achievement-points {
+    font-size: 0.8em;
+    color: var(--accent-color);
+    font-weight: 600;
+    text-align: right;
+}
+
+.achievement-secret {
+    font-size: 0.8em;
+    color: var(--warning-color);
+    font-style: italic;
+    margin-top: 4px;
+}
+
+.achievement-progress-container {
+    margin-top: 8px;
+}
+
+.achievement-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.achievement-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color) 0%, var(--success-color) 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.achievement-progress-text {
+    font-size: 0.7em;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+.achievements-content {
+    padding: 16px;
+}
+
+.achievements-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.achievements-header h3 {
+    margin: 0 0 8px 0;
+    color: var(--text-color);
+    font-size: 1.2em;
+}
+
+.achievements-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+.achievements-progress {
+    color: var(--text-secondary);
+}
+
+.achievements-points {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.achievement-category {
+    margin-bottom: 24px;
+}
+
+.achievement-category-header {
+    margin: 0 0 12px 0;
+    color: var(--text-color);
+    font-size: 1em;
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Achievement Notification */
+.achievement-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--card-bg) 0%, rgba(76, 175, 80, 0.1) 100%);
+    border: 2px solid var(--success-color);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+}
+
+.achievement-notification-show {
+    transform: translateX(0);
+}
+
+.achievement-notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.achievement-notification-icon {
+    font-size: 2em;
+    flex-shrink: 0;
+}
+
+.achievement-notification-text {
+    flex: 1;
+}
+
+.achievement-notification-title {
+    font-size: 0.8em;
+    color: var(--success-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.achievement-notification-name {
+    font-size: 1em;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.achievement-notification-points {
+    font-size: 0.9em;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .achievement-notification {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .achievement-notification-show {
+        transform: translateY(0);
+    }
+    
+    .achievements-content {
+        padding: 12px;
+    }
+    
+    .achievement-item {
+        padding: 10px;
+    }
 } 

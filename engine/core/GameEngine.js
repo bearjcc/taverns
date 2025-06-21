@@ -26,6 +26,7 @@ class GameEngine {
         this.inventorySystem = null;
         this.speciesSystem = null;
         this.actionSystem = null;
+        this.achievementSystem = null;
         
         // Game state
         this.isRunning = false;
@@ -145,6 +146,7 @@ class GameEngine {
             inventory: this.inventorySystem,
             species: this.speciesSystem,
             actions: this.actionSystem,
+            achievements: this.achievementSystem,
             state: this.stateManager,
             events: this.eventSystem,
             assets: this.assetLoader,
@@ -186,13 +188,15 @@ class GameEngine {
         this.inventorySystem = new InventorySystem(this.gameData.items, this.stateManager, this.eventSystem);
         this.speciesSystem = new SpeciesSystem(this.gameData.species, this.stateManager, this.eventSystem);
         this.actionSystem = new ActionSystem(this.gameData.actions, this.stateManager, this.eventSystem);
+        this.achievementSystem = new AchievementSystem(this.gameData.achievements, this.stateManager, this.eventSystem);
         
         // Initialize each system
         await Promise.all([
             this.skillSystem.initialize(),
             this.inventorySystem.initialize(),
             this.speciesSystem.initialize(),
-            this.actionSystem.initialize()
+            this.actionSystem.initialize(),
+            this.achievementSystem.initialize()
         ]);
     }
     
