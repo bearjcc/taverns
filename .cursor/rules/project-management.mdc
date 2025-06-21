@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Management Guidelines
+
+## Development Philosophy
+- **Incremental Development**: Small, testable changes with frequent commits
+- **Phase-Based Approach**: Clear phases with defined deliverables
+- **Future-Proofing**: Design with future features in mind, implement incrementally
+- **Documentation-Driven**: All decisions and requirements documented
+
+## Task Management Structure
+
+### Game Directives
+- High-level creative decisions and requirements
+- Lore, story elements, and world-building
+- Core game mechanics and features
+- These inform all development phases
+
+### Phase-Based Development
+Each phase has:
+- **Objectives**: What we're building
+- **Deliverables**: Specific outputs
+- **Dependencies**: What must be completed first
+- **Future Considerations**: Placeholders for later features
+
+### Task Categories
+1. **Immediate Tasks**: Current phase work
+2. **Phase Planning**: Upcoming phase preparation
+3. **Future Features**: Documented for later phases
+4. **Technical Debt**: Issues to address
+5. **Research & Analysis**: Understanding existing files/lore
+
+## File Analysis Protocol
+When analyzing provided files:
+1. **Analyze**: Review content and extract key information
+2. **Categorize**: Sort into appropriate task categories
+3. **Prioritize**: Determine implementation order
+4. **Document**: Add to relevant phase or future considerations
+5. **Continue**: Resume current development focus
+
+## Communication Protocol
+- **Creative Input**: User provides lore, mechanics, requirements
+- **Technical Questions**: Ask for clarification when needed
+- **Progress Updates**: Regular status reports on current phase
+- **Decision Points**: Clear choices presented when needed
+
+## Development Rules
+- Always check current phase before making changes
+- Document all creative decisions in GAME_DIRECTIVES.md
+- Update TODO.md with new tasks and completed items
+- Follow incremental development practices
+- Focus on current phase objectives
+- Document future considerations without implementing them
+
