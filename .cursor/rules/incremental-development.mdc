@@ -1,0 +1,57 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Incremental Development Guidelines
+
+## Small Incremental Changes
+- Make only small, focused changes that can be easily tested and understood
+- Never make sweeping changes across multiple files without a clear plan
+- Each change should be small enough to test immediately
+- If a change seems too large, break it down into smaller steps
+
+## Test Every Change
+- Test each incremental change before proceeding to the next
+- Verify the change works as expected before making additional modifications
+- If a change breaks something, focus only on fixing what was added since the last working state
+- Don't introduce new features while debugging existing issues
+
+## Commit Frequently
+- Commit after each successful incremental change
+- Use descriptive commit messages that explain what was changed and why
+- Commit messages should be clear enough to understand the change without looking at the code
+- If a change fails testing, don't commit until it's fixed
+
+## Plan Large Changes
+- When asked to make changes that will affect multiple files or large portions of code, create a plan first
+- Use a TODO markdown file to break down the work into small, testable steps
+- Execute the plan one step at a time, testing and committing after each step
+- Never skip steps or combine multiple steps into one change
+
+## Tutorial Pace
+- Work at the pace of a tutorial - slow, methodical, and educational
+- Explain what you're doing and why at each step
+- Don't rush through changes or make assumptions
+- Take time to verify each step works before moving to the next
+
+## Focus on Current Problem
+- Stay focused on the original problem or request
+- Don't go down rabbit holes or chase unrelated issues
+- If you encounter a problem, solve it incrementally before continuing
+- Remember the user's original goal and work toward it systematically
+
+## Best Practices
+- Follow programming best practices, documentation standards, and commit conventions
+- Write clear, readable code with proper comments
+- Use meaningful variable and function names
+- Include appropriate error handling and edge case consideration
+- Maintain code quality even when working incrementally
+
+## When Things Go Wrong
+- If a change breaks something, immediately stop and assess
+- Focus only on the specific change that caused the issue
+- Don't make additional changes until the current issue is resolved
+- Use git to revert to the last working state if necessary
+- Learn from the mistake and adjust the approach for the next step
+
