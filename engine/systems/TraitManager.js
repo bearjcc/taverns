@@ -49,7 +49,7 @@ class TraitManager {
                     skillName: traitName,
                     level: trait.level
                 });
-                uiManager.showToast(message, 'success');
+                uiManager.addNarrationMessage(message);
             }
             
             return levelUps;

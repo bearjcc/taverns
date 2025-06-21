@@ -241,7 +241,17 @@ class UIManager {
         tabsHtml += '</div>';
         panelsHtml += '</div>';
 
-        sidebar.innerHTML = tabsHtml + panelsHtml;
+        // Add manual save button
+        const saveButtonHtml = `
+            <div class="manual-save-container">
+                <button class="manual-save-button" onclick="uiManager.manualSave(skillManager, inventoryManager, traitManager)">
+                    💾 Save Game
+                </button>
+                <div id="last-saved-time" class="last-saved-time"></div>
+            </div>
+        `;
+
+        sidebar.innerHTML = tabsHtml + panelsHtml + saveButtonHtml;
     }
 
     addNarrationMessage(message) {
@@ -291,6 +301,27 @@ class UIManager {
         const now = new Date();
         const timeString = now.toLocaleTimeString();
         console.log(`Game state saved at ${timeString}`);
+        
+        // Update the display in the UI
+        const lastSavedElement = document.getElementById('last-saved-time');
+        if (lastSavedElement) {
+            lastSavedElement.textContent = `Last saved: ${timeString}`;
+        }
+    }
+
+    manualSave(skillManager, inventoryManager, traitManager) {
+        try {
+            const success = gameStateManager.saveGameState(skillManager, inventoryManager, traitManager);
+            if (success) {
+                this.showToast('Game saved successfully', 'success');
+                this.updateLastSavedTime();
+            } else {
+                this.showToast('Failed to save game', 'error');
+            }
+        } catch (error) {
+            console.error('Manual save failed:', error);
+            this.showToast('Failed to save game', 'error');
+        }
     }
 
     showItemContextMenu(event, itemId, inventoryItem) {

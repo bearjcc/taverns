@@ -85,7 +85,7 @@ class ActionManager {
                     actionName: action.displayName,
                     level: action.levelRequired
                 });
-                uiManager.showToast(message, 'success');
+                uiManager.addNarrationMessage(message);
             }
         }
     }

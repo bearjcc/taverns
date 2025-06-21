@@ -54,7 +54,7 @@ class SkillManager {
                     skillName: skillName,
                     level: skill.level
                 });
-                uiManager.showToast(message, 'success');
+                uiManager.addNarrationMessage(message);
             }
             
             return levelUps;

@@ -130,7 +130,7 @@ function handleAction(actionName, variable = null) {
         
         // Check if player can perform the action
         if (!action.canPerform(skill.level, inventoryManager)) {
-            uiManager.showToast(`Requires ${action.skillType} level ${action.levelRequired}`, 'warning');
+            uiManager.addNarrationMessage(`Requires ${action.skillType} level ${action.levelRequired}`);
             return;
         }
         
@@ -139,7 +139,7 @@ function handleAction(actionName, variable = null) {
             if (!inventoryManager.hasItem(itemId, requiredQuantity)) {
                 const itemName = inventoryManager.getGameObject(itemId)?.displayName || itemId;
                 const message = configManager.getMessage('actionInsufficientItems', { itemName });
-                uiManager.showToast(message, 'warning');
+                uiManager.addNarrationMessage(message);
                 return;
             }
         }
@@ -176,7 +176,7 @@ function handleAction(actionName, variable = null) {
         // Add narration
         uiManager.addNarrationMessage(action.flavorText);
         
-        // Show completion message
+        // Show completion message in narration instead of toast
         const itemName = action.itemReward ? 
             inventoryManager.getGameObject(action.itemReward)?.displayName || action.itemReward : 
             'nothing';
@@ -186,7 +186,7 @@ function handleAction(actionName, variable = null) {
             itemReward: itemName,
             itemCount: action.itemCount
         });
-        uiManager.showToast(message, 'success');
+        uiManager.addNarrationMessage(message);
         
         // Flash XP gain
         uiManager.flashXpGain(action.skillType, action.xpReward);
@@ -199,7 +199,7 @@ function handleAction(actionName, variable = null) {
         
     } catch (error) {
         console.error('Error handling action:', error);
-        uiManager.showToast('An error occurred while performing the action', 'error');
+        uiManager.addNarrationMessage('An error occurred while performing the action');
     }
 }
 
@@ -236,7 +236,7 @@ function handleItemAction(action, itemId) {
         
     } catch (error) {
         console.error('Error handling item action:', error);
-        uiManager.showToast('An error occurred while handling the item', 'error');
+        uiManager.addNarrationMessage('An error occurred while handling the item');
     }
 }
 
