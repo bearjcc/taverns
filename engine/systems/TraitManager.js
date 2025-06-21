@@ -1,6 +1,24 @@
 class TraitManager {
     constructor() {
         this.traits = new Map();
+        this.configManager = null;
+        this.uiManager = null;
+    }
+
+    /**
+     * Set the configuration manager reference
+     * @param {ConfigManager} configManager - The configuration manager instance
+     */
+    setConfigManager(configManager) {
+        this.configManager = configManager;
+    }
+
+    /**
+     * Set the UI manager reference
+     * @param {UIManager} uiManager - The UI manager instance
+     */
+    setUIManager(uiManager) {
+        this.uiManager = uiManager;
     }
 
     loadFromConfig(traitsConfig) {
@@ -18,7 +36,8 @@ class TraitManager {
                         level,
                         experience,
                         traitData.description || '',
-                        traitData.icon || ''
+                        traitData.icon || '',
+                        this.configManager
                     );
                     this.traits.set(traitName, trait);
                 }
@@ -44,12 +63,12 @@ class TraitManager {
             const fromLevel = trait.level;
             const levelUps = trait.addXp(xpAmount);
             
-            if (levelUps > 0) {
-                const message = configManager.getMessage('levelUp', {
+            if (levelUps > 0 && this.uiManager && this.configManager) {
+                const message = this.configManager.getMessage('levelUp', {
                     skillName: traitName,
                     level: trait.level
                 });
-                uiManager.addNarrationMessage(message);
+                this.uiManager.addNarrationMessage(message);
             }
             
             return levelUps;
@@ -60,17 +79,18 @@ class TraitManager {
 
 // Trait class for managing individual traits
 class Trait {
-    constructor(name, level = null, xp = null, description = '', icon = '') {
+    constructor(name, level = null, xp = null, description = '', icon = '', configManager = null) {
         this.name = name;
         this.level = level !== null ? level : 1;
         this.xp = xp !== null ? xp : 0;
         this.description = description;
         this.icon = icon;
+        this.configManager = configManager;
         this.xpToNext = this.getXpToNextLevel(this.level);
     }
 
     getXpToNextLevel(level) {
-        const multiplier = configManager ? configManager.getConstant('xpMultiplier', 100) : 100;
+        const multiplier = this.configManager ? this.configManager.getConstant('xpMultiplier', 100) : 100;
         return level * multiplier;
     }
 
@@ -89,7 +109,7 @@ class Trait {
     }
 
     getProgress() {
-        const progressMax = configManager ? configManager.getConstant('progressMax', 100) : 100;
+        const progressMax = this.configManager ? this.configManager.getConstant('progressMax', 100) : 100;
         return (this.xp / this.xpToNext) * progressMax;
     }
 } 

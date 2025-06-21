@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameEngine Test</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #2d5a2d;
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            background: #5a2d2d;
+            border-left: 4px solid #f44336;
+        }
+        .info {
+            background: #2d2d5a;
+            border-left: 4px solid #2196f3;
+        }
+        pre {
+            background: #333;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>GameEngine Test</h1>
+        <div id="test-results">
+            <div class="test-result info">
+                <strong>Loading test...</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engine Core Dependencies (load in dependency order) -->
+    <script src="../engine/utils/Localization.js"></script>
+    <script src="../engine/core/EventSystem.js"></script>
+    <script src="../engine/core/StateManager.js"></script>
+    <script src="../engine/core/AssetLoader.js"></script>
+    <script src="../engine/core/ConfigManager.js"></script>
+    <script src="../engine/core/GameStateManager.js"></script>
+    
+    <!-- Engine Systems (load in dependency order) -->
+    <script src="../engine/systems/SkillManager.js"></script>
+    <script src="../engine/systems/InventoryManager.js"></script>
+    <script src="../engine/systems/ActionManager.js"></script>
+    <script src="../engine/systems/TraitManager.js"></script>
+    <script src="../engine/systems/AchievementSystem.js"></script>
+    <script src="../engine/systems/LocationSystem.js"></script>
+    <script src="../engine/systems/EncyclopediaSystem.js"></script>
+    
+    <!-- UI Components -->
+    <script src="../engine/ui/UIManager.js"></script>
+    <script src="../engine/ui/EncyclopediaUI.js"></script>
+    <script src="../engine/ui/FoodCategoryUI.js"></script>
+    
+    <!-- Main Game Engine -->
+    <script src="../engine/core/GameEngine.js"></script>
+    
+    <!-- Test Script -->
+    <script src="game-engine.test.js"></script>
+    
+    <script>
+        // Override console.log to display results in the UI
+        const originalLog = console.log;
+        const originalError = console.error;
+        const resultsContainer = document.getElementById('test-results');
+        
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            resultsContainer.appendChild(div);
+        }
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            if (message.includes('✅')) {
+                addResult(message, 'success');
+            } else if (message.includes('❌')) {
+                addResult(message, 'error');
+            } else {
+                addResult(message, 'info');
+            }
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            const message = args.join(' ');
+            addResult(message, 'error');
+        };
+        
+        // Clear the loading message
+        resultsContainer.innerHTML = '';
+    </script>
+</body>
+</html> 

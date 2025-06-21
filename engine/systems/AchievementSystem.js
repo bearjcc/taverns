@@ -11,6 +11,10 @@ class AchievementSystem {
         this.stateManager = stateManager;
         this.eventSystem = eventSystem;
         
+        // System references
+        this.skillManager = null;
+        this.inventoryManager = null;
+        
         // Achievement state
         this.unlockedAchievements = new Set();
         this.achievementProgress = {};
@@ -125,6 +129,22 @@ class AchievementSystem {
         this._initializeProgress();
         this._saveAchievementState();
         this.eventSystem.emit('achievements:reset');
+    }
+    
+    /**
+     * Set the skill manager reference
+     * @param {SkillManager} skillManager - The skill manager instance
+     */
+    setSkillSystem(skillManager) {
+        this.skillManager = skillManager;
+    }
+    
+    /**
+     * Set the inventory manager reference
+     * @param {InventoryManager} inventoryManager - The inventory manager instance
+     */
+    setInventorySystem(inventoryManager) {
+        this.inventoryManager = inventoryManager;
     }
     
     // Private methods

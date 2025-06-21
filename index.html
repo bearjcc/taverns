@@ -39,33 +39,48 @@
     
     <button id="open-achievements-modal-btn" style="position:fixed;bottom:32px;right:32px;z-index:2100;display:none;min-width:48px;min-height:48px;font-size:1.5em;border-radius:50%;background:#333;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;">🏆</button>
     
-    <!-- Engine Core -->
+    <!-- Engine Core Dependencies (load in dependency order) -->
+    <script src="engine/utils/Localization.js"></script>
+    <script src="engine/core/EventSystem.js"></script>
+    <script src="engine/core/StateManager.js"></script>
+    <script src="engine/core/AssetLoader.js"></script>
     <script src="engine/core/ConfigManager.js"></script>
     <script src="engine/core/GameStateManager.js"></script>
-    <script src="engine/core/EventSystem.js"></script>
     
-    <!-- Engine Systems (Managers) -->
+    <!-- Engine Systems (load in dependency order) -->
     <script src="engine/systems/SkillManager.js"></script>
     <script src="engine/systems/InventoryManager.js"></script>
     <script src="engine/systems/ActionManager.js"></script>
     <script src="engine/systems/TraitManager.js"></script>
     <script src="engine/systems/AchievementSystem.js"></script>
-    
-    <!-- Encyclopedia System -->
+    <script src="engine/systems/LocationSystem.js"></script>
+    <script src="engine/systems/SpeciesSystem.js"></script>
     <script src="engine/systems/EncyclopediaSystem.js"></script>
-    <script src="engine/ui/EncyclopediaUI.js"></script>
     
-    <!-- UI -->
+    <!-- UI Components -->
     <script src="engine/ui/UIManager.js"></script>
+    <script src="engine/ui/EncyclopediaUI.js"></script>
+    <script src="engine/ui/FoodCategoryUI.js"></script>
+    
+    <!-- Main Game Engine -->
+    <script src="engine/core/GameEngine.js"></script>
     
     <!-- Components -->
     <script src="assets/js/components.js"></script>
     
-    <!-- Main Game -->
+    <!-- Main Game Initialization -->
     <script src="assets/js/game.js"></script>
     
     <script>
-        // Placeholder for achievements logic
+        // Initialize the game when the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await initGame();
+            } catch (error) {
+                console.error('Failed to initialize game:', error);
+                document.getElementById('loading').innerHTML = 'Failed to load game. Please refresh the page.';
+            }
+        });
     </script>
 </body>
 </html> 

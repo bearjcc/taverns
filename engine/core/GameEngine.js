@@ -20,15 +20,18 @@ class GameEngine {
         this.eventSystem = null;
         this.assetLoader = null;
         this.localization = null;
+        this.configManager = null;
         
         // Game systems
-        this.skillSystem = null;
-        this.inventorySystem = null;
+        this.skillManager = null;
+        this.inventoryManager = null;
         this.speciesSystem = null;
-        this.actionSystem = null;
+        this.actionManager = null;
         this.achievementSystem = null;
         this.locationSystem = null;
         this.encyclopediaSystem = null;
+        this.traitManager = null;
+        this.uiManager = null;
         
         // Game state
         this.isRunning = false;
@@ -60,6 +63,11 @@ class GameEngine {
             
             // Set up event listeners
             this._setupEventListeners();
+            
+            // Load saved state if requested
+            if (options.loadSavedState !== false) {
+                this.stateManager.loadGameState(this.skillManager, this.inventoryManager, this.traitManager);
+            }
             
             // Start auto-save
             this._startAutoSave();
@@ -147,13 +155,16 @@ class GameEngine {
      */
     getSystem(systemName) {
         const systems = {
-            skills: this.skillSystem,
-            inventory: this.inventorySystem,
+            skills: this.skillManager,
+            inventory: this.inventoryManager,
             species: this.speciesSystem,
-            actions: this.actionSystem,
+            actions: this.actionManager,
             achievements: this.achievementSystem,
             locations: this.locationSystem,
             encyclopedia: this.encyclopediaSystem,
+            traits: this.traitManager,
+            ui: this.uiManager,
+            config: this.configManager,
             state: this.stateManager,
             events: this.eventSystem,
             assets: this.assetLoader,
@@ -182,32 +193,78 @@ class GameEngine {
     // Private methods
     
     _initializeCoreSystems() {
-        // Initialize core systems (these would be imported from separate files)
-        this.stateManager = new StateManager();
+        // Initialize core systems
+        this.stateManager = new GameStateManager();
         this.eventSystem = new EventSystem();
         this.assetLoader = new AssetLoader(this.config.assetCacheSize);
         this.localization = new Localization(this.config.defaultLanguage);
+        this.configManager = new ConfigManager();
     }
     
     async _initializeGameSystems() {
+        // Load configurations first
+        const configs = await this.configManager.loadAllConfigs();
+        
         // Initialize game systems with mod data
-        this.skillSystem = new SkillSystem(this.gameData.skills, this.stateManager, this.eventSystem);
-        this.inventorySystem = new InventorySystem(this.gameData.items, this.stateManager, this.eventSystem);
-        this.speciesSystem = new SpeciesSystem(this.gameData.species, this.stateManager, this.eventSystem);
-        this.actionSystem = new ActionSystem(this.gameData.actions, this.stateManager, this.eventSystem);
-        this.achievementSystem = new AchievementSystem(this.gameData.achievements, this.stateManager, this.eventSystem);
-        this.locationSystem = new LocationSystem(this.gameData.locations, this.stateManager, this.eventSystem);
+        this.skillManager = new SkillManager();
+        this.inventoryManager = new InventoryManager();
+        this.actionManager = new ActionManager();
+        this.traitManager = new TraitManager();
+        this.uiManager = new UIManager();
+        this.speciesSystem = new SpeciesSystem(null, this.stateManager, this.eventSystem);
+        this.locationSystem = new LocationSystem(null, this.stateManager, this.eventSystem);
         this.encyclopediaSystem = new EncyclopediaSystem();
         
-        // Initialize each system
+        // Load configurations into managers
+        this.skillManager.loadFromConfig(configs.skillsConfig, configs.gameConfig);
+        this.traitManager.loadFromConfig(configs.traitsConfig);
+        this.actionManager.loadFromConfig(configs.actionsConfig);
+        
+        // Initialize achievement system with data
+        const achievementsData = await this._loadAchievementsData();
+        const achievementStateManager = {
+            getState: () => {
+                try {
+                    const savedState = localStorage.getItem('tavernsGameState');
+                    if (savedState) {
+                        const gameState = JSON.parse(savedState);
+                        return gameState.achievements || { unlocked: [], progress: {} };
+                    }
+                    return { unlocked: [], progress: {} };
+                } catch (error) {
+                    console.warn('Failed to load achievement state:', error);
+                    return { unlocked: [], progress: {} };
+                }
+            },
+            setState: (newState) => {
+                try {
+                    const savedState = localStorage.getItem('tavernsGameState');
+                    let gameState = savedState ? JSON.parse(savedState) : {};
+                    gameState.achievements = newState;
+                    localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
+                } catch (error) {
+                    console.error('Failed to save achievement state:', error);
+                }
+            }
+        };
+        
+        this.achievementSystem = new AchievementSystem(achievementsData, achievementStateManager, this.eventSystem);
+        await this.achievementSystem.initialize();
+        
+        // Initialize encyclopedia with game data
+        await this.encyclopediaSystem.initialize({
+            skills: configs.skillsConfig,
+            items: await this._loadItemsData(),
+            species: await this._loadSpeciesData(),
+            traits: configs.traitsConfig,
+            locations: await this._loadLocationsData(),
+            actions: configs.actionsConfig
+        });
+        
+        // Initialize other systems
         await Promise.all([
-            this.skillSystem.initialize(),
-            this.inventorySystem.initialize(),
             this.speciesSystem.initialize(),
-            this.actionSystem.initialize(),
-            this.achievementSystem.initialize(),
-            this.locationSystem.initialize(),
-            this.encyclopediaSystem.initialize(this.gameData)
+            this.locationSystem.initialize()
         ]);
     }
     
@@ -215,53 +272,125 @@ class GameEngine {
      * Set up cross-system references
      */
     _setupSystemReferences() {
-        // Set location system reference in action system
-        if (this.actionSystem && this.locationSystem) {
-            this.actionSystem.setLocationSystem(this.locationSystem);
+        // Set up cross-system references
+        if (this.actionManager && this.locationSystem) {
+            this.actionManager.setLocationSystem(this.locationSystem);
         }
         
-        // Set up cross-system references
-        this.skillSystem.setInventorySystem(this.inventorySystem);
-        this.actionSystem.setSkillSystem(this.skillSystem);
-        this.actionSystem.setInventorySystem(this.inventorySystem);
-        this.achievementSystem.setSkillSystem(this.skillSystem);
-        this.achievementSystem.setInventorySystem(this.inventorySystem);
+        if (this.skillManager && this.inventoryManager) {
+            this.skillManager.setInventorySystem(this.inventoryManager);
+        }
+        
+        if (this.actionManager && this.skillManager) {
+            this.actionManager.setSkillSystem(this.skillManager);
+        }
+        
+        if (this.actionManager && this.inventoryManager) {
+            this.actionManager.setInventorySystem(this.inventoryManager);
+        }
+        
+        if (this.achievementSystem && this.skillManager) {
+            this.achievementSystem.setSkillSystem(this.skillManager);
+        }
+        
+        if (this.achievementSystem && this.inventoryManager) {
+            this.achievementSystem.setInventorySystem(this.inventoryManager);
+        }
+        
+        // Set up manager references
+        if (this.skillManager && this.configManager) {
+            this.skillManager.setConfigManager(this.configManager);
+        }
+        
+        if (this.skillManager && this.uiManager) {
+            this.skillManager.setUIManager(this.uiManager);
+        }
+        
+        if (this.actionManager && this.configManager) {
+            this.actionManager.setConfigManager(this.configManager);
+        }
+        
+        if (this.actionManager && this.uiManager) {
+            this.actionManager.setUIManager(this.uiManager);
+        }
+        
+        if (this.inventoryManager && this.configManager) {
+            this.inventoryManager.setConfigManager(this.configManager);
+        }
+        
+        if (this.inventoryManager && this.uiManager) {
+            this.inventoryManager.setUIManager(this.uiManager);
+        }
+        
+        if (this.traitManager && this.configManager) {
+            this.traitManager.setConfigManager(this.configManager);
+        }
+        
+        if (this.traitManager && this.uiManager) {
+            this.traitManager.setUIManager(this.uiManager);
+        }
     }
     
     async _loadMod(modId) {
-        // Load mod manifest and data
-        const modManifest = await this._loadModManifest(modId);
-        const modData = await this._loadModData(modId);
-        
+        // For now, just return the base game data
+        // In the future, this could load different mods
         return {
             id: modId,
-            manifest: modManifest,
-            data: modData
+            manifest: { name: 'Base Game', version: '1.0.0' },
+            data: {}
         };
     }
     
-    async _loadModManifest(modId) {
-        // Load mod manifest from data/config/manifest.json
-        const response = await fetch('data/config/manifest.json');
-        return await response.json();
+    async _loadItemsData() {
+        try {
+            const response = await fetch('data/items.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Failed to load items data:', error);
+            return {};
+        }
     }
     
-    async _loadModData(modId) {
-        // Load all mod data files
-        const dataFiles = ['skills', 'items', 'species', 'actions', 'locations', 'config', 'achievements'];
-        const data = {};
-        
-        for (const file of dataFiles) {
-            try {
-                const response = await fetch(`data/${file}.json`);
-                data[file] = await response.json();
-            } catch (error) {
-                console.warn(`Could not load ${file}.json:`, error);
-                data[file] = {};
+    async _loadSpeciesData() {
+        try {
+            const response = await fetch('data/species.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
+            return await response.json();
+        } catch (error) {
+            console.error('Failed to load species data:', error);
+            return {};
         }
-        
-        return data;
+    }
+    
+    async _loadLocationsData() {
+        try {
+            const response = await fetch('data/locations.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Failed to load locations data:', error);
+            return {};
+        }
+    }
+    
+    async _loadAchievementsData() {
+        try {
+            const response = await fetch('data/achievements.json');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Failed to load achievements data:', error);
+            return {};
+        }
     }
     
     _setupEventListeners() {

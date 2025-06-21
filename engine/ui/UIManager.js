@@ -103,13 +103,13 @@ class UIManager {
         let html = '';
 
         for (const action of availableActions) {
-            html += this.createActionHtml(action, gameConfig);
+            html += this.createActionHtml(action, actionManager, skillManager, inventoryManager, gameConfig);
         }
 
         actionsContent.innerHTML = html;
     }
 
-    createActionHtml(action, gameConfig) {
+    createActionHtml(action, actionManager, skillManager, inventoryManager, gameConfig) {
         const cssClasses = gameConfig?.ui?.cssClasses || {};
         const isNewlyUnlocked = actionManager.isNewlyUnlocked(action.name);
         const newUnlockClass = isNewlyUnlocked ? ` ${cssClasses.newUnlock || 'new-unlock'}` : '';

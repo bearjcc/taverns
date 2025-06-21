@@ -199,12 +199,86 @@ class GameStateManager {
                 throw new Error('Invalid game state format');
             }
 
-            // Store the imported state
             localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
             console.log('Game state imported successfully');
             return true;
         } catch (error) {
             console.error('Failed to import game state:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Get a specific state value by key
+     * @param {string} key - The state key to retrieve
+     * @returns {*} The state value or null if not found
+     */
+    getState(key) {
+        try {
+            const savedState = localStorage.getItem('tavernsGameState');
+            if (savedState) {
+                const gameState = JSON.parse(savedState);
+                return gameState[key] || null;
+            }
+            return null;
+        } catch (error) {
+            console.error(`Failed to get state for key '${key}':`, error);
+            return null;
+        }
+    }
+
+    /**
+     * Set a specific state value by key
+     * @param {string} key - The state key to set
+     * @param {*} value - The value to store
+     * @returns {boolean} Success status
+     */
+    setState(key, value) {
+        try {
+            const savedState = localStorage.getItem('tavernsGameState');
+            let gameState = savedState ? JSON.parse(savedState) : {};
+            
+            gameState[key] = value;
+            gameState.lastSaved = new Date().toISOString();
+            
+            localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
+            return true;
+        } catch (error) {
+            console.error(`Failed to set state for key '${key}':`, error);
+            return false;
+        }
+    }
+
+    /**
+     * Save the current state (alias for saveGameState for compatibility)
+     */
+    save() {
+        // This is a simplified save that just updates the timestamp
+        // Full save should be done through saveGameState with managers
+        try {
+            const savedState = localStorage.getItem('tavernsGameState');
+            if (savedState) {
+                const gameState = JSON.parse(savedState);
+                gameState.lastSaved = new Date().toISOString();
+                localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
+            }
+            return true;
+        } catch (error) {
+            console.error('Failed to save state:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Check if there's a saved state
+     * @returns {boolean} True if saved state exists
+     */
+    hasSavedState() {
+        try {
+            const savedState = localStorage.getItem('tavernsGameState');
+            return savedState !== null;
+        } catch (error) {
+            console.error('Failed to check saved state:', error);
             return false;
         }
     }

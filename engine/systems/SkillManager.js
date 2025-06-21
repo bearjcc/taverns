@@ -2,6 +2,33 @@ class SkillManager {
     constructor() {
         this.skills = new Map();
         this.newlyUnlockedActions = new Set();
+        this.configManager = null;
+        this.uiManager = null;
+        this.inventoryManager = null;
+    }
+
+    /**
+     * Set the configuration manager reference
+     * @param {ConfigManager} configManager - The configuration manager instance
+     */
+    setConfigManager(configManager) {
+        this.configManager = configManager;
+    }
+
+    /**
+     * Set the UI manager reference
+     * @param {UIManager} uiManager - The UI manager instance
+     */
+    setUIManager(uiManager) {
+        this.uiManager = uiManager;
+    }
+
+    /**
+     * Set the inventory manager reference
+     * @param {InventoryManager} inventoryManager - The inventory manager instance
+     */
+    setInventorySystem(inventoryManager) {
+        this.inventoryManager = inventoryManager;
     }
 
     loadFromConfig(skillsConfig, gameConfig) {
@@ -15,7 +42,7 @@ class SkillManager {
                         // Create skill with default values if level/experience not specified
                         const level = data.hasOwnProperty('level') ? data.level : null;
                         const experience = data.hasOwnProperty('experience') ? data.experience : null;
-                        const skill = new Skill(key, level, experience);
+                        const skill = new Skill(key, level, experience, this.configManager);
                         this.skills.set(key, skill);
                         
                         if (data.sub_skills) {
@@ -49,12 +76,12 @@ class SkillManager {
             const fromLevel = skill.level;
             const levelUps = skill.addXp(xpAmount);
             
-            if (levelUps > 0) {
-                const message = configManager.getMessage('levelUp', {
+            if (levelUps > 0 && this.uiManager && this.configManager) {
+                const message = this.configManager.getMessage('levelUp', {
                     skillName: skillName,
                     level: skill.level
                 });
-                uiManager.addNarrationMessage(message);
+                this.uiManager.addNarrationMessage(message);
             }
             
             return levelUps;
@@ -73,15 +100,16 @@ class SkillManager {
 
 // Skill class for managing individual skills
 class Skill {
-    constructor(name, level = null, xp = null) {
+    constructor(name, level = null, xp = null, configManager = null) {
         this.name = name;
         this.level = level !== null ? level : 1;
         this.xp = xp !== null ? xp : 0;
+        this.configManager = configManager;
         this.xpToNext = this.getXpToNextLevel(this.level);
     }
 
     getXpToNextLevel(level) {
-        const multiplier = configManager ? configManager.getConstant('xpMultiplier', 100) : 100;
+        const multiplier = this.configManager ? this.configManager.getConstant('xpMultiplier', 100) : 100;
         return level * multiplier;
     }
 
@@ -100,7 +128,7 @@ class Skill {
     }
 
     getProgress() {
-        const progressMax = configManager ? configManager.getConstant('progressMax', 100) : 100;
+        const progressMax = this.configManager ? this.configManager.getConstant('progressMax', 100) : 100;
         return (this.xp / this.xpToNext) * progressMax;
     }
 } 

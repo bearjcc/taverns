@@ -2,6 +2,24 @@ class InventoryManager {
     constructor() {
         this.items = new Map();
         this.gameObjects = new Map();
+        this.configManager = null;
+        this.uiManager = null;
+    }
+
+    /**
+     * Set the configuration manager reference
+     * @param {ConfigManager} configManager - The configuration manager instance
+     */
+    setConfigManager(configManager) {
+        this.configManager = configManager;
+    }
+
+    /**
+     * Set the UI manager reference
+     * @param {UIManager} uiManager - The UI manager instance
+     */
+    setUIManager(uiManager) {
+        this.uiManager = uiManager;
     }
 
     registerGameObject(gameObject) {

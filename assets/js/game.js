@@ -6,7 +6,11 @@
  * @version 1.0.0
  */
 
-// Global managers
+// Global game engine instance
+/** @type {GameEngine} Global game engine instance */
+let gameEngine;
+
+// Legacy global references for backward compatibility
 /** @type {ConfigManager} Global configuration manager instance */
 let configManager;
 
@@ -38,7 +42,7 @@ let encyclopediaUI;
 let achievementSystem;
 
 /**
- * Initializes the game by loading configurations, setting up managers, and starting the game loop.
+ * Initializes the game using the GameEngine as the central orchestrator.
  * This is the main entry point for the game and should be called when the page loads.
  * 
  * @async
@@ -47,109 +51,43 @@ let achievementSystem;
  */
 async function initGame() {
     try {
-        console.log('Initializing Taverns and Treasures...');
+        console.log('Initializing Taverns and Treasures with GameEngine...');
         
-        // Initialize managers
-        configManager = new ConfigManager();
-        skillManager = new SkillManager();
-        inventoryManager = new InventoryManager();
-        traitManager = new TraitManager();
-        actionManager = new ActionManager();
-        uiManager = new UIManager();
-        gameStateManager = new GameStateManager();
-        window.configManager = configManager;
-        
-        // Initialize encyclopedia system
-        encyclopediaSystem = new EncyclopediaSystem();
-        encyclopediaUI = new EncyclopediaUI(encyclopediaSystem);
-        
-        // Load configurations
-        const configs = await configManager.loadAllConfigs();
-        const gameConfig = configs.gameConfig;
-        const skillsConfig = configs.skillsConfig;
-        const traitsConfig = configs.traitsConfig;
-        const actionsConfig = configs.actionsConfig;
-        
-        // Load achievements data
-        const achievementsData = await loadAchievementsData();
-        
-        // Create a simple state manager for achievements
-        const achievementStateManager = {
-            getState: () => {
-                try {
-                    const savedState = localStorage.getItem('tavernsGameState');
-                    if (savedState) {
-                        const gameState = JSON.parse(savedState);
-                        return gameState.achievements || { unlocked: [], progress: {} };
-                    }
-                    return { unlocked: [], progress: {} };
-                } catch (error) {
-                    console.warn('Failed to load achievement state:', error);
-                    return { unlocked: [], progress: {} };
-                }
-            },
-            setState: (newState) => {
-                try {
-                    const savedState = localStorage.getItem('tavernsGameState');
-                    let gameState = savedState ? JSON.parse(savedState) : {};
-                    gameState.achievements = newState;
-                    localStorage.setItem('tavernsGameState', JSON.stringify(gameState));
-                } catch (error) {
-                    console.error('Failed to save achievement state:', error);
-                }
-            }
-        };
-        
-        // Initialize achievement system
-        achievementSystem = new AchievementSystem(achievementsData, achievementStateManager, new EventSystem());
-        await achievementSystem.initialize();
-        window.achievementSystem = achievementSystem;
-        
-        // Initialize game objects
-        await initializeGameObjects();
-        
-        // Load configurations into managers
-        skillManager.loadFromConfig(skillsConfig, gameConfig);
-        traitManager.loadFromConfig(traitsConfig);
-        actionManager.loadFromConfig(actionsConfig);
-        
-        // Initialize encyclopedia with game data
-        await encyclopediaSystem.initialize({
-            skills: skillsConfig,
-            items: await loadItemsData(),
-            species: await loadSpeciesData(),
-            traits: traitsConfig,
-            locations: await loadLocationsData(),
-            actions: actionsConfig
+        // Create and configure the game engine
+        gameEngine = new GameEngine({
+            autoSaveInterval: 120000, // 2 minutes
+            defaultLanguage: 'en',
+            assetCacheSize: 100
         });
         
-        // Initialize encyclopedia UI
-        encyclopediaUI.initialize();
+        // Initialize the engine with the base game mod
+        await gameEngine.initialize('base-game', {
+            loadSavedState: true,
+            showWelcomeMessage: true
+        });
         
-        // Load saved game state
-        const saveLoaded = gameStateManager.loadGameState(skillManager, inventoryManager, traitManager);
+        // Set up legacy global references for backward compatibility
+        setupLegacyReferences();
         
-        // Setup UI
-        uiManager.generateTabsFromConfig(gameConfig);
-        createEncyclopediaButton(gameConfig);
+        // Initialize UI components
+        await initializeUI();
         
-        // Update displays
-        updateAllDisplays();
-        
-        // Setup auto-save
-        gameStateManager.setupAutoSave(skillManager, inventoryManager, traitManager, uiManager);
+        // Start the game engine
+        gameEngine.start();
         
         // Show welcome message
-        const welcomeMessage = configManager.getMessage('welcome');
-        uiManager.addNarrationMessage(welcomeMessage);
+        const welcomeMessage = gameEngine.getSystem('config').getMessage('welcome');
+        gameEngine.getSystem('ui').addNarrationMessage(welcomeMessage);
         
+        // Check if save was loaded
+        const saveLoaded = gameEngine.getSystem('state').hasSavedState();
         if (saveLoaded) {
-            uiManager.showToast(configManager.getMessage('gameLoaded'), 'success');
+            gameEngine.getSystem('ui').showToast(gameEngine.getSystem('config').getMessage('gameLoaded'), 'success');
         } else {
-            uiManager.showToast(configManager.getMessage('noSaveFound'), 'info');
+            gameEngine.getSystem('ui').showToast(gameEngine.getSystem('config').getMessage('noSaveFound'), 'info');
         }
         
-        console.log('Game initialized successfully');
+        console.log('Game initialized successfully with GameEngine');
         
         // Hide loading indicator
         const loadingIndicator = document.getElementById('loading');
@@ -159,308 +97,287 @@ async function initGame() {
         
     } catch (error) {
         console.error('Failed to initialize game:', error);
-        uiManager.showToast(configManager.getMessage('configError'), 'error');
-    }
-}
-
-/**
- * Loads items data from the items.json file
- * @returns {Promise<Object>} Items data
- */
-async function loadItemsData() {
-    try {
-        const response = await fetch('data/items.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const loadingIndicator = document.getElementById('loading');
+        if (loadingIndicator) {
+            loadingIndicator.innerHTML = 'Failed to load game. Please refresh the page.';
         }
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to load items data:', error);
-        return {};
+        throw error;
     }
 }
 
 /**
- * Loads species data from the species.json file
- * @returns {Promise<Object>} Species data
+ * Sets up legacy global references for backward compatibility with existing code.
+ * This allows existing functions to continue working while we transition to the new architecture.
  */
-async function loadSpeciesData() {
-    try {
-        const response = await fetch('data/species.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to load species data:', error);
-        return {};
-    }
+function setupLegacyReferences() {
+    // Set up global references to engine systems
+    configManager = gameEngine.getSystem('config');
+    skillManager = gameEngine.getSystem('skills');
+    inventoryManager = gameEngine.getSystem('inventory');
+    traitManager = gameEngine.getSystem('traits');
+    actionManager = gameEngine.getSystem('actions');
+    uiManager = gameEngine.getSystem('ui');
+    gameStateManager = gameEngine.getSystem('state');
+    encyclopediaSystem = gameEngine.getSystem('encyclopedia');
+    achievementSystem = gameEngine.getSystem('achievements');
+    
+    // Set up encyclopedia UI
+    encyclopediaUI = new EncyclopediaUI(encyclopediaSystem);
+    encyclopediaUI.initialize();
+    
+    // Set up global window references for backward compatibility
+    window.configManager = configManager;
+    window.achievementSystem = achievementSystem;
+    window.gameEngine = gameEngine;
 }
 
 /**
- * Loads locations data from the locations.json file
- * @returns {Promise<Object>} Locations data
+ * Initializes UI components and sets up the game interface.
  */
-async function loadLocationsData() {
-    try {
-        const response = await fetch('data/locations.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to load locations data:', error);
-        return {};
-    }
-}
-
-/**
- * Loads achievements data from the achievements.json file
- * @returns {Promise<Object>} Achievements data
- */
-async function loadAchievementsData() {
-    try {
-        const response = await fetch('data/achievements.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Failed to load achievements data:', error);
-        return {};
-    }
-}
-
-/**
- * Creates the encyclopedia button in the game UI
- * @param {Object} gameConfig - Game configuration
- */
-function createEncyclopediaButton(gameConfig) {
-    const encyclopediaConfig = gameConfig.ui.encyclopedia;
-    if (!encyclopediaConfig) return;
-
+async function initializeUI() {
+    const gameConfig = gameEngine.getSystem('config').getGameConfig();
+    
+    // Generate UI tabs from configuration
+    gameEngine.getSystem('ui').generateTabsFromConfig(gameConfig);
+    
     // Create encyclopedia button
-    const encyclopediaBtn = document.createElement('button');
-    encyclopediaBtn.id = encyclopediaConfig.button.id;
-    encyclopediaBtn.className = gameConfig.ui.cssClasses.encyclopediaButton || 'encyclopedia-button';
-    encyclopediaBtn.title = encyclopediaConfig.button.tooltip;
-    encyclopediaBtn.innerHTML = `
-        <span class="encyclopedia-button-icon">${encyclopediaConfig.button.icon}</span>
-        <span class="encyclopedia-button-text">${encyclopediaConfig.button.displayName}</span>
-    `;
-
-    // Add click event
-    encyclopediaBtn.addEventListener('click', () => {
-        openEncyclopedia();
-    });
-
-    // Add to the game interface (you may need to adjust this based on your layout)
-    const gameInterface = document.querySelector('.game-interface') || document.body;
-    gameInterface.appendChild(encyclopediaBtn);
+    createEncyclopediaButton(gameConfig);
+    
+    // Update all displays
+    updateAllDisplays();
 }
 
 /**
- * Opens the encyclopedia
- */
-function openEncyclopedia() {
-    if (encyclopediaUI) {
-        encyclopediaUI.show();
-        uiManager.showToast(configManager.getMessage('encyclopediaOpened'), 'info');
-    }
-}
-
-/**
- * Initializes game objects from the items.json configuration file.
- * Creates GameObject instances for all items defined in the configuration.
- * 
- * @async
- * @returns {Promise<void>}
- * @throws {Error} If items configuration cannot be loaded or parsed
- */
-async function initializeGameObjects() {
-    try {
-        const response = await fetch('data/items.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const itemsData = await response.json();
-        
-        for (const [itemId, itemData] of Object.entries(itemsData)) {
-            const gameObject = new GameObject(
-                itemId,
-                itemData.name || itemId,
-                itemData.displayName || itemData.name || itemId,
-                itemData.description || '',
-                itemData.icon || '📦',
-                itemData.examineText || itemData.description || '',
-                itemData.stackable !== false,
-                itemData.maxStack || 999
-            );
-            
-            inventoryManager.registerGameObject(gameObject);
-        }
-        
-        console.log(`Initialized ${Object.keys(itemsData).length} game objects`);
-        
-    } catch (error) {
-        console.error('Failed to initialize game objects:', error);
-    }
-}
-
-/**
- * Updates all UI displays to reflect the current game state.
- * This includes skills, actions, inventory, and character information.
+ * Updates all game displays (skills, actions, inventory, etc.).
+ * This function is called after any significant game state change.
  */
 function updateAllDisplays() {
-    const gameConfig = configManager.getGameConfig();
-    const skillsConfig = configManager.getSkillsConfig();
-    uiManager.updateSkillsDisplay(skillManager, skillsConfig);
-    uiManager.updateActionsDisplay(actionManager, skillManager, inventoryManager, gameConfig);
-    uiManager.updateInventoryDisplay(inventoryManager, gameConfig);
-    uiManager.updateCharacterDisplay(traitManager, gameConfig);
+    if (!gameEngine) return;
+    
+    const ui = gameEngine.getSystem('ui');
+    const skills = gameEngine.getSystem('skills');
+    const actions = gameEngine.getSystem('actions');
+    const inventory = gameEngine.getSystem('inventory');
+    const traits = gameEngine.getSystem('traits');
+    const achievements = gameEngine.getSystem('achievements');
+    const config = gameEngine.getSystem('config');
+    
+    // Get configurations
+    const gameConfig = config.getGameConfig();
+    const skillsConfig = config.getSkillsConfig();
+    
+    // Update skill displays
+    ui.updateSkillsDisplay(skills, skillsConfig);
+    
+    // Update action displays
+    ui.updateActionsDisplay(actions, skills, inventory, gameConfig);
+    
+    // Update inventory display
+    ui.updateInventoryDisplay(inventory, gameConfig);
+    
+    // Update character display
+    ui.updateCharacterDisplay(traits, gameConfig);
+    
+    // Update achievements display
+    ui.updateAchievementsDisplay(achievements, gameConfig);
 }
 
 /**
- * Handles the execution of a skill action, including requirements checking,
- * item consumption, XP rewards, and UI updates.
- * 
- * @param {string} actionName - The name/ID of the action to execute
- * @param {string|null} [variable=null] - Optional variable parameter for the action
- * @returns {void}
+ * Handles action execution through the game engine.
+ * @param {string} actionName - The name of the action to execute
+ * @param {*} variable - Optional variable parameter for the action
  */
 function handleAction(actionName, variable = null) {
+    if (!gameEngine) return;
+    
     try {
-        const action = actionManager.getAction(actionName);
-        if (!action) {
-            console.error(`Action not found: ${actionName}`);
-            return;
-        }
+        const actionSystem = gameEngine.getSystem('actions');
+        const result = actionSystem.executeAction(actionName, variable);
         
-        const skill = skillManager.getSkill(action.skillType);
-        if (!skill) {
-            console.error(`Skill not found: ${action.skillType}`);
-            return;
-        }
-        
-        // Check if player can perform the action
-        if (!action.canPerform(skill.level, inventoryManager)) {
-            uiManager.addNarrationMessage(`Requires ${action.skillType} level ${action.levelRequired}`);
-            return;
-        }
-        
-        // Handle item consumption
-        for (const [itemId, requiredQuantity] of Object.entries(action.itemConsumption)) {
-            if (!inventoryManager.hasItem(itemId, requiredQuantity)) {
-                const itemName = inventoryManager.getGameObject(itemId)?.displayName || itemId;
-                const message = configManager.getMessage('actionInsufficientItems', { itemName });
-                uiManager.addNarrationMessage(message);
-                return;
+        if (result.success) {
+            // Update displays after successful action
+            updateAllDisplays();
+            
+            // Show success message
+            if (result.message) {
+                gameEngine.getSystem('ui').addNarrationMessage(result.message);
             }
+            
+            // Show XP gain if applicable
+            if (result.xpGained) {
+                gameEngine.getSystem('ui').showToast(`+${result.xpGained} XP`, 'success');
+            }
+            
+            // Show item gained if applicable
+            if (result.itemGained) {
+                gameEngine.getSystem('ui').showToast(`Gained: ${result.itemGained}`, 'success');
+            }
+        } else {
+            // Show error message
+            gameEngine.getSystem('ui').showToast(result.message || 'Action failed', 'error');
         }
-        
-        // Consume items
-        for (const [itemId, quantity] of Object.entries(action.itemConsumption)) {
-            inventoryManager.removeItem(itemId, quantity);
-            const itemName = inventoryManager.getGameObject(itemId)?.displayName || itemId;
-            const message = configManager.getMessage('actionItemsConsumed', { 
-                itemName, 
-                itemCount: quantity 
-            });
-            uiManager.addNarrationMessage(message);
-        }
-        
-        // Perform action and gain XP
-        const xpGained = action.performAction(skill, variable);
-        const itemReward = action.itemReward;
-        const itemCount = action.itemRewardQuantity || 1;
-        
-        if (itemReward) {
-            inventoryManager.addItem(itemReward, itemCount);
-            const itemName = inventoryManager.getGameObject(itemReward)?.displayName || itemReward;
-            const message = configManager.getMessage('actionItemsGained', { 
-                itemName, 
-                itemCount: itemCount 
-            });
-            uiManager.addNarrationMessage(message);
-        }
-        
-        // Show action completion message
-        const actionMessage = configManager.getMessage('actionCompleted', {
-            actionName: action.displayName || actionName,
-            xpReward: xpGained,
-            itemReward: itemReward || 'none',
-            itemCount: itemCount
-        });
-        uiManager.addNarrationMessage(actionMessage);
-        
-        // Update displays
-        updateAllDisplays();
-        
     } catch (error) {
-        console.error('Error handling action:', error);
-        uiManager.addNarrationMessage('An error occurred while performing the action.');
+        console.error('Error executing action:', error);
+        gameEngine.getSystem('ui').showToast('An error occurred while executing the action', 'error');
     }
 }
 
 /**
- * Handles item-specific actions like using, examining, or dropping items.
- * 
- * @param {Object} action - The action object containing action details
- * @param {string} itemId - The ID of the item to act upon
- * @returns {void}
+ * Handles item-specific actions through the game engine.
+ * @param {string} action - The action to perform on the item
+ * @param {string} itemId - The ID of the item
  */
 function handleItemAction(action, itemId) {
+    if (!gameEngine) return;
+    
     try {
-        const item = inventoryManager.getGameObject(itemId);
-        if (!item) {
-            console.error(`Item not found: ${itemId}`);
-            return;
-        }
+        const inventory = gameEngine.getSystem('inventory');
+        const result = inventory.performItemAction(action, itemId);
         
-        switch (action.type) {
-            case 'examine':
-                uiManager.addNarrationMessage(item.examineText);
-                break;
-            case 'use':
-                // Handle item usage logic
-                uiManager.addNarrationMessage(`You use the ${item.displayName}`);
-                break;
-            case 'drop':
-                inventoryManager.removeItem(itemId, 1);
-                uiManager.addNarrationMessage(`You drop the ${item.displayName}`);
-                updateAllDisplays();
-                break;
-            default:
-                console.warn(`Unknown item action type: ${action.type}`);
+        if (result.success) {
+            // Update displays after successful action
+            updateAllDisplays();
+            
+            // Show success message
+            if (result.message) {
+                gameEngine.getSystem('ui').addNarrationMessage(result.message);
+            }
+        } else {
+            // Show error message
+            gameEngine.getSystem('ui').showToast(result.message || 'Item action failed', 'error');
         }
     } catch (error) {
-        console.error('Error handling item action:', error);
+        console.error('Error performing item action:', error);
+        gameEngine.getSystem('ui').showToast('An error occurred while performing the item action', 'error');
     }
 }
 
 /**
- * Shows a context menu for an item in the inventory.
- * 
- * @param {Event} event - The mouse event that triggered the context menu
- * @param {string} itemId - The ID of the item
- * @param {Object} inventoryItem - The inventory item object
- * @returns {void}
+ * Creates the encyclopedia button in the UI.
+ * @param {Object} gameConfig - The game configuration
  */
-function showItemContextMenu(event, itemId, inventoryItem) {
-    // Implementation for context menu display
-    console.log('Context menu for item:', itemId);
+function createEncyclopediaButton(gameConfig) {
+    const encyclopediaButton = document.createElement('button');
+    encyclopediaButton.id = 'encyclopedia-btn';
+    encyclopediaButton.innerHTML = '📚';
+    encyclopediaButton.title = 'Encyclopedia';
+    encyclopediaButton.className = 'encyclopedia-button';
+    
+    // Position the button
+    encyclopediaButton.style.cssText = `
+        position: fixed;
+        bottom: 32px;
+        right: 100px;
+        z-index: 2100;
+        min-width: 48px;
+        min-height: 48px;
+        font-size: 1.5em;
+        border-radius: 50%;
+        background: #333;
+        color: #fff;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        cursor: pointer;
+        transition: all 0.2s ease;
+    `;
+    
+    // Add hover effects
+    encyclopediaButton.addEventListener('mouseenter', () => {
+        encyclopediaButton.style.background = '#555';
+        encyclopediaButton.style.transform = 'scale(1.1)';
+    });
+    
+    encyclopediaButton.addEventListener('mouseleave', () => {
+        encyclopediaButton.style.background = '#333';
+        encyclopediaButton.style.transform = 'scale(1)';
+    });
+    
+    // Add click handler
+    encyclopediaButton.addEventListener('click', openEncyclopedia);
+    
+    document.body.appendChild(encyclopediaButton);
 }
 
 /**
- * Removes any active context menu from the UI.
- * 
- * @returns {void}
+ * Opens the encyclopedia interface.
  */
-function removeContextMenu() {
-    // Implementation for context menu removal
-    console.log('Removing context menu');
+function openEncyclopedia() {
+    if (!gameEngine) return;
+    
+    try {
+        const encyclopediaUI = gameEngine.getSystem('encyclopedia').getUI();
+        if (encyclopediaUI) {
+            encyclopediaUI.open();
+        }
+    } catch (error) {
+        console.error('Error opening encyclopedia:', error);
+        gameEngine.getSystem('ui').showToast('Failed to open encyclopedia', 'error');
+    }
 }
 
-// Initialize game when DOM is loaded
-document.addEventListener('DOMContentLoaded', initGame); 
+/**
+ * Shows a context menu for items.
+ * @param {Event} event - The click event
+ * @param {string} itemId - The item ID
+ * @param {Object} inventoryItem - The inventory item object
+ */
+function showItemContextMenu(event, itemId, inventoryItem) {
+    if (!gameEngine) return;
+    
+    try {
+        const inventory = gameEngine.getSystem('inventory');
+        inventory.showContextMenu(event, itemId, inventoryItem);
+    } catch (error) {
+        console.error('Error showing context menu:', error);
+    }
+}
+
+/**
+ * Removes the context menu from the DOM.
+ */
+function removeContextMenu() {
+    if (!gameEngine) return;
+    
+    try {
+        const inventory = gameEngine.getSystem('inventory');
+        inventory.removeContextMenu();
+    } catch (error) {
+        console.error('Error removing context menu:', error);
+    }
+}
+
+// Legacy functions for backward compatibility
+// These will be removed once all code is migrated to use the GameEngine
+
+/**
+ * @deprecated Use gameEngine.getSystem('config').loadAllConfigs() instead
+ */
+async function loadAllConfigs() {
+    if (gameEngine) {
+        return gameEngine.getSystem('config').loadAllConfigs();
+    }
+    throw new Error('GameEngine not initialized');
+}
+
+/**
+ * @deprecated Use gameEngine.getSystem('state').saveGameState() instead
+ */
+function saveGameState() {
+    if (gameEngine) {
+        return gameEngine.getSystem('state').save();
+    }
+    throw new Error('GameEngine not initialized');
+}
+
+/**
+ * @deprecated Use gameEngine.getSystem('state').loadGameState() instead
+ */
+function loadGameState() {
+    if (gameEngine) {
+        return gameEngine.getSystem('state').load();
+    }
+    throw new Error('GameEngine not initialized');
+}
+
+// Note: Game initialization is handled in index.html
+// Remove duplicate event listener to prevent double initialization 

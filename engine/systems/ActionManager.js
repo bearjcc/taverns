@@ -3,6 +3,42 @@ class ActionManager {
         this.actions = new Map();
         this.newlyUnlockedActions = new Set();
         this.locationSystem = null;
+        this.configManager = null;
+        this.uiManager = null;
+        this.skillManager = null;
+        this.inventoryManager = null;
+    }
+
+    /**
+     * Set the configuration manager reference
+     * @param {ConfigManager} configManager - The configuration manager instance
+     */
+    setConfigManager(configManager) {
+        this.configManager = configManager;
+    }
+
+    /**
+     * Set the UI manager reference
+     * @param {UIManager} uiManager - The UI manager instance
+     */
+    setUIManager(uiManager) {
+        this.uiManager = uiManager;
+    }
+
+    /**
+     * Set the skill manager reference
+     * @param {SkillManager} skillManager - The skill manager instance
+     */
+    setSkillSystem(skillManager) {
+        this.skillManager = skillManager;
+    }
+
+    /**
+     * Set the inventory manager reference
+     * @param {InventoryManager} inventoryManager - The inventory manager instance
+     */
+    setInventorySystem(inventoryManager) {
+        this.inventoryManager = inventoryManager;
     }
 
     loadFromConfig(actionsConfig) {
@@ -60,7 +96,7 @@ class ActionManager {
         return Array.from(this.actions.values());
     }
 
-    getAvailableActions(skillManager, inventoryManager) {
+    getAvailableActions() {
         const availableActions = [];
         
         // Get location-based actions if location system is available
@@ -70,7 +106,7 @@ class ActionManager {
         }
         
         for (const action of this.actions.values()) {
-            const skill = skillManager.getSkill(action.skillType);
+            const skill = this.skillManager ? this.skillManager.getSkill(action.skillType) : null;
             if (skill) {
                 // Check if action is available at current location
                 if (locationActions.length === 0 || locationActions.includes(action.name)) {
@@ -83,15 +119,69 @@ class ActionManager {
     }
 
     /**
+     * Execute an action
+     * @param {string} actionName - The name of the action to execute
+     * @param {*} variable - Optional variable parameter
+     * @returns {Object} Result of the action execution
+     */
+    executeAction(actionName, variable = null) {
+        const action = this.getAction(actionName);
+        if (!action) {
+            return { success: false, message: 'Action not found' };
+        }
+
+        const skill = this.skillManager ? this.skillManager.getSkill(action.skillType) : null;
+        if (!skill) {
+            return { success: false, message: 'Skill not found' };
+        }
+
+        // Check if player can perform the action
+        if (!action.canPerform(skill.level, this.inventoryManager)) {
+            return { success: false, message: `Requires ${action.skillType} level ${action.levelRequired}` };
+        }
+
+        // Handle item consumption
+        for (const [itemId, requiredQuantity] of Object.entries(action.itemConsumption)) {
+            if (!this.inventoryManager || !this.inventoryManager.hasItem(itemId, requiredQuantity)) {
+                const itemName = this.inventoryManager ? this.inventoryManager.getGameObject(itemId)?.displayName || itemId : itemId;
+                const message = this.configManager ? this.configManager.getMessage('actionInsufficientItems', { itemName }) : `Insufficient ${itemName}`;
+                return { success: false, message };
+            }
+        }
+
+        // Consume items
+        for (const [itemId, quantity] of Object.entries(action.itemConsumption)) {
+            if (this.inventoryManager) {
+                this.inventoryManager.removeItem(itemId, quantity);
+            }
+        }
+
+        // Perform action and gain XP
+        const xpGained = action.performAction(skill, variable);
+        const itemReward = action.itemReward;
+        const itemCount = action.itemRewardQuantity || 1;
+
+        if (itemReward && this.inventoryManager) {
+            this.inventoryManager.addItem(itemReward, itemCount);
+        }
+
+        return {
+            success: true,
+            xpGained,
+            itemGained: itemReward,
+            itemCount,
+            message: action.flavorText || 'Action completed successfully'
+        };
+    }
+
+    /**
      * Get actions available at a specific spot
      * @param {string} spotId - The spot ID
-     * @param {SkillManager} skillManager - The skill manager
-     * @param {InventoryManager} inventoryManager - The inventory manager
      * @returns {Array} Array of available actions
      */
-    getActionsForSpot(spotId, skillManager, inventoryManager) {
+    getActionsForSpot(spotId) {
         if (!this.locationSystem) {
-            return this.getAvailableActions(skillManager, inventoryManager);
+            return this.getAvailableActions();
         }
 
         const spot = this.locationSystem._findSpotById(spotId);
@@ -103,7 +193,7 @@ class ActionManager {
         for (const actionName of spot.actions) {
             const action = this.actions.get(actionName);
             if (action) {
-                const skill = skillManager.getSkill(action.skillType);
+                const skill = this.skillManager ? this.skillManager.getSkill(action.skillType) : null;
                 if (skill) {
                     availableActions.push(action);
                 }
@@ -115,18 +205,17 @@ class ActionManager {
 
     /**
      * Get travel actions for current location
-     * @param {LocationSystem} locationSystem - The location system
      * @param {Object} playerState - Current player state
      * @returns {Array} Array of travel actions
      */
-    getTravelActions(locationSystem, playerState) {
-        if (!locationSystem) return [];
+    getTravelActions(playerState) {
+        if (!this.locationSystem) return [];
 
-        const availableSpots = locationSystem.getAvailableSpots();
+        const availableSpots = this.locationSystem.getAvailableSpots();
         const travelActions = [];
 
         for (const spot of availableSpots) {
-            const travelCheck = locationSystem.canTravelToSpot(spot.id, playerState);
+            const travelCheck = this.locationSystem.canTravelToSpot(spot.id, playerState);
             if (travelCheck.canTravel) {
                 travelActions.push({
                     name: `travel_to_${spot.id}`,
@@ -171,11 +260,13 @@ class ActionManager {
                 action.levelRequired > fromLevel && 
                 action.levelRequired <= toLevel) {
                 this.markActionAsNewlyUnlocked(action.name);
-                const message = configManager.getMessage('actionUnlocked', {
-                    actionName: action.displayName,
-                    level: action.levelRequired
-                });
-                uiManager.addNarrationMessage(message);
+                if (this.configManager && this.uiManager) {
+                    const message = this.configManager.getMessage('actionUnlocked', {
+                        actionName: action.displayName,
+                        level: action.levelRequired
+                    });
+                    this.uiManager.addNarrationMessage(message);
+                }
             }
         }
     }
