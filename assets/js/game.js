@@ -140,8 +140,8 @@ async function initializeUI() {
     // Generate UI tabs from configuration
     gameEngine.getSystem('ui').generateTabsFromConfig(gameConfig);
     
-    // Create encyclopedia button
-    createEncyclopediaButton(gameConfig);
+    // Create left toolbar
+    createLeftToolbar(gameConfig);
     
     // Update all displays
     updateAllDisplays();
@@ -253,65 +253,106 @@ function handleItemAction(action, itemId) {
 }
 
 /**
- * Creates the encyclopedia button in the UI.
+ * Creates the left toolbar with utility buttons.
  * @param {Object} gameConfig - The game configuration
  */
-function createEncyclopediaButton(gameConfig) {
-    const encyclopediaButton = document.createElement('button');
-    encyclopediaButton.id = 'encyclopedia-btn';
-    encyclopediaButton.innerHTML = '📚';
-    encyclopediaButton.title = 'Encyclopedia';
-    encyclopediaButton.className = 'encyclopedia-button';
-    
-    // Position the button
-    encyclopediaButton.style.cssText = `
-        position: fixed;
-        bottom: 32px;
-        right: 100px;
-        z-index: 2100;
-        min-width: 48px;
-        min-height: 48px;
-        font-size: 1.5em;
-        border-radius: 50%;
-        background: #333;
-        color: #fff;
-        border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        cursor: pointer;
-        transition: all 0.2s ease;
-    `;
-    
-    // Add hover effects
-    encyclopediaButton.addEventListener('mouseenter', () => {
-        encyclopediaButton.style.background = '#555';
-        encyclopediaButton.style.transform = 'scale(1.1)';
+function createLeftToolbar(gameConfig) {
+    const toolbar = document.getElementById('left-toolbar');
+    if (!toolbar) return;
+
+    // Create Encyclopedia Button
+    const encyclopediaButton = createToolbarButton({
+        id: 'encyclopedia-btn',
+        icon: '📚',
+        title: 'Encyclopedia',
+        onClick: openEncyclopedia
     });
-    
-    encyclopediaButton.addEventListener('mouseleave', () => {
-        encyclopediaButton.style.background = '#333';
-        encyclopediaButton.style.transform = 'scale(1)';
+
+    // Create Save Button
+    const saveButton = createToolbarButton({
+        id: 'save-btn',
+        icon: '💾',
+        title: 'Save Game',
+        onClick: handleManualSave
     });
+
+    // Add buttons to toolbar
+    toolbar.appendChild(encyclopediaButton);
+    toolbar.appendChild(saveButton);
+}
+
+/**
+ * Creates a toolbar button with the specified configuration.
+ * @param {Object} config - Button configuration
+ * @param {string} config.id - Button ID
+ * @param {string} config.icon - Button icon
+ * @param {string} config.title - Button tooltip title
+ * @param {Function} config.onClick - Click handler function
+ * @returns {HTMLElement} The created button element
+ */
+function createToolbarButton(config) {
+    const button = document.createElement('button');
+    button.id = config.id;
+    button.className = 'toolbar-button';
+    button.innerHTML = config.icon;
+    button.title = config.title;
+    
+    // Add tooltip
+    const tooltip = document.createElement('span');
+    tooltip.className = 'toolbar-button-title';
+    tooltip.textContent = config.title;
+    button.appendChild(tooltip);
     
     // Add click handler
-    encyclopediaButton.addEventListener('click', openEncyclopedia);
+    button.addEventListener('click', config.onClick);
     
-    document.body.appendChild(encyclopediaButton);
+    return button;
+}
+
+/**
+ * Handles manual save functionality.
+ */
+function handleManualSave() {
+    if (!gameEngine) {
+        console.error('Game engine not initialized');
+        return;
+    }
+    
+    try {
+        const skillManager = gameEngine.getSystem('skills');
+        const inventoryManager = gameEngine.getSystem('inventory');
+        const traitManager = gameEngine.getSystem('traits');
+        const stateManager = gameEngine.getSystem('state');
+        
+        const success = stateManager.saveGameState(skillManager, inventoryManager, traitManager);
+        
+        if (success) {
+            gameEngine.getSystem('ui').showToast('Game saved successfully!', 'success');
+        } else {
+            gameEngine.getSystem('ui').showToast('Failed to save game', 'error');
+        }
+    } catch (error) {
+        console.error('Error saving game:', error);
+        gameEngine.getSystem('ui').showToast('An error occurred while saving', 'error');
+    }
 }
 
 /**
  * Opens the encyclopedia interface.
  */
 function openEncyclopedia() {
-    if (!gameEngine) return;
+    if (!encyclopediaUI) {
+        console.error('Encyclopedia UI not initialized');
+        return;
+    }
     
     try {
-        const encyclopediaUI = gameEngine.getSystem('encyclopedia').getUI();
-        if (encyclopediaUI) {
-            encyclopediaUI.open();
-        }
+        encyclopediaUI.show();
     } catch (error) {
         console.error('Error opening encyclopedia:', error);
-        gameEngine.getSystem('ui').showToast('Failed to open encyclopedia', 'error');
+        if (gameEngine && gameEngine.getSystem('ui')) {
+            gameEngine.getSystem('ui').showToast('Failed to open encyclopedia', 'error');
+        }
     }
 }
 

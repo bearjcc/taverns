@@ -27,14 +27,6 @@
         "icon": "🗺️"
       }
     ],
-    "encyclopedia": {
-      "button": {
-        "id": "encyclopedia-btn",
-        "displayName": "Encyclopedia",
-        "icon": "📚",
-        "tooltip": "Open the game encyclopedia"
-      }
-    },
     "cssClasses": {
       "skillItem": "skill-item",
       "skillHeader": "skill-header",
@@ -56,8 +48,7 @@
       "tabPanel": "tab-panel",
       "active": "active",
       "toast": "toast",
-      "toastContainer": "toast-container",
-      "encyclopediaButton": "encyclopedia-button"
+      "toastContainer": "toast-container"
     },
     "elementIds": {
       "narrationContent": "narration-content",
@@ -67,8 +58,7 @@
       "inventoryTab": "inventory-tab", 
       "characterTab": "character-tab",
       "questsTab": "quests-tab",
-      "toastContainer": "toast-container",
-      "encyclopediaButton": "encyclopedia-btn"
+      "toastContainer": "toast-container"
     }
   },
   "constants": {
