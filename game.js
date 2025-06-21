@@ -410,23 +410,32 @@ let gameState = {
     lastSaved: null
 };
 
-// Initialize game objects
-function initializeGameObjects() {
-    // Register the oak log game object
-    const oakLog = new GameObject(
-        'oak_logs',
-        'oak_logs',
-        'Oak Log',
-        'A sturdy oak log, good for building and crafting.',
-        '🟫', // Brown square emoji as icon
-        'A solid piece of oak wood. The bark is rough and the wood grain is clearly visible. This would make excellent building material or firewood.',
-        true, // stackable
-        999   // max stack
-    );
-    
-    gameState.inventoryManager.registerGameObject(oakLog);
-    
-    console.log('Game objects initialized');
+// Load and register all game objects from items.json
+async function initializeGameObjects() {
+    try {
+        const response = await fetch('data/items.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const itemsData = await response.json();
+        Object.values(itemsData).forEach(item => {
+            const gameObject = new GameObject(
+                item.id,
+                item.name,
+                item.displayName,
+                item.description,
+                item.icon,
+                item.examineText,
+                item.stackable,
+                item.maxStack
+            );
+            gameState.inventoryManager.registerGameObject(gameObject);
+        });
+        console.log('Game objects loaded from items.json');
+    } catch (error) {
+        console.error('Error loading items.json:', error);
+        addNarrationMessage('Error: Could not load item data. Some items may not function correctly.');
+    }
 }
 
 // Game state persistence functions
@@ -1073,7 +1082,7 @@ async function initGame() {
         };
         
         // Initialize game objects
-        initializeGameObjects();
+        await initializeGameObjects();
         
         // Initialize UI component system
         gameState.ui = new GameUI();

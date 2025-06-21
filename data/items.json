@@ -1,0 +1,12 @@
+{
+  "oak_logs": {
+    "id": "oak_logs",
+    "name": "oak_logs",
+    "displayName": "Oak Log",
+    "description": "A sturdy oak log, good for building and crafting.",
+    "icon": "🟫",
+    "examineText": "A solid piece of oak wood. The bark is rough and the wood grain is clearly visible. This would make excellent building material or firewood.",
+    "stackable": true,
+    "maxStack": 999
+  }
+} 
