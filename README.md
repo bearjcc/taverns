@@ -4,9 +4,9 @@ A text-based adventure game with a 3-column layout inspired by "A Dark Room".
 
 ## 🎮 Play the Game
 
-**Live Demo**: [Play Taverns Game](https://[your-username].github.io/taverns/)
+**Live Demo**: [Play Taverns Game](https://bearjcc.github.io/taverns/)
 
-The game is automatically deployed to GitHub Pages whenever changes are pushed to the main branch.
+The game is automatically deployed to GitHub Pages whenever changes are pushed to the empty-branch.
 
 ## 🏗️ Development
 
@@ -34,7 +34,7 @@ The development server will open at `http://localhost:3000` with live reload ena
 
 ## 🚀 Deployment
 
-The game automatically deploys to GitHub Pages via GitHub Actions when code is pushed to the main branch.
+The game automatically deploys to GitHub Pages via GitHub Actions when code is pushed to the empty-branch.
 
 ### Manual Deployment
 ```bash
