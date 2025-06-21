@@ -174,46 +174,66 @@ const gameState = {
 
 // Load game configuration
 async function loadGameConfig() {
-    try {
-        console.log('Attempting to load game configuration...');
-        const response = await fetch('./data/game-config.json');
-        console.log('Response status:', response.status, response.statusText);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-        
-        const configText = await response.text();
-        console.log('Config file content length:', configText.length);
-        
-        gameConfig = JSON.parse(configText);
-        console.log('Configuration parsed successfully');
-        
-        gameState.skillManager.loadFromConfig(gameConfig);
-        console.log(gameConfig.messages.configLoaded);
-        return true;
-    } catch (error) {
-        console.error('Failed to load game configuration:', error);
-        console.error('Error details:', error.message);
-        
-        // Try alternative paths
+    const possiblePaths = [
+        './data/game-config.json',
+        'data/game-config.json',
+        '/data/game-config.json',
+        '../data/game-config.json'
+    ];
+    
+    for (const path of possiblePaths) {
         try {
-            console.log('Trying alternative path...');
-            const altResponse = await fetch('data/game-config.json');
-            if (altResponse.ok) {
-                gameConfig = await altResponse.json();
-                gameState.skillManager.loadFromConfig(gameConfig);
-                console.log('Configuration loaded with alternative path');
-                return true;
+            console.log(`Trying to load configuration from: ${path}`);
+            
+            // Try fetch first
+            const response = await fetch(path);
+            console.log(`Response for ${path}:`, response.status, response.statusText);
+            
+            if (response.ok) {
+                const configText = await response.text();
+                console.log(`Config file content length from ${path}:`, configText.length);
+                
+                try {
+                    gameConfig = JSON.parse(configText);
+                    console.log('Configuration parsed successfully');
+                    
+                    gameState.skillManager.loadFromConfig(gameConfig);
+                    console.log(gameConfig.messages.configLoaded);
+                    return true;
+                } catch (parseError) {
+                    console.error(`JSON parse error for ${path}:`, parseError.message);
+                    console.error('First 200 characters of response:', configText.substring(0, 200));
+                }
             }
-        } catch (altError) {
-            console.error('Alternative path also failed:', altError);
+        } catch (error) {
+            console.error(`Failed to load from ${path}:`, error.message);
+            
+            // Try XMLHttpRequest as fallback
+            try {
+                console.log(`Trying XMLHttpRequest for ${path}`);
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', path, false); // Synchronous
+                xhr.send();
+                
+                if (xhr.status === 200) {
+                    console.log(`XMLHttpRequest succeeded for ${path}`);
+                    const configText = xhr.responseText;
+                    gameConfig = JSON.parse(configText);
+                    gameState.skillManager.loadFromConfig(gameConfig);
+                    console.log('Configuration loaded via XMLHttpRequest');
+                    return true;
+                } else {
+                    console.error(`XMLHttpRequest failed for ${path}:`, xhr.status, xhr.statusText);
+                }
+            } catch (xhrError) {
+                console.error(`XMLHttpRequest error for ${path}:`, xhrError.message);
+            }
         }
-        
-        // Fallback to hardcoded config if JSON fails to load
-        loadFallbackConfig();
-        return false;
     }
+    
+    console.error('All configuration paths failed, using fallback');
+    loadFallbackConfig();
+    return false;
 }
 
 // Fallback configuration if JSON fails to load
