@@ -199,193 +199,32 @@
             "oak_logs": 1
           },
           "unlockMessage": "You can now bake bread!",
-          "flavorText": "The smell of freshly baked bread wafts through the kitchen.",
+          "flavorText": "The smell of fresh bread fills the air as you pull the loaves from the oven.",
           "skillType": "Cooking"
-        }
-      ]
-    },
-    "survival": {
-      "name": "Survival",
-      "displayName": "Survival",
-      "description": "Basic survival activities",
-      "actions": [
-        {
-          "name": "Sleep",
-          "displayName": "Sleep",
-          "description": "Rest to recover energy",
-          "icon": "😴",
-          "tooltip": "Sleep to restore energy and health",
-          "levelRequired": 1,
-          "xpReward": 5,
-          "timeRequired": 8,
-          "timeUnit": "hours",
-          "itemReward": null,
-          "itemCount": 0,
-          "itemConsumption": {},
-          "unlockMessage": "You can now sleep to rest!",
-          "flavorText": "You drift off to sleep and wake up feeling refreshed.",
-          "skillType": "Fire making",
-          "variables": [
-            {
-              "name": "Sleep in Bed",
-              "displayName": "Sleep in Bed",
-              "description": "Sleep in a comfortable bed",
-              "icon": "🛏️",
-              "timeRequired": 8,
-              "energyRestore": 100
-            },
-            {
-              "name": "Sleep on Cot",
-              "displayName": "Sleep on Cot", 
-              "description": "Sleep on a basic cot",
-              "icon": "🛌",
-              "timeRequired": 8,
-              "energyRestore": 75
-            },
-            {
-              "name": "Sleep on Ground",
-              "displayName": "Sleep on Ground",
-              "description": "Sleep on the hard ground",
-              "icon": "🌙",
-              "timeRequired": 8,
-              "energyRestore": 50
-            }
-          ]
-        },
-        {
-          "name": "Explore",
-          "displayName": "Explore",
-          "description": "Explore the surrounding area",
-          "icon": "🗺️",
-          "tooltip": "Explore to discover new locations and resources",
-          "levelRequired": 1,
-          "xpReward": 10,
-          "timeRequired": 2,
-          "timeUnit": "hours",
-          "itemReward": "exploration_knowledge",
-          "itemCount": 1,
-          "itemConsumption": {},
-          "unlockMessage": "You can now explore the world!",
-          "flavorText": "You venture into the unknown, discovering new paths and landmarks.",
-          "skillType": "Foraging"
-        }
-      ]
-    },
-    "combat": {
-      "name": "Combat",
-      "displayName": "Combat",
-      "description": "Master the art of battle with various weapons and techniques",
-      "actions": [
-        {
-          "name": "Practice Swordplay",
-          "displayName": "Practice Swordplay",
-          "description": "Train with a wooden sword",
-          "icon": "⚔️",
-          "tooltip": "Practice sword fighting techniques",
-          "levelRequired": 1,
-          "xpReward": 15,
-          "timeRequired": 1,
-          "timeUnit": "hours",
-          "itemReward": "combat_experience",
-          "itemCount": 1,
-          "itemConsumption": {},
-          "unlockMessage": "You begin training with the sword!",
-          "flavorText": "You practice your sword forms in the training yard, feeling more confident with each swing.",
-          "skillType": "Combat"
-        },
-        {
-          "name": "Spar with Partner",
-          "displayName": "Spar with Partner",
-          "description": "Engage in controlled combat training",
-          "icon": "🤺",
-          "tooltip": "Spar with a training partner",
-          "levelRequired": 5,
-          "xpReward": 25,
-          "timeRequired": 1.5,
-          "timeUnit": "hours",
-          "itemReward": "combat_experience",
-          "itemCount": 1,
-          "itemConsumption": {},
-          "unlockMessage": "You can now spar with training partners!",
-          "flavorText": "You and your training partner exchange blows, learning from each other's techniques.",
-          "skillType": "Combat"
-        },
-        {
-          "name": "Hunt Bandits",
-          "displayName": "Hunt Bandits",
-          "description": "Track down and defeat bandit groups",
-          "icon": "👥",
-          "tooltip": "Hunt dangerous bandits for loot",
-          "levelRequired": 10,
-          "xpReward": 50,
-          "timeRequired": 3,
-          "timeUnit": "hours",
-          "itemReward": "bandit_loot",
-          "itemCount": 1,
-          "itemConsumption": {},
-          "unlockMessage": "You can now hunt dangerous bandits!",
-          "flavorText": "You track a group of bandits through the forest and engage them in combat.",
-          "skillType": "Hunting"
-        }
-      ]
-    },
-    "magic": {
-      "name": "Magic",
-      "displayName": "Magic",
-      "description": "Learn the arcane arts and mystical spells",
-      "actions": [
-        {
-          "name": "Study Spellbook",
-          "displayName": "Study Spellbook",
-          "description": "Learn basic magical theory",
-          "icon": "📚",
-          "tooltip": "Study magic theory and spells",
-          "levelRequired": 1,
-          "xpReward": 12,
-          "timeRequired": 1,
-          "timeUnit": "hours",
-          "itemReward": "magical_knowledge",
-          "itemCount": 1,
-          "itemConsumption": {},
-          "unlockMessage": "You begin studying the arcane arts!",
-          "flavorText": "You pore over ancient spellbooks, memorizing incantations and magical theory.",
-          "skillType": "Magic"
-        },
-        {
-          "name": "Cast Fireball",
-          "displayName": "Cast Fireball",
-          "description": "Practice destructive fire magic",
-          "icon": "🔥",
-          "tooltip": "Cast fireball spell",
-          "levelRequired": 5,
-          "xpReward": 20,
-          "timeRequired": 0.5,
-          "timeUnit": "hours",
-          "itemReward": "magical_knowledge",
-          "itemCount": 1,
-          "itemConsumption": {},
-          "unlockMessage": "You can now cast fire spells!",
-          "flavorText": "A ball of flame erupts from your hands, illuminating the darkness.",
-          "skillType": "Fire Magic"
         }
       ]
     }
   },
   "messages": {
-    "actionUnlocked": "🎉 New action unlocked: {actionName} at level {level}!",
-    "skillLevelUp": "🎉 {skillName} increased to level {level}!",
-    "itemGained": "You gained {itemName} x{quantity}",
-    "itemUsed": "You used {itemName} x{quantity}",
-    "saveSuccess": "Game saved successfully!",
-    "saveError": "Failed to save game",
-    "noSaveFound": "No saved game found",
-    "loadSuccess": "Game loaded successfully!",
-    "loadError": "Failed to load game"
+    "welcome": "Welcome to Taverns and Treasures! Your adventure begins...",
+    "levelUp": "🎉 {skillName} level up! You are now level {level}.",
+    "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
+    "actionCompleted": "You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})",
+    "configError": "Error: Could not load game configuration. Please refresh the page.",
+    "configLoaded": "Game configuration loaded successfully",
+    "skillsConfigLoaded": "Skills configuration loaded successfully",
+    "skillsConfigError": "Error: Could not load skills configuration.",
+    "gameSaved": "🔄 Game progress saved",
+    "gameLoaded": "📥 Welcome back! Your progress has been loaded",
+    "noSaveFound": "🆕 No saved game found. Starting a new game",
+    "saveError": "⚠️ Failed to save game progress",
+    "loadError": "⚠️ Failed to load saved game",
+    "actionInsufficientItems": "Insufficient items to perform the action: {itemName}",
+    "actionItemsConsumed": "You consumed {itemCount}x {itemName}",
+    "actionItemsGained": "You gained {itemCount}x {itemName}",
+    "actionTimeRequired": "This action requires {time} {timeUnit} to complete"
   },
   "gameSettings": {
-    "xpFormula": "level * 100",
-    "defaultLevel": 1,
-    "defaultXp": 0,
     "initialWood": 0
   }
 } 

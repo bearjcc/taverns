@@ -100,10 +100,7 @@ body {
 }
 
 .action-button:hover {
-    background-color: #3a3a3a;
-    border-color: #666;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #444;
 }
 
 .action-button:active {
@@ -124,6 +121,16 @@ body {
     box-shadow: none;
 }
 
+.action-button.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #222;
+}
+
+.action-button.locked:hover {
+    background-color: #222;
+}
+
 /* Action button header with icon and title */
 .action-header {
     display: flex;
@@ -133,7 +140,7 @@ body {
 }
 
 .action-icon {
-    font-size: 18px;
+    font-size: 1.5em;
     min-width: 20px;
     text-align: center;
 }

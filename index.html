@@ -23,49 +23,42 @@
         
         <!-- Second Column: Action Buttons -->
         <div class="actions-column">
-            <div class="actions-content">
+            <div class="actions-content" id="actions-content">
                 <!-- Action buttons will be generated dynamically based on skill level -->
             </div>
         </div>
         
         <!-- Third Column: Sidebar -->
         <div class="sidebar-column">
-            <div class="sidebar-content">
-                <div class="sidebar-tabs" id="sidebar-tabs">
-                    <!-- Tabs will be generated dynamically from configuration -->
-                </div>
-                <div class="tab-content" id="tab-content">
-                    <!-- Tab panels will be generated dynamically from configuration -->
-                </div>
+            <div class="sidebar" id="sidebar">
+                <!-- Sidebar content will be generated dynamically from configuration -->
             </div>
         </div>
     </div>
     
     <button id="open-achievements-modal-btn" style="position:fixed;bottom:32px;right:32px;z-index:2100;display:none;min-width:48px;min-height:48px;font-size:1.5em;border-radius:50%;background:#333;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;">🏆</button>
-    <script>
-        // Wait for game engine and achievements system to be available
-        window.addEventListener('DOMContentLoaded', function() {
-            const btn = document.getElementById('open-achievements-modal-btn');
-            function tryEnableAchievementsBtn() {
-                if (window.gameEngine && window.gameEngine.getSystem && window.openAchievementsModal) {
-                    const achievementSystem = window.gameEngine.getSystem('achievements');
-                    if (achievementSystem) {
-                        btn.style.display = 'block';
-                        btn.onclick = function() {
-                            const data = achievementSystem.getAllAchievements();
-                            const unlocked = achievementSystem.getUnlockedAchievements();
-                            const progress = achievementSystem.getAchievementProgress();
-                            window.openAchievementsModal(data, unlocked, progress);
-                        };
-                    }
-                } else {
-                    setTimeout(tryEnableAchievementsBtn, 500);
-                }
-            }
-            tryEnableAchievementsBtn();
-        });
-    </script>
+    
+    <!-- Engine Core -->
+    <script src="engine/core/ConfigManager.js"></script>
+    <script src="engine/core/GameStateManager.js"></script>
+    
+    <!-- Engine Systems (Managers) -->
+    <script src="engine/systems/SkillManager.js"></script>
+    <script src="engine/systems/InventoryManager.js"></script>
+    <script src="engine/systems/ActionManager.js"></script>
+    <script src="engine/systems/TraitManager.js"></script>
+    
+    <!-- UI -->
+    <script src="engine/ui/UIManager.js"></script>
+    
+    <!-- Components -->
     <script src="components.js"></script>
+    
+    <!-- Main Game -->
     <script src="game.js"></script>
+    
+    <script>
+        // Placeholder for achievements logic
+    </script>
 </body>
 </html> 
