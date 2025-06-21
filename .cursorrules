@@ -19,15 +19,43 @@ Taverns is a text-based adventure game inspired by "A Dark Room" with a 3-column
 ### File Organization
 ```
 taverns/
-├── index.html          # Main game interface
-├── styles.css          # Dark theme styling and layout
-├── game.js            # Core game logic and systems
-├── game-config.json   # Game configuration and skill definitions
-├── data/
-│   ├── skills.json    # Skill tree structure and requirements
-│   └── game-config.json # Additional game data
-├── package.json       # Project dependencies and scripts
-└── Documentation files (README, TODO, etc.)
+├── index.html              # Main game interface
+├── package.json            # Project dependencies and scripts
+├── .gitignore             # Git ignore rules
+├── .cursorrules           # Cursor IDE configuration
+├── assets/                # Static assets
+│   ├── css/              # Stylesheets
+│   │   ├── styles.css    # Main game styles
+│   │   ├── components.css # Component styles
+│   │   └── species.css   # Species-specific styles
+│   └── js/               # JavaScript files
+│       ├── game.js       # Main game logic
+│       ├── components.js # UI components
+│       ├── species.js    # Species system
+│       ├── species-manager.js # Species management
+│       └── species-ui.js # Species UI components
+├── data/                  # Game data and configuration
+│   ├── config/           # Configuration files
+│   │   ├── game-config.json # Main game configuration
+│   │   └── manifest.json # Game manifest
+│   ├── skills.json       # Skill definitions
+│   ├── items.json        # Item definitions
+│   ├── species.json      # Species definitions
+│   └── traits.json       # Trait definitions
+├── engine/               # Game engine
+│   ├── core/            # Core engine components
+│   ├── systems/         # Game systems
+│   ├── ui/              # UI management
+│   └── utils/           # Utility functions
+├── tests/               # Test files
+│   ├── *.test.js        # Unit tests
+│   ├── test-utils.js    # Test utilities
+│   └── *.html           # Test pages
+└── docs/                # Documentation
+    ├── README.md        # Main documentation
+    ├── TODO.md          # Development tasks
+    ├── DEVELOPMENT_ROADMAP.md # Development plan
+    └── *.md             # Other documentation
 ```
 
 ## Core Systems
@@ -39,7 +67,7 @@ taverns/
 - **Progression**: XP-based leveling with configurable multipliers
 
 ### 2. Configuration-Driven Design
-- **game-config.json**: Contains UI configuration, constants, and skill action definitions
+- **data/config/game-config.json**: Contains UI configuration, constants, and skill action definitions
 - **data/skills.json**: Defines skill tree structure with categories, requirements, and sub-skills
 - **Dynamic Loading**: Configuration loaded asynchronously with fallback defaults
 
@@ -98,7 +126,7 @@ taverns/
 
 ## Configuration Structure
 
-### game-config.json
+### data/config/game-config.json
 ```json
 {
   "ui": {
@@ -138,19 +166,19 @@ taverns/
 
 ### 1. Adding New Skills
 1. Add skill definition to `data/skills.json`
-2. Add skill actions to `game-config.json`
+2. Add skill actions to `data/config/game-config.json`
 3. Update UI configuration if needed
 4. Test skill progression and unlocks
 
 ### 2. Adding New Actions
-1. Define action in `game-config.json` under appropriate skill
+1. Define action in `data/config/game-config.json` under appropriate skill
 2. Include: name, description, levelRequired, xpReward, itemReward
 3. Add flavor text and unlock messages
 4. Test action availability and rewards
 
 ### 3. UI Modifications
-1. Update CSS classes in `game-config.json` if adding new elements
-2. Follow existing dark theme patterns
+1. Update CSS classes in `data/config/game-config.json` if adding new elements
+2. Follow existing dark theme patterns in `assets/css/`
 3. Use monospace font (Courier New) for consistency
 4. Test responsive behavior across columns
 
@@ -159,6 +187,14 @@ taverns/
 2. Use deep merge for configuration updates
 3. Handle missing configuration gracefully
 4. Test with both valid and invalid configurations
+
+### 5. File Organization
+1. **CSS files**: Place in `assets/css/` directory
+2. **JavaScript files**: Place in `assets/js/` directory
+3. **Game data**: Place in `data/` directory
+4. **Configuration**: Place in `data/config/` directory
+5. **Tests**: Place in `tests/` directory
+6. **Documentation**: Place in `docs/` directory
 
 ## Future Considerations
 
@@ -227,6 +263,8 @@ if (!skillsConfig || !gameConfig) {
 8. **Preserve existing functionality** - don't remove working features
 9. **Use configuration-driven design** for new features
 10. **Maintain clean code principles** and meaningful naming
+11. **Follow the new file organization** - use appropriate directories for different file types
+12. **Update file paths** when referencing assets, data, or engine files
 
 ## Current Development Phase
 - **Phase 1**: Foundation complete (basic layout, skill system, persistence)
@@ -280,4 +318,5 @@ This project emphasizes clean, maintainable code with a focus on user experience
 - npm is the primary package manager
 - Development server runs via live-server with hot reload
 - File paths should respect Windows conventions
-- No build process - direct file serving for development 
+- No build process - direct file serving for development
+- Follow the new organized file structure when creating or modifying files 

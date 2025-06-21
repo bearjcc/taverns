@@ -15,7 +15,7 @@ class SpeciesManager {
      * @param {string} dataPath - Path to species data file
      * @returns {Promise<boolean>} True if loading successful
      */
-    async loadSpeciesData(dataPath = 'data/species.json') {
+    async loadSpeciesData(dataPath = '../data/species.json') {
         try {
             const response = await fetch(dataPath);
             if (!response.ok) {

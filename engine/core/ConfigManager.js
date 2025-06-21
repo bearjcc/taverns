@@ -90,7 +90,7 @@ class ConfigManager {
 
     async loadGameConfig() {
         try {
-            const response = await fetch('data/config/game-config.json');
+            const response = await fetch('../data/config/game-config.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -107,7 +107,7 @@ class ConfigManager {
 
     async loadSkillsConfig() {
         try {
-            const response = await fetch('data/skills.json');
+            const response = await fetch('../data/skills.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -123,7 +123,7 @@ class ConfigManager {
 
     async loadTraitsConfig() {
         try {
-            const response = await fetch('data/traits.json');
+            const response = await fetch('../data/traits.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

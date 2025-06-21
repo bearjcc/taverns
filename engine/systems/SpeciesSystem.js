@@ -184,7 +184,7 @@ class SpeciesSystem {
      */
     async loadSpeciesData(dataPath = null) {
         try {
-            const path = dataPath || this.speciesConfig || 'data/species.json';
+            const path = dataPath || this.speciesConfig || '../data/species.json';
             
             // If path is provided as a string, load from file
             if (typeof path === 'string') {

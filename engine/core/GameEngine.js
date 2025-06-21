@@ -213,8 +213,8 @@ class GameEngine {
     }
     
     async _loadModManifest(modId) {
-        // Load mod manifest from mods/{modId}/manifest.json
-        const response = await fetch(`mods/${modId}/manifest.json`);
+        // Load mod manifest from data/config/manifest.json
+        const response = await fetch('../data/config/manifest.json');
         return await response.json();
     }
     
@@ -225,10 +225,10 @@ class GameEngine {
         
         for (const file of dataFiles) {
             try {
-                const response = await fetch(`mods/${modId}/data/${file}.json`);
+                const response = await fetch(`../data/${file}.json`);
                 data[file] = await response.json();
             } catch (error) {
-                console.warn(`Could not load ${file}.json for mod ${modId}:`, error);
+                console.warn(`Could not load ${file}.json:`, error);
                 data[file] = {};
             }
         }
