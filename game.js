@@ -1,123 +1,141 @@
+// Skill class for managing individual skills
+class Skill {
+    constructor(name, level = 1, xp = 0) {
+        this.name = name;
+        this.level = level;
+        this.xp = xp;
+        this.xpToNext = this.getXpToNextLevel(level);
+    }
+
+    getXpToNextLevel(level) {
+        return level * 100;
+    }
+
+    addXp(amount) {
+        this.xp += amount;
+        let levelUps = 0;
+        
+        while (this.xp >= this.xpToNext) {
+            this.level++;
+            this.xp -= this.xpToNext;
+            this.xpToNext = this.getXpToNextLevel(this.level);
+            levelUps++;
+        }
+        
+        return levelUps;
+    }
+
+    getProgress() {
+        return (this.xp / this.xpToNext) * 100;
+    }
+}
+
+// Action class for skill actions
+class SkillAction {
+    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1) {
+        this.name = name;
+        this.description = description;
+        this.levelRequired = levelRequired;
+        this.xpReward = xpReward;
+        this.itemReward = itemReward;
+        this.itemCount = itemCount;
+    }
+}
+
+// SkillManager class for managing all skills and their actions
+class SkillManager {
+    constructor() {
+        this.skills = new Map();
+        this.skillActions = new Map();
+        this.newlyUnlockedActions = new Set();
+        this.initializeSkills();
+    }
+
+    initializeSkills() {
+        // Initialize woodcutting skill
+        this.skills.set('woodcutting', new Skill('Woodcutting'));
+        
+        // Define woodcutting actions
+        const woodcuttingActions = [
+            new SkillAction('Chop Oak', 'Chop oak logs', 1, 10, 'oak_logs'),
+            new SkillAction('Chop Willow', 'Chop willow logs', 5, 15, 'willow_logs'),
+            new SkillAction('Chop Maple', 'Chop maple logs', 10, 25, 'maple_logs'),
+            new SkillAction('Chop Yew', 'Chop yew logs', 20, 50, 'yew_logs'),
+            new SkillAction('Chop Magic', 'Chop magic logs', 30, 100, 'magic_logs')
+        ];
+        
+        this.skillActions.set('woodcutting', woodcuttingActions);
+    }
+
+    addSkill(skillName, skill) {
+        this.skills.set(skillName, skill);
+    }
+
+    addSkillActions(skillName, actions) {
+        this.skillActions.set(skillName, actions);
+    }
+
+    getSkill(skillName) {
+        return this.skills.get(skillName);
+    }
+
+    getAvailableActions(skillName) {
+        const skill = this.skills.get(skillName);
+        const actions = this.skillActions.get(skillName);
+        
+        if (!skill || !actions) return [];
+        
+        return actions.filter(action => skill.level >= action.levelRequired);
+    }
+
+    addSkillXp(skillName, xpAmount) {
+        const skill = this.skills.get(skillName);
+        if (!skill) return 0;
+        
+        const oldLevel = skill.level;
+        const levelUps = skill.addXp(xpAmount);
+        
+        // Check for new unlocks
+        if (levelUps > 0) {
+            this.checkForNewUnlocks(skillName, oldLevel + 1, skill.level);
+        }
+        
+        return levelUps;
+    }
+
+    checkForNewUnlocks(skillName, fromLevel, toLevel) {
+        const actions = this.skillActions.get(skillName);
+        if (!actions) return;
+        
+        for (let level = fromLevel; level <= toLevel; level++) {
+            const unlock = actions.find(action => action.levelRequired === level);
+            if (unlock) {
+                this.newlyUnlockedActions.add(unlock.name);
+                addNarrationMessage(`🔓 New action unlocked: ${unlock.name} (Level ${level})`);
+            }
+        }
+    }
+
+    isNewlyUnlocked(actionName) {
+        return this.newlyUnlockedActions.has(actionName);
+    }
+
+    markActionUsed(actionName) {
+        this.newlyUnlockedActions.delete(actionName);
+    }
+
+    getAllSkills() {
+        return Array.from(this.skills.values());
+    }
+}
+
 // Game state
 const gameState = {
     narration: [],
     woodCount: 0,
-    skills: {
-        woodcutting: {
-            name: "Woodcutting",
-            xp: 0,
-            level: 1,
-            xpToNext: 100
-        }
-    },
-    newlyUnlockedActions: [] // Track newly unlocked actions for visual feedback
+    inventory: {},
+    skillManager: new SkillManager()
 };
-
-// Woodcutting progression unlocks
-const woodcuttingUnlocks = {
-    1: {
-        name: "Chop Oak",
-        description: "Chop oak logs",
-        xpReward: 10,
-        itemReward: "oak_logs",
-        itemCount: 1
-    },
-    5: {
-        name: "Chop Willow",
-        description: "Chop willow logs",
-        xpReward: 15,
-        itemReward: "willow_logs",
-        itemCount: 1
-    },
-    10: {
-        name: "Chop Maple",
-        description: "Chop maple logs",
-        xpReward: 25,
-        itemReward: "maple_logs",
-        itemCount: 1
-    },
-    20: {
-        name: "Chop Yew",
-        description: "Chop yew logs",
-        xpReward: 50,
-        itemReward: "yew_logs",
-        itemCount: 1
-    },
-    30: {
-        name: "Chop Magic",
-        description: "Chop magic logs",
-        xpReward: 100,
-        itemReward: "magic_logs",
-        itemCount: 1
-    }
-};
-
-// Get available actions based on current woodcutting level
-function getAvailableWoodcuttingActions() {
-    const woodcuttingLevel = gameState.skills.woodcutting.level;
-    const availableActions = [];
-    
-    Object.entries(woodcuttingUnlocks).forEach(([level, action]) => {
-        if (woodcuttingLevel >= parseInt(level)) {
-            availableActions.push({
-                level: parseInt(level),
-                ...action
-            });
-        }
-    });
-    
-    return availableActions;
-}
-
-// XP requirements for each level (simple formula: level * 100)
-function getXpToNextLevel(level) {
-    return level * 100;
-}
-
-// Add XP to a skill and handle level ups
-function addSkillXp(skillName, xpAmount) {
-    const skill = gameState.skills[skillName];
-    if (!skill) return;
-    
-    skill.xp += xpAmount;
-    
-    // Check for level up
-    while (skill.xp >= skill.xpToNext) {
-        skill.level++;
-        skill.xp -= skill.xpToNext;
-        skill.xpToNext = getXpToNextLevel(skill.level);
-        
-        // Add level up message to narration
-        addNarrationMessage(`🎉 ${skill.name} level up! You are now level ${skill.level}.`);
-        
-        // Check for new unlocks
-        checkForNewUnlocks(skillName, skill.level);
-    }
-    
-    // Update skills display
-    updateSkillsDisplay();
-    // Update actions display
-    updateActionsDisplay();
-}
-
-// Check for new skill unlocks
-function checkForNewUnlocks(skillName, newLevel) {
-    if (skillName === 'woodcutting') {
-        const unlock = woodcuttingUnlocks[newLevel];
-        if (unlock) {
-            addNarrationMessage(`🔓 New action unlocked: ${unlock.name} (Level ${newLevel})`);
-            // Add to newly unlocked actions for visual feedback
-            gameState.newlyUnlockedActions.push(unlock.name);
-        }
-    }
-}
-
-// Calculate progress percentage for skill bar
-function getSkillProgress(skill) {
-    const progressInLevel = skill.xp;
-    const totalForLevel = skill.xpToNext;
-    return (progressInLevel / totalForLevel) * 100;
-}
 
 // Update the skills display in the sidebar
 function updateSkillsDisplay() {
@@ -126,11 +144,11 @@ function updateSkillsDisplay() {
     
     skillsContent.innerHTML = '';
     
-    Object.values(gameState.skills).forEach(skill => {
+    gameState.skillManager.getAllSkills().forEach(skill => {
         const skillElement = document.createElement('div');
         skillElement.className = 'skill-item';
         
-        const progress = getSkillProgress(skill);
+        const progress = skill.getProgress();
         
         skillElement.innerHTML = `
             <div class="skill-header">
@@ -156,9 +174,14 @@ function updateActionsDisplay() {
     
     actionsContent.innerHTML = '';
     
-    const availableActions = getAvailableWoodcuttingActions();
+    // Get all available actions from all skills
+    const allActions = [];
     
-    availableActions.forEach(action => {
+    // For now, just show woodcutting actions
+    const woodcuttingActions = gameState.skillManager.getAvailableActions('woodcutting');
+    allActions.push(...woodcuttingActions);
+    
+    allActions.forEach(action => {
         const actionButton = document.createElement('button');
         actionButton.className = 'action-button';
         actionButton.textContent = `${action.name} (${action.xpReward} XP)`;
@@ -168,40 +191,41 @@ function updateActionsDisplay() {
         actionButton.setAttribute('data-count', action.itemCount);
         
         // Add visual feedback for newly unlocked actions
-        if (gameState.newlyUnlockedActions.includes(action.name)) {
+        if (gameState.skillManager.isNewlyUnlocked(action.name)) {
             actionButton.classList.add('new-unlock');
         }
         
-        actionButton.addEventListener('click', () => handleWoodcuttingAction(action));
+        actionButton.addEventListener('click', () => handleSkillAction(action));
         actionsContent.appendChild(actionButton);
     });
 }
 
-// Handle woodcutting actions
-function handleWoodcuttingAction(action) {
-    // Add XP to woodcutting skill
-    addSkillXp('woodcutting', action.xpReward);
+// Generic action handler for any skill
+function handleSkillAction(action) {
+    // Determine which skill this action belongs to
+    let skillName = 'woodcutting'; // For now, hardcoded. Could be improved with skill mapping
     
-    // Add item to inventory (placeholder for now)
-    if (!gameState.inventory) {
-        gameState.inventory = {};
-    }
+    // Add XP to the skill
+    const levelUps = gameState.skillManager.addSkillXp(skillName, action.xpReward);
     
+    // Add item to inventory
     if (!gameState.inventory[action.itemReward]) {
         gameState.inventory[action.itemReward] = 0;
     }
-    
     gameState.inventory[action.itemReward] += action.itemCount;
     
     // Add narration message
     addNarrationMessage(`You ${action.name.toLowerCase()} and gained ${action.xpReward} XP. (${action.itemReward}: ${gameState.inventory[action.itemReward]})`);
     
     // Remove from newly unlocked actions after first use
-    const index = gameState.newlyUnlockedActions.indexOf(action.name);
-    if (index > -1) {
-        gameState.newlyUnlockedActions.splice(index, 1);
+    if (gameState.skillManager.isNewlyUnlocked(action.name)) {
+        gameState.skillManager.markActionUsed(action.name);
         updateActionsDisplay(); // Refresh to remove the visual effect
     }
+    
+    // Update displays
+    updateSkillsDisplay();
+    updateActionsDisplay();
 }
 
 // Tab switching functionality
