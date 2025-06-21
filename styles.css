@@ -310,4 +310,39 @@ body {
     font-size: 24px;
     color: white;
     z-index: 9999;
+}
+
+/* Add styles for save game functionality */
+.save-game-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background-color: #45a049;
+}
+
+#last-saved-time {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
 } 

@@ -59,7 +59,12 @@ const DEFAULT_CONFIG = {
         configError: 'Error: Could not load game configuration. Please refresh the page.',
         configLoaded: 'Game configuration loaded successfully',
         skillsConfigLoaded: 'Skills configuration loaded successfully',
-        skillsConfigError: 'Error: Could not load skills configuration.'
+        skillsConfigError: 'Error: Could not load skills configuration.',
+        gameSaved: '🔄 Game progress saved',
+        gameLoaded: '📥 Welcome back! Your progress has been loaded',
+        noSaveFound: '🆕 No saved game found. Starting a new game',
+        saveError: '⚠️ Failed to save game progress',
+        loadError: '⚠️ Failed to load saved game'
     },
     gameSettings: {
         initialWood: 0
@@ -248,24 +253,113 @@ class SkillManager {
         return Array.from(this.skills.values());
     }
 
-    // Get all available actions from all skills
     getAllAvailableActions() {
         const allActions = [];
-        for (const [skillName, actions] of this.skillActions) {
+        this.skills.forEach((skill, skillName) => {
             const availableActions = this.getAvailableActions(skillName);
             allActions.push(...availableActions);
-        }
+        });
         return allActions;
     }
 }
 
-// Game state
+// Game state object to track all player data
 const gameState = {
-    narration: [],
-    woodCount: 0,
+    skillManager: new SkillManager(),
     inventory: {},
-    skillManager: new SkillManager()
+    lastSaved: null
 };
+
+// Game state persistence functions
+function saveGameState() {
+    try {
+        const saveData = {
+            skills: Array.from(gameState.skillManager.skills.entries()).reduce((obj, [key, skill]) => {
+                obj[key] = {
+                    level: skill.level,
+                    xp: skill.xp
+                };
+                return obj;
+            }, {}),
+            inventory: gameState.inventory,
+            lastSaved: new Date().toISOString()
+        };
+        
+        localStorage.setItem('tavernsGameSave', JSON.stringify(saveData));
+        gameState.lastSaved = saveData.lastSaved;
+        console.log('Game saved successfully at', new Date().toLocaleString());
+        
+        // Update the last saved time display
+        updateLastSavedTime();
+        
+        // Only show save message if not during initialization
+        if (gameConfig && document.getElementById('loading').style.display === 'none') {
+            addNarrationMessage(gameConfig.messages.gameSaved);
+        }
+        
+        return true;
+    } catch (error) {
+        console.error('Failed to save game:', error);
+        if (gameConfig) {
+            addNarrationMessage(gameConfig.messages.saveError);
+        }
+        return false;
+    }
+}
+
+function loadGameState() {
+    try {
+        const saveData = localStorage.getItem('tavernsGameSave');
+        if (!saveData) {
+            console.log('No saved game found, starting new game');
+            if (gameConfig) {
+                addNarrationMessage(gameConfig.messages.noSaveFound);
+            }
+            return false;
+        }
+        
+        const parsedData = JSON.parse(saveData);
+        
+        // Load skills data
+        if (parsedData.skills) {
+            Object.entries(parsedData.skills).forEach(([skillName, skillData]) => {
+                const skill = gameState.skillManager.getSkill(skillName);
+                if (skill) {
+                    skill.level = skillData.level;
+                    skill.xp = skillData.xp;
+                    skill.xpToNext = skill.getXpToNextLevel(skill.level);
+                }
+            });
+        }
+        
+        // Load inventory data
+        if (parsedData.inventory) {
+            gameState.inventory = parsedData.inventory;
+        }
+        
+        // Store last saved timestamp
+        gameState.lastSaved = parsedData.lastSaved;
+        
+        console.log('Game loaded successfully from', new Date(parsedData.lastSaved).toLocaleString());
+        if (gameConfig) {
+            addNarrationMessage(gameConfig.messages.gameLoaded);
+        }
+        return true;
+    } catch (error) {
+        console.error('Failed to load game:', error);
+        if (gameConfig) {
+            addNarrationMessage(gameConfig.messages.loadError);
+        }
+        return false;
+    }
+}
+
+// Auto-save function that saves the game state periodically
+function setupAutoSave(intervalMinutes = 2) {
+    const intervalMs = intervalMinutes * 60 * 1000;
+    setInterval(saveGameState, intervalMs);
+    console.log(`Auto-save enabled, saving every ${intervalMinutes} minutes`);
+}
 
 // Utility for deep merging objects
 function deepMerge(target, source) {
@@ -318,284 +412,368 @@ async function loadSkillsConfig() {
 
 // Update the skills display in the sidebar
 function updateSkillsDisplay() {
-    const skillsContent = document.getElementById(gameConfig.ui.elementIds.skillsContent);
+    const skillsContent = document.getElementById('skills-content');
     if (!skillsContent) return;
-    skillsContent.innerHTML = ''; // Clear previous content
-
-    const { cssClasses } = gameConfig.ui;
-    const playerSkills = gameState.skillManager.skills;
-
-    const createSkillHtml = (skillName, skill) => {
-        if (!skill) return '';
-        const progress = skill.getProgress();
-        return `
-            <div class="${cssClasses.skillItem}" data-skill-name="${skillName}">
-                <div class="${cssClasses.skillHeader}">
-                    <span class="${cssClasses.skillName}">${skill.name}</span>
-                    <span class="${cssClasses.skillLevel}">Lvl ${skill.level}</span>
-                </div>
-                <div class="${cssClasses.skillProgressContainer}">
-                    <div class="${cssClasses.skillProgressBar}">
-                        <div class="${cssClasses.skillProgressFill}" style="width: ${progress}%"></div>
-                    </div>
-                </div>
-                <div class="${cssClasses.skillXp}">${skill.xp.toFixed(0)} / ${skill.xpToNext} XP</div>
-            </div>
-        `;
-    };
-
-    const generateHtmlForCategory = (categoryName, categoryData) => {
-        let categoryHtml = `<div class="skill-category" data-category-name="${categoryName}"><h2>${categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}</h2>`;
-
-        for (const [key, data] of Object.entries(categoryData)) {
-            const skill = playerSkills.get(key);
-            if (skill) {
-                categoryHtml += createSkillHtml(key, skill);
-            }
-
-            if (data.sub_skills) {
-                let subcategoryName = key;
-                if (data.description) {
-                    subcategoryName = `<span title="${data.description}">${key}</span>`;
-                }
-                if (data.requires) {
-                    subcategoryName += ` <span class="skill-requirement">(${data.requires.skill} ${data.requires.level}+)</span>`;
-                }
-
-                categoryHtml += `<div class="skill-subcategory" data-subcategory-name="${key}"><h3>${subcategoryName}</h3>`;
-                categoryHtml += generateHtmlForCategory(key, data.sub_skills); // Recursive call
-                categoryHtml += `</div>`;
-            } else if (data.requires && !playerSkills.has(key)) {
-                // This is for professional skills without sub-skills that are not yet unlocked.
-                // We can choose to show them as locked. For now, we'll just not show them until they are a "skill".
-                // The logic to unlock them needs to be implemented.
-            }
-        }
-
-        categoryHtml += `</div>`;
-        return categoryHtml;
-    };
     
-    if (skillsConfig) {
-        for (const categoryName in skillsConfig) {
-            skillsContent.innerHTML += generateHtmlForCategory(categoryName, skillsConfig[categoryName]);
-        }
+    // Clear existing content
+    skillsContent.innerHTML = '';
+    
+    if (!skillsConfig) {
+        skillsContent.innerHTML = '<p>Skills not loaded yet...</p>';
+        return;
+    }
+    
+    // Create HTML for each skill category
+    for (const categoryName in skillsConfig) {
+        const categoryHTML = generateHtmlForCategory(categoryName, skillsConfig[categoryName]);
+        skillsContent.appendChild(categoryHTML);
     }
 }
 
+const createSkillHtml = (skillName, skill) => {
+    const div = document.createElement('div');
+    div.className = gameConfig.ui.cssClasses.skillItem;
+    
+    const header = document.createElement('div');
+    header.className = gameConfig.ui.cssClasses.skillHeader;
+    
+    const nameSpan = document.createElement('span');
+    nameSpan.className = gameConfig.ui.cssClasses.skillName;
+    nameSpan.textContent = skillName;
+    
+    const levelSpan = document.createElement('span');
+    levelSpan.className = gameConfig.ui.cssClasses.skillLevel;
+    levelSpan.textContent = `Level ${skill.level}`;
+    
+    header.appendChild(nameSpan);
+    header.appendChild(levelSpan);
+    
+    const progressContainer = document.createElement('div');
+    progressContainer.className = gameConfig.ui.cssClasses.skillProgressContainer;
+    
+    const progressBar = document.createElement('div');
+    progressBar.className = gameConfig.ui.cssClasses.skillProgressBar;
+    
+    const progressFill = document.createElement('div');
+    progressFill.className = gameConfig.ui.cssClasses.skillProgressFill;
+    progressFill.style.width = `${skill.getProgress()}%`;
+    
+    const xpSpan = document.createElement('span');
+    xpSpan.className = gameConfig.ui.cssClasses.skillXp;
+    xpSpan.textContent = `XP: ${skill.xp}/${skill.xpToNext}`;
+    
+    progressBar.appendChild(progressFill);
+    progressContainer.appendChild(progressBar);
+    progressContainer.appendChild(xpSpan);
+    
+    div.appendChild(header);
+    div.appendChild(progressContainer);
+    
+    return div;
+};
+
+const generateHtmlForCategory = (categoryName, categoryData) => {
+    const container = document.createElement('div');
+    container.className = 'skill-category';
+    
+    const title = document.createElement('h3');
+    title.textContent = categoryName;
+    container.appendChild(title);
+    
+    for (const [key, data] of Object.entries(categoryData)) {
+        if (data.hasOwnProperty('level')) {
+            const skill = gameState.skillManager.getSkill(key);
+            if (skill) {
+                const skillHtml = createSkillHtml(key, skill);
+                container.appendChild(skillHtml);
+            }
+        }
+        
+        if (data.sub_skills) {
+            const subCategoryHtml = generateHtmlForCategory(`${key}`, data.sub_skills);
+            subCategoryHtml.classList.add('sub-category');
+            container.appendChild(subCategoryHtml);
+        }
+    }
+    
+    return container;
+};
+
 // Update the actions display
 function updateActionsDisplay() {
-    const config = gameConfig || DEFAULT_CONFIG;
     const actionsContent = document.querySelector('.actions-content');
     if (!actionsContent) return;
     
+    // Clear existing content
     actionsContent.innerHTML = '';
     
-    // Get all available actions from all skills
+    if (!gameState.skillManager) {
+        actionsContent.innerHTML = '<p>Actions not loaded yet...</p>';
+        return;
+    }
+    
     const allActions = gameState.skillManager.getAllAvailableActions();
     
+    if (allActions.length === 0) {
+        actionsContent.innerHTML = '<p>No actions available yet.</p>';
+        return;
+    }
+    
+    // Group actions by skill type
+    const actionsBySkill = {};
     allActions.forEach(action => {
-        const actionButton = document.createElement('button');
-        actionButton.className = config.ui.cssClasses.actionButton;
-        actionButton.textContent = `${action.name} (${action.xpReward} XP)`;
-        actionButton.setAttribute('data-action', action.name.toLowerCase().replace(/\s+/g, '-'));
-        actionButton.setAttribute('data-xp', action.xpReward);
-        actionButton.setAttribute('data-item', action.itemReward);
-        actionButton.setAttribute('data-count', action.itemCount);
-        actionButton.setAttribute('data-skill', action.skillType);
-        
-        // Add visual feedback for newly unlocked actions
-        if (gameState.skillManager.isNewlyUnlocked(action.name)) {
-            actionButton.classList.add(config.ui.cssClasses.newUnlock);
+        if (!actionsBySkill[action.skillType]) {
+            actionsBySkill[action.skillType] = [];
         }
-        
-        actionButton.addEventListener('click', () => handleSkillAction(action));
-        actionsContent.appendChild(actionButton);
+        actionsBySkill[action.skillType].push(action);
     });
+    
+    // Create action buttons grouped by skill
+    for (const skillType in actionsBySkill) {
+        const skillHeader = document.createElement('h3');
+        skillHeader.textContent = skillType;
+        actionsContent.appendChild(skillHeader);
+        
+        actionsBySkill[skillType].forEach(action => {
+            const button = document.createElement('button');
+            button.className = gameConfig.ui.cssClasses.actionButton;
+            button.textContent = action.name;
+            button.title = action.description;
+            
+            // Add new unlock highlight if needed
+            if (gameState.skillManager.isNewlyUnlocked(action.name)) {
+                button.classList.add(gameConfig.ui.cssClasses.newUnlock);
+            }
+            
+            button.addEventListener('click', () => handleSkillAction(action));
+            actionsContent.appendChild(button);
+        });
+    }
 }
 
 // Generic action handler for any skill
 function handleSkillAction(action) {
-    const config = gameConfig || DEFAULT_CONFIG;
-    
-    // Use the skill type from the action to determine which skill to add XP to
-    const skillName = action.skillType;
+    // Get the skill associated with this action
+    const skill = gameState.skillManager.getSkill(action.skillType);
+    if (!skill) {
+        console.error(`Skill ${action.skillType} not found for action ${action.name}`);
+        return;
+    }
     
     // Add XP to the skill
-    const levelUps = gameState.skillManager.addSkillXp(skillName, action.xpReward);
+    const levelUps = gameState.skillManager.addSkillXp(action.skillType, action.xpReward);
     
-    // Add item to inventory
+    // Update inventory
     if (!gameState.inventory[action.itemReward]) {
         gameState.inventory[action.itemReward] = 0;
     }
     gameState.inventory[action.itemReward] += action.itemCount;
     
-    // Add narration message using config template
-    const message = config.messages.actionCompleted
+    // Display message
+    const message = gameConfig.messages.actionCompleted
         .replace('{actionName}', action.name.toLowerCase())
         .replace('{xpReward}', action.xpReward)
         .replace('{itemReward}', action.itemReward)
-        .replace('{itemCount}', gameState.inventory[action.itemReward]);
+        .replace('{itemCount}', action.itemCount);
     
     addNarrationMessage(message);
     
-    // Remove from newly unlocked actions after first use
-    if (gameState.skillManager.isNewlyUnlocked(action.name)) {
-        gameState.skillManager.markActionUsed(action.name);
-        updateActionsDisplay(); // Refresh to remove the visual effect
+    // If there were level ups, display those messages
+    if (levelUps > 0) {
+        const levelUpMessage = gameConfig.messages.levelUp
+            .replace('{skillName}', action.skillType)
+            .replace('{level}', skill.level);
+        
+        addNarrationMessage(levelUpMessage);
     }
     
-    // Update displays
+    // Mark this action as no longer newly unlocked
+    gameState.skillManager.markActionUsed(action.name);
+    
+    // Update the UI
     updateSkillsDisplay();
     updateActionsDisplay();
+    
+    // Save game after each action
+    saveGameState();
 }
 
 // Tab switching functionality
 function switchTab(tabName) {
-    const config = gameConfig || DEFAULT_CONFIG;
+    // Get all tab buttons and panels
+    const tabButtons = document.querySelectorAll(`.${gameConfig.ui.cssClasses.tabButton}`);
+    const tabPanels = document.querySelectorAll(`.${gameConfig.ui.cssClasses.tabPanel}`);
     
-    // Remove active class from all tabs and panels
-    document.querySelectorAll(`.${config.ui.cssClasses.tabButton}`).forEach(btn => 
-        btn.classList.remove(config.ui.cssClasses.active)
-    );
-    document.querySelectorAll(`.${config.ui.cssClasses.tabPanel}`).forEach(panel => 
-        panel.classList.remove(config.ui.cssClasses.active)
-    );
+    // Remove active class from all buttons and panels
+    tabButtons.forEach(button => button.classList.remove(gameConfig.ui.cssClasses.active));
+    tabPanels.forEach(panel => panel.classList.remove(gameConfig.ui.cssClasses.active));
     
-    // Add active class to selected tab and panel
-    document.querySelector(`[data-tab="${tabName}"]`).classList.add(config.ui.cssClasses.active);
-    document.getElementById(`${tabName}-tab`).classList.add(config.ui.cssClasses.active);
+    // Add active class to selected tab button and panel
+    const selectedButton = document.getElementById(`${tabName}-tab`);
+    const selectedPanel = document.getElementById(`${tabName}-panel`);
+    
+    if (selectedButton) {
+        selectedButton.classList.add(gameConfig.ui.cssClasses.active);
+    }
+    
+    if (selectedPanel) {
+        selectedPanel.classList.add(gameConfig.ui.cssClasses.active);
+    }
+    
+    // Update UI based on selected tab
+    if (tabName === 'skills') {
+        updateSkillsDisplay();
+    } else if (tabName === 'inventory') {
+        // Update inventory display when implemented
+    } else if (tabName === 'character') {
+        // Update character display and last saved time
+        updateLastSavedTime();
+    }
 }
-
-// DOM elements
-const narrationContent = document.getElementById('narration-content');
 
 // Narration system
 function addNarrationMessage(message) {
-    const config = gameConfig || DEFAULT_CONFIG;
+    const narrationContent = document.getElementById('narration-content');
+    if (!narrationContent) return;
     
     const messageElement = document.createElement('div');
-    messageElement.className = config.ui.cssClasses.narrationMessage;
+    messageElement.className = gameConfig.ui.cssClasses.narrationMessage;
     messageElement.textContent = message;
     
     narrationContent.appendChild(messageElement);
     
     // Auto-scroll to bottom
     narrationContent.scrollTop = narrationContent.scrollHeight;
-    
-    // Store in game state
-    gameState.narration.push(message);
 }
 
 // Generate tabs dynamically from configuration
 function generateTabsFromConfig() {
-    const config = gameConfig || DEFAULT_CONFIG;
-    const sidebarTabs = document.getElementById('sidebar-tabs');
+    // Create tab buttons
+    const tabsContainer = document.getElementById('sidebar-tabs');
+    tabsContainer.innerHTML = '';
+    
+    // Add tabs from config
+    if (gameConfig && gameConfig.ui && gameConfig.ui.tabs) {
+        gameConfig.ui.tabs.forEach(tab => {
+            const tabButton = document.createElement('button');
+            tabButton.id = `${tab.id}-tab`;
+            tabButton.className = gameConfig.ui.cssClasses.tabButton;
+            tabButton.innerHTML = `${tab.icon} ${tab.displayName}`;
+            tabButton.addEventListener('click', () => switchTab(tab.id));
+            tabsContainer.appendChild(tabButton);
+        });
+    }
+    
+    // Create tab panels
     const tabContent = document.getElementById('tab-content');
-    
-    if (!sidebarTabs || !tabContent) return;
-    
-    // Clear existing content
-    sidebarTabs.innerHTML = '';
     tabContent.innerHTML = '';
     
-    // Generate tabs from configuration
-    config.ui.tabs.forEach((tab, index) => {
-        // Create tab button
-        const tabButton = document.createElement('button');
-        tabButton.className = config.ui.cssClasses.tabButton;
-        tabButton.setAttribute('data-tab', tab.id);
-        tabButton.innerHTML = `${tab.icon} ${tab.displayName}`;
-        
-        // Make first tab active by default
-        if (index === 0) {
-            tabButton.classList.add(config.ui.cssClasses.active);
-        }
-        
-        sidebarTabs.appendChild(tabButton);
-        
-        // Create tab panel
-        const tabPanel = document.createElement('div');
-        tabPanel.id = `${tab.id}-tab`;
-        tabPanel.className = config.ui.cssClasses.tabPanel;
-        
-        // Make first panel active by default
-        if (index === 0) {
-            tabPanel.classList.add(config.ui.cssClasses.active);
-        }
-        
-        // Add content based on tab type
-        switch (tab.id) {
-            case 'skills':
-                tabPanel.innerHTML = `
-                    <h3>${tab.displayName}</h3>
-                    <div id="${config.ui.elementIds.skillsContent}">
-                        <!-- Skills will be populated by JavaScript -->
-                    </div>
-                `;
-                break;
-            case 'inventory':
-                tabPanel.innerHTML = `
-                    <h3>${tab.displayName}</h3>
-                    <p>Inventory system coming soon...</p>
-                `;
-                break;
-            case 'character':
-                tabPanel.innerHTML = `
-                    <h3>${tab.displayName}</h3>
-                    <p>Character info coming soon...</p>
-                `;
-                break;
-            default:
-                tabPanel.innerHTML = `
-                    <h3>${tab.displayName}</h3>
-                    <p>Content for ${tab.displayName} coming soon...</p>
-                `;
-        }
-        
-        tabContent.appendChild(tabPanel);
-    });
+    // Add skills tab panel
+    const skillsPanel = document.createElement('div');
+    skillsPanel.id = 'skills-panel';
+    skillsPanel.className = `${gameConfig.ui.cssClasses.tabPanel} ${gameConfig.ui.cssClasses.active}`;
+    skillsPanel.innerHTML = `<div id="skills-content"></div>`;
+    tabContent.appendChild(skillsPanel);
     
-    // Add event listeners to tabs
-    document.querySelectorAll(`.${config.ui.cssClasses.tabButton}`).forEach(button => {
-        button.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-            switchTab(tabName);
+    // Add inventory tab panel
+    const inventoryPanel = document.createElement('div');
+    inventoryPanel.id = 'inventory-panel';
+    inventoryPanel.className = gameConfig.ui.cssClasses.tabPanel;
+    inventoryPanel.innerHTML = `
+        <h2>Inventory</h2>
+        <div id="inventory-content">
+            <p>Your inventory is empty.</p>
+        </div>
+    `;
+    tabContent.appendChild(inventoryPanel);
+    
+    // Add character tab panel
+    const characterPanel = document.createElement('div');
+    characterPanel.id = 'character-panel';
+    characterPanel.className = gameConfig.ui.cssClasses.tabPanel;
+    
+    // Add save game button to character panel
+    characterPanel.innerHTML = `
+        <h2>Character</h2>
+        <div id="character-content">
+            <p>Your character information will appear here.</p>
+            <div class="save-game-container">
+                <button id="save-game-button" class="save-button">💾 Save Game</button>
+                <p id="last-saved-time"></p>
+            </div>
+        </div>
+    `;
+    tabContent.appendChild(characterPanel);
+    
+    // Add event listener for save button
+    const saveButton = document.getElementById('save-game-button');
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            const success = saveGameState();
+            if (success) {
+                updateLastSavedTime();
+            }
         });
-    });
+    }
+    
+    // Set initial active tab
+    switchTab('skills');
+    
+    // Update last saved time if available
+    updateLastSavedTime();
+}
+
+// Update the last saved time display
+function updateLastSavedTime() {
+    const lastSavedElement = document.getElementById('last-saved-time');
+    if (lastSavedElement && gameState.lastSaved) {
+        const date = new Date(gameState.lastSaved);
+        lastSavedElement.textContent = `Last saved: ${date.toLocaleString()}`;
+    } else if (lastSavedElement) {
+        lastSavedElement.textContent = 'Game not saved yet';
+    }
 }
 
 // Initialize game
 async function initGame() {
     // Show loading indicator
     document.getElementById('loading').style.display = 'block';
-
+    
     try {
         // Load game and skills configurations
         await loadGameConfig();
         await loadSkillsConfig();
-
+        
         // Check for config loading errors
-        if (!gameConfig) {
+        if (!gameConfig || !skillsConfig) {
             addNarrationMessage('Critical Error: Game configuration could not be loaded.');
             return;
         }
-
+        
         // Load skill data into the manager
         gameState.skillManager.loadFromConfig(skillsConfig, gameConfig);
-
-        // Generate tabs from config
-        generateTabsFromConfig();
         
-        // Initial UI setup
+        // Try to load saved game data
+        const loadedSave = loadGameState();
+        
+        // If no save was loaded, show welcome message
+        if (!loadedSave) {
+            addNarrationMessage(gameConfig.messages.welcome);
+        }
+        
+        // Setup UI
+        generateTabsFromConfig();
         updateSkillsDisplay();
         updateActionsDisplay();
-        switchTab('skills'); 
-        addNarrationMessage(gameConfig.messages.welcome);
-
+        
+        // Setup auto-save
+        setupAutoSave();
+        
+        // Add event listener for saving before page unload
+        window.addEventListener('beforeunload', saveGameState);
+        
     } catch (error) {
-        console.error('An error occurred during game initialization:', error);
-        addNarrationMessage('A critical error occurred. Please refresh the page.');
+        console.error('Error during game initialization:', error);
     } finally {
         // Hide loading indicator
         document.getElementById('loading').style.display = 'none';

@@ -8,6 +8,9 @@
 - [x] Set up testing framework
 - [x] **Implement basic 3-column layout with narration system**
 - [x] **Set up GitHub Pages deployment**
+- [x] **Implement game state persistence using localStorage**
+- [x] **Add auto-save functionality**
+- [x] **Add manual save option**
 - [ ] Analyze existing files and lore
 - [ ] Extract game directives from existing content
 - [ ] Create detailed technical specifications
@@ -27,6 +30,7 @@
 - [ ] Modding support
 - [ ] **Sidebar tabs (backpack, gear, character info)**
 - [ ] **Advanced action system**
+- [ ] **User accounts and cloud saves**
 
 ## Technical Debt
 *[To be identified during development]*

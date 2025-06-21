@@ -50,14 +50,17 @@ npm run deploy
 - ✅ Dark theme with monospace font
 - ✅ Rapid development environment
 - ✅ Automatic GitHub Pages deployment
+- ✅ Game state persistence (localStorage)
+- ✅ Auto-save functionality
+- ✅ Manual save option
 
 ## 🔮 Future Features
 
 - [ ] Sidebar tabs (backpack, gear, character info)
 - [ ] Advanced action system
-- [ ] Game state persistence
 - [ ] More complex game mechanics
 - [ ] Social features (planned for later phases)
+- [ ] User accounts and cloud saves
 
 ## 📝 Development Philosophy
 

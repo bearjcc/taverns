@@ -270,7 +270,12 @@
     "configError": "Error: Could not load game configuration. Please refresh the page.",
     "configLoaded": "Game configuration loaded successfully",
     "skillsConfigLoaded": "Skills configuration loaded successfully",
-    "skillsConfigError": "Error: Could not load skills configuration."
+    "skillsConfigError": "Error: Could not load skills configuration.",
+    "gameSaved": "🔄 Game progress saved",
+    "gameLoaded": "📥 Welcome back! Your progress has been loaded",
+    "noSaveFound": "🆕 No saved game found. Starting a new game",
+    "saveError": "⚠️ Failed to save game progress",
+    "loadError": "⚠️ Failed to load saved game"
   },
   "gameSettings": {
     "xpFormula": "level * 100",
