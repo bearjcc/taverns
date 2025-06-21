@@ -107,7 +107,8 @@ async function initializeGameObjects() {
 // Update all UI displays
 function updateAllDisplays() {
     const gameConfig = configManager.getGameConfig();
-    uiManager.updateSkillsDisplay(skillManager, gameConfig);
+    const skillsConfig = configManager.getSkillsConfig();
+    uiManager.updateSkillsDisplay(skillManager, skillsConfig);
     uiManager.updateActionsDisplay(actionManager, skillManager, inventoryManager, gameConfig);
     uiManager.updateInventoryDisplay(inventoryManager, gameConfig);
     uiManager.updateCharacterDisplay(traitManager, gameConfig);

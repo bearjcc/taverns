@@ -15,43 +15,84 @@ class UIManager {
         }
     }
 
-    updateSkillsDisplay(skillManager, gameConfig) {
+    updateSkillsDisplay(skillManager, skillsConfig) {
         const skillsContent = document.getElementById('skills-content');
         if (!skillsContent) return;
 
-        const skills = skillManager.getAllSkills();
-        let html = '<h3>Skills</h3>';
+        const { skill_categories, skills: skillsData } = skillsConfig;
+        const playerSkills = skillManager.getAllSkills();
+        let html = '';
 
-        if (skills.length === 0) {
-            html += '<p>No skills available.</p>';
-        } else {
-            for (const skill of skills) {
-                html += this.createSkillHtml(skill.name, skill, gameConfig);
+        skill_categories.forEach(category => {
+            html += this.createSkillCategoryHtml(category);
+
+            const skillsInCategoryNames = Object.keys(skillsData).filter(skillName => skillsData[skillName].type === category.id);
+
+            if (skillsInCategoryNames.length > 0) {
+                skillsInCategoryNames.forEach(skillName => {
+                    const skillDetails = skillsData[skillName];
+                    let playerSkill = playerSkills.find(s => s.name === skillName);
+
+                    if (!playerSkill) {
+                        // Create a mock skill object for locked skills or skills the player hasn't acquired yet
+                        playerSkill = { name: skillName, level: 0, locked: skillDetails.locked, xp: 0, xpToNext: 100, getProgress: () => 0 };
+                    }
+                    html += this.createSkillHtml(skillName, skillDetails, playerSkill);
+                });
             }
-        }
+            html += `</div></div>`;
+        });
 
         skillsContent.innerHTML = html;
     }
 
-    createSkillHtml(skillName, skill, gameConfig) {
-        const cssClasses = gameConfig?.ui?.cssClasses || {};
-        const progress = skill.getProgress();
-        
+    createSkillCategoryHtml(category) {
         return `
-            <div class="${cssClasses.skillItem || 'skill-item'}">
-                <div class="${cssClasses.skillHeader || 'skill-header'}">
-                    <span class="${cssClasses.skillName || 'skill-name'}">${skillName}</span>
-                    <span class="${cssClasses.skillLevel || 'skill-level'}">Level ${skill.level}</span>
+            <div class="skill-category">
+                <div class="skill-category-header" onclick="uiManager.toggleSkillCategory(this)">
+                    <span class="skill-category-toggle">▶</span>
+                    <span class="skill-category-name">${category.name.toUpperCase()}</span>
                 </div>
-                <div class="${cssClasses.skillProgressContainer || 'skill-progress-container'}">
-                    <div class="${cssClasses.skillProgressBar || 'skill-progress-bar'}">
-                        <div class="${cssClasses.skillProgressFill || 'skill-progress-fill'}" 
-                             style="width: ${progress}%"></div>
+                <div class="skill-items-container">
+        `;
+    }
+
+    createSkillHtml(skillName, skillDetails, playerSkill) {
+        const isLocked = playerSkill.locked || skillDetails.locked;
+
+        if (isLocked) {
+            return `
+                <div class="skill-item locked">
+                    <div class="skill-info">
+                        <span class="skill-icon">${skillDetails.icon}</span>
+                        <span class="skill-name">${skillName}</span>
                     </div>
-                    <span class="${cssClasses.skillXp || 'skill-xp'}">${skill.xp}/${skill.xpToNext} XP</span>
+                    <span class="skill-lock-icon">🔒</span>
+                </div>
+            `;
+        }
+
+        const progress = playerSkill.getProgress ? playerSkill.getProgress() : 0;
+
+        return `
+            <div class="skill-item">
+                <div class="skill-info">
+                    <span class="skill-icon">${skillDetails.icon}</span>
+                    <span class="skill-name">${skillName}</span>
+                    <span class="skill-level-info">(${playerSkill.level} / 120)</span>
+                </div>
+                <div class="skill-progress-container">
+                    <div class="skill-progress-bar">
+                        <div class="skill-progress-fill" style="width: ${progress}%"></div>
+                    </div>
                 </div>
             </div>
         `;
+    }
+
+    toggleSkillCategory(headerElement) {
+        const category = headerElement.closest('.skill-category');
+        category.classList.toggle('collapsed');
     }
 
     updateActionsDisplay(actionManager, skillManager, inventoryManager, gameConfig) {
