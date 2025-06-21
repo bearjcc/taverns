@@ -1,7 +1,7 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
 # Architecture Separation of Concerns
 
@@ -98,3 +98,4 @@ taverns/
 9. **Never Break the Layers**: UI must not access engine internals directly; engine must not access UI or data directly; data must not contain logic.
 
 10. **Document Changes**: Update architectural documentation with any new patterns or systems.
+
