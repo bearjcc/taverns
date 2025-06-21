@@ -1,0 +1,423 @@
+{
+  "traits": {
+    "Strength": {
+      "level": 1,
+      "experience": 0
+    },
+    "Dexterity": {
+      "level": 1,
+      "experience": 0
+    },
+    "Stamina": {
+      "level": 1,
+      "experience": 0
+    },
+    "Constitution": {
+      "level": 1,
+      "experience": 0
+    },
+    "Intelligence": {
+      "level": 1,
+      "experience": 0
+    },
+    "Charisma": {
+      "level": 1,
+      "experience": 0
+    }
+  },
+  "combat": {
+    "Hunting": {
+      "level": 1,
+      "experience": 0
+    },
+    "Unarmed combat": {
+      "level": 1,
+      "experience": 0
+    },
+    "Melee combat": {
+      "level": 1,
+      "experience": 0
+    },
+    "Ranged combat": {
+      "level": 1,
+      "experience": 0
+    },
+    "Magic Combat": {
+      "level": 1,
+      "experience": 0
+    },
+    "Stealth": {
+      "level": 1,
+      "experience": 0
+    }
+  },
+  "survival": {
+    "Fire making": {
+      "level": 1,
+      "experience": 0
+    },
+    "Foraging": {
+      "level": 1,
+      "experience": 0
+    },
+    "Tracking": {
+      "level": 1,
+      "experience": 0
+    },
+    "First Aid": {
+      "level": 1,
+      "experience": 0
+    },
+    "Cooking": {
+      "level": 1,
+      "experience": 0
+    },
+    "Woodcutting": {
+      "level": 1,
+      "experience": 0
+    },
+    "Basic Magic": {
+      "level": 1,
+      "experience": 0
+    }
+  },
+  "professional": {
+    "Pyromancy": {
+      "description": "Advanced fire making techniques.",
+      "requires": {
+        "skill": "Fire making",
+        "level": 25
+      },
+      "sub_skills": {
+        "Civil Heat": {
+          "level": 1,
+          "experience": 0
+        },
+        "Pyrotechnics": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Archeology": {
+      "description": "The study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains.",
+      "requires": {
+        "skill": "Foraging",
+        "level": 25
+      },
+      "level": 1,
+      "experience": 0
+    },
+    "Advanced Tracking": {
+      "description": "Advanced techniques for tracking various beings.",
+      "requires": {
+        "skill": "Tracking",
+        "level": 25
+      },
+      "sub_skills": {
+        "Beasts": {
+          "level": 1,
+          "experience": 0
+        },
+        "Humanoids": {
+          "level": 1,
+          "experience": 0
+        },
+        "Scouting": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Culinary Arts": {
+      "description": "The art of preparing, cooking, and presenting food.",
+      "requires": {
+        "skill": "Cooking",
+        "level": 25
+      },
+      "sub_skills": {
+        "Wenching": {
+          "level": 1,
+          "experience": 0
+        },
+        "Brewing": {
+          "level": 1,
+          "experience": 0
+        },
+        "Baking": {
+          "level": 1,
+          "experience": 0
+        },
+        "Butchery": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Farming": {
+      "description": "The science or practice of farming, including cultivation of the soil for the growing of crops and the rearing of animals to provide food, wool, and other products.",
+      "sub_skills": {
+        "Animal Handling": {
+          "level": 1,
+          "experience": 0
+        },
+        "Trees": {
+          "level": 1,
+          "experience": 0
+        },
+        "Food": {
+          "level": 1,
+          "experience": 0
+        },
+        "Herbs": {
+          "level": 1,
+          "experience": 0
+        },
+        "Exotic": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Woodworking": {
+      "description": "The skill of making items from wood.",
+      "sub_skills": {
+        "Construction": {
+          "level": 1,
+          "experience": 0
+        },
+        "Carvings": {
+          "level": 1,
+          "experience": 0
+        },
+        "Shipbuilding": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Advanced Hunting": {
+      "description": "Advanced techniques for hunting various creatures.",
+      "requires": {
+        "skill": "Hunting",
+        "level": 25
+      },
+      "sub_skills": {
+        "Fishing": {
+          "level": 1,
+          "experience": 0
+        },
+        "Big Game": {
+          "level": 1,
+          "experience": 0
+        },
+        "Whaling": {
+          "level": 1,
+          "experience": 0
+        },
+        "Witching": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Geoworking": {
+      "description": "Skills related to working with earth materials.",
+      "sub_skills": {
+        "Prospecting": {
+          "level": 1,
+          "experience": 0
+        },
+        "Mining": {
+          "level": 1,
+          "experience": 0
+        },
+        "Smithing": {
+          "level": 1,
+          "experience": 0
+        },
+        "Jewelcrafting": {
+          "level": 1,
+          "experience": 0
+        },
+        "Precious Metal": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Crafting": {
+      "description": "The skill of making decorative or functional items by hand.",
+      "sub_skills": {
+        "Pottery": {
+          "level": 1,
+          "experience": 0
+        },
+        "Fabrics": {
+          "level": 1,
+          "experience": 0
+        },
+        "Leatherworking": {
+          "level": 1,
+          "experience": 0
+        },
+        "Alchemy": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Engineering": {
+      "description": "The branch of science and technology concerned with the design, building, and use of engines, machines, and structures.",
+      "sub_skills": {
+        "Assault": {
+          "level": 1,
+          "experience": 0
+        },
+        "Defense": {
+          "level": 1,
+          "experience": 0
+        },
+        "Civil": {
+          "level": 1,
+          "experience": 0
+        },
+        "Tinkering": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Advanced Magic": {
+      "description": "The study and practice of advanced magical arts.",
+      "sub_skills": {
+        "Siphoning": {
+          "level": 1,
+          "experience": 0
+        },
+        "Runecrafting": {
+          "level": 1,
+          "experience": 0
+        },
+        "Teleportation": {
+          "level": 1,
+          "experience": 0
+        },
+        "Defense": {
+          "level": 1,
+          "experience": 0
+        },
+        "Assault": {
+          "level": 1,
+          "experience": 0
+        },
+        "Assists": {
+          "level": 1,
+          "experience": 0
+        },
+        "Dark Magic": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Naval": {
+      "description": "Skills related to seafaring.",
+      "sub_skills": {
+        "Navigation": {
+          "level": 1,
+          "experience": 0
+        },
+        "Combat": {
+          "level": 1,
+          "experience": 0
+        },
+        "Piracy": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Athletics": {
+      "description": "The practice of physical exercises and sports.",
+      "sub_skills": {
+        "Swimming": {
+          "level": 1,
+          "experience": 0
+        },
+        "Acrobatics": {
+          "level": 1,
+          "experience": 0
+        },
+        "Sports": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Medicine": {
+      "description": "The science and practice of the diagnosis, treatment, and prevention of disease.",
+      "sub_skills": {
+        "Healing arts": {
+          "level": 1,
+          "experience": 0
+        },
+        "herbology": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Deception": {
+      "description": "The art of misleading or tricking someone.",
+      "sub_skills": {
+        "Stealth": {
+          "level": 1,
+          "experience": 0
+        },
+        "Sleight of Hand": {
+          "level": 1,
+          "experience": 0
+        },
+        "Lockpicking": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Scholar": {
+      "description": "A person who is highly educated or has an aptitude for study.",
+      "sub_skills": {
+        "Arcana": {
+          "level": 1,
+          "experience": 0
+        },
+        "History": {
+          "level": 1,
+          "experience": 0
+        },
+        "Linguistics": {
+          "level": 1,
+          "experience": 0
+        },
+        "Music": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    },
+    "Spirituality": {
+      "description": "The quality of being concerned with the human spirit or soul as opposed to material or physical things.",
+      "sub_skills": {
+        "Religion": {
+          "level": 1,
+          "experience": 0
+        },
+        "Planeshifting": {
+          "level": 1,
+          "experience": 0
+        }
+      }
+    }
+  }
+} 

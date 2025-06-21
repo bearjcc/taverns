@@ -268,11 +268,14 @@
     "actionCompleted": "You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})",
     "unlockMessage": "{unlockMessage}",
     "configError": "Error: Could not load game configuration. Please refresh the page.",
-    "configLoaded": "Game configuration loaded successfully"
+    "configLoaded": "Game configuration loaded successfully",
+    "skillsConfigLoaded": "Skills configuration loaded successfully",
+    "skillsConfigError": "Error: Could not load skills configuration."
   },
   "gameSettings": {
     "xpFormula": "level * 100",
     "defaultLevel": 1,
-    "defaultXp": 0
+    "defaultXp": 0,
+    "initialWood": 0
   }
 } 
