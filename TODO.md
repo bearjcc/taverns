@@ -3,13 +3,14 @@
 ## Immediate Tasks (Phase 1)
 - [x] Set up project structure
 - [x] Choose technology stack
-- [ ] Set up development environment
-- [ ] Create basic build system
-- [ ] Set up testing framework
+- [x] Set up development environment
+- [x] Create basic build system
+- [x] Set up testing framework
+- [x] **Implement basic 3-column layout with narration system**
+- [x] **Set up GitHub Pages deployment**
 - [ ] Analyze existing files and lore
 - [ ] Extract game directives from existing content
 - [ ] Create detailed technical specifications
-- [ ] **Implement basic 3-column layout with narration system**
 
 ## Phase Planning
 - [ ] Define UI framework requirements
@@ -42,4 +43,5 @@
 - All future features documented but not implemented yet
 - Social features and complex systems planned for Phase 5
 - Each task should be small and testable
-- **Current focus: Basic 3-column layout with narration (A Dark Room style)** 
+- **Current focus: Basic 3-column layout with narration (A Dark Room style)**
+- **GitHub Pages deployment: Automatic deployment on push to main branch** 
