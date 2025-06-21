@@ -19,12 +19,15 @@ const DEFAULT_CONFIG = {
             narrationMessage: 'narration-message',
             tabButton: 'tab-button',
             tabPanel: 'tab-panel',
-            active: 'active'
+            active: 'active',
+            toast: 'toast',
+            toastContainer: 'toast-container'
         },
         elementIds: {
             narrationContent: 'narration-content',
             skillsContent: 'skills-content',
-            actionsContent: 'actions-content'
+            actionsContent: 'actions-content',
+            toastContainer: 'toast-container'
         },
         tabs: [
             {
@@ -108,7 +111,7 @@ class Skill {
 
 // Action class for skill actions
 class SkillAction {
-    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1, skillType, unlockMessage) {
+    constructor(name, description, levelRequired, xpReward, itemReward, itemCount = 1, skillType, unlockMessage, flavorText) {
         this.name = name;
         this.description = description;
         this.levelRequired = levelRequired;
@@ -117,6 +120,7 @@ class SkillAction {
         this.itemCount = itemCount;
         this.skillType = skillType;
         this.unlockMessage = unlockMessage;
+        this.flavorText = flavorText;
     }
 }
 
@@ -169,7 +173,8 @@ class SkillManager {
                                 actionData.itemReward,
                                 actionData.itemCount,
                                 managerSkillKey, // Use the key from the skills map
-                                actionData.unlockMessage
+                                actionData.unlockMessage,
+                                actionData.flavorText
                             );
                         });
                         this.skillActions.set(managerSkillKey, actions);
@@ -264,7 +269,7 @@ class SkillManager {
 }
 
 // Game state object to track all player data
-const gameState = {
+let gameState = {
     skillManager: new SkillManager(),
     inventory: {},
     lastSaved: null
@@ -274,35 +279,29 @@ const gameState = {
 function saveGameState() {
     try {
         const saveData = {
-            skills: Array.from(gameState.skillManager.skills.entries()).reduce((obj, [key, skill]) => {
-                obj[key] = {
-                    level: skill.level,
-                    xp: skill.xp
-                };
-                return obj;
-            }, {}),
+            skills: {},
             inventory: gameState.inventory,
-            lastSaved: new Date().toISOString()
+            lastSaved: new Date().getTime()
         };
         
+        // Save skills data
+        gameState.skillManager.skills.forEach((skill, name) => {
+            saveData.skills[name] = {
+                level: skill.level,
+                xp: skill.xp
+            };
+        });
+        
+        // Save to localStorage
         localStorage.setItem('tavernsGameSave', JSON.stringify(saveData));
+        
+        // Update last saved time
         gameState.lastSaved = saveData.lastSaved;
-        console.log('Game saved successfully at', new Date().toLocaleString());
-        
-        // Update the last saved time display
-        updateLastSavedTime();
-        
-        // Only show save message if not during initialization
-        if (gameConfig && document.getElementById('loading').style.display === 'none') {
-            addNarrationMessage(gameConfig.messages.gameSaved);
-        }
         
         return true;
     } catch (error) {
-        console.error('Failed to save game:', error);
-        if (gameConfig) {
-            addNarrationMessage(gameConfig.messages.saveError);
-        }
+        console.error('Error saving game:', error);
+        showToast(gameConfig.messages.saveError, 'error');
         return false;
     }
 }
@@ -310,11 +309,9 @@ function saveGameState() {
 function loadGameState() {
     try {
         const saveData = localStorage.getItem('tavernsGameSave');
+        
         if (!saveData) {
-            console.log('No saved game found, starting new game');
-            if (gameConfig) {
-                addNarrationMessage(gameConfig.messages.noSaveFound);
-            }
+            showToast(gameConfig.messages.noSaveFound, 'info');
             return false;
         }
         
@@ -322,11 +319,11 @@ function loadGameState() {
         
         // Load skills data
         if (parsedData.skills) {
-            Object.entries(parsedData.skills).forEach(([skillName, skillData]) => {
-                const skill = gameState.skillManager.getSkill(skillName);
+            Object.entries(parsedData.skills).forEach(([name, data]) => {
+                const skill = gameState.skillManager.getSkill(name);
                 if (skill) {
-                    skill.level = skillData.level;
-                    skill.xp = skillData.xp;
+                    skill.level = data.level;
+                    skill.xp = data.xp;
                     skill.xpToNext = skill.getXpToNextLevel(skill.level);
                 }
             });
@@ -337,19 +334,18 @@ function loadGameState() {
             gameState.inventory = parsedData.inventory;
         }
         
-        // Store last saved timestamp
-        gameState.lastSaved = parsedData.lastSaved;
-        
-        console.log('Game loaded successfully from', new Date(parsedData.lastSaved).toLocaleString());
-        if (gameConfig) {
-            addNarrationMessage(gameConfig.messages.gameLoaded);
+        // Load last saved timestamp
+        if (parsedData.lastSaved) {
+            gameState.lastSaved = parsedData.lastSaved;
         }
+        
+        // Show toast instead of narration
+        showToast(gameConfig.messages.gameLoaded, 'info');
+        
         return true;
     } catch (error) {
-        console.error('Failed to load game:', error);
-        if (gameConfig) {
-            addNarrationMessage(gameConfig.messages.loadError);
-        }
+        console.error('Error loading game:', error);
+        showToast(gameConfig.messages.loadError, 'error');
         return false;
     }
 }
@@ -412,91 +408,77 @@ async function loadSkillsConfig() {
 
 // Update the skills display in the sidebar
 function updateSkillsDisplay() {
-    const skillsContent = document.getElementById('skills-content');
+    const skillsContent = document.getElementById(gameConfig.ui.elementIds.skillsContent);
     if (!skillsContent) return;
     
     // Clear existing content
     skillsContent.innerHTML = '';
     
-    if (!skillsConfig) {
-        skillsContent.innerHTML = '<p>Skills not loaded yet...</p>';
-        return;
-    }
-    
-    // Create HTML for each skill category
-    for (const categoryName in skillsConfig) {
-        const categoryHTML = generateHtmlForCategory(categoryName, skillsConfig[categoryName]);
-        skillsContent.appendChild(categoryHTML);
+    // Generate HTML for each skill category
+    if (skillsConfig) {
+        Object.entries(skillsConfig).forEach(([categoryName, categoryData]) => {
+            const categoryHtml = generateHtmlForCategory(categoryName, categoryData);
+            skillsContent.innerHTML += categoryHtml;
+        });
     }
 }
 
 const createSkillHtml = (skillName, skill) => {
-    const div = document.createElement('div');
-    div.className = gameConfig.ui.cssClasses.skillItem;
+    const progress = skill.getProgress();
     
-    const header = document.createElement('div');
-    header.className = gameConfig.ui.cssClasses.skillHeader;
-    
-    const nameSpan = document.createElement('span');
-    nameSpan.className = gameConfig.ui.cssClasses.skillName;
-    nameSpan.textContent = skillName;
-    
-    const levelSpan = document.createElement('span');
-    levelSpan.className = gameConfig.ui.cssClasses.skillLevel;
-    levelSpan.textContent = `Level ${skill.level}`;
-    
-    header.appendChild(nameSpan);
-    header.appendChild(levelSpan);
-    
-    const progressContainer = document.createElement('div');
-    progressContainer.className = gameConfig.ui.cssClasses.skillProgressContainer;
-    
-    const progressBar = document.createElement('div');
-    progressBar.className = gameConfig.ui.cssClasses.skillProgressBar;
-    
-    const progressFill = document.createElement('div');
-    progressFill.className = gameConfig.ui.cssClasses.skillProgressFill;
-    progressFill.style.width = `${skill.getProgress()}%`;
-    
-    const xpSpan = document.createElement('span');
-    xpSpan.className = gameConfig.ui.cssClasses.skillXp;
-    xpSpan.textContent = `XP: ${skill.xp}/${skill.xpToNext}`;
-    
-    progressBar.appendChild(progressFill);
-    progressContainer.appendChild(progressBar);
-    progressContainer.appendChild(xpSpan);
-    
-    div.appendChild(header);
-    div.appendChild(progressContainer);
-    
-    return div;
+    return `
+        <div class="${gameConfig.ui.cssClasses.skillItem}" data-skill="${skillName}">
+            <div class="${gameConfig.ui.cssClasses.skillHeader}">
+                <span class="${gameConfig.ui.cssClasses.skillName}">${skillName}</span>
+                <span class="${gameConfig.ui.cssClasses.skillLevel}">Level ${skill.level}</span>
+            </div>
+            <div class="${gameConfig.ui.cssClasses.skillProgressContainer}">
+                <div class="${gameConfig.ui.cssClasses.skillProgressBar}">
+                    <div class="${gameConfig.ui.cssClasses.skillProgressFill}" style="width: ${progress}%"></div>
+                </div>
+                <span class="${gameConfig.ui.cssClasses.skillXp}">${skill.xp}/${skill.xpToNext} XP</span>
+            </div>
+        </div>
+    `;
 };
 
 const generateHtmlForCategory = (categoryName, categoryData) => {
-    const container = document.createElement('div');
-    container.className = 'skill-category';
+    let html = `<div class="skill-category">
+        <h2>${categoryName}</h2>
+    `;
     
-    const title = document.createElement('h3');
-    title.textContent = categoryName;
-    container.appendChild(title);
-    
+    // Process skills in this category
     for (const [key, data] of Object.entries(categoryData)) {
         if (data.hasOwnProperty('level')) {
             const skill = gameState.skillManager.getSkill(key);
             if (skill) {
-                const skillHtml = createSkillHtml(key, skill);
-                container.appendChild(skillHtml);
+                html += createSkillHtml(key, skill);
             }
-        }
-        
-        if (data.sub_skills) {
-            const subCategoryHtml = generateHtmlForCategory(`${key}`, data.sub_skills);
-            subCategoryHtml.classList.add('sub-category');
-            container.appendChild(subCategoryHtml);
         }
     }
     
-    return container;
+    // Process subcategories if any
+    if (categoryData.sub_skills) {
+        for (const [subCategoryName, subCategoryData] of Object.entries(categoryData.sub_skills)) {
+            html += `<div class="skill-subcategory">
+                <h3>${subCategoryName}</h3>
+            `;
+            
+            for (const [key, data] of Object.entries(subCategoryData)) {
+                if (data.hasOwnProperty('level')) {
+                    const skill = gameState.skillManager.getSkill(key);
+                    if (skill) {
+                        html += createSkillHtml(key, skill);
+                    }
+                }
+            }
+            
+            html += `</div>`;
+        }
+    }
+    
+    html += `</div>`;
+    return html;
 };
 
 // Update the actions display
@@ -569,14 +551,22 @@ function handleSkillAction(action) {
     }
     gameState.inventory[action.itemReward] += action.itemCount;
     
-    // Display message
-    const message = gameConfig.messages.actionCompleted
-        .replace('{actionName}', action.name.toLowerCase())
-        .replace('{xpReward}', action.xpReward)
-        .replace('{itemReward}', action.itemReward)
-        .replace('{itemCount}', action.itemCount);
+    // Display flavor text message in narration
+    if (action.flavorText) {
+        addNarrationMessage(action.flavorText);
+    } else {
+        // Fallback to old message format if flavorText is not available
+        const message = gameConfig.messages.actionCompleted
+            .replace('{actionName}', action.name.toLowerCase())
+            .replace('{xpReward}', action.xpReward)
+            .replace('{itemReward}', action.itemReward)
+            .replace('{itemCount}', action.itemCount);
+        
+        addNarrationMessage(message);
+    }
     
-    addNarrationMessage(message);
+    // Flash XP gain in the skill UI
+    flashXpGain(action.skillType, action.xpReward);
     
     // If there were level ups, display those messages
     if (levelUps > 0) {
@@ -646,6 +636,53 @@ function addNarrationMessage(message) {
     narrationContent.scrollTop = narrationContent.scrollHeight;
 }
 
+// Toast notification system
+function showToast(message, type = 'info', duration = 3000) {
+    const toastContainer = document.getElementById(gameConfig.ui.elementIds.toastContainer);
+    if (!toastContainer) return;
+    
+    const toast = document.createElement('div');
+    toast.className = `${gameConfig.ui.cssClasses.toast} ${type}`;
+    toast.textContent = message;
+    
+    toastContainer.appendChild(toast);
+    
+    // Force a reflow to enable the transition
+    toast.offsetHeight;
+    
+    // Show the toast
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Remove the toast after duration
+    setTimeout(() => {
+        toast.classList.remove('show');
+        
+        // Remove from DOM after transition completes
+        setTimeout(() => {
+            toastContainer.removeChild(toast);
+        }, 300);
+    }, duration);
+}
+
+// XP gain flash animation
+function flashXpGain(skillName, xpAmount) {
+    const skillElement = document.querySelector(`.skill-item[data-skill="${skillName}"]`);
+    if (!skillElement) return;
+    
+    const xpFlash = document.createElement('div');
+    xpFlash.className = 'xp-flash';
+    xpFlash.textContent = `+${xpAmount} XP`;
+    
+    skillElement.appendChild(xpFlash);
+    
+    // Remove the element after animation completes
+    setTimeout(() => {
+        skillElement.removeChild(xpFlash);
+    }, 1500);
+}
+
 // Generate tabs dynamically from configuration
 function generateTabsFromConfig() {
     // Create tab buttons
@@ -711,6 +748,7 @@ function generateTabsFromConfig() {
         saveButton.addEventListener('click', () => {
             const success = saveGameState();
             if (success) {
+                showToast(gameConfig.messages.gameSaved, 'success');
                 updateLastSavedTime();
             }
         });
@@ -750,18 +788,26 @@ async function initGame() {
             return;
         }
         
-        // Load skill data into the manager
+        // Initialize game state
+        gameState = {
+            skillManager: new SkillManager(),
+            inventory: {},
+            lastSaved: null
+        };
+        
+        // Load skills and actions from configs
         gameState.skillManager.loadFromConfig(skillsConfig, gameConfig);
         
-        // Try to load saved game data
-        const loadedSave = loadGameState();
+        // Try to load saved game state
+        const loaded = loadGameState();
         
-        // If no save was loaded, show welcome message
-        if (!loadedSave) {
-            addNarrationMessage(gameConfig.messages.welcome);
+        // If no saved state, show welcome message
+        if (!loaded) {
+            // Add welcome message to narration
+            addNarrationMessage('Welcome to Taverns! Click on actions to begin your adventure.');
         }
         
-        // Setup UI
+        // Generate UI
         generateTabsFromConfig();
         updateSkillsDisplay();
         updateActionsDisplay();
@@ -769,14 +815,13 @@ async function initGame() {
         // Setup auto-save
         setupAutoSave();
         
-        // Add event listener for saving before page unload
-        window.addEventListener('beforeunload', saveGameState);
-        
-    } catch (error) {
-        console.error('Error during game initialization:', error);
-    } finally {
         // Hide loading indicator
         document.getElementById('loading').style.display = 'none';
+        
+    } catch (error) {
+        console.error('Error initializing game:', error);
+        document.getElementById('loading').style.display = 'none';
+        addNarrationMessage('Error: Failed to initialize game. Please refresh the page.');
     }
 }
 
