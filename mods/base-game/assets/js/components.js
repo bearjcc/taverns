@@ -43,7 +43,7 @@ class ComponentRegistry {
         if (!ComponentClass) {
             throw new Error(`Component ${name} not found`);
         }
-        
+
         const instance = new ComponentClass(element, config);
         this.instances.set(element, instance);
         return instance;
@@ -99,11 +99,11 @@ class Modal extends Component {
     bindEvents() {
         const closeBtn = this.element.querySelector('.modal-close');
         const overlay = this.element.querySelector('.modal-overlay');
-        
+
         if (closeBtn) {
             closeBtn.addEventListener('click', () => this.close());
         }
-        
+
         if (this.config.closeOnOverlay && overlay) {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) this.close();
@@ -200,9 +200,9 @@ class Tooltip extends Component {
     positionTooltip() {
         const rect = this.element.getBoundingClientRect();
         const tooltipRect = this.tooltip.getBoundingClientRect();
-        
+
         let top, left;
-        
+
         switch (this.config.position) {
             case 'top':
                 top = rect.top - tooltipRect.height - 8;
@@ -224,11 +224,11 @@ class Tooltip extends Component {
                 top = rect.top - tooltipRect.height - 8;
                 left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
         }
-        
+
         // Ensure tooltip stays within viewport
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
-        
+
         if (left < 8) left = 8;
         if (left + tooltipRect.width > viewportWidth - 8) {
             left = viewportWidth - tooltipRect.width - 8;
@@ -237,7 +237,7 @@ class Tooltip extends Component {
         if (top + tooltipRect.height > viewportHeight - 8) {
             top = viewportHeight - tooltipRect.height - 8;
         }
-        
+
         this.tooltip.style.top = `${top}px`;
         this.tooltip.style.left = `${left}px`;
     }
@@ -275,14 +275,14 @@ class ProgressBar extends Component {
     updateProgress() {
         const fill = this.element.querySelector('.progress-fill');
         const label = this.element.querySelector('.progress-label');
-        
+
         const percentage = (this.config.value / this.config.max) * 100;
-        
+
         if (fill) {
             fill.style.width = `${percentage}%`;
             fill.style.backgroundColor = this.config.color;
         }
-        
+
         if (label) {
             const formattedLabel = this.config.labelFormat
                 .replace('{value}', this.config.value)
@@ -340,9 +340,9 @@ class Dropdown extends Component {
     bindEvents() {
         const trigger = this.element.querySelector('.dropdown-trigger');
         const menu = this.element.querySelector('.dropdown-menu');
-        
+
         trigger.addEventListener('click', () => this.toggle());
-        
+
         menu.addEventListener('click', (e) => {
             const item = e.target.closest('.dropdown-item');
             if (item) {
@@ -350,7 +350,7 @@ class Dropdown extends Component {
                 this.setValue(value);
             }
         });
-        
+
         // Close when clicking outside
         document.addEventListener('click', (e) => {
             if (!this.element.contains(e.target)) {
@@ -385,7 +385,7 @@ class Dropdown extends Component {
             valueElement.textContent = this.getDisplayValue();
         }
         this.close();
-        
+
         if (this.config.onChange) {
             this.config.onChange(value);
         }
@@ -395,7 +395,7 @@ class Dropdown extends Component {
         if (this.config.value === null) {
             return this.config.placeholder;
         }
-        
+
         const option = this.config.options.find(opt => opt.value === this.config.value);
         return option ? option.label : this.config.placeholder;
     }
@@ -419,13 +419,13 @@ class GameUI {
     showModal(title, content, config = {}) {
         const modalElement = document.createElement('div');
         document.body.appendChild(modalElement);
-        
+
         const modal = this.components.create('modal', modalElement, {
             title,
             content,
             ...config
         });
-        
+
         modal.open();
         return modal;
     }
@@ -538,25 +538,25 @@ function createAchievementItem(achievement, isUnlocked = false, progress = null)
 function createAchievementProgressBar(progress) {
     const progressContainer = document.createElement('div');
     progressContainer.className = 'achievement-progress-container';
-    
+
     const progressBar = document.createElement('div');
     progressBar.className = 'achievement-progress-bar';
-    
+
     const progressFill = document.createElement('div');
     progressFill.className = 'achievement-progress-fill';
-    
+
     const progressText = document.createElement('div');
     progressText.className = 'achievement-progress-text';
     progressText.textContent = `${progress.current}/${progress.required}`;
-    
+
     // Calculate progress percentage
     const percentage = Math.min((progress.current / progress.required) * 100, 100);
     progressFill.style.width = `${percentage}%`;
-    
+
     progressBar.appendChild(progressFill);
     progressContainer.appendChild(progressBar);
     progressContainer.appendChild(progressText);
-    
+
     return progressContainer;
 }
 
@@ -571,15 +571,15 @@ function createAchievementsTabContent(achievementsData, unlockedAchievements, ac
     const achievementsContent = document.createElement('div');
     achievementsContent.className = 'achievements-content';
     achievementsContent.id = 'achievements-content';
-    
+
     // Header with total points
     const header = document.createElement('div');
     header.className = 'achievements-header';
-    
+
     const totalPoints = calculateTotalPoints(achievementsData, unlockedAchievements);
     const totalAchievements = Object.keys(achievementsData).length;
     const unlockedCount = unlockedAchievements.size;
-    
+
     header.innerHTML = `
         <h3>Achievements</h3>
         <div class="achievements-summary">
@@ -587,18 +587,18 @@ function createAchievementsTabContent(achievementsData, unlockedAchievements, ac
             <span class="achievements-points">${totalPoints} pts</span>
         </div>
     `;
-    
+
     achievementsContent.appendChild(header);
-    
+
     // Group achievements by category
     const categories = groupAchievementsByCategory(achievementsData);
-    
+
     // Create category sections
     for (const [category, achievements] of Object.entries(categories)) {
         const categorySection = createAchievementCategorySection(category, achievements, unlockedAchievements, achievementProgress);
         achievementsContent.appendChild(categorySection);
     }
-    
+
     return achievementsContent;
 }
 
@@ -613,22 +613,22 @@ function createAchievementsTabContent(achievementsData, unlockedAchievements, ac
 function createAchievementCategorySection(category, achievements, unlockedAchievements, achievementProgress) {
     const categorySection = document.createElement('div');
     categorySection.className = 'achievement-category';
-    
+
     const categoryHeader = document.createElement('h4');
     categoryHeader.className = 'achievement-category-header';
     categoryHeader.textContent = formatCategoryName(category);
-    
+
     categorySection.appendChild(categoryHeader);
-    
+
     // Add achievements to category
     for (const achievement of achievements) {
         const isUnlocked = unlockedAchievements.has(achievement.id);
         const progress = (achievementProgress && achievementProgress[achievement.id]) ? achievementProgress[achievement.id] : null;
-        
+
         const achievementItem = createAchievementItem(achievement, isUnlocked, progress);
         categorySection.appendChild(achievementItem);
     }
-    
+
     return categorySection;
 }
 
@@ -656,7 +656,7 @@ function calculateTotalPoints(achievementsData, unlockedAchievements) {
  */
 function groupAchievementsByCategory(achievementsData) {
     const categories = {};
-    
+
     for (const [id, achievement] of Object.entries(achievementsData)) {
         const category = achievement.category || 'general';
         if (!categories[category]) {
@@ -664,12 +664,12 @@ function groupAchievementsByCategory(achievementsData) {
         }
         categories[category].push({ ...achievement, id });
     }
-    
+
     // Sort achievements within each category by points (descending)
     for (const category in categories) {
         categories[category].sort((a, b) => (b.points || 0) - (a.points || 0));
     }
-    
+
     return categories;
 }
 
@@ -686,7 +686,7 @@ function formatCategoryName(category) {
         'secrets': 'Secrets',
         'general': 'General'
     };
-    
+
     return categoryNames[category] || category.charAt(0).toUpperCase() + category.slice(1);
 }
 
@@ -699,7 +699,7 @@ function formatCategoryName(category) {
 function showAchievementUnlocked(achievement, points, totalPoints) {
     const notification = document.createElement('div');
     notification.className = 'achievement-notification';
-    
+
     notification.innerHTML = `
         <div class="achievement-notification-content">
             <div class="achievement-notification-icon">${achievement.icon || '🏆'}</div>
@@ -710,16 +710,16 @@ function showAchievementUnlocked(achievement, points, totalPoints) {
             </div>
         </div>
     `;
-    
+
     // Add to notification container
     const container = document.getElementById('toast-container') || document.body;
     container.appendChild(notification);
-    
+
     // Animate in
     setTimeout(() => {
         notification.classList.add('achievement-notification-show');
     }, 100);
-    
+
     // Remove after animation
     setTimeout(() => {
         notification.classList.remove('achievement-notification-show');
@@ -736,7 +736,7 @@ function showAchievementUnlocked(achievement, points, totalPoints) {
  */
 function openAchievementsModal(achievementsData, unlockedAchievements, achievementProgress) {
     const content = createAchievementsTabContent(achievementsData, unlockedAchievements, achievementProgress);
-    
+
     // Create a container for the modal instance
     const modalElement = document.createElement('div');
     document.body.appendChild(modalElement);
@@ -745,14 +745,14 @@ function openAchievementsModal(achievementsData, unlockedAchievements, achieveme
         title: 'Achievements',
         width: '800px'
     });
-    
+
     // Set the content, which is already an HTML element
     const contentElement = modal.element.querySelector('.modal-content');
     if (contentElement) {
         contentElement.innerHTML = ''; // Clear existing template content
         contentElement.appendChild(content);
     }
-    
+
     modal.open();
 
     // Add a close listener to destroy the modal element

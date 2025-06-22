@@ -1,22 +1,78 @@
 {
   "baked_goods": [
-    { "id": "cake", "name": "Cake", "description": "A sweet baked dessert." },
-    { "id": "pizza", "name": "Pizza", "description": "While often savory, it can be made as a dessert." },
-    { "id": "banana_bread", "name": "Banana Bread", "description": "A type of bread made from mashed bananas." },
-    { "id": "corn_bread", "name": "Corn Bread", "description": "A type of bread containing cornmeal." },
-    { "id": "pie", "name": "Pie", "description": "A baked dish which is usually made of a pastry dough casing that covers or completely contains a filling of various sweet or savoury ingredients." }
+    {
+      "id": "cake",
+      "name": "Cake",
+      "description": "A sweet baked dessert."
+    },
+    {
+      "id": "pizza",
+      "name": "Pizza",
+      "description": "While often savory, it can be made as a dessert."
+    },
+    {
+      "id": "banana_bread",
+      "name": "Banana Bread",
+      "description": "A type of bread made from mashed bananas."
+    },
+    {
+      "id": "corn_bread",
+      "name": "Corn Bread",
+      "description": "A type of bread containing cornmeal."
+    },
+    {
+      "id": "pie",
+      "name": "Pie",
+      "description": "A baked dish which is usually made of a pastry dough casing that covers or completely contains a filling of various sweet or savoury ingredients."
+    }
   ],
   "doughs": [
-    { "id": "pancake_batter", "name": "Pancake Batter", "description": "A liquid dough for making pancakes." },
-    { "id": "bread_dough", "name": "Bread Dough", "description": "The basic dough for making bread." },
-    { "id": "pizza_dough", "name": "Pizza Dough", "description": "Dough for making pizza crust." },
-    { "id": "pastry_dough", "name": "Pastry Dough", "description": "A versatile dough for pastries." }
+    {
+      "id": "pancake_batter",
+      "name": "Pancake Batter",
+      "description": "A liquid dough for making pancakes."
+    },
+    {
+      "id": "bread_dough",
+      "name": "Bread Dough",
+      "description": "The basic dough for making bread."
+    },
+    {
+      "id": "pizza_dough",
+      "name": "Pizza Dough",
+      "description": "Dough for making pizza crust."
+    },
+    {
+      "id": "pastry_dough",
+      "name": "Pastry Dough",
+      "description": "A versatile dough for pastries."
+    }
   ],
   "other_sweets": [
-    { "id": "honey", "name": "Honey", "description": "A sweet, viscous food substance produced by bees." },
-    { "id": "jam", "name": "Jam", "description": "A condiment, usually made from fruit, sugar, and pectin." },
-    { "id": "chocolate", "name": "Chocolate", "description": "A preparation of roasted and ground cacao seeds." },
-    { "id": "pie_filling", "name": "Pie Filling", "description": "The sweet mixture used inside a pie." },
-    { "id": "ice_cream", "name": "Ice Cream", "description": "A sweetened frozen food typically eaten as a snack or dessert." }
+    {
+      "id": "honey",
+      "name": "Honey",
+      "description": "A sweet, viscous food substance produced by bees."
+    },
+    {
+      "id": "jam",
+      "name": "Jam",
+      "description": "A condiment, usually made from fruit, sugar, and pectin."
+    },
+    {
+      "id": "chocolate",
+      "name": "Chocolate",
+      "description": "A preparation of roasted and ground cacao seeds."
+    },
+    {
+      "id": "pie_filling",
+      "name": "Pie Filling",
+      "description": "The sweet mixture used inside a pie."
+    },
+    {
+      "id": "ice_cream",
+      "name": "Ice Cream",
+      "description": "A sweetened frozen food typically eaten as a snack or dessert."
+    }
   ]
-} 
+}

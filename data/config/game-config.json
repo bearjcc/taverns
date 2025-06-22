@@ -12,13 +12,13 @@
         "icon": "🏆"
       },
       {
-        "id": "inventory", 
+        "id": "inventory",
         "displayName": "Inventory",
         "icon": "🎒"
       },
       {
         "id": "character",
-        "displayName": "Character", 
+        "displayName": "Character",
         "icon": "👤"
       },
       {
@@ -55,7 +55,7 @@
       "skillsContent": "skills-content",
       "actionsContent": "actions-content",
       "skillsTab": "skills-tab",
-      "inventoryTab": "inventory-tab", 
+      "inventoryTab": "inventory-tab",
       "characterTab": "character-tab",
       "questsTab": "quests-tab",
       "toastContainer": "toast-container"
@@ -91,4 +91,4 @@
   "gameSettings": {
     "initialWood": 0
   }
-} 
+}

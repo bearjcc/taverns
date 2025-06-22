@@ -19,13 +19,13 @@ class Species {
      */
     generateAttributes() {
         const generatedAttributes = {};
-        
+
         for (const [attributeName, range] of Object.entries(this.attributes)) {
             if (range && typeof range.min === 'number' && typeof range.max === 'number') {
                 generatedAttributes[attributeName] = this.getRandomValue(range.min, range.max);
             }
         }
-        
+
         return generatedAttributes;
     }
 
@@ -46,7 +46,7 @@ class Species {
      */
     validateAttributes(attributes) {
         const errors = [];
-        
+
         for (const [attributeName, value] of Object.entries(attributes)) {
             const range = this.attributes[attributeName];
             if (range) {
@@ -55,7 +55,7 @@ class Species {
                 }
             }
         }
-        
+
         return {
             isValid: errors.length === 0,
             errors: errors

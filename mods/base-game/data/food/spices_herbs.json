@@ -1,33 +1,133 @@
 {
   "spices": [
-    { "id": "black_pepper", "name": "Black Pepper", "description": "A common, pungent spice." },
-    { "id": "white_pepper", "name": "White Pepper", "description": "A more subtle variety of pepper." },
-    { "id": "bell_pepper", "name": "Bell Pepper", "description": "A mild, sweet pepper." },
-    { "id": "jalapeno_pepper", "name": "Jalapeno Pepper", "description": "A medium-hot chili pepper." },
-    { "id": "cayenne_pepper", "name": "Cayenne Pepper", "description": "A hot chili pepper." },
-    { "id": "chili_pepper", "name": "Chili Pepper", "description": "A general term for hot peppers." },
-    { "id": "coriander", "name": "Coriander", "description": "The dried seeds of the cilantro plant." },
-    { "id": "cilantro", "name": "Cilantro", "description": "The fresh leaves of the coriander plant." },
-    { "id": "cumin", "name": "Cumin", "description": "A savory spice used in many cuisines." },
-    { "id": "dill", "name": "Dill", "description": "A pungent herb with a distinctive taste." },
-    { "id": "fennel", "name": "Fennel", "description": "A flavorful herb with an anise-like taste." },
-    { "id": "ginger", "name": "Ginger", "description": "A zesty and pungent root." },
-    { "id": "turmeric", "name": "Turmeric", "description": "A bright yellow spice with a warm flavor." },
-    { "id": "vanilla_bean", "name": "Vanilla Bean", "description": "The pod of the vanilla orchid, used for flavoring." },
-    { "id": "wasabi", "name": "Wasabi", "description": "A pungent, spicy condiment." }
+    {
+      "id": "black_pepper",
+      "name": "Black Pepper",
+      "description": "A common, pungent spice."
+    },
+    {
+      "id": "white_pepper",
+      "name": "White Pepper",
+      "description": "A more subtle variety of pepper."
+    },
+    {
+      "id": "bell_pepper",
+      "name": "Bell Pepper",
+      "description": "A mild, sweet pepper."
+    },
+    {
+      "id": "jalapeno_pepper",
+      "name": "Jalapeno Pepper",
+      "description": "A medium-hot chili pepper."
+    },
+    {
+      "id": "cayenne_pepper",
+      "name": "Cayenne Pepper",
+      "description": "A hot chili pepper."
+    },
+    {
+      "id": "chili_pepper",
+      "name": "Chili Pepper",
+      "description": "A general term for hot peppers."
+    },
+    {
+      "id": "coriander",
+      "name": "Coriander",
+      "description": "The dried seeds of the cilantro plant."
+    },
+    {
+      "id": "cilantro",
+      "name": "Cilantro",
+      "description": "The fresh leaves of the coriander plant."
+    },
+    {
+      "id": "cumin",
+      "name": "Cumin",
+      "description": "A savory spice used in many cuisines."
+    },
+    {
+      "id": "dill",
+      "name": "Dill",
+      "description": "A pungent herb with a distinctive taste."
+    },
+    {
+      "id": "fennel",
+      "name": "Fennel",
+      "description": "A flavorful herb with an anise-like taste."
+    },
+    {
+      "id": "ginger",
+      "name": "Ginger",
+      "description": "A zesty and pungent root."
+    },
+    {
+      "id": "turmeric",
+      "name": "Turmeric",
+      "description": "A bright yellow spice with a warm flavor."
+    },
+    {
+      "id": "vanilla_bean",
+      "name": "Vanilla Bean",
+      "description": "The pod of the vanilla orchid, used for flavoring."
+    },
+    {
+      "id": "wasabi",
+      "name": "Wasabi",
+      "description": "A pungent, spicy condiment."
+    }
   ],
   "curry": [
-    { "id": "red_curry", "name": "Red Curry", "description": "A spicy, red-colored curry powder." },
-    { "id": "green_curry", "name": "Green Curry", "description": "A hot, green-colored curry powder." },
-    { "id": "yellow_curry", "name": "Yellow Curry", "description": "A milder, yellow-colored curry powder." }
+    {
+      "id": "red_curry",
+      "name": "Red Curry",
+      "description": "A spicy, red-colored curry powder."
+    },
+    {
+      "id": "green_curry",
+      "name": "Green Curry",
+      "description": "A hot, green-colored curry powder."
+    },
+    {
+      "id": "yellow_curry",
+      "name": "Yellow Curry",
+      "description": "A milder, yellow-colored curry powder."
+    }
   ],
   "herbs": [
-    { "id": "oregano", "name": "Oregano", "description": "A popular Mediterranean herb." },
-    { "id": "parsley", "name": "Parsley", "description": "A mild, fresh-tasting herb." },
-    { "id": "rosemary", "name": "Rosemary", "description": "An aromatic herb with needle-like leaves." },
-    { "id": "thyme", "name": "Thyme", "description": "A fragrant herb with small leaves." },
-    { "id": "chives", "name": "Chives", "description": "A mild onion-flavored herb." },
-    { "id": "sage", "name": "Sage", "description": "A savory herb with a slightly peppery flavor." },
-    { "id": "basil", "name": "Basil", "description": "A sweet and fragrant herb." }
+    {
+      "id": "oregano",
+      "name": "Oregano",
+      "description": "A popular Mediterranean herb."
+    },
+    {
+      "id": "parsley",
+      "name": "Parsley",
+      "description": "A mild, fresh-tasting herb."
+    },
+    {
+      "id": "rosemary",
+      "name": "Rosemary",
+      "description": "An aromatic herb with needle-like leaves."
+    },
+    {
+      "id": "thyme",
+      "name": "Thyme",
+      "description": "A fragrant herb with small leaves."
+    },
+    {
+      "id": "chives",
+      "name": "Chives",
+      "description": "A mild onion-flavored herb."
+    },
+    {
+      "id": "sage",
+      "name": "Sage",
+      "description": "A savory herb with a slightly peppery flavor."
+    },
+    {
+      "id": "basil",
+      "name": "Basil",
+      "description": "A sweet and fragrant herb."
+    }
   ]
-} 
+}

@@ -36,21 +36,28 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear", "cloudy"]
+              "allowedTypes": [
+                "clear",
+                "cloudy"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 20 }
+            "energy": {
+              "min": 20
+            }
           },
           "equipmentRequirements": {
-            "axe": { "quantity": 1 }
+            "axe": {
+              "quantity": 1
+            }
           },
           "cooldown": 300000
         }
       },
       {
         "name": "Chop Willow",
-        "displayName": "Chop Willow Tree", 
+        "displayName": "Chop Willow Tree",
         "description": "Chop down a willow tree for logs",
         "icon": "🌿",
         "tooltip": "Chop willow logs for flexible wood",
@@ -80,14 +87,22 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear", "cloudy", "rainy"]
+              "allowedTypes": [
+                "clear",
+                "cloudy",
+                "rainy"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 25 }
+            "energy": {
+              "min": 25
+            }
           },
           "equipmentRequirements": {
-            "axe": { "quantity": 1 }
+            "axe": {
+              "quantity": 1
+            }
           },
           "cooldown": 300000
         }
@@ -95,7 +110,7 @@
       {
         "name": "Chop Maple",
         "displayName": "Chop Maple Tree",
-        "description": "Chop down a maple tree for logs", 
+        "description": "Chop down a maple tree for logs",
         "icon": "🍁",
         "tooltip": "Chop maple logs for quality wood",
         "levelRequired": 10,
@@ -124,14 +139,21 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear", "cloudy"]
+              "allowedTypes": [
+                "clear",
+                "cloudy"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 30 }
+            "energy": {
+              "min": 30
+            }
           },
           "equipmentRequirements": {
-            "axe": { "quantity": 1 }
+            "axe": {
+              "quantity": 1
+            }
           },
           "cooldown": 450000
         }
@@ -168,14 +190,20 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear"]
+              "allowedTypes": [
+                "clear"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 40 }
+            "energy": {
+              "min": 40
+            }
           },
           "equipmentRequirements": {
-            "axe": { "quantity": 1 }
+            "axe": {
+              "quantity": 1
+            }
           },
           "cooldown": 600000
         }
@@ -212,14 +240,20 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear"]
+              "allowedTypes": [
+                "clear"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 50 }
+            "energy": {
+              "min": 50
+            }
           },
           "equipmentRequirements": {
-            "magic_axe": { "quantity": 1 }
+            "magic_axe": {
+              "quantity": 1
+            }
           },
           "cooldown": 900000
         }
@@ -275,14 +309,22 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear", "cloudy", "rainy"]
+              "allowedTypes": [
+                "clear",
+                "cloudy",
+                "rainy"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 10 }
+            "energy": {
+              "min": 10
+            }
           },
           "equipmentRequirements": {
-            "cooking_pot": { "quantity": 1 }
+            "cooking_pot": {
+              "quantity": 1
+            }
           },
           "cooldown": 180000
         }
@@ -327,18 +369,25 @@
           "weatherRestrictions": [
             {
               "type": "weatherType",
-              "allowedTypes": ["clear", "cloudy"]
+              "allowedTypes": [
+                "clear",
+                "cloudy"
+              ]
             }
           ],
           "playerStatusRequirements": {
-            "energy": { "min": 15 }
+            "energy": {
+              "min": 15
+            }
           },
           "equipmentRequirements": {
-            "oven": { "quantity": 1 }
+            "oven": {
+              "quantity": 1
+            }
           },
           "cooldown": 300000
         }
       }
     ]
   }
-} 
+}

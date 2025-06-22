@@ -21,11 +21,11 @@ class SpeciesManager {
             if (!response.ok) {
                 throw new Error(`Failed to load species data: ${response.status}`);
             }
-            
+
             const speciesData = await response.json();
             this.processSpeciesData(speciesData);
             this.isLoaded = true;
-            
+
             console.log(`Loaded ${this.species.size} species (${this.playableSpecies.size} playable)`);
             return true;
         } catch (error) {
@@ -117,7 +117,7 @@ class SpeciesManager {
      * @returns {Array<Species>} Array of species with the profession
      */
     getSpeciesByProfession(profession) {
-        return this.getAllSpecies().filter(species => 
+        return this.getAllSpecies().filter(species =>
             species.hasProfession(profession)
         );
     }
@@ -133,7 +133,7 @@ class SpeciesManager {
         return this.getAllSpecies().filter(species => {
             const range = species.getAttributeRange(attributeName);
             if (!range) return false;
-            
+
             return range.min >= minValue && range.max <= maxValue;
         });
     }
@@ -145,7 +145,7 @@ class SpeciesManager {
      * @returns {Array<Species>} Array of species with the bonus
      */
     getSpeciesByBonus(bonusType, minValue = 0) {
-        return this.getAllSpecies().filter(species => 
+        return this.getAllSpecies().filter(species =>
             species.getBonus(bonusType) >= minValue
         );
     }
@@ -157,7 +157,7 @@ class SpeciesManager {
     getRandomPlayableSpecies() {
         const playableSpecies = this.getPlayableSpecies();
         if (playableSpecies.length === 0) return null;
-        
+
         const randomIndex = Math.floor(Math.random() * playableSpecies.length);
         return playableSpecies[randomIndex];
     }
@@ -169,7 +169,7 @@ class SpeciesManager {
     getRandomNonPlayableSpecies() {
         const nonPlayableSpecies = this.getNonPlayableSpecies();
         if (nonPlayableSpecies.length === 0) return null;
-        
+
         const randomIndex = Math.floor(Math.random() * nonPlayableSpecies.length);
         return nonPlayableSpecies[randomIndex];
     }
@@ -202,7 +202,7 @@ class SpeciesManager {
      */
     searchSpecies(searchTerm) {
         const normalizedTerm = searchTerm.toLowerCase();
-        return this.getAllSpecies().filter(species => 
+        return this.getAllSpecies().filter(species =>
             species.name.toLowerCase().includes(normalizedTerm) ||
             species.description.toLowerCase().includes(normalizedTerm)
         );
@@ -242,7 +242,7 @@ class SpeciesManager {
      */
     validateAllSpecies() {
         const errors = [];
-        
+
         for (const species of this.species.values()) {
             // Check for required fields
             if (!species.name) {
@@ -251,7 +251,7 @@ class SpeciesManager {
             if (!species.description) {
                 errors.push(`Species ${species.id} missing description`);
             }
-            
+
             // Check attribute ranges
             for (const [attributeName, range] of Object.entries(species.attributes)) {
                 if (range.min > range.max) {
@@ -259,7 +259,7 @@ class SpeciesManager {
                 }
             }
         }
-        
+
         return {
             isValid: errors.length === 0,
             errors: errors

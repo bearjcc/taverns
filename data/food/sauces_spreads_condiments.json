@@ -1,18 +1,58 @@
 {
   "sauces": [
-    { "id": "soy_sauce", "name": "Soy Sauce", "description": "A liquid condiment of Chinese origin, traditionally made from a fermented paste of soybeans, roasted grain, brine, and Aspergillus oryzae or Aspergillus sojae molds." },
-    { "id": "syrup", "name": "Syrup", "description": "A sweet condiment. Buying or selling it in Maple Run unlocks the 'Everyone's Just So Polite, Eh?' achievement." },
-    { "id": "salsa", "name": "Salsa", "description": "A variety of sauces used as condiments for tacos and other Mexican and Mexican-American foods, and as dips for tortilla chips." },
-    { "id": "guacamole", "name": "Guacamole", "description": "An avocado-based dip, spread, or salad first developed by the Aztecs in what is now Mexico." }
+    {
+      "id": "soy_sauce",
+      "name": "Soy Sauce",
+      "description": "A liquid condiment of Chinese origin, traditionally made from a fermented paste of soybeans, roasted grain, brine, and Aspergillus oryzae or Aspergillus sojae molds."
+    },
+    {
+      "id": "syrup",
+      "name": "Syrup",
+      "description": "A sweet condiment. Buying or selling it in Maple Run unlocks the 'Everyone's Just So Polite, Eh?' achievement."
+    },
+    {
+      "id": "salsa",
+      "name": "Salsa",
+      "description": "A variety of sauces used as condiments for tacos and other Mexican and Mexican-American foods, and as dips for tortilla chips."
+    },
+    {
+      "id": "guacamole",
+      "name": "Guacamole",
+      "description": "An avocado-based dip, spread, or salad first developed by the Aztecs in what is now Mexico."
+    }
   ],
   "spreads": [
-    { "id": "butter", "name": "Butter", "description": "A dairy product made from the fat and protein components of churned cream." },
-    { "id": "nut_butter", "name": "Nut Butter", "description": "A spreadable foodstuff made by grinding nuts into a paste." },
-    { "id": "jelly", "name": "Jelly", "description": "A type of fruit preserve." },
-    { "id": "algae_paste", "name": "Algae Paste", "description": "A nutritious, if not particularly appetizing, paste made from algae." }
+    {
+      "id": "butter",
+      "name": "Butter",
+      "description": "A dairy product made from the fat and protein components of churned cream."
+    },
+    {
+      "id": "nut_butter",
+      "name": "Nut Butter",
+      "description": "A spreadable foodstuff made by grinding nuts into a paste."
+    },
+    {
+      "id": "jelly",
+      "name": "Jelly",
+      "description": "A type of fruit preserve."
+    },
+    {
+      "id": "algae_paste",
+      "name": "Algae Paste",
+      "description": "A nutritious, if not particularly appetizing, paste made from algae."
+    }
   ],
   "condiments": [
-    { "id": "mayonnaise", "name": "Mayonnaise", "description": "A thick cold condiment or dressing commonly used in sandwiches and composed salads." },
-    { "id": "ketchup", "name": "Ketchup", "description": "A sweet and tangy sauce typically made from tomatoes, sweetener, and vinegar, with assorted seasonings and spices." }
+    {
+      "id": "mayonnaise",
+      "name": "Mayonnaise",
+      "description": "A thick cold condiment or dressing commonly used in sandwiches and composed salads."
+    },
+    {
+      "id": "ketchup",
+      "name": "Ketchup",
+      "description": "A sweet and tangy sauce typically made from tomatoes, sweetener, and vinegar, with assorted seasonings and spices."
+    }
   ]
-} 
+}

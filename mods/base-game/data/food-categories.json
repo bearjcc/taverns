@@ -6,7 +6,12 @@
     "description": "Meat, fish, eggs, and other protein-rich foods",
     "icon": "🥩",
     "color": "#ff6b6b",
-    "subcategories": ["meat", "fish", "eggs", "dairy_proteins"]
+    "subcategories": [
+      "meat",
+      "fish",
+      "eggs",
+      "dairy_proteins"
+    ]
   },
   "vegetables": {
     "id": "vegetables",
@@ -15,7 +20,12 @@
     "description": "Fresh vegetables and leafy greens",
     "icon": "🥬",
     "color": "#51cf66",
-    "subcategories": ["leafy_greens", "root_vegetables", "cruciferous", "nightshades"]
+    "subcategories": [
+      "leafy_greens",
+      "root_vegetables",
+      "cruciferous",
+      "nightshades"
+    ]
   },
   "fruits": {
     "id": "fruits",
@@ -24,7 +34,12 @@
     "description": "Fresh fruits and berries",
     "icon": "🍎",
     "color": "#ffd43b",
-    "subcategories": ["berries", "citrus", "stone_fruits", "tropical"]
+    "subcategories": [
+      "berries",
+      "citrus",
+      "stone_fruits",
+      "tropical"
+    ]
   },
   "grains_flours_starches": {
     "id": "grains_flours_starches",
@@ -33,7 +48,12 @@
     "description": "Grains, flours, and starchy foods",
     "icon": "🌾",
     "color": "#fcc419",
-    "subcategories": ["grains", "flours", "starches", "breads"]
+    "subcategories": [
+      "grains",
+      "flours",
+      "starches",
+      "breads"
+    ]
   },
   "spices_herbs": {
     "id": "spices_herbs",
@@ -42,7 +62,12 @@
     "description": "Spices, herbs, and seasonings",
     "icon": "🌿",
     "color": "#74c0fc",
-    "subcategories": ["spices", "herbs", "seasonings", "aromatics"]
+    "subcategories": [
+      "spices",
+      "herbs",
+      "seasonings",
+      "aromatics"
+    ]
   },
   "prepared_meals": {
     "id": "prepared_meals",
@@ -51,7 +76,12 @@
     "description": "Complete meals, entrees, soups, and sandwiches",
     "icon": "🍽️",
     "color": "#da77f2",
-    "subcategories": ["entrees", "soups", "sandwiches", "casseroles"]
+    "subcategories": [
+      "entrees",
+      "soups",
+      "sandwiches",
+      "casseroles"
+    ]
   },
   "sweets_desserts": {
     "id": "sweets_desserts",
@@ -60,7 +90,12 @@
     "description": "Sweet treats, desserts, and confections",
     "icon": "🍰",
     "color": "#ff8787",
-    "subcategories": ["cakes", "cookies", "candies", "pastries"]
+    "subcategories": [
+      "cakes",
+      "cookies",
+      "candies",
+      "pastries"
+    ]
   },
   "sauces_spreads_condiments": {
     "id": "sauces_spreads_condiments",
@@ -69,7 +104,12 @@
     "description": "Sauces, spreads, and condiments",
     "icon": "🥄",
     "color": "#ffa8a8",
-    "subcategories": ["sauces", "spreads", "condiments", "dressings"]
+    "subcategories": [
+      "sauces",
+      "spreads",
+      "condiments",
+      "dressings"
+    ]
   },
   "other_food_items": {
     "id": "other_food_items",
@@ -78,6 +118,11 @@
     "description": "Unusual food items like insects, oozes, and exotic foods",
     "icon": "🦗",
     "color": "#868e96",
-    "subcategories": ["insects", "oozes", "exotic", "miscellaneous"]
+    "subcategories": [
+      "insects",
+      "oozes",
+      "exotic",
+      "miscellaneous"
+    ]
   }
-} 
+}

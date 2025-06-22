@@ -7,16 +7,18 @@
   "license": "MIT",
   "engineVersion": "1.0.0",
   "dependencies": [],
-  "tags": ["fantasy", "rpg", "text-adventure"],
-  
+  "tags": [
+    "fantasy",
+    "rpg",
+    "text-adventure"
+  ],
   "data": {
     "skills": "data/skills.json",
-    "items": "data/items.json", 
+    "items": "data/items.json",
     "species": "data/species.json",
     "actions": "data/actions.json",
     "config": "data/game-config.json"
   },
-  
   "assets": {
     "icons": {
       "skills": "assets/icons/skills/",
@@ -32,20 +34,21 @@
       "music": "assets/audio/music/"
     }
   },
-  
   "localization": {
     "default": "en",
-    "supported": ["en", "es", "fr"],
+    "supported": [
+      "en",
+      "es",
+      "fr"
+    ],
     "path": "localization/"
   },
-  
   "settings": {
     "autoSaveInterval": 120000,
     "assetCacheSize": 100,
     "maxInventorySize": 50,
     "skillMaxLevel": 100
   },
-  
   "features": {
     "skillSystem": true,
     "inventorySystem": true,
@@ -54,14 +57,12 @@
     "localization": true,
     "modding": false
   },
-  
   "ui": {
     "layout": "three-column",
     "theme": "dark",
     "font": "Courier New",
     "responsive": true
   },
-  
   "metadata": {
     "created": "2024-01-01",
     "lastUpdated": "2024-01-15",
@@ -69,4 +70,4 @@
     "rating": 0,
     "size": "2.5MB"
   }
-} 
+}

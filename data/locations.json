@@ -21,7 +21,7 @@
                     "actions": [
                       "swim_across",
                       "net_fish",
-                      "line_fish", 
+                      "line_fish",
                       "look_around",
                       "leave"
                     ],
@@ -275,4 +275,4 @@
       }
     }
   }
-} 
+}

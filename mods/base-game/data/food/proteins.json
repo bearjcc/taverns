@@ -1,51 +1,191 @@
 {
   "meats": [
-    { "id": "beef", "name": "Beef", "description": "Meat from a cow." },
-    { "id": "pork", "name": "Pork", "description": "Meat from a pig." },
-    { "id": "pig_skin", "name": "Pig Skin", "description": "The skin from a pig, which must be dried." },
-    { "id": "pigs_foot", "name": "Pig's Foot", "description": "The feet from a pig." },
-    { "id": "venison", "name": "Venison", "description": "Meat from a deer." },
-    { "id": "reindeer_venison", "name": "Reindeer Venison", "description": "A specific type of venison from reindeer." },
-    { "id": "jerky", "name": "Jerky", "description": "Dried and preserved meat." }
+    {
+      "id": "beef",
+      "name": "Beef",
+      "description": "Meat from a cow."
+    },
+    {
+      "id": "pork",
+      "name": "Pork",
+      "description": "Meat from a pig."
+    },
+    {
+      "id": "pig_skin",
+      "name": "Pig Skin",
+      "description": "The skin from a pig, which must be dried."
+    },
+    {
+      "id": "pigs_foot",
+      "name": "Pig's Foot",
+      "description": "The feet from a pig."
+    },
+    {
+      "id": "venison",
+      "name": "Venison",
+      "description": "Meat from a deer."
+    },
+    {
+      "id": "reindeer_venison",
+      "name": "Reindeer Venison",
+      "description": "A specific type of venison from reindeer."
+    },
+    {
+      "id": "jerky",
+      "name": "Jerky",
+      "description": "Dried and preserved meat."
+    }
   ],
   "seafood": {
     "fish": [
-      { "id": "salmon", "name": "Salmon", "description": "A popular, pink-fleshed fish." },
-      { "id": "trout", "name": "Trout", "description": "A common freshwater fish." },
-      { "id": "rainbow_trout", "name": "Rainbow Trout", "description": "A colorful variety of trout." },
-      { "id": "pike", "name": "Pike", "description": "A predatory freshwater fish." },
-      { "id": "carp", "name": "Carp", "description": "A large freshwater fish." },
-      { "id": "catfish", "name": "Catfish", "description": "A bottom-feeding fish with distinctive whiskers." },
-      { "id": "shark_meat", "name": "Shark Meat", "description": "The meat from a shark." }
+      {
+        "id": "salmon",
+        "name": "Salmon",
+        "description": "A popular, pink-fleshed fish."
+      },
+      {
+        "id": "trout",
+        "name": "Trout",
+        "description": "A common freshwater fish."
+      },
+      {
+        "id": "rainbow_trout",
+        "name": "Rainbow Trout",
+        "description": "A colorful variety of trout."
+      },
+      {
+        "id": "pike",
+        "name": "Pike",
+        "description": "A predatory freshwater fish."
+      },
+      {
+        "id": "carp",
+        "name": "Carp",
+        "description": "A large freshwater fish."
+      },
+      {
+        "id": "catfish",
+        "name": "Catfish",
+        "description": "A bottom-feeding fish with distinctive whiskers."
+      },
+      {
+        "id": "shark_meat",
+        "name": "Shark Meat",
+        "description": "The meat from a shark."
+      }
     ],
     "crustaceans": [
-      { "id": "crayfish", "name": "Crayfish", "description": "Small freshwater crustaceans." },
-      { "id": "lobster", "name": "Lobster", "description": "Large marine crustaceans." },
-      { "id": "shrimp", "name": "Shrimp", "description": "Small marine crustaceans." },
-      { "id": "clam_meat", "name": "Clam Meat", "description": "The edible part of a clam." }
+      {
+        "id": "crayfish",
+        "name": "Crayfish",
+        "description": "Small freshwater crustaceans."
+      },
+      {
+        "id": "lobster",
+        "name": "Lobster",
+        "description": "Large marine crustaceans."
+      },
+      {
+        "id": "shrimp",
+        "name": "Shrimp",
+        "description": "Small marine crustaceans."
+      },
+      {
+        "id": "clam_meat",
+        "name": "Clam Meat",
+        "description": "The edible part of a clam."
+      }
     ]
   },
   "nuts": [
-    { "id": "peanut", "name": "Peanut", "description": "A legume that grows underground." },
-    { "id": "walnut", "name": "Walnut", "description": "A common tree nut." },
-    { "id": "almond", "name": "Almond", "description": "A tree nut with a hard shell." },
-    { "id": "brazil_nut", "name": "Brazil Nut", "description": "A large, nutrient-rich nut." },
-    { "id": "chestnut", "name": "Chestnut", "description": "A sweet nut that is often roasted." },
-    { "id": "acorns", "name": "Acorns", "description": "The nut of the oak tree." }
+    {
+      "id": "peanut",
+      "name": "Peanut",
+      "description": "A legume that grows underground."
+    },
+    {
+      "id": "walnut",
+      "name": "Walnut",
+      "description": "A common tree nut."
+    },
+    {
+      "id": "almond",
+      "name": "Almond",
+      "description": "A tree nut with a hard shell."
+    },
+    {
+      "id": "brazil_nut",
+      "name": "Brazil Nut",
+      "description": "A large, nutrient-rich nut."
+    },
+    {
+      "id": "chestnut",
+      "name": "Chestnut",
+      "description": "A sweet nut that is often roasted."
+    },
+    {
+      "id": "acorns",
+      "name": "Acorns",
+      "description": "The nut of the oak tree."
+    }
   ],
   "beans": [
-    { "id": "kidney_beans", "name": "Kidney Beans", "description": "Red, kidney-shaped beans." },
-    { "id": "pinto_beans", "name": "Pinto Beans", "description": "Speckled beans common in many cuisines." },
-    { "id": "black_beans", "name": "Black Beans", "description": "Small, black-colored beans." },
-    { "id": "green_beans", "name": "Green Beans", "description": "Young, edible pods of the common bean." },
-    { "id": "lima_beans", "name": "Lima Beans", "description": "Large, flat, and buttery beans." },
-    { "id": "mung_beans", "name": "Mung Beans", "description": "Small, green beans." },
-    { "id": "garbanzo_beans", "name": "Garbanzo Beans", "description": "Also known as chickpeas." },
-    { "id": "jack_beans", "name": "Jack Beans", "description": "Large, white beans." },
-    { "id": "soy_beans", "name": "Soy Beans", "description": "Versatile beans used in many products." }
+    {
+      "id": "kidney_beans",
+      "name": "Kidney Beans",
+      "description": "Red, kidney-shaped beans."
+    },
+    {
+      "id": "pinto_beans",
+      "name": "Pinto Beans",
+      "description": "Speckled beans common in many cuisines."
+    },
+    {
+      "id": "black_beans",
+      "name": "Black Beans",
+      "description": "Small, black-colored beans."
+    },
+    {
+      "id": "green_beans",
+      "name": "Green Beans",
+      "description": "Young, edible pods of the common bean."
+    },
+    {
+      "id": "lima_beans",
+      "name": "Lima Beans",
+      "description": "Large, flat, and buttery beans."
+    },
+    {
+      "id": "mung_beans",
+      "name": "Mung Beans",
+      "description": "Small, green beans."
+    },
+    {
+      "id": "garbanzo_beans",
+      "name": "Garbanzo Beans",
+      "description": "Also known as chickpeas."
+    },
+    {
+      "id": "jack_beans",
+      "name": "Jack Beans",
+      "description": "Large, white beans."
+    },
+    {
+      "id": "soy_beans",
+      "name": "Soy Beans",
+      "description": "Versatile beans used in many products."
+    }
   ],
   "other_proteins": [
-    { "id": "tofu", "name": "Tofu", "description": "A protein-rich food made from soybeans." },
-    { "id": "omelet", "name": "Omelet", "description": "A dish made from beaten eggs." }
+    {
+      "id": "tofu",
+      "name": "Tofu",
+      "description": "A protein-rich food made from soybeans."
+    },
+    {
+      "id": "omelet",
+      "name": "Omelet",
+      "description": "A dish made from beaten eggs."
+    }
   ]
-} 
+}

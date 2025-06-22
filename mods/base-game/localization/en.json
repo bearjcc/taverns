@@ -7,7 +7,6 @@
     "gameLoaded": "📂 Game loaded successfully",
     "achievementUnlocked": "🏆 Achievement unlocked: {achievementName} (+{points} points)"
   },
-  
   "ui": {
     "tabs": {
       "skills": {
@@ -15,7 +14,7 @@
         "description": "View and manage your character skills"
       },
       "inventory": {
-        "name": "Inventory", 
+        "name": "Inventory",
         "description": "Manage your items and equipment"
       },
       "character": {
@@ -27,7 +26,6 @@
         "description": "Track your progress and unlocked achievements"
       }
     },
-    
     "buttons": {
       "save": "Save Game",
       "load": "Load Game",
@@ -35,16 +33,14 @@
       "settings": "Settings"
     }
   },
-  
   "skills": {
     "categories": {
       "combat": "Combat",
-      "crafting": "Crafting", 
+      "crafting": "Crafting",
       "magic": "Magic",
       "survival": "Survival"
     }
   },
-  
   "achievements": {
     "categories": {
       "progression": "Progression",
@@ -59,4 +55,4 @@
       "exploration": "Exploration"
     }
   }
-} 
+}

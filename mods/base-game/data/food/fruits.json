@@ -1,40 +1,144 @@
 {
   "apples": [
-    { "id": "red_apple", "name": "Red Apple", "description": "A classic, sweet red apple." },
-    { "id": "green_apple", "name": "Green Apple", "description": "A tart, crisp green apple." },
-    { "id": "golden_apple", "name": "Golden Apple", "description": "A special, rare, and valuable apple." }
+    {
+      "id": "red_apple",
+      "name": "Red Apple",
+      "description": "A classic, sweet red apple."
+    },
+    {
+      "id": "green_apple",
+      "name": "Green Apple",
+      "description": "A tart, crisp green apple."
+    },
+    {
+      "id": "golden_apple",
+      "name": "Golden Apple",
+      "description": "A special, rare, and valuable apple."
+    }
   ],
   "pears": [
-    { "id": "pear", "name": "Pear", "description": "A sweet, bell-shaped fruit." },
-    { "id": "sapient_pear", "name": "Sapient Pear", "description": "An enchanted, talking pear." }
+    {
+      "id": "pear",
+      "name": "Pear",
+      "description": "A sweet, bell-shaped fruit."
+    },
+    {
+      "id": "sapient_pear",
+      "name": "Sapient Pear",
+      "description": "An enchanted, talking pear."
+    }
   ],
   "grapes": [
-    { "id": "red_grape", "name": "Red Grape", "description": "A common grape used for eating and winemaking." },
-    { "id": "white_grape", "name": "White Grape", "description": "A light-colored grape." },
-    { "id": "purple_grape", "name": "Purple Grape", "description": "A dark, sweet grape." },
-    { "id": "muscadine_grape", "name": "Muscadine Grape", "description": "A large, robust variety of grape." }
+    {
+      "id": "red_grape",
+      "name": "Red Grape",
+      "description": "A common grape used for eating and winemaking."
+    },
+    {
+      "id": "white_grape",
+      "name": "White Grape",
+      "description": "A light-colored grape."
+    },
+    {
+      "id": "purple_grape",
+      "name": "Purple Grape",
+      "description": "A dark, sweet grape."
+    },
+    {
+      "id": "muscadine_grape",
+      "name": "Muscadine Grape",
+      "description": "A large, robust variety of grape."
+    }
   ],
   "citrus": [
-    { "id": "orange", "name": "Orange", "description": "A sweet, orange-colored citrus fruit." },
-    { "id": "lemon", "name": "Lemon", "description": "A sour, yellow citrus fruit." },
-    { "id": "lime", "name": "Lime", "description": "A small, green, and acidic citrus fruit." },
-    { "id": "grapefruit", "name": "Grapefruit", "description": "A large, tart citrus fruit." },
-    { "id": "tangerine", "name": "Tangerine", "description": "A small, sweet citrus fruit." }
+    {
+      "id": "orange",
+      "name": "Orange",
+      "description": "A sweet, orange-colored citrus fruit."
+    },
+    {
+      "id": "lemon",
+      "name": "Lemon",
+      "description": "A sour, yellow citrus fruit."
+    },
+    {
+      "id": "lime",
+      "name": "Lime",
+      "description": "A small, green, and acidic citrus fruit."
+    },
+    {
+      "id": "grapefruit",
+      "name": "Grapefruit",
+      "description": "A large, tart citrus fruit."
+    },
+    {
+      "id": "tangerine",
+      "name": "Tangerine",
+      "description": "A small, sweet citrus fruit."
+    }
   ],
   "berries": [
-    { "id": "blackberry", "name": "Blackberry", "description": "A sweet, dark-colored berry." },
-    { "id": "blueberry", "name": "Blueberry", "description": "A small, sweet, and blue-colored berry." },
-    { "id": "currant", "name": "Currant", "description": "A small, tart berry." },
-    { "id": "raspberry", "name": "Raspberry", "description": "A delicate, red berry." },
-    { "id": "strawberry", "name": "Strawberry", "description": "A sweet, red, heart-shaped berry." },
-    { "id": "snozzberry", "name": "Snozzberry", "description": "A fantastical and mysterious berry." }
+    {
+      "id": "blackberry",
+      "name": "Blackberry",
+      "description": "A sweet, dark-colored berry."
+    },
+    {
+      "id": "blueberry",
+      "name": "Blueberry",
+      "description": "A small, sweet, and blue-colored berry."
+    },
+    {
+      "id": "currant",
+      "name": "Currant",
+      "description": "A small, tart berry."
+    },
+    {
+      "id": "raspberry",
+      "name": "Raspberry",
+      "description": "A delicate, red berry."
+    },
+    {
+      "id": "strawberry",
+      "name": "Strawberry",
+      "description": "A sweet, red, heart-shaped berry."
+    },
+    {
+      "id": "snozzberry",
+      "name": "Snozzberry",
+      "description": "A fantastical and mysterious berry."
+    }
   ],
   "other_fruits": [
-    { "id": "avocado", "name": "Avocado", "description": "A fruit with a large pit and creamy green flesh." },
-    { "id": "coconut", "name": "Coconut", "description": "A tropical fruit with a hard shell." },
-    { "id": "watermelon", "name": "Watermelon", "description": "A large, juicy fruit with high water content." },
-    { "id": "cherry", "name": "Cherry", "description": "A small, red, stone fruit." },
-    { "id": "banana", "name": "Banana", "description": "A long, curved, yellow fruit." },
-    { "id": "pineapple", "name": "Pineapple", "description": "A tropical fruit with a tough, spiky skin." }
+    {
+      "id": "avocado",
+      "name": "Avocado",
+      "description": "A fruit with a large pit and creamy green flesh."
+    },
+    {
+      "id": "coconut",
+      "name": "Coconut",
+      "description": "A tropical fruit with a hard shell."
+    },
+    {
+      "id": "watermelon",
+      "name": "Watermelon",
+      "description": "A large, juicy fruit with high water content."
+    },
+    {
+      "id": "cherry",
+      "name": "Cherry",
+      "description": "A small, red, stone fruit."
+    },
+    {
+      "id": "banana",
+      "name": "Banana",
+      "description": "A long, curved, yellow fruit."
+    },
+    {
+      "id": "pineapple",
+      "name": "Pineapple",
+      "description": "A tropical fruit with a tough, spiky skin."
+    }
   ]
-} 
+}

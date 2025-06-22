@@ -1,19 +1,55 @@
 {
   "dairy_drinks": [
-    { "id": "milk_cow", "name": "Cow Milk", "description": "A bottle of cow milk." },
-    { "id": "milk_goat", "name": "Goat Milk", "description": "A bottle of goat milk." },
-    { "id": "chocolate_milk", "name": "Chocolate Milk", "description": "A bottle of chocolate milk." },
-    { "id": "milkshake", "name": "Milkshake", "description": "A milkshake." }
+    {
+      "id": "milk_cow",
+      "name": "Cow Milk",
+      "description": "A bottle of cow milk."
+    },
+    {
+      "id": "milk_goat",
+      "name": "Goat Milk",
+      "description": "A bottle of goat milk."
+    },
+    {
+      "id": "chocolate_milk",
+      "name": "Chocolate Milk",
+      "description": "A bottle of chocolate milk."
+    },
+    {
+      "id": "milkshake",
+      "name": "Milkshake",
+      "description": "A milkshake."
+    }
   ],
   "hot_beverages": [
-    { "id": "coffee", "name": "Coffee", "description": "A cup of coffee." },
-    { "id": "tea", "name": "Tea", "description": "A cup of tea." }
+    {
+      "id": "coffee",
+      "name": "Coffee",
+      "description": "A cup of coffee."
+    },
+    {
+      "id": "tea",
+      "name": "Tea",
+      "description": "A cup of tea."
+    }
   ],
   "basic_drinks": [
-    { "id": "water", "name": "Water", "description": "A bottle of water." }
+    {
+      "id": "water",
+      "name": "Water",
+      "description": "A bottle of water."
+    }
   ],
   "special_drinks": [
-    { "id": "slime_slurpie", "name": "Slime Slurpie", "description": "A bottle of slime slurpie." },
-    { "id": "bug_juice", "name": "Bug Juice", "description": "A bottle of bug juice." }
+    {
+      "id": "slime_slurpie",
+      "name": "Slime Slurpie",
+      "description": "A bottle of slime slurpie."
+    },
+    {
+      "id": "bug_juice",
+      "name": "Bug Juice",
+      "description": "A bottle of bug juice."
+    }
   ]
-} 
+}

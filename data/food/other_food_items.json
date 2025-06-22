@@ -1,44 +1,164 @@
 {
   "fungi": [
-    { "id": "white_mushroom", "name": "White Mushroom", "description": "A common, edible mushroom." },
-    { "id": "brown_mushroom", "name": "Brown Mushroom", "description": "An earthy-flavored mushroom." },
-    { "id": "purple_mushroom", "name": "Purple Mushroom", "description": "A vibrantly colored, and possibly magical, mushroom." },
-    { "id": "glowing_mushroom", "name": "Glowing Mushroom", "description": "A mushroom that emits a soft, natural light." },
-    { "id": "morel", "name": "Morel", "description": "A highly prized and flavorful wild mushroom." },
-    { "id": "red_mushroom", "name": "Red Mushroom", "description": "A type of fungus. Eating one unlocks the 'Who wants to go on a trip?' achievement. Using an Animation spell on a mushroom and capturing it as a pet unlocks the 'From Fungi to Familiar' achievement." }
+    {
+      "id": "white_mushroom",
+      "name": "White Mushroom",
+      "description": "A common, edible mushroom."
+    },
+    {
+      "id": "brown_mushroom",
+      "name": "Brown Mushroom",
+      "description": "An earthy-flavored mushroom."
+    },
+    {
+      "id": "purple_mushroom",
+      "name": "Purple Mushroom",
+      "description": "A vibrantly colored, and possibly magical, mushroom."
+    },
+    {
+      "id": "glowing_mushroom",
+      "name": "Glowing Mushroom",
+      "description": "A mushroom that emits a soft, natural light."
+    },
+    {
+      "id": "morel",
+      "name": "Morel",
+      "description": "A highly prized and flavorful wild mushroom."
+    },
+    {
+      "id": "red_mushroom",
+      "name": "Red Mushroom",
+      "description": "A type of fungus. Eating one unlocks the 'Who wants to go on a trip?' achievement. Using an Animation spell on a mushroom and capturing it as a pet unlocks the 'From Fungi to Familiar' achievement."
+    }
   ],
   "insects": [
-    { "id": "grubs", "name": "Grubs", "description": "The larvae of a beetle." },
-    { "id": "mealworms", "name": "Mealworms", "description": "The larvae of the mealworm beetle." },
-    { "id": "beetles", "name": "Beetles", "description": "A group of insects with a hard exoskeleton." },
-    { "id": "glowworm", "name": "Glowworm", "description": "A bioluminescent insect larva." },
-    { "id": "red_ants", "name": "Red Ants", "description": "A type of ant." },
-    { "id": "black_ants", "name": "Black Ants", "description": "A type of ant." },
-    { "id": "fire_ants", "name": "Fire Ants", "description": "A type of ant." },
-    { "id": "insect_puree", "name": "Insect Puree", "description": "A paste made from ground insects." },
-    { "id": "roasted_insects", "name": "Roasted Insects", "description": "A crunchy, cooked insect snack." },
-    { "id": "seasoned_insects", "name": "Seasoned Insects", "description": "Insects flavored with various spices." }
+    {
+      "id": "grubs",
+      "name": "Grubs",
+      "description": "The larvae of a beetle."
+    },
+    {
+      "id": "mealworms",
+      "name": "Mealworms",
+      "description": "The larvae of the mealworm beetle."
+    },
+    {
+      "id": "beetles",
+      "name": "Beetles",
+      "description": "A group of insects with a hard exoskeleton."
+    },
+    {
+      "id": "glowworm",
+      "name": "Glowworm",
+      "description": "A bioluminescent insect larva."
+    },
+    {
+      "id": "red_ants",
+      "name": "Red Ants",
+      "description": "A type of ant."
+    },
+    {
+      "id": "black_ants",
+      "name": "Black Ants",
+      "description": "A type of ant."
+    },
+    {
+      "id": "fire_ants",
+      "name": "Fire Ants",
+      "description": "A type of ant."
+    },
+    {
+      "id": "insect_puree",
+      "name": "Insect Puree",
+      "description": "A paste made from ground insects."
+    },
+    {
+      "id": "roasted_insects",
+      "name": "Roasted Insects",
+      "description": "A crunchy, cooked insect snack."
+    },
+    {
+      "id": "seasoned_insects",
+      "name": "Seasoned Insects",
+      "description": "Insects flavored with various spices."
+    }
   ],
   "oozes": [
-    { "id": "gray_ooze", "name": "Gray Ooze", "description": "A simple, amorphous ooze." },
-    { "id": "green_ooze", "name": "Green Ooze", "description": "A slightly more complex, and possibly acidic, ooze." },
-    { "id": "superior_ooze", "name": "Superior Ooze", "description": "An ooze of higher quality and potency." },
-    { "id": "purple_ooze", "name": "Purple Ooze", "description": "A rare and magical ooze." }
+    {
+      "id": "gray_ooze",
+      "name": "Gray Ooze",
+      "description": "A simple, amorphous ooze."
+    },
+    {
+      "id": "green_ooze",
+      "name": "Green Ooze",
+      "description": "A slightly more complex, and possibly acidic, ooze."
+    },
+    {
+      "id": "superior_ooze",
+      "name": "Superior Ooze",
+      "description": "An ooze of higher quality and potency."
+    },
+    {
+      "id": "purple_ooze",
+      "name": "Purple Ooze",
+      "description": "A rare and magical ooze."
+    }
   ],
   "exotic_dishes": [
-    { "id": "bugs_n_slime", "name": "Bugs n' Slime", "description": "A delightful combination of crunchy and gooey." },
-    { "id": "bugs_n_ooze", "name": "Bugs n' Ooze", "description": "A variation of the above, with ooze instead of slime." },
-    { "id": "moss_wrap", "name": "Moss Wrap", "description": "Edible moss used as a wrap." },
-    { "id": "cave_critter_fritters", "name": "Cave Critter Fritters", "description": "Deep-fried, bite-sized cave creatures." },
-    { "id": "muddy_mossy_moldy_mess", "name": "Muddy, Mossy, Moldy Mess", "description": "Exactly what it sounds like." },
-    { "id": "ooey_gooey_fresh_n_fruity", "name": "Ooey Gooey Fresh n Fruity", "description": "A surprisingly pleasant ooze-based dessert." },
-    { "id": "scoop_o_gloop", "name": "Scoop O'Gloop", "description": "A scoop of... well, gloop." }
+    {
+      "id": "bugs_n_slime",
+      "name": "Bugs n' Slime",
+      "description": "A delightful combination of crunchy and gooey."
+    },
+    {
+      "id": "bugs_n_ooze",
+      "name": "Bugs n' Ooze",
+      "description": "A variation of the above, with ooze instead of slime."
+    },
+    {
+      "id": "moss_wrap",
+      "name": "Moss Wrap",
+      "description": "Edible moss used as a wrap."
+    },
+    {
+      "id": "cave_critter_fritters",
+      "name": "Cave Critter Fritters",
+      "description": "Deep-fried, bite-sized cave creatures."
+    },
+    {
+      "id": "muddy_mossy_moldy_mess",
+      "name": "Muddy, Mossy, Moldy Mess",
+      "description": "Exactly what it sounds like."
+    },
+    {
+      "id": "ooey_gooey_fresh_n_fruity",
+      "name": "Ooey Gooey Fresh n Fruity",
+      "description": "A surprisingly pleasant ooze-based dessert."
+    },
+    {
+      "id": "scoop_o_gloop",
+      "name": "Scoop O'Gloop",
+      "description": "A scoop of... well, gloop."
+    }
   ],
   "plants": [
-    { "id": "rare_glowing_moss", "name": "Rare Glowing Moss", "description": "A rare, glowing moss with magical properties." },
-    { "id": "moss", "name": "Moss", "description": "A type of plant. Cooking with it in Mossy Glade is required for the 'Mossmade' achievement." }
+    {
+      "id": "rare_glowing_moss",
+      "name": "Rare Glowing Moss",
+      "description": "A rare, glowing moss with magical properties."
+    },
+    {
+      "id": "moss",
+      "name": "Moss",
+      "description": "A type of plant. Cooking with it in Mossy Glade is required for the 'Mossmade' achievement."
+    }
   ],
   "fungus": [
-    { "id": "truffle", "name": "Truffle", "description": "A rare and expensive fungus prized for its unique aroma and flavor." }
+    {
+      "id": "truffle",
+      "name": "Truffle",
+      "description": "A rare and expensive fungus prized for its unique aroma and flavor."
+    }
   ]
-} 
+}

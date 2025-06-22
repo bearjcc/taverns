@@ -64,10 +64,10 @@ class SpeciesUI {
         if (!this.uiElements.speciesSelector) return;
 
         const playableSpecies = this.speciesManager.getPlayableSpecies();
-        
+
         // Clear existing options
         this.uiElements.speciesSelector.innerHTML = '<option value="">Select a species...</option>';
-        
+
         // Add species options
         playableSpecies.forEach(species => {
             const option = document.createElement('option');
@@ -84,9 +84,9 @@ class SpeciesUI {
         if (!this.uiElements.speciesList) return;
 
         const playableSpecies = this.speciesManager.getPlayableSpecies();
-        
+
         this.uiElements.speciesList.innerHTML = '';
-        
+
         playableSpecies.forEach(species => {
             const speciesCard = this.createSpeciesCard(species);
             this.uiElements.speciesList.appendChild(speciesCard);
@@ -102,7 +102,7 @@ class SpeciesUI {
         const card = document.createElement('div');
         card.className = 'species-card';
         card.dataset.speciesId = species.id;
-        
+
         card.innerHTML = `
             <h3 class="species-name">${species.name}</h3>
             <p class="species-description">${species.description}</p>
@@ -150,10 +150,10 @@ class SpeciesUI {
     createBonusSummary(species) {
         const bonuses = species.getAllBonuses();
         const bonusEntries = Object.entries(bonuses).filter(([_, value]) => value > 0);
-        
+
         if (bonusEntries.length === 0) return '<span>No bonuses</span>';
 
-        return bonusEntries.map(([type, value]) => 
+        return bonusEntries.map(([type, value]) =>
             `<span class="bonus">${type}: +${value}</span>`
         ).join(' ');
     }
@@ -202,14 +202,14 @@ class SpeciesUI {
         return `
             <div class="attributes-grid">
                 ${attributes.map(attr => {
-                    const range = species.getAttributeRange(attr);
-                    return `
+            const range = species.getAttributeRange(attr);
+            return `
                         <div class="attribute-item">
                             <span class="attribute-name">${attr}</span>
                             <span class="attribute-range">${range.min} - ${range.max}</span>
                         </div>
                     `;
-                }).join('')}
+        }).join('')}
             </div>
         `;
     }
@@ -225,9 +225,9 @@ class SpeciesUI {
 
         return `
             <div class="professions-list">
-                ${professions.map(profession => 
-                    `<span class="profession-tag">${profession}</span>`
-                ).join('')}
+                ${professions.map(profession =>
+            `<span class="profession-tag">${profession}</span>`
+        ).join('')}
             </div>
         `;
     }
@@ -240,19 +240,19 @@ class SpeciesUI {
     createDetailedBonusesDisplay(species) {
         const bonuses = species.getAllBonuses();
         const bonusEntries = Object.entries(bonuses);
-        
+
         if (bonusEntries.every(([_, value]) => value === 0)) {
             return '<p>No bonuses</p>';
         }
 
         return `
             <div class="bonuses-list">
-                ${bonusEntries.map(([type, value]) => 
-                    `<div class="bonus-item">
+                ${bonusEntries.map(([type, value]) =>
+            `<div class="bonus-item">
                         <span class="bonus-type">${type}</span>
                         <span class="bonus-value">+${value}</span>
                     </div>`
-                ).join('')}
+        ).join('')}
             </div>
         `;
     }
@@ -274,7 +274,7 @@ class SpeciesUI {
             this.currentSpecies = species;
             this.selectedSpeciesId = speciesId;
             this.updateSpeciesInfo(species);
-            
+
             // Trigger callback if registered
             if (this.callbacks.onSpeciesSelected) {
                 this.callbacks.onSpeciesSelected(species);
@@ -289,7 +289,7 @@ class SpeciesUI {
         const randomSpecies = this.speciesManager.getRandomPlayableSpecies();
         if (randomSpecies) {
             this.onSpeciesSelected(randomSpecies.id);
-            
+
             // Update selector if it exists
             if (this.uiElements.speciesSelector) {
                 this.uiElements.speciesSelector.value = randomSpecies.id;
@@ -306,11 +306,11 @@ class SpeciesUI {
 
         const normalizedTerm = searchTerm.toLowerCase();
         const cards = this.uiElements.speciesList.querySelectorAll('.species-card');
-        
+
         cards.forEach(card => {
             const speciesName = card.querySelector('.species-name').textContent.toLowerCase();
             const speciesDesc = card.querySelector('.species-description').textContent.toLowerCase();
-            
+
             if (speciesName.includes(normalizedTerm) || speciesDesc.includes(normalizedTerm)) {
                 card.style.display = 'block';
             } else {

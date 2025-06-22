@@ -252,45 +252,224 @@
     }
   },
   "skill_categories": [
-    { "id": "combat", "name": "Combat" },
-    { "id": "magic", "name": "Magic" },
-    { "id": "crafting", "name": "Crafting" },
-    { "id": "survival", "name": "Survival" },
-    { "id": "professional", "name": "Professional" }
+    {
+      "id": "combat",
+      "name": "Combat"
+    },
+    {
+      "id": "magic",
+      "name": "Magic"
+    },
+    {
+      "id": "crafting",
+      "name": "Crafting"
+    },
+    {
+      "id": "survival",
+      "name": "Survival"
+    },
+    {
+      "id": "professional",
+      "name": "Professional"
+    }
   ],
   "skills": {
-    "Combat": { "type": "combat", "icon": "⚔️", "description": "General combat proficiency and fighting ability." },
-    "Hunting": { "type": "combat", "icon": "🏹", "description": "The skill of tracking and hunting wild animals for food and resources." },
-    "Unarmed combat": { "type": "combat", "icon": "✊", "description": "Fighting techniques using only hands, feet, and body without weapons." },
-    "Melee combat": { "type": "combat", "icon": "🗡️", "description": "Close-quarters fighting with handheld weapons like swords, axes, and clubs." },
-    "Ranged combat": { "type": "combat", "icon": "🎯", "description": "Fighting at a distance using bows, crossbows, throwing weapons, and firearms." },
-    "Stealth": { "type": "combat", "icon": "🤫", "description": "The ability to move silently and remain unseen, essential for infiltration and ambush." },
-    "Magic": { "type": "magic", "icon": "✨", "description": "General magical aptitude and understanding of arcane forces." },
-    "Basic Magic": { "type": "magic", "icon": "🪄", "description": "Fundamental magical techniques and simple spellcasting abilities." },
-    "Fire Magic": { "type": "magic", "icon": "🔥", "description": "The manipulation and control of fire and heat through magical means." },
-    "Healing Magic": { "type": "magic", "icon": "💖", "description": "Magical techniques for restoring health and curing ailments." },
-    "Summoning": { "type": "magic", "icon": "👻", "description": "The ability to call forth and control magical creatures and entities." },
-    "Enchantment": { "type": "magic", "icon": "💎", "description": "The art of imbuing objects with magical properties and effects." },
-    "Crafting": { "type": "crafting", "icon": "🔨", "description": "General ability to create and modify items and objects." },
-    "Blacksmithing": { "type": "crafting", "icon": " blacksmithing", "description": "The art of working with metal to create tools, weapons, and armor." },
-    "Armorsmithing": { "type": "crafting", "icon": "🛡️", "description": "Specialized crafting of protective armor and defensive equipment." },
-    "Enchanting": { "type": "crafting", "icon": "💍", "description": "The process of adding magical properties to crafted items." },
-    "Jewelcrafting": { "type": "crafting", "icon": "💍", "description": "The art of cutting, setting, and working with precious stones and metals." },
-    "Fire making": { "type": "survival", "icon": "🔥", "description": "The ability to start and maintain fires for warmth, cooking, and protection." },
-    "Foraging": { "type": "survival", "icon": "🌿", "description": "Finding and gathering wild food, herbs, and useful materials from nature." },
-    "Tracking": { "type": "survival", "icon": "🐾", "description": "Following trails and signs left by animals, people, or other creatures." },
-    "First Aid": { "type": "survival", "icon": "🩹", "description": "Basic medical knowledge for treating injuries and preventing infection." },
-    "Cooking": { "type": "survival", "icon": "🍳", "description": "Preparing and cooking food to make it safe and more nutritious." },
-    "Woodcutting": { "type": "survival", "icon": "🌳", "description": "Cutting and processing wood for construction, fuel, and crafting materials." },
-    "Pyromancy": { "type": "professional", "icon": "🔥", "description": "Advanced fire making techniques.", "requires": { "skill": "Fire making", "level": 25 } },
-    "Archeology": { "type": "professional", "icon": "��", "description": "The study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains.", "requires": { "skill": "Foraging", "level": 25 } },
-    "Advanced Tracking": { "type": "professional", "icon": "🎯", "description": "Advanced techniques for tracking various beings.", "requires": { "skill": "Tracking", "level": 25 } },
-    "Culinary Arts": { "type": "professional", "icon": "🧑‍🍳", "description": "The art of preparing, cooking, and presenting food.", "requires": { "skill": "Cooking", "level": 25 } },
-    "Farming": { "type": "professional", "icon": "🧑‍🌾", "description": "The science or practice of farming, including cultivation of the soil for the growing of crops and the rearing of animals to provide food, wool, and other products." },
-    "Woodworking": { "type": "professional", "icon": "🪵", "description": "The skill of making items from wood." },
-    "Advanced Hunting": { "type": "professional", "icon": "🏹", "description": "Advanced techniques for hunting various creatures.", "requires": { "skill": "Hunting", "level": 25 } },
-    "Advanced Combat": { "type": "professional", "icon": "⚔️", "description": "Advanced combat techniques and strategies.", "requires": { "skill": "Combat", "level": 25 } },
-    "Advanced Magic": { "type": "professional", "icon": "✨", "description": "Advanced magical techniques and spellcraft.", "requires": { "skill": "Magic", "level": 25 } },
-    "Master Crafting": { "type": "professional", "icon": "👑", "description": "The pinnacle of crafting skill, allowing creation of legendary items.", "requires": { "skill": "Crafting", "level": 25 } }
+    "Combat": {
+      "type": "combat",
+      "icon": "⚔️",
+      "description": "General combat proficiency and fighting ability."
+    },
+    "Hunting": {
+      "type": "combat",
+      "icon": "🏹",
+      "description": "The skill of tracking and hunting wild animals for food and resources."
+    },
+    "Unarmed combat": {
+      "type": "combat",
+      "icon": "✊",
+      "description": "Fighting techniques using only hands, feet, and body without weapons."
+    },
+    "Melee combat": {
+      "type": "combat",
+      "icon": "🗡️",
+      "description": "Close-quarters fighting with handheld weapons like swords, axes, and clubs."
+    },
+    "Ranged combat": {
+      "type": "combat",
+      "icon": "🎯",
+      "description": "Fighting at a distance using bows, crossbows, throwing weapons, and firearms."
+    },
+    "Stealth": {
+      "type": "combat",
+      "icon": "🤫",
+      "description": "The ability to move silently and remain unseen, essential for infiltration and ambush."
+    },
+    "Magic": {
+      "type": "magic",
+      "icon": "✨",
+      "description": "General magical aptitude and understanding of arcane forces."
+    },
+    "Basic Magic": {
+      "type": "magic",
+      "icon": "🪄",
+      "description": "Fundamental magical techniques and simple spellcasting abilities."
+    },
+    "Fire Magic": {
+      "type": "magic",
+      "icon": "🔥",
+      "description": "The manipulation and control of fire and heat through magical means."
+    },
+    "Healing Magic": {
+      "type": "magic",
+      "icon": "💖",
+      "description": "Magical techniques for restoring health and curing ailments."
+    },
+    "Summoning": {
+      "type": "magic",
+      "icon": "👻",
+      "description": "The ability to call forth and control magical creatures and entities."
+    },
+    "Enchantment": {
+      "type": "magic",
+      "icon": "💎",
+      "description": "The art of imbuing objects with magical properties and effects."
+    },
+    "Crafting": {
+      "type": "crafting",
+      "icon": "🔨",
+      "description": "General ability to create and modify items and objects."
+    },
+    "Blacksmithing": {
+      "type": "crafting",
+      "icon": " blacksmithing",
+      "description": "The art of working with metal to create tools, weapons, and armor."
+    },
+    "Armorsmithing": {
+      "type": "crafting",
+      "icon": "🛡️",
+      "description": "Specialized crafting of protective armor and defensive equipment."
+    },
+    "Enchanting": {
+      "type": "crafting",
+      "icon": "💍",
+      "description": "The process of adding magical properties to crafted items."
+    },
+    "Jewelcrafting": {
+      "type": "crafting",
+      "icon": "💍",
+      "description": "The art of cutting, setting, and working with precious stones and metals."
+    },
+    "Fire making": {
+      "type": "survival",
+      "icon": "🔥",
+      "description": "The ability to start and maintain fires for warmth, cooking, and protection."
+    },
+    "Foraging": {
+      "type": "survival",
+      "icon": "🌿",
+      "description": "Finding and gathering wild food, herbs, and useful materials from nature."
+    },
+    "Tracking": {
+      "type": "survival",
+      "icon": "🐾",
+      "description": "Following trails and signs left by animals, people, or other creatures."
+    },
+    "First Aid": {
+      "type": "survival",
+      "icon": "🩹",
+      "description": "Basic medical knowledge for treating injuries and preventing infection."
+    },
+    "Cooking": {
+      "type": "survival",
+      "icon": "🍳",
+      "description": "Preparing and cooking food to make it safe and more nutritious."
+    },
+    "Woodcutting": {
+      "type": "survival",
+      "icon": "🌳",
+      "description": "Cutting and processing wood for construction, fuel, and crafting materials."
+    },
+    "Pyromancy": {
+      "type": "professional",
+      "icon": "🔥",
+      "description": "Advanced fire making techniques.",
+      "requires": {
+        "skill": "Fire making",
+        "level": 25
+      }
+    },
+    "Archeology": {
+      "type": "professional",
+      "icon": "��",
+      "description": "The study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains.",
+      "requires": {
+        "skill": "Foraging",
+        "level": 25
+      }
+    },
+    "Advanced Tracking": {
+      "type": "professional",
+      "icon": "🎯",
+      "description": "Advanced techniques for tracking various beings.",
+      "requires": {
+        "skill": "Tracking",
+        "level": 25
+      }
+    },
+    "Culinary Arts": {
+      "type": "professional",
+      "icon": "🧑‍🍳",
+      "description": "The art of preparing, cooking, and presenting food.",
+      "requires": {
+        "skill": "Cooking",
+        "level": 25
+      }
+    },
+    "Farming": {
+      "type": "professional",
+      "icon": "🧑‍🌾",
+      "description": "The science or practice of farming, including cultivation of the soil for the growing of crops and the rearing of animals to provide food, wool, and other products."
+    },
+    "Woodworking": {
+      "type": "professional",
+      "icon": "🪵",
+      "description": "The skill of making items from wood."
+    },
+    "Advanced Hunting": {
+      "type": "professional",
+      "icon": "🏹",
+      "description": "Advanced techniques for hunting various creatures.",
+      "requires": {
+        "skill": "Hunting",
+        "level": 25
+      }
+    },
+    "Advanced Combat": {
+      "type": "professional",
+      "icon": "⚔️",
+      "description": "Advanced combat techniques and strategies.",
+      "requires": {
+        "skill": "Combat",
+        "level": 25
+      }
+    },
+    "Advanced Magic": {
+      "type": "professional",
+      "icon": "✨",
+      "description": "Advanced magical techniques and spellcraft.",
+      "requires": {
+        "skill": "Magic",
+        "level": 25
+      }
+    },
+    "Master Crafting": {
+      "type": "professional",
+      "icon": "👑",
+      "description": "The pinnacle of crafting skill, allowing creation of legendary items.",
+      "requires": {
+        "skill": "Crafting",
+        "level": 25
+      }
+    }
   }
-} 
+}

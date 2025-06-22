@@ -52,33 +52,33 @@ let achievementSystem;
 async function initGame() {
     try {
         console.log('Initializing Taverns and Treasures with GameEngine...');
-        
+
         // Create and configure the game engine
         gameEngine = new GameEngine({
             autoSaveInterval: 120000, // 2 minutes
             defaultLanguage: 'en',
             assetCacheSize: 100
         });
-        
+
         // Initialize the engine with the base game mod
         await gameEngine.initialize('base-game', {
             loadSavedState: true,
             showWelcomeMessage: true
         });
-        
+
         // Set up legacy global references for backward compatibility
         setupLegacyReferences();
-        
+
         // Initialize UI components
         await initializeUI();
-        
+
         // Start the game engine
         gameEngine.start();
-        
+
         // Show welcome message
         const welcomeMessage = gameEngine.getSystem('config').getMessage('welcome');
         gameEngine.getSystem('ui').addNarrationMessage(welcomeMessage);
-        
+
         // Check if save was loaded
         const saveLoaded = gameEngine.getSystem('state').hasSavedState();
         if (saveLoaded) {
@@ -86,15 +86,15 @@ async function initGame() {
         } else {
             gameEngine.getSystem('ui').showToast(gameEngine.getSystem('config').getMessage('noSaveFound'), 'info');
         }
-        
+
         console.log('Game initialized successfully with GameEngine');
-        
+
         // Hide loading indicator
         const loadingIndicator = document.getElementById('loading');
         if (loadingIndicator) {
             loadingIndicator.style.display = 'none';
         }
-        
+
     } catch (error) {
         console.error('Failed to initialize game:', error);
         const loadingIndicator = document.getElementById('loading');
@@ -120,11 +120,11 @@ function setupLegacyReferences() {
     gameStateManager = gameEngine.getSystem('state');
     encyclopediaSystem = gameEngine.getSystem('encyclopedia');
     achievementSystem = gameEngine.getSystem('achievements');
-    
+
     // Set up encyclopedia UI
     encyclopediaUI = new EncyclopediaUI(encyclopediaSystem);
     encyclopediaUI.initialize();
-    
+
     // Set up global window references for backward compatibility
     window.configManager = configManager;
     window.achievementSystem = achievementSystem;
@@ -136,16 +136,16 @@ function setupLegacyReferences() {
  */
 async function initializeUI() {
     const gameConfig = gameEngine.getSystem('config').getGameConfig();
-    
+
     // Generate UI tabs from configuration
     gameEngine.getSystem('ui').generateTabsFromConfig(gameConfig);
-    
+
     // Create left toolbar
     createLeftToolbar(gameConfig);
-    
+
     // Set up achievement notification system
     setupAchievementNotifications();
-    
+
     // Update all displays
     updateAllDisplays();
 }
@@ -155,30 +155,30 @@ async function initializeUI() {
  */
 function setupAchievementNotifications() {
     if (!gameEngine) return;
-    
+
     const eventSystem = gameEngine.getSystem('events');
     if (!eventSystem) return;
-    
+
     // Listen for achievement unlocks
     eventSystem.on('achievement:unlocked', (data) => {
         const { achievement, points, totalPoints } = data;
-        
+
         // Show achievement notification
         if (typeof showAchievementUnlocked === 'function') {
             showAchievementUnlocked(achievement, points, totalPoints);
         }
-        
+
         // Show toast notification
         const ui = gameEngine.getSystem('ui');
         if (ui) {
             ui.showToast(`Achievement Unlocked: ${achievement.name}! +${points} points`, 'success');
         }
-        
+
         // Add narration message
         if (ui) {
             ui.addNarrationMessage(`🏆 Achievement unlocked: ${achievement.name} (+${points} points)`);
         }
-        
+
         // Update achievements display
         updateAllDisplays();
     });
@@ -190,7 +190,7 @@ function setupAchievementNotifications() {
  */
 function updateAllDisplays() {
     if (!gameEngine) return;
-    
+
     const ui = gameEngine.getSystem('ui');
     const skills = gameEngine.getSystem('skills');
     const actions = gameEngine.getSystem('actions');
@@ -198,23 +198,23 @@ function updateAllDisplays() {
     const traits = gameEngine.getSystem('traits');
     const achievements = gameEngine.getSystem('achievements');
     const config = gameEngine.getSystem('config');
-    
+
     // Get configurations
     const gameConfig = config.getGameConfig();
     const skillsConfig = config.getSkillsConfig();
-    
+
     // Update skill displays
     ui.updateSkillsDisplay(skills, skillsConfig);
-    
+
     // Update action displays
     ui.updateActionsDisplay(actions, skills, inventory, gameConfig);
-    
+
     // Update inventory display
     ui.updateInventoryDisplay(inventory, gameConfig);
-    
+
     // Update character display
     ui.updateCharacterDisplay(traits, gameConfig);
-    
+
     // Update achievements display
     ui.updateAchievementsDisplay(achievements, gameConfig);
 }
@@ -226,25 +226,25 @@ function updateAllDisplays() {
  */
 function handleAction(actionName, variable = null) {
     if (!gameEngine) return;
-    
+
     try {
         const actionSystem = gameEngine.getSystem('actions');
         const result = actionSystem.executeAction(actionName, variable);
-        
+
         if (result.success) {
             // Update displays after successful action
             updateAllDisplays();
-            
+
             // Show success message
             if (result.message) {
                 gameEngine.getSystem('ui').addNarrationMessage(result.message);
             }
-            
+
             // Show XP gain if applicable
             if (result.xpGained) {
                 gameEngine.getSystem('ui').showToast(`+${result.xpGained} XP`, 'success');
             }
-            
+
             // Show item gained if applicable
             if (result.itemGained) {
                 gameEngine.getSystem('ui').showToast(`Gained: ${result.itemGained}`, 'success');
@@ -266,15 +266,15 @@ function handleAction(actionName, variable = null) {
  */
 function handleItemAction(action, itemId) {
     if (!gameEngine) return;
-    
+
     try {
         const inventory = gameEngine.getSystem('inventory');
         const result = inventory.performItemAction(action, itemId);
-        
+
         if (result.success) {
             // Update displays after successful action
             updateAllDisplays();
-            
+
             // Show success message
             if (result.message) {
                 gameEngine.getSystem('ui').addNarrationMessage(result.message);
@@ -333,16 +333,16 @@ function createToolbarButton(config) {
     button.className = 'toolbar-button';
     button.innerHTML = config.icon;
     button.title = config.title;
-    
+
     // Add tooltip
     const tooltip = document.createElement('span');
     tooltip.className = 'toolbar-button-title';
     tooltip.textContent = config.title;
     button.appendChild(tooltip);
-    
+
     // Add click handler
     button.addEventListener('click', config.onClick);
-    
+
     return button;
 }
 
@@ -354,15 +354,15 @@ function handleManualSave() {
         console.error('Game engine not initialized');
         return;
     }
-    
+
     try {
         const skillManager = gameEngine.getSystem('skills');
         const inventoryManager = gameEngine.getSystem('inventory');
         const traitManager = gameEngine.getSystem('traits');
         const stateManager = gameEngine.getSystem('state');
-        
+
         const success = stateManager.saveGameState(skillManager, inventoryManager, traitManager);
-        
+
         if (success) {
             gameEngine.getSystem('ui').showToast('Game saved successfully!', 'success');
         } else {
@@ -382,7 +382,7 @@ function openEncyclopedia() {
         console.error('Encyclopedia UI not initialized');
         return;
     }
-    
+
     try {
         encyclopediaUI.show();
     } catch (error) {
@@ -401,7 +401,7 @@ function openEncyclopedia() {
  */
 function showItemContextMenu(event, itemId, inventoryItem) {
     if (!gameEngine) return;
-    
+
     try {
         const inventory = gameEngine.getSystem('inventory');
         inventory.showContextMenu(event, itemId, inventoryItem);
@@ -415,7 +415,7 @@ function showItemContextMenu(event, itemId, inventoryItem) {
  */
 function removeContextMenu() {
     if (!gameEngine) return;
-    
+
     try {
         const inventory = gameEngine.getSystem('inventory');
         inventory.removeContextMenu();
