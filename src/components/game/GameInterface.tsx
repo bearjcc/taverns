@@ -69,25 +69,19 @@ export function GameInterface() {
   return (
     <div className="w-full min-h-screen flex flex-row bg-background text-foreground font-mono dark">
       <div className="flex-1 p-2 max-w-xs">
-        <Card className="h-full">
-          <Suspense fallback={<PanelLoading />}>
-            <NarrationPanel gameState={gameState} />
-          </Suspense>
-        </Card>
+        <Suspense fallback={<PanelLoading />}>
+          <NarrationPanel gameState={gameState} />
+        </Suspense>
       </div>
       <div className="flex-[2] p-2">
-        <Card className="h-full">
-          <Suspense fallback={<PanelLoading />}>
-            <ActionsPanel engine={engine} gameState={gameState} setGameState={setGameState} />
-          </Suspense>
-        </Card>
+        <Suspense fallback={<PanelLoading />}>
+          <ActionsPanel engine={engine} gameState={gameState} setGameState={setGameState} />
+        </Suspense>
       </div>
       <div className="flex-1 p-2 max-w-xs">
-        <Card className="h-full">
-          <Suspense fallback={<PanelLoading />}>
-            <SidebarPanel gameState={gameState} />
-          </Suspense>
-        </Card>
+        <Suspense fallback={<PanelLoading />}>
+          <SidebarPanel gameState={gameState} />
+        </Suspense>
       </div>
     </div>
   );
