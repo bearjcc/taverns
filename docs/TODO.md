@@ -316,7 +316,7 @@
 **Objective**: Complete the migration with advanced UI features, animations, authentication, and database integration
 
 #### 3.7.0: File & Asset Migration Finalization
-- [ ] **Review `assets/css/`**: Migrate all necessary styles from pre-migration CSS files (`assets/css/*.css`) to Tailwind CSS and shadcn/ui components. Ensure theme consistency (dark theme, monospace font).
+- [x] **Review `assets/css/`**: Migrate all necessary styles from pre-migration CSS files (`assets/css/*.css`) to Tailwind CSS and shadcn/ui components. Ensure theme consistency (dark theme, monospace font).
 - [ ] **Review `assets/js/`**: Ensure all relevant logic from pre-migration JavaScript files (`assets/js/*.js`) is either migrated to the new game engine (`src/lib/game-engine/`) or reimplemented as React components in `src/components/game/`.
 - [ ] **Verify `data/` loading**: Confirm all JSON data files from the root `data/` directory are correctly and exclusively served via Next.js API routes (`src/app/api/`) as per the migration plan. Remove any redundant static serving of these files from `public/data/` if not intentional for a specific, documented reason.
 - [ ] **Update `jsdoc.json`**: Review `jsdoc.json` and JSDoc usage. Decide if JSDoc will continue to be used for the vanilla JS parts of the engine (`src/lib/game-engine/`) and update configuration if necessary, or remove if fully superseded by TypeScript.
@@ -326,38 +326,10 @@
 - [ ] **Update `README.md`**: Revise the main `README.md` to reflect the Next.js architecture, new setup instructions, development commands (`npm run dev`), and project structure.
 - [ ] **Consolidate `schemas/` usage**: Confirm that `src/lib/game-engine/schemas/` and `src/lib/schemas/` are not redundant. The primary location for schemas used by API routes and potentially the engine should be `src/lib/schemas/` as per `MIGRATION_TO_NEXTJS.md`. The engine should consume schemas via its configuration or a dedicated schema loader.
 - [ ] **Migrate `scripts/validate-schemas.js`**: Integrate the functionality of `scripts/validate-schemas.js` into the Next.js build process or as part of the API route data validation logic.
-- [ ] **Cleanup `src/api/`**: Investigate the `src/api/` directory. If it\'s a remnant of an older structure or not used by the App Router, remove it to avoid confusion with `src/app/api/`.
+- [ ] **Cleanup `src/api/`**: Investigate the `src/api/` directory. If it's a remnant of an older structure or not used by the App Router, remove it to avoid confusion with `src/app/api/`.
 - [ ] **Clarify `src/lib/game-engine/data/`**: The game engine in `src/lib/game-engine/` should ideally not contain its own `data/` subdirectory if the design is for data to be passed in or loaded via central API routes. Clarify its purpose or remove if redundant.
 - [ ] **Consolidate `styles/`**: Review `src/styles/`. If it contains global styles, merge them into `src/app/globals.css` and remove the old directory to adhere to App Router conventions.
 - [ ] **Update `tests/`**: Review all pre-migration tests in `tests/` (especially `*.html` and `*.test.js` files not in `e2e/`). Update or replace them with tests compatible with the Next.js environment (e.g., Jest, React Testing Library, Playwright).
-- [ ] **Migrate `old files/TavernsandTreasures.com BlueHost/`**: Review contents and migrate relevant assets/configurations.
-- [ ] **Migrate `old files/Taverns and Treasures Artwork copy/`**: Review artwork, dedup with `Taverns and Treasures Artwork/`, and migrate to `public/assets/images` or similar.
-- [ ] **Migrate `old files/Taverns and Treasures Artwork/`**: Review artwork and migrate to `public/assets/images` or similar.
-- [ ] **Migrate `old files/wiki img/`**: Review images and migrate to `public/assets/images/wiki` or integrate into encyclopedia system.
-- [ ] **Migrate `old files/vectors/`**: Review vector graphics and migrate to `public/assets/vectors` or convert to SVG for UI.
-- [ ] **Migrate `old files/script/`**: Review scripts, determine relevance, and migrate to `scripts/` or integrate logic into engine/components.
-- [ ] **Migrate `old files/Novellas/`**: Review content, consider for lore/in-game text, potentially convert to JSON for `data/` or markdown for docs.
-- [ ] **Migrate `old files/img/`**: Review images and migrate to `public/assets/images`.
-- [ ] **Migrate `old files/Images/`**: Review images, dedup with `img/`, and migrate to `public/assets/images`.
-- [ ] **Migrate `old files/Icons/`**: Review icons and migrate to `public/assets/icons` or integrate as SVGs into components.
-- [ ] **Migrate `old files/dev/`**: Review contents, determine relevance, and migrate any useful development assets or configurations.
-- [ ] **Migrate `old files/Audio/`**: Review audio files and migrate to `public/assets/audio`, plan for audio system integration.
-- [ ] **Migrate `old files/Species playable.csv`**: Convert to JSON and integrate into `data/species.json` or a new data file.
-- [ ] **Migrate `old files/Species.csv`**: Convert to JSON and integrate/merge with `data/species.json`.
-- [ ] **Migrate `old files/novella.md`**: Review content for lore/in-game text, integrate into documentation or game data.
-- [ ] **Migrate `old files/T_T Overview.docx`**: Extract relevant overview information for `docs/README.md` or other design documents.
-- [ ] **Migrate `old files/T&T-2.png` and `T&T-.png`**: Review images, migrate to `public/assets/images` (likely for branding/UI).
-- [ ] **Migrate `old files/logo.svg`**: Migrate to `public/assets/images` for UI/branding.
-- [ ] **Migrate `old files/T&T Logo.JPG`**: Migrate to `public/assets/images`, consider converting to SVG or PNG.
-- [ ] **Migrate `old files/logo_w_text.svg`**: Migrate to `public/assets/images` for UI/branding.
-- [ ] **Migrate `old files/favicon (2).ico` and `favicon.ico`**: Choose one and replace `public/favicon.ico`.
-- [ ] **Migrate `old files/Trainable Skills.xlsx`**: Convert to JSON and integrate into `data/skills.json` or related config.
-- [ ] **Migrate `old files/Races.xlsx`**: Convert to JSON and integrate into `data/species.json` or create `data/races.json`.
-- [ ] **Migrate `old files/Events.xlsx`**: Review for game mechanics, convert to JSON for `data/events.json` or integrate into action/quest system.
-- [ ] **Migrate `old files/Species.xlsx`**: Convert to JSON and merge/update `data/species.json`.
-- [ ] **Migrate `old files/translation.txt`**: Review for localization strings, integrate into `data/localization/en.json` or other language files.
-- [ ] **Migrate `old files/Zones.txt`**: Review for location/zone data, convert to JSON for `data/locations.json` or related config.
-- [ ] **Migrate `old files/Items.xlsx`**: Convert to JSON and integrate/merge with `data/items.json`.
 
 #### 3.7.1: Data Integration & Migration Completion
 - [ ] **Fix Next.js site to use actual game data**
