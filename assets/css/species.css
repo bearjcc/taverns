@@ -310,15 +310,15 @@
     .species-details {
         grid-template-columns: 1fr;
     }
-    
+
     .attributes-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .species-card {
         padding: 12px;
     }
-    
+
     .species-info {
         padding: 16px;
     }
@@ -334,6 +334,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -359,4 +360,4 @@
 .profession-tag:hover {
     background-color: #5a5a3a;
     border-color: #777;
-} 
+}

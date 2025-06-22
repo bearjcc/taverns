@@ -18,7 +18,8 @@ body {
     display: flex;
     height: 100vh;
     width: 100vw;
-    margin-left: 60px; /* Make room for the left toolbar */
+    margin-left: 60px;
+    /* Make room for the left toolbar */
 }
 
 /* Left Toolbar */
@@ -484,7 +485,8 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-    padding-left: 32px; /* Align with skill name */
+    padding-left: 32px;
+    /* Align with skill name */
 }
 
 .skill-progress-bar {
@@ -775,17 +777,19 @@ body {
 }
 
 @keyframes xpFlash {
-    0% { 
-        opacity: 0; 
-        transform: translateY(0); 
+    0% {
+        opacity: 0;
+        transform: translateY(0);
     }
-    50% { 
-        opacity: 1; 
-        transform: translateY(-20px); 
+
+    50% {
+        opacity: 1;
+        transform: translateY(-20px);
     }
-    100% { 
-        opacity: 0; 
-        transform: translateY(-40px); 
+
+    100% {
+        opacity: 0;
+        transform: translateY(-40px);
     }
 }
 
@@ -950,9 +954,17 @@ body {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); }
-    50% { box-shadow: 0 0 20px rgba(74, 158, 255, 0.6); }
-    100% { box-shadow: 0 0 10px rgba(74, 158, 255, 0.3); }
+    0% {
+        box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(74, 158, 255, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+    }
 }
 
 /* Responsive design for left toolbar */
@@ -960,18 +972,18 @@ body {
     .left-toolbar {
         width: 50px;
     }
-    
+
     .game-container {
         margin-left: 50px;
     }
-    
+
     .toolbar-button {
         width: 35px;
         height: 35px;
         font-size: 16px;
         margin-bottom: 8px;
     }
-    
+
     .toolbar-button-title {
         left: 45px;
         font-size: 11px;
@@ -983,21 +995,21 @@ body {
     .left-toolbar {
         width: 45px;
     }
-    
+
     .game-container {
         margin-left: 45px;
     }
-    
+
     .toolbar-button {
         width: 32px;
         height: 32px;
         font-size: 14px;
         margin-bottom: 6px;
     }
-    
+
     .toolbar-button-title {
         left: 40px;
         font-size: 10px;
         padding: 2px 5px;
     }
-} 
+}

@@ -355,7 +355,8 @@
     gap: 8px;
 }
 
-.examine-btn, .consume-btn {
+.examine-btn,
+.consume-btn {
     background: #444;
     border: 1px solid #555;
     border-radius: 4px;
@@ -435,29 +436,29 @@
         gap: 12px;
         align-items: stretch;
     }
-    
+
     .food-search {
         justify-content: center;
     }
-    
+
     .food-categories-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .category-header {
         flex-direction: column;
         gap: 12px;
         align-items: stretch;
     }
-    
+
     .subcategory-filters {
         justify-content: center;
     }
-    
+
     .food-items-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .nutrition-summary-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -473,10 +474,12 @@
         transform: scale(1);
         box-shadow: 0 0 0 rgba(255, 215, 0, 0);
     }
+
     50% {
         transform: scale(1.05);
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
     }
+
     100% {
         transform: scale(1);
         box-shadow: 0 0 0 rgba(255, 215, 0, 0);
@@ -516,4 +519,4 @@
 
 .food-categories-container::-webkit-scrollbar-thumb:hover {
     background: #666;
-} 
+}
