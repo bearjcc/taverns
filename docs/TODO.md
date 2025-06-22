@@ -31,18 +31,18 @@
 - [x] Item consumption and production system
 - [x] Variable action components (e.g., sleep in bed vs cot)
 - [x] Improved UI with scrollable action list
-- [ ] **TODO: Implement dynamic action availability system**
-  - [ ] Create action availability rules engine
-  - [ ] Implement location-based action availability
-  - [ ] Add time-of-day restrictions for certain actions
-  - [ ] Create weather/environmental action modifiers
-  - [ ] Implement quest-based action unlocks
-  - [ ] Add NPC interaction requirements for actions
-  - [ ] Create action cooldown system
-  - [ ] Implement action prerequisites and dependencies
-  - [ ] Add action availability based on player status (health, energy, etc.)
-  - [ ] Create action availability based on equipment and tools
-  - [ ] Test dynamic action system with various scenarios
+- [x] **TODO: Implement dynamic action availability system**
+  - [x] Create action availability rules engine
+  - [x] Implement location-based action availability
+  - [x] Add time-of-day restrictions for certain actions
+  - [x] Create weather/environmental action modifiers
+  - [x] Implement quest-based action unlocks
+  - [x] Add NPC interaction requirements for actions
+  - [x] Create action cooldown system
+  - [x] Implement action prerequisites and dependencies
+  - [x] Add action availability based on player status (health, energy, etc.)
+  - [x] Create action availability based on equipment and tools
+  - [x] Test dynamic action system with various scenarios
 
 ### Achievement System Implementation
 - [x] Add achievements data to game configuration

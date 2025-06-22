@@ -5,9 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taverns and Treasures</title>
     <meta name="description" content="A text-based RPG based around questing and skilling in a traditional fantasy setting. Play alone or with friends, explore the world, learn combat and magic, or master trades and grow your homestead.">
+    
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/encyclopedia.css">
+    
+    <!-- Core Engine Dependencies (minimal, just what's needed for GameEngine) -->
+    <script src="engine/utils/Localization.js"></script>
+    <script src="engine/core/EventSystem.js"></script>
+    <script src="engine/core/StateManager.js"></script>
+    <script src="engine/core/AssetLoader.js"></script>
+    <script src="engine/core/ConfigManager.js"></script>
+    <script src="engine/core/GameStateManager.js"></script>
+    
+    <!-- Game Engine (master controller) -->
+    <script src="engine/core/GameEngine.js"></script>
 </head>
 <body>
     <div id="loading" class="loading-indicator">Loading...</div>
@@ -45,36 +58,7 @@
     
     <button id="open-achievements-modal-btn" style="position:fixed;bottom:32px;right:32px;z-index:2100;display:none;min-width:48px;min-height:48px;font-size:1.5em;border-radius:50%;background:#333;color:#fff;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.2);cursor:pointer;">🏆</button>
     
-    <!-- Engine Core Dependencies (load in dependency order) -->
-    <script src="engine/utils/Localization.js"></script>
-    <script src="engine/core/EventSystem.js"></script>
-    <script src="engine/core/StateManager.js"></script>
-    <script src="engine/core/AssetLoader.js"></script>
-    <script src="engine/core/ConfigManager.js"></script>
-    <script src="engine/core/GameStateManager.js"></script>
-    
-    <!-- Engine Systems (load in dependency order) -->
-    <script src="engine/systems/SkillManager.js"></script>
-    <script src="engine/systems/InventoryManager.js"></script>
-    <script src="engine/systems/ActionManager.js"></script>
-    <script src="engine/systems/TraitManager.js"></script>
-    <script src="engine/systems/AchievementSystem.js"></script>
-    <script src="engine/systems/LocationSystem.js"></script>
-    <script src="engine/systems/SpeciesSystem.js"></script>
-    <script src="engine/systems/EncyclopediaSystem.js"></script>
-    
-    <!-- UI Components -->
-    <script src="engine/ui/UIManager.js"></script>
-    <script src="engine/ui/EncyclopediaUI.js"></script>
-    <script src="engine/ui/FoodCategoryUI.js"></script>
-    
-    <!-- Main Game Engine -->
-    <script src="engine/core/GameEngine.js"></script>
-    
-    <!-- Components -->
-    <script src="assets/js/components.js"></script>
-    
-    <!-- Main Game Initialization -->
+    <!-- Game Initialization (loads after DOM is ready) -->
     <script src="assets/js/game.js"></script>
     
     <script>

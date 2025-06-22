@@ -99,7 +99,7 @@ class UIManager {
         const actionsContent = document.getElementById('actions-content');
         if (!actionsContent) return;
 
-        const availableActions = actionManager.getAvailableActions(skillManager, inventoryManager);
+        const availableActions = actionManager.getAvailableActions();
         let html = '';
 
         for (const action of availableActions) {
@@ -118,6 +118,29 @@ class UIManager {
         const disabledAttr = canPerform ? '' : 'disabled';
         const lockedClass = canPerform ? '' : ' locked';
         
+        // Check availability and cooldown
+        let availabilityInfo = '';
+        let cooldownInfo = '';
+        let missingRequirements = '';
+        
+        if (action.availabilityInfo) {
+            const availability = action.availabilityInfo;
+            
+            // Show cooldown if action has one
+            if (action.availability && action.availability.cooldown) {
+                const remainingCooldown = actionManager.availabilityEngine.getRemainingCooldown(action.name, action.availability.cooldown);
+                if (remainingCooldown > 0) {
+                    const cooldownMinutes = Math.ceil(remainingCooldown / 60000);
+                    cooldownInfo = `<div class="cooldown-timer">⏰ ${cooldownMinutes}m cooldown</div>`;
+                }
+            }
+            
+            // Show missing requirements if action is not available
+            if (!availability.available && availability.missingRequirements.length > 0) {
+                missingRequirements = `<div class="missing-requirements">❌ ${availability.missingRequirements.join(', ')}</div>`;
+            }
+        }
+        
         let timeDisplay = '';
         if (action.timeRequired > 0) {
             timeDisplay = `<div class="${cssClasses.actionTime || 'action-time'}">⏱️ ${action.getTimeDisplay()}</div>`;
@@ -133,14 +156,22 @@ class UIManager {
             `;
         }
 
+        // Build tooltip with availability information
+        let tooltip = action.tooltip || action.description;
+        if (action.availabilityInfo && !action.availabilityInfo.available) {
+            tooltip += `\n\nNot available: ${action.availabilityInfo.reasons.join(', ')}`;
+        }
+
         return `
             <button class="${cssClasses.actionButton || 'action-button'}${newUnlockClass}${lockedClass}" 
                     onclick="handleAction('${action.name}')" 
-                    title="${action.tooltip || action.description}" ${disabledAttr}>
+                    title="${tooltip}" ${disabledAttr}>
                 <div class="${cssClasses.actionIcon || 'action-icon'}">${action.icon}</div>
                 <div class="${cssClasses.actionTitle || 'action-title'}">${action.displayName}</div>
                 <div class="${cssClasses.actionDescription || 'action-description'}">${action.description}</div>
                 ${timeDisplay}
+                ${cooldownInfo}
+                ${missingRequirements}
                 ${variableInput}
             </button>
         `;

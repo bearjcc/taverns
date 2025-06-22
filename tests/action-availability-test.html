@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Availability Engine Test</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        .test-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .success {
+            background: #2d5a2d;
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            background: #5a2d2d;
+            border-left: 4px solid #f44336;
+        }
+        .info {
+            background: #2d2d5a;
+            border-left: 4px solid #2196f3;
+        }
+        .warning {
+            background: #5a5a2d;
+            border-left: 4px solid #ff9800;
+        }
+        pre {
+            background: #333;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            margin-top: 0;
+            color: #4a9eff;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Action Availability Engine Test</h1>
+        <div id="test-results">
+            <div class="test-result info">
+                <strong>Loading Action Availability Engine test...</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engine Core Dependencies -->
+    <script src="../engine/core/EventSystem.js"></script>
+    <script src="../engine/core/StateManager.js"></script>
+    
+    <!-- Action Availability Engine -->
+    <script src="../engine/systems/ActionAvailabilityEngine.js"></script>
+    
+    <!-- Test Script -->
+    <script>
+        // Mock systems for testing
+        class MockLocationSystem {
+            constructor() {
+                this.currentLocation = {
+                    globe: 'earth',
+                    continent: 'europe',
+                    country: 'england',
+                    region: 'forest',
+                    spot: 'oak_grove'
+                };
+            }
+
+            getCurrentLocation() {
+                return this.currentLocation;
+            }
+
+            getCurrentSpot() {
+                return {
+                    id: 'oak_grove',
+                    name: 'Oak Grove',
+                    biome: 'forest'
+                };
+            }
+        }
+
+        class MockInventoryManager {
+            constructor() {
+                this.items = new Map();
+            }
+
+            hasItem(itemId, quantity) {
+                const item = this.items.get(itemId);
+                return item && item.quantity >= quantity;
+            }
+
+            addItem(itemId, quantity) {
+                const current = this.items.get(itemId) || { quantity: 0 };
+                this.items.set(itemId, { quantity: current.quantity + quantity });
+            }
+
+            getGameObject(itemId) {
+                return {
+                    id: itemId,
+                    displayName: itemId.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())
+                };
+            }
+        }
+
+        // Test results display
+        const resultsContainer = document.getElementById('test-results');
+        let testCount = 0;
+        let passedCount = 0;
+        let failedCount = 0;
+
+        function addResult(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            resultsContainer.appendChild(div);
+        }
+
+        function addSection(title) {
+            const div = document.createElement('div');
+            div.className = 'test-section';
+            div.innerHTML = `<h3>${title}</h3>`;
+            resultsContainer.appendChild(div);
+            return div;
+        }
+
+        function assert(condition, message) {
+            testCount++;
+            if (condition) {
+                passedCount++;
+                addResult(`✅ ${message}`, 'success');
+                return true;
+            } else {
+                failedCount++;
+                addResult(`❌ ${message}`, 'error');
+                return false;
+            }
+        }
+
+        function assertEqual(actual, expected, message) {
+            return assert(actual === expected, `${message} (expected: ${expected}, got: ${actual})`);
+        }
+
+        function assertContains(array, item, message) {
+            return assert(array.includes(item), `${message} (array: [${array.join(', ')}], item: ${item})`);
+        }
+
+        // Override console methods
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            if (message.includes('✅')) {
+                addResult(message, 'success');
+            } else if (message.includes('❌')) {
+                addResult(message, 'error');
+            } else {
+                addResult(message, 'info');
+            }
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            const message = args.join(' ');
+            addResult(message, 'error');
+        };
+
+        // Main test function
+        async function runActionAvailabilityTests() {
+            console.log('Starting Action Availability Engine tests...');
+            
+            // Clear loading message
+            resultsContainer.innerHTML = '';
+
+            // Initialize test systems
+            const eventSystem = new EventSystem();
+            const stateManager = new StateManager();
+            const locationSystem = new MockLocationSystem();
+            const inventoryManager = new MockInventoryManager();
+            
+            const availabilityEngine = new ActionAvailabilityEngine(eventSystem, stateManager);
+
+            // Test 1: Location-based restrictions
+            addSection('Location-based Restrictions');
+            
+            const locationAction = {
+                name: 'Chop Oak',
+                locationRestrictions: [
+                    { type: 'biome', biomeType: 'forest' }
+                ]
+            };
+
+            const context = { currentLocation: locationSystem.getCurrentLocation(), locationSystem };
+            const result = availabilityEngine.checkActionAvailability(locationAction, context);
+            
+            assert(result.available, 'Action should be available when location requirement is met');
+            
+            const wrongLocationAction = {
+                name: 'Chop Willow',
+                locationRestrictions: [
+                    { type: 'biome', biomeType: 'swamp' }
+                ]
+            };
+            
+            const wrongResult = availabilityEngine.checkActionAvailability(wrongLocationAction, context);
+            assert(!wrongResult.available, 'Action should be denied when location requirement is not met');
+
+            // Test 2: Time-based restrictions
+            addSection('Time-based Restrictions');
+            
+            availabilityEngine.updateGameTime({ hour: 14 }); // 2 PM
+
+            const timeAction = {
+                name: 'Chop Oak',
+                timeRestrictions: [
+                    { type: 'timeOfDay', timeOfDay: 'day' }
+                ]
+            };
+
+            const timeResult = availabilityEngine.checkActionAvailability(timeAction, {});
+            assert(timeResult.available, 'Action should be available during allowed time period');
+
+            availabilityEngine.updateGameTime({ hour: 22 }); // 10 PM
+            const nightResult = availabilityEngine.checkActionAvailability(timeAction, {});
+            assert(!nightResult.available, 'Action should be denied outside allowed time period');
+
+            // Test 3: Weather-based restrictions
+            addSection('Weather-based Restrictions');
+            
+            availabilityEngine.updateWeather({ type: 'clear' });
+
+            const weatherAction = {
+                name: 'Chop Oak',
+                weatherRestrictions: [
+                    { type: 'weatherType', allowedTypes: ['clear', 'cloudy'] }
+                ]
+            };
+
+            const weatherResult = availabilityEngine.checkActionAvailability(weatherAction, {});
+            assert(weatherResult.available, 'Action should be available during allowed weather');
+
+            availabilityEngine.updateWeather({ type: 'stormy' });
+            const stormResult = availabilityEngine.checkActionAvailability(weatherAction, {});
+            assert(!stormResult.available, 'Action should be denied during disallowed weather');
+
+            // Test 4: Player status requirements
+            addSection('Player Status Requirements');
+            
+            availabilityEngine.updatePlayerStatus({ energy: 50, health: 80 });
+
+            const statusAction = {
+                name: 'Chop Oak',
+                playerStatusRequirements: {
+                    energy: { min: 20 },
+                    health: { min: 50 }
+                }
+            };
+
+            const statusResult = availabilityEngine.checkActionAvailability(statusAction, {});
+            assert(statusResult.available, 'Action should be available when player status meets requirements');
+
+            availabilityEngine.updatePlayerStatus({ energy: 10 });
+            const lowEnergyResult = availabilityEngine.checkActionAvailability(statusAction, {});
+            assert(!lowEnergyResult.available, 'Action should be denied when player status does not meet requirements');
+            assertContains(lowEnergyResult.missingRequirements, 'energy >= 20 (current: 10)', 'Should show missing energy requirement');
+
+            // Test 5: Equipment requirements
+            addSection('Equipment Requirements');
+            
+            inventoryManager.addItem('axe', 1);
+
+            const equipmentAction = {
+                name: 'Chop Oak',
+                equipmentRequirements: {
+                    axe: { quantity: 1 }
+                }
+            };
+
+            const equipmentContext = { inventoryManager };
+            const equipmentResult = availabilityEngine.checkActionAvailability(equipmentAction, equipmentContext);
+            assert(equipmentResult.available, 'Action should be available when required equipment is available');
+
+            const noEquipmentContext = { inventoryManager: new MockInventoryManager() };
+            const noEquipmentResult = availabilityEngine.checkActionAvailability(equipmentAction, noEquipmentContext);
+            assert(!noEquipmentResult.available, 'Action should be denied when required equipment is missing');
+            assertContains(noEquipmentResult.missingRequirements, 'Axe (1)', 'Should show missing equipment requirement');
+
+            // Test 6: Cooldown system
+            addSection('Cooldown System');
+            
+            const cooldownAction = {
+                name: 'Chop Oak',
+                cooldown: 10000 // 10 seconds
+            };
+
+            const cooldownResult = availabilityEngine.checkActionAvailability(cooldownAction, {});
+            assert(cooldownResult.available, 'Action should be available when no cooldown is active');
+
+            availabilityEngine.recordActionUsage('Chop Oak');
+            const activeCooldownResult = availabilityEngine.checkActionAvailability(cooldownAction, {});
+            assert(!activeCooldownResult.available, 'Action should be denied when cooldown is active');
+
+            const remaining = availabilityEngine.getRemainingCooldown('Chop Oak', 10000);
+            assert(remaining > 0, 'Should return remaining cooldown time');
+            assert(remaining <= 10000, 'Remaining cooldown should not exceed total cooldown');
+
+            // Test 7: Complex scenarios
+            addSection('Complex Scenarios');
+            
+            // Set up conditions for complex test
+            availabilityEngine.updateGameTime({ hour: 14 });
+            availabilityEngine.updateWeather({ type: 'clear' });
+            availabilityEngine.updatePlayerStatus({ energy: 50 });
+            inventoryManager.addItem('axe', 1);
+
+            const complexAction = {
+                name: 'Chop Oak',
+                locationRestrictions: [
+                    { type: 'biome', biomeType: 'forest' }
+                ],
+                timeRestrictions: [
+                    { type: 'timeOfDay', timeOfDay: 'day' }
+                ],
+                weatherRestrictions: [
+                    { type: 'weatherType', allowedTypes: ['clear', 'cloudy'] }
+                ],
+                playerStatusRequirements: {
+                    energy: { min: 20 }
+                },
+                equipmentRequirements: {
+                    axe: { quantity: 1 }
+                }
+            };
+
+            const complexContext = { 
+                currentLocation: locationSystem.getCurrentLocation(), 
+                locationSystem,
+                inventoryManager 
+            };
+            const complexResult = availabilityEngine.checkActionAvailability(complexAction, complexContext);
+            assert(complexResult.available, 'Action should be available when all conditions are met');
+
+            // Test 8: Event system integration
+            addSection('Event System Integration');
+            
+            let eventReceived = false;
+            eventSystem.on('action:availability:changed', (data) => {
+                eventReceived = true;
+            });
+
+            availabilityEngine.updateGameTime({ hour: 15 });
+            assert(eventReceived, 'Should emit event when conditions change');
+
+            // Test 9: Debug information
+            addSection('Debug Information');
+            
+            const debugInfo = availabilityEngine.getDebugInfo();
+            assert(debugInfo.gameTime.hour === 15, 'Debug info should contain current game time');
+            assert(debugInfo.weather.type === 'clear', 'Debug info should contain current weather');
+            assert(debugInfo.playerStatus.energy === 50, 'Debug info should contain current player status');
+            assert(debugInfo.activeCooldowns.length > 0, 'Debug info should contain active cooldowns');
+            assert(debugInfo.ruleCount > 0, 'Debug info should contain rule count');
+
+            // Final results
+            addSection('Test Summary');
+            addResult(`Total tests: ${testCount}`, 'info');
+            addResult(`Passed: ${passedCount}`, 'success');
+            addResult(`Failed: ${failedCount}`, failedCount > 0 ? 'error' : 'success');
+            
+            if (failedCount === 0) {
+                addResult('🎉 All Action Availability Engine tests passed!', 'success');
+            } else {
+                addResult(`⚠️ ${failedCount} tests failed. Please review the errors above.`, 'warning');
+            }
+
+            console.log('Action Availability Engine tests completed!');
+        }
+
+        // Run tests when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runActionAvailabilityTests);
+        } else {
+            runActionAvailabilityTests();
+        }
+    </script>
+</body>
+</html> 

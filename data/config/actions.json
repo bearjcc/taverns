@@ -19,7 +19,34 @@
         "itemConsumption": {},
         "unlockMessage": "You can now chop oak trees!",
         "flavorText": "You swing your axe at the oak tree and collect some logs.",
-        "skillType": "Woodcutting"
+        "skillType": "Woodcutting",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "biome",
+              "biomeType": "forest"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "day"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear", "cloudy"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 20 }
+          },
+          "equipmentRequirements": {
+            "axe": { "quantity": 1 }
+          },
+          "cooldown": 300000
+        }
       },
       {
         "name": "Chop Willow",
@@ -36,7 +63,34 @@
         "itemConsumption": {},
         "unlockMessage": "You can now chop willow trees!",
         "flavorText": "The willow tree's branches bend as you gather some logs.",
-        "skillType": "Woodcutting"
+        "skillType": "Woodcutting",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "biome",
+              "biomeType": "swamp"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "day"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear", "cloudy", "rainy"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 25 }
+          },
+          "equipmentRequirements": {
+            "axe": { "quantity": 1 }
+          },
+          "cooldown": 300000
+        }
       },
       {
         "name": "Chop Maple",
@@ -53,7 +107,34 @@
         "itemConsumption": {},
         "unlockMessage": "You can now chop maple trees!",
         "flavorText": "The maple tree's sturdy trunk yields some quality logs.",
-        "skillType": "Woodcutting"
+        "skillType": "Woodcutting",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "biome",
+              "biomeType": "forest"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "day"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear", "cloudy"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 30 }
+          },
+          "equipmentRequirements": {
+            "axe": { "quantity": 1 }
+          },
+          "cooldown": 450000
+        }
       },
       {
         "name": "Chop Yew",
@@ -70,7 +151,34 @@
         "itemConsumption": {},
         "unlockMessage": "You can now chop yew trees!",
         "flavorText": "The ancient yew tree slowly gives up some of its precious wood.",
-        "skillType": "Woodcutting"
+        "skillType": "Woodcutting",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "biome",
+              "biomeType": "forest"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "day"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 40 }
+          },
+          "equipmentRequirements": {
+            "axe": { "quantity": 1 }
+          },
+          "cooldown": 600000
+        }
       },
       {
         "name": "Chop Magic",
@@ -87,7 +195,34 @@
         "itemConsumption": {},
         "unlockMessage": "You can now chop magic trees!",
         "flavorText": "The magic tree shimmers as your axe connects, releasing mystical logs.",
-        "skillType": "Woodcutting"
+        "skillType": "Woodcutting",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "biome",
+              "biomeType": "magical_forest"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "night"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 50 }
+          },
+          "equipmentRequirements": {
+            "magic_axe": { "quantity": 1 }
+          },
+          "cooldown": 900000
+        }
       }
     ]
   },
@@ -115,7 +250,42 @@
         },
         "unlockMessage": "You can now cook stew!",
         "flavorText": "You prepare a delicious stew over the fire, the aroma filling the air.",
-        "skillType": "Cooking"
+        "skillType": "Cooking",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "spot",
+              "spotId": "kitchen"
+            },
+            {
+              "type": "spot",
+              "spotId": "campfire"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "day"
+            },
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "evening"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear", "cloudy", "rainy"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 10 }
+          },
+          "equipmentRequirements": {
+            "cooking_pot": { "quantity": 1 }
+          },
+          "cooldown": 180000
+        }
       },
       {
         "name": "Bake Bread",
@@ -136,7 +306,38 @@
         },
         "unlockMessage": "You can now bake bread!",
         "flavorText": "The smell of fresh bread fills the air as you pull the loaves from the oven.",
-        "skillType": "Cooking"
+        "skillType": "Cooking",
+        "availability": {
+          "locationRestrictions": [
+            {
+              "type": "spot",
+              "spotId": "kitchen"
+            }
+          ],
+          "timeRestrictions": [
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "day"
+            },
+            {
+              "type": "timeOfDay",
+              "timeOfDay": "evening"
+            }
+          ],
+          "weatherRestrictions": [
+            {
+              "type": "weatherType",
+              "allowedTypes": ["clear", "cloudy"]
+            }
+          ],
+          "playerStatusRequirements": {
+            "energy": { "min": 15 }
+          },
+          "equipmentRequirements": {
+            "oven": { "quantity": 1 }
+          },
+          "cooldown": 300000
+        }
       }
     ]
   }

@@ -205,10 +205,13 @@ class GameEngine {
         // Load configurations first
         const configs = await this.configManager.loadAllConfigs();
         
+        // Load all required system modules dynamically
+        await this._loadSystemModules();
+        
         // Initialize game systems with mod data
         this.skillManager = new SkillManager();
         this.inventoryManager = new InventoryManager();
-        this.actionManager = new ActionManager();
+        this.actionManager = new ActionManager(this.eventSystem, this.stateManager);
         this.traitManager = new TraitManager();
         this.uiManager = new UIManager();
         this.speciesSystem = new SpeciesSystem(null, this.stateManager, this.eventSystem);
@@ -269,6 +272,46 @@ class GameEngine {
     }
     
     /**
+     * Load all required system modules dynamically
+     */
+    async _loadSystemModules() {
+        const systemModules = [
+            'engine/systems/SkillManager.js',
+            'engine/systems/InventoryManager.js',
+            'engine/systems/ActionAvailabilityEngine.js',
+            'engine/systems/ActionManager.js',
+            'engine/systems/TraitManager.js',
+            'engine/systems/AchievementSystem.js',
+            'engine/systems/LocationSystem.js',
+            'engine/systems/SpeciesSystem.js',
+            'engine/systems/EncyclopediaSystem.js',
+            'engine/ui/UIManager.js',
+            'engine/ui/EncyclopediaUI.js',
+            'engine/ui/FoodCategoryUI.js',
+            'assets/js/components.js'
+        ];
+
+        console.log('Loading system modules...');
+        
+        try {
+            const results = await this.assetLoader.loadJavaScriptModules(systemModules);
+            
+            // Check for any failed loads
+            const failed = results.filter(result => result.status === 'rejected');
+            if (failed.length > 0) {
+                console.warn('Some system modules failed to load:', failed.map(f => f.reason));
+            }
+            
+            const successful = results.filter(result => result.status === 'fulfilled');
+            console.log(`Successfully loaded ${successful.length}/${systemModules.length} system modules`);
+            
+        } catch (error) {
+            console.error('Failed to load system modules:', error);
+            throw error;
+        }
+    }
+    
+    /**
      * Set up cross-system references
      */
     _setupSystemReferences() {
@@ -287,6 +330,13 @@ class GameEngine {
         
         if (this.actionManager && this.inventoryManager) {
             this.actionManager.setInventorySystem(this.inventoryManager);
+        }
+        
+        // Set up quest and NPC system references (placeholder for future systems)
+        if (this.actionManager) {
+            // TODO: Add actual quest and NPC systems when implemented
+            // this.actionManager.setQuestSystem(this.questSystem);
+            // this.actionManager.setNPCSystem(this.npcSystem);
         }
         
         if (this.achievementSystem && this.skillManager) {

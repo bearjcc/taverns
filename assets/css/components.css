@@ -17,6 +17,71 @@
     --info-color: #2196F3;
 }
 
+/* Action Availability Styles */
+.cooldown-timer {
+    font-size: 11px;
+    color: var(--warning-color);
+    background: rgba(255, 152, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-top: 4px;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    font-family: 'Courier New', monospace;
+}
+
+.missing-requirements {
+    font-size: 11px;
+    color: var(--error-color);
+    background: rgba(244, 67, 54, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-top: 4px;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    font-family: 'Courier New', monospace;
+}
+
+.action-unavailable {
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+.action-unavailable:hover {
+    opacity: 0.8;
+}
+
+.action-availability-info {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    padding: 2px 4px;
+    background: rgba(136, 136, 136, 0.1);
+    border-radius: 2px;
+    border: 1px solid rgba(136, 136, 136, 0.2);
+}
+
+.availability-requirement {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 10px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    background: rgba(74, 158, 255, 0.1);
+    border: 1px solid rgba(74, 158, 255, 0.3);
+    color: var(--primary-color);
+}
+
+.availability-requirement.met {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+    color: var(--success-color);
+}
+
+.availability-requirement.failed {
+    background: rgba(244, 67, 54, 0.1);
+    border-color: rgba(244, 67, 54, 0.3);
+    color: var(--error-color);
+}
+
 /* Modal System Styles */
 .modal-overlay {
     position: fixed;

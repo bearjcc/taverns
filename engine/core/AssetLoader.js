@@ -17,7 +17,8 @@ class AssetLoader {
             'image': this._loadImage.bind(this),
             'icon': this._loadIcon.bind(this),
             'audio': this._loadAudio.bind(this),
-            'json': this._loadJSON.bind(this)
+            'json': this._loadJSON.bind(this),
+            'js': this._loadJavaScriptModule.bind(this)
         };
     }
     
@@ -113,6 +114,61 @@ class AssetLoader {
             console.warn(`Failed to load localized text for ${category}/${name} in ${language}:`, error);
             return {};
         }
+    }
+    
+    /**
+     * Load a JavaScript module dynamically
+     * @param {string} path - Path to the JavaScript file
+     * @param {Object} options - Loading options
+     * @returns {Promise} Promise that resolves when the module is loaded
+     */
+    async loadJavaScriptModule(path, options = {}) {
+        const cacheKey = `js:${path}`;
+        
+        // Check cache first
+        if (this.cache.has(cacheKey)) {
+            return this.cache.get(cacheKey);
+        }
+        
+        // Check if already loading
+        if (this.loadingPromises.has(cacheKey)) {
+            return this.loadingPromises.get(cacheKey);
+        }
+        
+        // Start loading
+        const loadPromise = this._loadJavaScriptModule(path, options);
+        this.loadingPromises.set(cacheKey, loadPromise);
+        
+        try {
+            const result = await loadPromise;
+            
+            // Cache the result
+            this._addToCache(cacheKey, result);
+            
+            // Remove from loading promises
+            this.loadingPromises.delete(cacheKey);
+            
+            return result;
+            
+        } catch (error) {
+            // Remove from loading promises on error
+            this.loadingPromises.delete(cacheKey);
+            throw error;
+        }
+    }
+    
+    /**
+     * Load multiple JavaScript modules
+     * @param {Array} modules - Array of module paths
+     * @param {Object} options - Loading options
+     * @returns {Promise} Promise that resolves when all modules are loaded
+     */
+    async loadJavaScriptModules(modules, options = {}) {
+        const loadPromises = modules.map(modulePath => 
+            this.loadJavaScriptModule(modulePath, options)
+        );
+        
+        return Promise.allSettled(loadPromises);
     }
     
     /**
@@ -225,6 +281,28 @@ class AssetLoader {
         } catch (error) {
             throw new Error(`Failed to load JSON: ${path} - ${error.message}`);
         }
+    }
+    
+    async _loadJavaScriptModule(path, options) {
+        return new Promise((resolve, reject) => {
+            // Create a script element
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            
+            script.onload = () => {
+                // Script loaded successfully
+                resolve({ loaded: true, path });
+            };
+            
+            script.onerror = () => {
+                reject(new Error(`Failed to load JavaScript module: ${path}`));
+            };
+            
+            // Set the source and append to document
+            script.src = path;
+            document.head.appendChild(script);
+        });
     }
     
     _addToCache(key, asset) {

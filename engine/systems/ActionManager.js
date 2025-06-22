@@ -1,5 +1,5 @@
 class ActionManager {
-    constructor() {
+    constructor(eventSystem, stateManager) {
         this.actions = new Map();
         this.newlyUnlockedActions = new Set();
         this.locationSystem = null;
@@ -7,6 +7,11 @@ class ActionManager {
         this.uiManager = null;
         this.skillManager = null;
         this.inventoryManager = null;
+        this.questSystem = null;
+        this.npcSystem = null;
+        
+        // Initialize availability engine
+        this.availabilityEngine = new ActionAvailabilityEngine(eventSystem, stateManager);
     }
 
     /**
@@ -41,6 +46,30 @@ class ActionManager {
         this.inventoryManager = inventoryManager;
     }
 
+    /**
+     * Set the location system reference
+     * @param {LocationSystem} locationSystem - The location system instance
+     */
+    setLocationSystem(locationSystem) {
+        this.locationSystem = locationSystem;
+    }
+
+    /**
+     * Set the quest system reference
+     * @param {QuestSystem} questSystem - The quest system instance
+     */
+    setQuestSystem(questSystem) {
+        this.questSystem = questSystem;
+    }
+
+    /**
+     * Set the NPC system reference
+     * @param {NPCSystem} npcSystem - The NPC system instance
+     */
+    setNPCSystem(npcSystem) {
+        this.npcSystem = npcSystem;
+    }
+
     loadFromConfig(actionsConfig) {
         try {
             console.log('Loading actions...');
@@ -66,7 +95,8 @@ class ActionManager {
                                 actionData.unlockMessage,
                                 actionData.flavorText,
                                 actionData.skillType,
-                                actionData.variables
+                                actionData.variables,
+                                actionData.availability || {}
                             );
                             this.actions.set(actionData.name, action);
                         }
@@ -80,14 +110,6 @@ class ActionManager {
         }
     }
 
-    /**
-     * Set the location system reference
-     * @param {LocationSystem} locationSystem - The location system instance
-     */
-    setLocationSystem(locationSystem) {
-        this.locationSystem = locationSystem;
-    }
-
     getAction(actionName) {
         return this.actions.get(actionName);
     }
@@ -99,23 +121,42 @@ class ActionManager {
     getAvailableActions() {
         const availableActions = [];
         
-        // Get location-based actions if location system is available
-        let locationActions = [];
-        if (this.locationSystem) {
-            locationActions = this.locationSystem.getAvailableActions();
-        }
-        
         for (const action of this.actions.values()) {
             const skill = this.skillManager ? this.skillManager.getSkill(action.skillType) : null;
-            if (skill) {
-                // Check if action is available at current location
-                if (locationActions.length === 0 || locationActions.includes(action.name)) {
-                    availableActions.push(action);
-                }
+            if (!skill) continue;
+
+            // Check basic skill level requirement
+            if (skill.level < action.levelRequired) continue;
+
+            // Check dynamic availability using the availability engine
+            const context = this._buildActionContext();
+            const availability = this.availabilityEngine.checkActionAvailability(action, context);
+            
+            if (availability.available) {
+                // Add availabilityInfo to the action instance without losing prototype methods
+                action.availabilityInfo = availability;
+                availableActions.push(action);
             }
         }
         
         return availableActions;
+    }
+
+    /**
+     * Build context object for action availability checking
+     * @returns {Object} Context object with all necessary systems
+     */
+    _buildActionContext() {
+        return {
+            currentLocation: this.locationSystem ? this.locationSystem.getCurrentLocation() : null,
+            locationSystem: this.locationSystem,
+            inventoryManager: this.inventoryManager,
+            skillManager: this.skillManager,
+            questSystem: this.questSystem,
+            npcSystem: this.npcSystem,
+            configManager: this.configManager,
+            uiManager: this.uiManager
+        };
     }
 
     /**
@@ -135,7 +176,16 @@ class ActionManager {
             return { success: false, message: 'Skill not found' };
         }
 
-        // Check if player can perform the action
+        // Check dynamic availability before execution
+        const context = this._buildActionContext();
+        const availability = this.availabilityEngine.checkActionAvailability(action, context);
+        
+        if (!availability.available) {
+            const reason = availability.reasons.length > 0 ? availability.reasons[0] : 'Action not available';
+            return { success: false, message: reason };
+        }
+
+        // Check if player can perform the action (basic requirements)
         if (!action.canPerform(skill.level, this.inventoryManager)) {
             return { success: false, message: `Requires ${action.skillType} level ${action.levelRequired}` };
         }
@@ -154,6 +204,11 @@ class ActionManager {
             if (this.inventoryManager) {
                 this.inventoryManager.removeItem(itemId, quantity);
             }
+        }
+
+        // Record action usage for cooldown tracking
+        if (action.availability && action.availability.cooldown) {
+            this.availabilityEngine.recordActionUsage(actionName);
         }
 
         // Perform action and gain XP
@@ -195,7 +250,15 @@ class ActionManager {
             if (action) {
                 const skill = this.skillManager ? this.skillManager.getSkill(action.skillType) : null;
                 if (skill) {
-                    availableActions.push(action);
+                    // Check dynamic availability
+                    const context = this._buildActionContext();
+                    const availability = this.availabilityEngine.checkActionAvailability(action, context);
+                    
+                    if (availability.available) {
+                        // Add availabilityInfo to the action instance without losing prototype methods
+                        action.availabilityInfo = availability;
+                        availableActions.push(action);
+                    }
                 }
             }
         }
@@ -274,7 +337,7 @@ class ActionManager {
 
 // Action class for defining game actions
 class Action {
-    constructor(name, displayName, description, icon, tooltip, levelRequired, xpReward, timeRequired, timeUnit, itemReward, itemCount, itemConsumption, unlockMessage, flavorText, skillType, variables = null) {
+    constructor(name, displayName, description, icon, tooltip, levelRequired, xpReward, timeRequired, timeUnit, itemReward, itemCount, itemConsumption, unlockMessage, flavorText, skillType, variables = null, availability = {}) {
         this.name = name;
         this.displayName = displayName;
         this.description = description;
@@ -285,7 +348,7 @@ class Action {
         this.timeRequired = timeRequired || 0;
         this.timeUnit = timeUnit || 'minutes';
         this.itemReward = itemReward;
-        this.itemCount = itemCount || 1;
+        this.itemRewardQuantity = itemCount || 1;
         this.itemConsumption = itemConsumption || {};
         this.unlockMessage = unlockMessage;
         this.flavorText = flavorText;
@@ -293,6 +356,7 @@ class Action {
         this.variables = variables;
         this.isTravelAction = false;
         this.targetSpotId = null;
+        this.availability = availability;
     }
 
     canPerform(skillLevel, inventoryManager) {
@@ -322,5 +386,20 @@ class Action {
 
     hasVariables() {
         return this.variables !== null && Object.keys(this.variables).length > 0;
+    }
+
+    performAction(skill, variable = null) {
+        // Calculate XP based on variable amount if provided
+        let xpToGain = this.xpReward;
+        if (variable && this.variables && this.variables.amount) {
+            xpToGain = this.xpReward * variable;
+        }
+        
+        // Add XP to the skill
+        if (skill && xpToGain > 0) {
+            skill.addXp(xpToGain);
+        }
+        
+        return xpToGain;
     }
 } 
