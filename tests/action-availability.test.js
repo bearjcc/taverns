@@ -11,7 +11,7 @@
  */
 
 // Import the ActionAvailabilityEngine
-const { ActionAvailabilityEngine } = require('../engine/systems/ActionAvailabilityEngine');
+const { ActionAvailabilityEngine } = require('../src/lib/game-engine/systems/ActionAvailabilityEngine');
 
 // Mock systems for testing
 class MockLocationSystem {

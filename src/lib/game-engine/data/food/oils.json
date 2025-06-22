@@ -1,0 +1,17 @@
+{
+  "plant_based_oils": [
+    { "id": "olive_oil", "name": "Olive Oil", "description": "A common cooking oil pressed from olives." },
+    { "id": "vegetable_oil", "name": "Vegetable Oil", "description": "A general-purpose oil made from various plants." },
+    { "id": "sunflower_oil", "name": "Sunflower Oil", "description": "A light-tasting oil made from sunflower seeds." },
+    { "id": "canola_oil", "name": "Canola Oil", "description": "A versatile oil made from rapeseed." },
+    { "id": "corn_oil", "name": "Corn Oil", "description": "An oil extracted from the germ of corn." },
+    { "id": "peanut_oil", "name": "Peanut Oil", "description": "An oil with a nutty flavor, pressed from peanuts." },
+    { "id": "coconut_oil", "name": "Coconut Oil", "description": "A tropical oil with a distinct flavor, extracted from coconuts." }
+  ],
+  "animal_based_oils": [
+    { "id": "whale_oil", "name": "Whale Oil", "description": "A valuable oil rendered from the blubber of whales." }
+  ],
+  "other_oils": [
+    { "id": "unicorn_oil", "name": "Unicorn Oil", "description": "A rare and magical oil with unique properties." }
+  ]
+} 

@@ -24,8 +24,8 @@
     "docs:serve": "jsdoc -c jsdoc.json --serve",
     "validate": "node scripts/validate-schemas.js",
     "validate:watch": "node scripts/validate-schemas.js --watch",
-    "lint:legacy": "eslint assets/js/ engine/ --ext .js",
-    "lint:fix": "eslint assets/js/ engine/ --ext .js --fix"
+    "lint:legacy": "eslint assets/js/ src/lib/game-engine/ --ext .js",
+    "lint:fix": "eslint assets/js/ src/lib/game-engine/ --ext .js --fix"
   },
   "keywords": [
     "rpg",
@@ -82,7 +82,7 @@
     ],
     "collectCoverageFrom": [
       "assets/js/**/*.js",
-      "engine/**/*.js",
+      "src/lib/game-engine/**/*.js",
       "!**/node_modules/**"
     ],
     "coverageDirectory": "coverage",

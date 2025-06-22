@@ -4,7 +4,7 @@
  * Tests for the AchievementSystem class functionality
  */
 
-const AchievementSystem = require('../engine/systems/AchievementSystem');
+const AchievementSystem = require('../src/lib/game-engine/systems/AchievementSystem');
 
 // Mock dependencies
 class MockStateManager {

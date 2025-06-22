@@ -1,0 +1,33 @@
+{
+  "leafy_greens": [
+    { "id": "lettuce", "name": "Lettuce", "description": "A leafy green used in salads." },
+    { "id": "cabbage", "name": "Cabbage", "description": "A leafy vegetable with a dense head." },
+    { "id": "broccoli", "name": "Broccoli", "description": "A green vegetable with a tree-like structure." },
+    { "id": "sprouts", "name": "Sprouts", "description": "Young shoots of germinated seeds." }
+  ],
+  "root_vegetables": [
+    { "id": "carrot", "name": "Carrot", "description": "A root vegetable, typically orange in color." },
+    { "id": "potato", "name": "Potato", "description": "A starchy tuber vegetable." },
+    { "id": "beet", "name": "Beet", "description": "A root vegetable with a deep red color." }
+  ],
+  "cruciferous": [
+    { "id": "cauliflower", "name": "Cauliflower", "description": "A vegetable with a white, flower-like head." }
+  ],
+  "nightshades": [
+    { "id": "tomatoes", "name": "Tomatoes", "description": "A juicy, red fruit often used as a vegetable in cooking." },
+    { "id": "eggplant", "name": "Eggplant", "description": "A glossy, purple-skinned vegetable." }
+  ],
+  "other_vegetables": [
+    { "id": "asparagus", "name": "Asparagus", "description": "A spring vegetable with tender spears." },
+    { "id": "garlic", "name": "Garlic", "description": "A pungent bulb used for flavoring." },
+    { "id": "cucumbers", "name": "Cucumbers", "description": "A green, cylindrical vegetable with a high water content." },
+    { "id": "corn_on_the_cob", "name": "Corn on the Cob", "description": "The raw form of corn." },
+    { "id": "corn", "name": "Corn", "description": "Kernels removed from the cob." }
+  ],
+  "onions": [
+    { "id": "red_onion", "name": "Red Onion", "description": "A variety of onion with a purple-red skin." },
+    { "id": "white_onion", "name": "White Onion", "description": "A mild-flavored onion." },
+    { "id": "green_onion", "name": "Green Onion", "description": "A young onion with a long, green stalk." },
+    { "id": "wild_onion", "name": "Wild Onion", "description": "Onions that can be foraged in the wild." }
+  ]
+} 

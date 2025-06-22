@@ -19,11 +19,11 @@ global.localStorage = {
 global.fetch = jest.fn();
 
 // Import the systems
-const EventSystem = require('../engine/core/EventSystem');
-const StateManager = require('../engine/core/StateManager');
-const AchievementSystem = require('../engine/systems/AchievementSystem');
-const SkillManager = require('../engine/systems/SkillManager');
-const InventoryManager = require('../engine/systems/InventoryManager');
+const EventSystem = require('../src/lib/game-engine/core/EventSystem');
+const StateManager = require('../src/lib/game-engine/core/StateManager');
+const AchievementSystem = require('../src/lib/game-engine/systems/AchievementSystem');
+const SkillManager = require('../src/lib/game-engine/systems/SkillManager');
+const InventoryManager = require('../src/lib/game-engine/systems/InventoryManager');
 
 describe('Achievement System Integration', () => {
     let eventSystem;

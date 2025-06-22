@@ -35,15 +35,19 @@ export function GameInterface() {
   const [gameState, setGameState] = useState<GameState | null>(null);
 
   useEffect(() => {
-    try {
-      const gameEngine = new GameEngineWrapper();
-      gameEngine.init();
-      setEngine(gameEngine);
-      setIsLoading(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to initialize game engine');
-      setIsLoading(false);
-    }
+    const initializeEngine = async () => {
+      try {
+        const gameEngine = new GameEngineWrapper();
+        await gameEngine.init();
+        setEngine(gameEngine);
+        setIsLoading(false);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to initialize game engine');
+        setIsLoading(false);
+      }
+    };
+
+    initializeEngine();
   }, []);
 
   if (isLoading) {

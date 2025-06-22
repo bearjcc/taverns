@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Food Category File Schema",
+  "description": "Schema for individual food category files containing food items organized by subcategories",
+  "type": "object",
+  "patternProperties": {
+    "^[a-z_]+$": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z_]+$",
+                "description": "Unique identifier for the food item"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Display name for the food item"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "description": "Description of the food item"
+              }
+            },
+            "required": ["id", "name", "description"],
+            "additionalProperties": false
+          },
+          "minItems": 1
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z_]+$": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[a-z_]+$",
+                    "description": "Unique identifier for the food item"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Display name for the food item"
+                  },
+                  "description": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Description of the food item"
+                  }
+                },
+                "required": ["id", "name", "description"],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "minProperties": 1
+        }
+      ]
+    }
+  },
+  "minProperties": 1,
+  "additionalProperties": false
+} 

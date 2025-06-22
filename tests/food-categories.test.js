@@ -16,8 +16,8 @@ if (typeof document === 'undefined') {
 }
 
 // Import the classes (adjust paths as needed)
-const FoodCategoryManager = require('../engine/systems/FoodCategoryManager.js');
-const FoodCategoryUI = require('../engine/ui/FoodCategoryUI.js');
+const FoodCategoryManager = require('../src/lib/game-engine/systems/FoodCategoryManager.js');
+const FoodCategoryUI = require('../src/lib/game-engine/ui/FoodCategoryUI.js');
 
 describe('Food Category System', () => {
     let foodCategoryManager;

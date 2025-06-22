@@ -1,16 +1,14 @@
-import { GameEngine as IGameEngine } from "@/lib/types/engine";
-import GameEngine from "./core/GameEngine.js";
+import { GameEngine } from "./core/GameEngine.js";
 
 export class GameEngineWrapper {
-  private engine: IGameEngine;
+  private engine: any; // Use any type for the JS engine until we have proper types
 
   constructor() {
-    // @ts-expect-error: JS constructor
     this.engine = new GameEngine();
   }
 
-  init() {
-    this.engine.init();
+  async init() {
+    await this.engine.initialize('base-game');
   }
 
   start() {

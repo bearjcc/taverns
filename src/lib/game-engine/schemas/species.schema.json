@@ -1,0 +1,306 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Species Configuration Schema",
+  "description": "Schema for the species configuration file",
+  "type": "object",
+  "properties": {
+    "playable": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+$": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "strength": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "dexterity": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "stamina": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "vitality": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "intelligence": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "charisma": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["strength", "dexterity", "stamina", "vitality", "intelligence", "charisma"],
+              "additionalProperties": false
+            },
+            "bonuses": {
+              "type": "object",
+              "properties": {
+                "luck": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "survival": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "combat": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": ["luck", "survival", "combat"],
+              "additionalProperties": false
+            },
+            "professions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "minItems": 1
+            },
+            "playable": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "required": ["name", "description", "attributes", "bonuses", "professions"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "non_playable": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+$": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "attributes": {
+              "type": "object",
+              "properties": {
+                "strength": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "dexterity": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "stamina": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "vitality": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "intelligence": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                },
+                "charisma": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "max": {
+                      "type": "number",
+                      "maximum": 130
+                    }
+                  },
+                  "required": ["min", "max"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["strength", "dexterity", "stamina", "vitality", "intelligence", "charisma"],
+              "additionalProperties": false
+            },
+            "bonuses": {
+              "type": "object",
+              "properties": {
+                "luck": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "survival": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "combat": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": ["luck", "survival", "combat"],
+              "additionalProperties": false
+            },
+            "professions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "playable": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "required": ["name", "description", "attributes", "bonuses", "professions"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["playable"],
+  "additionalProperties": false
+} 
