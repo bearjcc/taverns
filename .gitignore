@@ -45,6 +45,15 @@ jspm_packages/
 
 # dotenv environment variables file
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+dist/
 
 # IDE files
 .vscode/
@@ -60,4 +69,24 @@ jspm_packages/
 .Trashes
 ehthumbs.db
 Thumbs.db 
-/adarkroom
+
+# Test results and reports
+test-results/
+playwright-report/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.temp
