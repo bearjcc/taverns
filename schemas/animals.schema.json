@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Animals Configuration Schema",
+  "description": "Schema for the animals configuration file",
+  "type": "object",
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "categories": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_]+$": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "subcategories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["name", "description"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "enums": {
+          "type": "object",
+          "properties": {
+            "rarity": {
+              "type": "object",
+              "properties": {
+                "common": {
+                  "type": "integer",
+                  "const": 0
+                },
+                "uncommon": {
+                  "type": "integer", 
+                  "const": 1
+                },
+                "rare": {
+                  "type": "integer",
+                  "const": 2
+                },
+                "exotic": {
+                  "type": "integer",
+                  "const": 3
+                }
+              },
+              "required": ["common", "uncommon", "rare", "exotic"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["rarity"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["description", "categories", "enums"],
+      "additionalProperties": false
+    },
+    "animals": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z_]+$": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_-]+$": {
+              "$ref": "#/definitions/creature"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "monsters": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z_]+$": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_-]+$": {
+              "$ref": "#/definitions/creature"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["metadata", "animals", "monsters"],
+  "additionalProperties": false,
+  "definitions": {
+    "creature": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1
+        },
+        "plural": {
+          "type": "string",
+          "minLength": 1
+        },
+        "singular": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rarity": {
+          "type": "string",
+          "enum": ["common", "uncommon", "rare", "exotic"]
+        },
+        "habitat": {
+          "type": "string",
+          "minLength": 1
+        },
+        "diet": {
+          "type": "string",
+          "enum": ["carnivore", "herbivore", "omnivore", "insectivore", "scavenger", "magical", "divine", "varies"]
+        }
+      },
+      "required": ["name", "description", "category", "plural", "singular", "rarity", "habitat", "diet"],
+      "additionalProperties": false
+    }
+  }
+} 

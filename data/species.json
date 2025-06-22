@@ -1,8 +1,106 @@
 {
+  "metadata": {
+    "categories": {
+      "being": {
+        "name": "Being",
+        "description": "A living thing including plants, animals, fungi, and Gods.",
+        "subcategories": ["humanoid", "god", "djin", "imp", "ghost", "valkyrie", "fairy", "monster", "animal"]
+      },
+      "humanoid": {
+        "name": "Humanoid",
+        "description": "Intelligent and bipedal.",
+        "parent": "being"
+      },
+      "god": {
+        "name": "God",
+        "description": "Immortal beings that interact with the world through their followers rather then with a body of their own",
+        "parent": "being"
+      },
+      "djin": {
+        "name": "Djin",
+        "description": "Djins are a manifestation of pure Mystic Force. Powerful, Ephemeral, Tricksters.",
+        "parent": "being"
+      },
+      "imp": {
+        "name": "Imp",
+        "description": "Small, fiendish, impudient creatures with mild magical abilities",
+        "parent": "being"
+      },
+      "ghost": {
+        "name": "Ghost",
+        "description": "A soul dettached from a body. May be seen around the world if they get lost on their way to Styx",
+        "parent": "being"
+      },
+      "valkyrie": {
+        "name": "Valkyrie",
+        "description": "Divine female warriors who serve the gods",
+        "parent": "being"
+      },
+      "fairy": {
+        "name": "Fairy",
+        "description": "Magical creatures of the natural world",
+        "parent": "being"
+      },
+      "monster": {
+        "name": "Monster",
+        "description": "Dangerous and often hostile creatures",
+        "parent": "being"
+      },
+      "animal": {
+        "name": "Animal",
+        "description": "Non-sentient creatures of the natural world",
+        "parent": "being",
+        "subcategories": ["pet", "farm_animal", "fish", "bird", "snake"]
+      },
+      "pet": {
+        "name": "Pet",
+        "description": "Domesticated animal companions",
+        "parent": "animal"
+      },
+      "farm_animal": {
+        "name": "Farm Animal",
+        "description": "Animals raised for agricultural purposes",
+        "parent": "animal"
+      },
+      "fish": {
+        "name": "Fish",
+        "description": "Aquatic creatures",
+        "parent": "animal"
+      },
+      "bird": {
+        "name": "Bird",
+        "description": "Flying creatures with feathers",
+        "parent": "animal"
+      },
+      "snake": {
+        "name": "Snake",
+        "description": "Slithering reptilian creatures",
+        "parent": "animal"
+      }
+    },
+    "enums": {
+      "gender": {
+        "male": 0,
+        "female": 1,
+        "none": 2,
+        "other": 3
+      },
+      "rarity": {
+        "common": 0,
+        "uncommon": 1,
+        "rare": 2,
+        "exotic": 3
+      }
+    }
+  },
   "playable": {
     "dragonborn": {
       "name": "Dragonborn",
       "description": "Humanoid lizardfolk",
+      "category": "humanoid",
+      "plural": "Dragonborn",
+      "singular": "Dragonborn",
+      "rarity": "rare",
       "attributes": {
         "strength": {
           "min": 30,
@@ -42,7 +140,11 @@
     },
     "dwarf": {
       "name": "Dwarf",
-      "description": "Stocky mountain dwellers",
+      "description": "Short of stature, short of temper, dwarves enjoy alcohol a little too much and are mostly geologists.",
+      "category": "humanoid",
+      "plural": "Dwarves",
+      "singular": "Dwarf",
+      "rarity": "common",
       "attributes": {
         "strength": {
           "min": 25,
@@ -81,7 +183,11 @@
     },
     "elf": {
       "name": "Elf",
-      "description": "Haughty, artsy, and slender",
+      "description": "Tall, elegant, and haughty, elves outlive all other humanoid races and create magnificent architecture and art.",
+      "category": "humanoid",
+      "plural": "Elves",
+      "singular": "Elf",
+      "rarity": "common",
       "attributes": {
         "strength": {
           "min": 1,
@@ -121,7 +227,11 @@
     },
     "gnome": {
       "name": "Gnome",
-      "description": "Playful, inventive, and friendly",
+      "description": "The shortest of the humanoids, gnomes prefer animal companions over other humanoid races.",
+      "category": "humanoid",
+      "plural": "Gnomes",
+      "singular": "Gnome",
+      "rarity": "uncommon",
       "attributes": {
         "strength": {
           "min": 1,
@@ -161,7 +271,11 @@
     },
     "goliath": {
       "name": "Goliath",
-      "description": "Nomadic and under civilized",
+      "description": "The largest of the humanoids. Though clan-like, and brutish like orcs, goliaths are much more peaceful, and less organized.",
+      "category": "humanoid",
+      "plural": "Goliaths",
+      "singular": "Goliath",
+      "rarity": "rare",
       "attributes": {
         "strength": {
           "min": 35,
@@ -201,27 +315,31 @@
     },
     "halfling": {
       "name": "Halfling",
-      "description": "Fun loving, cheerful, and compassionate",
+      "description": "Halflings are so awkward they end up having the best luck, or, so it seems. They never seem to fit in though.",
+      "category": "humanoid",
+      "plural": "Halflings",
+      "singular": "Halfling",
+      "rarity": "uncommon",
       "attributes": {
         "strength": {
-          "min": 1,
-          "max": 40
-        },
-        "dexterity": {
-          "min": 35,
-          "max": 100
-        },
-        "stamina": {
           "min": 10,
-          "max": 90
-        },
-        "vitality": {
-          "min": 5,
           "max": 50
         },
-        "intelligence": {
+        "dexterity": {
+          "min": 40,
+          "max": 90
+        },
+        "stamina": {
+          "min": 15,
+          "max": 75
+        },
+        "vitality": {
           "min": 20,
-          "max": 80
+          "max": 70
+        },
+        "intelligence": {
+          "min": 25,
+          "max": 85
         },
         "charisma": {
           "min": 30,
@@ -229,43 +347,47 @@
         }
       },
       "bonuses": {
-        "luck": 2,
+        "luck": 5,
         "survival": 0,
         "combat": 0
       },
       "professions": [
-        "Music",
-        "Pyrotechnics"
+        "Foraging",
+        "Cooking"
       ],
       "playable": true
     },
     "human": {
       "name": "Human",
-      "description": "Driven by power, money, and profession",
+      "description": "Pride, Honor, Territory, Ownership: there is rarely anything else on the mind of man",
+      "category": "humanoid",
+      "plural": "Humans",
+      "singular": "Human",
+      "rarity": "common",
       "attributes": {
         "strength": {
           "min": 15,
-          "max": 90
+          "max": 85
         },
         "dexterity": {
           "min": 15,
-          "max": 90
+          "max": 85
         },
         "stamina": {
-          "min": 10,
-          "max": 80
+          "min": 15,
+          "max": 85
         },
         "vitality": {
-          "min": 25,
-          "max": 75
+          "min": 15,
+          "max": 85
         },
         "intelligence": {
-          "min": 25,
-          "max": 90
+          "min": 15,
+          "max": 85
         },
         "charisma": {
-          "min": 20,
-          "max": 90
+          "min": 15,
+          "max": 85
         }
       },
       "bonuses": {
@@ -274,85 +396,183 @@
         "combat": 0
       },
       "professions": [
-        "All"
+        "Leadership",
+        "Trading"
       ],
       "playable": true
     },
     "orc": {
       "name": "Orc",
-      "description": "Combative hordes without homes",
+      "description": "Ugly, brutish, and war-hungry, there is nothing more important then clan and family to an orc.",
+      "category": "humanoid",
+      "plural": "Orcs",
+      "singular": "Orc",
+      "rarity": "common",
       "attributes": {
         "strength": {
-          "min": 40,
-          "max": 100
-        },
-        "dexterity": {
-          "min": 1,
-          "max": 50
-        },
-        "stamina": {
-          "min": 20,
-          "max": 100
-        },
-        "vitality": {
-          "min": 50,
-          "max": 100
-        },
-        "intelligence": {
-          "min": 5,
-          "max": 55
-        },
-        "charisma": {
-          "min": 10,
-          "max": 60
-        }
-      },
-      "bonuses": {
-        "luck": 0,
-        "survival": 10,
-        "combat": 20
-      },
-      "professions": [
-        "Combat"
-      ],
-      "playable": true
-    },
-    "satyr": {
-      "name": "Satyr",
-      "description": "Lustful, musical, half goats",
-      "attributes": {
-        "strength": {
-          "min": 15,
-          "max": 45
+          "min": 30,
+          "max": 95
         },
         "dexterity": {
           "min": 10,
           "max": 70
         },
         "stamina": {
-          "min": 10,
-          "max": 80
+          "min": 25,
+          "max": 90
         },
         "vitality": {
-          "min": 25,
-          "max": 50
+          "min": 30,
+          "max": 95
         },
         "intelligence": {
-          "min": 20,
-          "max": 80
+          "min": 5,
+          "max": 60
         },
         "charisma": {
-          "min": 50,
-          "max": 100
+          "min": 10,
+          "max": 70
         }
       },
       "bonuses": {
         "luck": 0,
-        "survival": 10,
+        "survival": 0,
+        "combat": 15
+      },
+      "professions": [
+        "Combat",
+        "Intimidation"
+      ],
+      "playable": true
+    },
+    "satyr": {
+      "name": "Satyr",
+      "description": "Torso of man, legs and horns of a goat, satyrs are often tricksters or harlots",
+      "category": "humanoid",
+      "plural": "Satyrs",
+      "singular": "Satyr",
+      "rarity": "exotic",
+      "attributes": {
+        "strength": {
+          "min": 20,
+          "max": 75
+        },
+        "dexterity": {
+          "min": 30,
+          "max": 90
+        },
+        "stamina": {
+          "min": 25,
+          "max": 85
+        },
+        "vitality": {
+          "min": 20,
+          "max": 80
+        },
+        "intelligence": {
+          "min": 25,
+          "max": 85
+        },
+        "charisma": {
+          "min": 40,
+          "max": 95
+        }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
         "combat": 0
       },
       "professions": [
-        "Music"
+        "Performance",
+        "Trickery"
+      ],
+      "playable": true
+    },
+    "felix": {
+      "name": "Felix",
+      "description": "Standing on their hind legs, these big cats have integrated well into humanoids' world.",
+      "category": "humanoid",
+      "plural": "Felideax",
+      "singular": "Felix",
+      "rarity": "rare",
+      "attributes": {
+        "strength": {
+          "min": 25,
+          "max": 85
+        },
+        "dexterity": {
+          "min": 40,
+          "max": 95
+        },
+        "stamina": {
+          "min": 20,
+          "max": 80
+        },
+        "vitality": {
+          "min": 25,
+          "max": 80
+        },
+        "intelligence": {
+          "min": 20,
+          "max": 75
+        },
+        "charisma": {
+          "min": 25,
+          "max": 85
+        }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 5,
+        "combat": 0
+      },
+      "professions": [
+        "Stealth",
+        "Tracking"
+      ],
+      "playable": true
+    },
+    "mixedblood": {
+      "name": "Mixedblood",
+      "description": "Infertile, and often asexual, mixedblood describes any half breed between two humanoid races.",
+      "category": "humanoid",
+      "plural": "Mixedbloods",
+      "singular": "Mixedblood",
+      "rarity": "uncommon",
+      "attributes": {
+        "strength": {
+          "min": 10,
+          "max": 90
+        },
+        "dexterity": {
+          "min": 10,
+          "max": 90
+        },
+        "stamina": {
+          "min": 10,
+          "max": 90
+        },
+        "vitality": {
+          "min": 10,
+          "max": 90
+        },
+        "intelligence": {
+          "min": 10,
+          "max": 90
+        },
+        "charisma": {
+          "min": 10,
+          "max": 90
+        }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 0
+      },
+      "professions": [
+        "Adaptability"
       ],
       "playable": true
     },
@@ -439,6 +659,10 @@
     "aarakocra": {
       "name": "Aarakocra",
       "description": "Regal, rare birdfolk",
+      "category": "humanoid",
+      "plural": "Aarakocra",
+      "singular": "Aarakocra",
+      "rarity": "rare",
       "attributes": {
         "strength": {
           "min": 5,
@@ -469,6 +693,129 @@
         "luck": 0,
         "survival": 0,
         "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "mermaid": {
+      "name": "Mermaid",
+      "description": "Humanoid torso with the lower body of a fish, these people can breath underwater or above",
+      "category": "humanoid",
+      "plural": "Mermen",
+      "singular": "Mermaid",
+      "rarity": "rare",
+      "attributes": {
+        "strength": {
+          "min": 15,
+          "max": 70
+        },
+        "dexterity": {
+          "min": 40,
+          "max": 90
+        },
+        "stamina": {
+          "min": 20,
+          "max": 100
+        },
+        "vitality": {
+          "min": 25,
+          "max": 80
+        },
+        "intelligence": {
+          "min": 30,
+          "max": 85
+        },
+        "charisma": {
+          "min": 40,
+          "max": 95
+        }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 10,
+        "combat": 0
+      },
+      "professions": [],
+      "playable": false
+    },
+    "lizardfolk": {
+      "name": "Lizardfolk",
+      "description": "Starting as lizardpoles, then crawling on four legs sansclothes until midlife, these creatures lack intelligence so are barely humanoid.",
+      "category": "humanoid",
+      "plural": "Lizardfolk",
+      "singular": "Lizardi",
+      "rarity": "uncommon",
+      "attributes": {
+        "strength": {
+          "min": 25,
+          "max": 80
+        },
+        "dexterity": {
+          "min": 20,
+          "max": 75
+        },
+        "stamina": {
+          "min": 30,
+          "max": 90
+        },
+        "vitality": {
+          "min": 35,
+          "max": 85
+        },
+        "intelligence": {
+          "min": 5,
+          "max": 40
+        },
+        "charisma": {
+          "min": 5,
+          "max": 30
+        }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 5,
+        "combat": 5
+      },
+      "professions": [],
+      "playable": false
+    },
+    "troll": {
+      "name": "Troll",
+      "description": "Strong, hardy, but lacking intelligence trolls tend to live alone.",
+      "category": "humanoid",
+      "plural": "Trolls",
+      "singular": "Troll",
+      "rarity": "uncommon",
+      "attributes": {
+        "strength": {
+          "min": 60,
+          "max": 120
+        },
+        "dexterity": {
+          "min": 5,
+          "max": 40
+        },
+        "stamina": {
+          "min": 50,
+          "max": 100
+        },
+        "vitality": {
+          "min": 70,
+          "max": 130
+        },
+        "intelligence": {
+          "min": 1,
+          "max": 25
+        },
+        "charisma": {
+          "min": 1,
+          "max": 20
+        }
+      },
+      "bonuses": {
+        "luck": 0,
+        "survival": 0,
+        "combat": 20
       },
       "professions": [],
       "playable": false

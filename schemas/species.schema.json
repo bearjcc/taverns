@@ -4,6 +4,69 @@
   "description": "Schema for the species configuration file",
   "type": "object",
   "properties": {
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_]+$": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "parent": {
+                  "type": "string"
+                },
+                "subcategories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["name", "description"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "enums": {
+          "type": "object",
+          "properties": {
+            "gender": {
+              "type": "object",
+              "properties": {
+                "male": {"type": "integer", "const": 0},
+                "female": {"type": "integer", "const": 1},
+                "none": {"type": "integer", "const": 2},
+                "other": {"type": "integer", "const": 3}
+              },
+              "required": ["male", "female", "none", "other"],
+              "additionalProperties": false
+            },
+            "rarity": {
+              "type": "object",
+              "properties": {
+                "common": {"type": "integer", "const": 0},
+                "uncommon": {"type": "integer", "const": 1},
+                "rare": {"type": "integer", "const": 2},
+                "exotic": {"type": "integer", "const": 3}
+              },
+              "required": ["common", "uncommon", "rare", "exotic"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["gender", "rarity"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["categories", "enums"],
+      "additionalProperties": false
+    },
     "playable": {
       "type": "object",
       "patternProperties": {
@@ -17,6 +80,22 @@
             "description": {
               "type": "string",
               "minLength": 1
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1
+            },
+            "plural": {
+              "type": "string",
+              "minLength": 1
+            },
+            "singular": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rarity": {
+              "type": "string",
+              "enum": ["common", "uncommon", "rare", "exotic"]
             },
             "attributes": {
               "type": "object",
@@ -33,7 +112,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "dexterity": {
@@ -48,7 +130,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "stamina": {
@@ -63,7 +148,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "vitality": {
@@ -78,7 +166,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "intelligence": {
@@ -93,7 +184,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "charisma": {
@@ -108,11 +202,21 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 }
               },
-              "required": ["strength", "dexterity", "stamina", "vitality", "intelligence", "charisma"],
+              "required": [
+                "strength",
+                "dexterity",
+                "stamina",
+                "vitality",
+                "intelligence",
+                "charisma"
+              ],
               "additionalProperties": false
             },
             "bonuses": {
@@ -131,7 +235,11 @@
                   "minimum": 0
                 }
               },
-              "required": ["luck", "survival", "combat"],
+              "required": [
+                "luck",
+                "survival",
+                "combat"
+              ],
               "additionalProperties": false
             },
             "professions": {
@@ -147,12 +255,23 @@
               "default": true
             }
           },
-          "required": ["name", "description", "attributes", "bonuses", "professions"],
+          "required": [
+            "name",
+            "description",
+            "category",
+            "plural",
+            "singular", 
+            "rarity",
+            "attributes",
+            "bonuses",
+            "professions"
+          ],
           "additionalProperties": false
         }
-      },
-      "additionalProperties": false
-    },
+        },
+  "required": ["playable", "non_playable"],
+  "additionalProperties": false
+},
     "non_playable": {
       "type": "object",
       "patternProperties": {
@@ -166,6 +285,22 @@
             "description": {
               "type": "string",
               "minLength": 1
+            },
+            "category": {
+              "type": "string",
+              "minLength": 1
+            },
+            "plural": {
+              "type": "string",
+              "minLength": 1
+            },
+            "singular": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rarity": {
+              "type": "string",
+              "enum": ["common", "uncommon", "rare", "exotic"]
             },
             "attributes": {
               "type": "object",
@@ -182,7 +317,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "dexterity": {
@@ -197,7 +335,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "stamina": {
@@ -212,7 +353,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "vitality": {
@@ -227,7 +371,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "intelligence": {
@@ -242,7 +389,10 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 },
                 "charisma": {
@@ -257,11 +407,21 @@
                       "maximum": 130
                     }
                   },
-                  "required": ["min", "max"],
+                  "required": [
+                    "min",
+                    "max"
+                  ],
                   "additionalProperties": false
                 }
               },
-              "required": ["strength", "dexterity", "stamina", "vitality", "intelligence", "charisma"],
+              "required": [
+                "strength",
+                "dexterity",
+                "stamina",
+                "vitality",
+                "intelligence",
+                "charisma"
+              ],
               "additionalProperties": false
             },
             "bonuses": {
@@ -280,7 +440,11 @@
                   "minimum": 0
                 }
               },
-              "required": ["luck", "survival", "combat"],
+              "required": [
+                "luck",
+                "survival",
+                "combat"
+              ],
               "additionalProperties": false
             },
             "professions": {
@@ -294,13 +458,25 @@
               "default": false
             }
           },
-          "required": ["name", "description", "attributes", "bonuses", "professions"],
+          "required": [
+            "name",
+            "description",
+            "category",
+            "plural",
+            "singular",
+            "rarity", 
+            "attributes",
+            "bonuses",
+            "professions"
+          ],
           "additionalProperties": false
         }
       },
       "additionalProperties": false
     }
   },
-  "required": ["playable"],
+  "required": [
+    "playable"
+  ],
   "additionalProperties": false
-} 
+}

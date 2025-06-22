@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "description": "Animals and creatures from the world of Taverns",
+    "categories": {
+      "animal": {
+        "name": "Animal",
+        "description": "Non-sentient creatures of the natural world",
+        "subcategories": ["pet", "farm_animal", "fish", "bird", "snake", "mammal"]
+      },
+      "monster": {
+        "name": "Monster", 
+        "description": "Dangerous and often hostile creatures",
+        "subcategories": ["mythical", "undead", "fiend"]
+      },
+      "magical": {
+        "name": "Magical Creature",
+        "description": "Creatures imbued with magical properties",
+        "subcategories": ["fairy", "elemental", "divine"]
+      }
+    },
+    "enums": {
+      "rarity": {
+        "common": 0,
+        "uncommon": 1,
+        "rare": 2,
+        "exotic": 3
+      }
+    }
+  },
+  "animals": {
+    "pets": {
+      "cat": {
+        "name": "Cat",
+        "description": "Domesticated feline companion",
+        "category": "pet",
+        "plural": "Cats",
+        "singular": "Cat",
+        "rarity": "common",
+        "habitat": "domestic",
+        "diet": "carnivore"
+      },
+      "dog": {
+        "name": "Dog",
+        "description": "Loyal canine companion",
+        "category": "pet",
+        "plural": "Dogs",
+        "singular": "Dog",
+        "rarity": "common",
+        "habitat": "domestic",
+        "diet": "omnivore"
+      },
+      "rabbit": {
+        "name": "Rabbit",
+        "description": "Soft and gentle herbivore",
+        "category": "pet",
+        "plural": "Rabbits",
+        "singular": "Rabbit",
+        "rarity": "common",
+        "habitat": "temperate",
+        "diet": "herbivore"
+      },
+      "mouse": {
+        "name": "Mouse",
+        "description": "Small nimble rodent",
+        "category": "pet",
+        "plural": "Mice",
+        "singular": "Mouse",
+        "rarity": "common",
+        "habitat": "varied",
+        "diet": "omnivore"
+      }
+    },
+    "farm_animals": {
+      "horse": {
+        "name": "Horse",
+        "description": "Noble riding and work animal",
+        "category": "farm_animal",
+        "plural": "Horses",
+        "singular": "Horse",
+        "rarity": "common",
+        "habitat": "grassland",
+        "diet": "herbivore"
+      },
+      "ox": {
+        "name": "Ox",
+        "description": "Large draft animal",
+        "category": "farm_animal",
+        "plural": "Oxen",
+        "singular": "Ox",
+        "rarity": "common",
+        "habitat": "grassland",
+        "diet": "herbivore"
+      }
+    },
+    "fish": {
+      "trout": {
+        "name": "Trout",
+        "description": "Prized freshwater game fish",
+        "category": "fish",
+        "plural": "Trout",
+        "singular": "Trout",
+        "rarity": "common",
+        "habitat": "freshwater",
+        "diet": "carnivore"
+      },
+      "salmon": {
+        "name": "Salmon",
+        "description": "Migratory fish of great endurance",
+        "category": "fish",
+        "plural": "Salmon",
+        "singular": "Salmon",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      }
+    }
+  },
+  "monsters": {
+    "mythical": {
+      "dragon": {
+        "name": "Dragon",
+        "description": "Ancient winged reptilian creature of immense power",
+        "category": "monster",
+        "plural": "Dragons",
+        "singular": "Dragon",
+        "rarity": "exotic",
+        "habitat": "mountain",
+        "diet": "carnivore"
+      },
+      "minotaur": {
+        "name": "Minotaur",
+        "description": "Bull-headed humanoid warrior",
+        "category": "monster",
+        "plural": "Minotaurs",
+        "singular": "Minotaur",
+        "rarity": "rare",
+        "habitat": "labyrinth",
+        "diet": "omnivore"
+      }
+    }
+  }
+} 
