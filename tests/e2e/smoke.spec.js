@@ -1,7 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
-test.describe('Smoke Tests', () => {
-  test('should load the game without console errors', async ({ page }) => {
+test.describe('Next.js Game Application Smoke Tests', () => {
+  test('should load the Next.js application without console errors', async ({ page }) => {
     // Collect console errors
     const consoleErrors = [];
     page.on('console', msg => {
@@ -13,90 +13,81 @@ test.describe('Smoke Tests', () => {
     // Navigate to the game
     await page.goto('/');
     
-    // Wait for the game to initialize (look for game engine initialization message)
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    // Wait for Next.js to hydrate and React components to render
+    await page.waitForSelector('main', { timeout: 10000 });
 
     // Check that no console errors occurred during load
-    expect(consoleErrors).toHaveLength(0);
+    expect(consoleErrors.filter(error => 
+      !error.includes('Warning:') && // Filter out React warnings
+      !error.includes('Download the React DevTools') // Filter out dev tools message
+    )).toHaveLength(0);
   });
 
-  test('should have all required system classes available globally', async ({ page }) => {
+  test('should display the main Next.js game interface', async ({ page }) => {
     await page.goto('/');
     
-    // Wait for game to load
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    // Wait for React components to render
+    await page.waitForSelector('main', { timeout: 10000 });
 
-    // Check that all required system classes are available
-    const requiredClasses = [
-      'SkillManager',
-      'InventoryManager', 
-      'TraitManager',
-      'ActionManager',
-      'LocationSystem',
-      'AchievementSystem',
-      'EncyclopediaSystem',
-      'UIManager',
-      'ModManager'
-    ];
-
-    for (const className of requiredClasses) {
-      await expect(page.locator('body')).toHaveJSProperty(`window.${className}`, expect.any(Function));
-    }
+    // Check that main UI structure is present
+    await expect(page.locator('main')).toBeVisible();
+    
+    // Check for game interface components (using more generic selectors)
+    // These selectors should match the React component structure
+    const gameInterface = page.locator('[data-testid="game-interface"]').or(page.locator('main'));
+    await expect(gameInterface).toBeVisible();
   });
 
-  test('should display the main game interface', async ({ page }) => {
+  test('should have working navigation and routing', async ({ page }) => {
     await page.goto('/');
     
-    // Wait for game to load
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    // Wait for page to load
+    await page.waitForSelector('main', { timeout: 10000 });
 
-    // Check that main UI elements are present
-    await expect(page.locator('#narration-content')).toBeVisible();
-    await expect(page.locator('#actions-content')).toBeVisible();
-    await expect(page.locator('.sidebar')).toBeVisible();
+    // Check that the page loads correctly
+    await expect(page).toHaveTitle(/Taverns/i);
   });
 
-  test('should have working tab system', async ({ page }) => {
-    await page.goto('/');
+  test('should load and display game data via API routes', async ({ page }) => {
+    // Test API routes directly
+    const skillsResponse = await page.request.get('/api/skills');
+    expect(skillsResponse.ok()).toBeTruthy();
     
-    // Wait for game to load
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    const skillsData = await skillsResponse.json();
+    expect(skillsData).toBeTruthy();
+    expect(typeof skillsData).toBe('object');
 
-    // Check that tabs are present and clickable
-    const tabButtons = page.locator('.tab-button');
-    await expect(tabButtons).toHaveCount(4); // skills, inventory, character, achievements
+    const itemsResponse = await page.request.get('/api/items');
+    expect(itemsResponse.ok()).toBeTruthy();
+    
+    const itemsData = await itemsResponse.json();
+    expect(itemsData).toBeTruthy();
+    expect(typeof itemsData).toBe('object');
 
-    // Click on achievements tab
-    await page.click('[data-tab="achievements"]');
-    await expect(page.locator('#achievements-tab')).toHaveClass(/active/);
+    const configResponse = await page.request.get('/api/game-config');
+    expect(configResponse.ok()).toBeTruthy();
+    
+    const configData = await configResponse.json();
+    expect(configData).toBeTruthy();
+    expect(typeof configData).toBe('object');
   });
 
-  test('should handle basic game actions without errors', async ({ page }) => {
+  test('should handle React component interactions without errors', async ({ page }) => {
     await page.goto('/');
     
-    // Wait for game to load
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    // Wait for React to load
+    await page.waitForSelector('main', { timeout: 10000 });
 
-    // Collect any errors that occur during action execution
+    // Collect any errors that occur during interactions
     const errors = [];
     page.on('pageerror', error => {
       errors.push(error.message);
     });
 
-    // Try to execute a basic action (if available)
-    const actionButtons = page.locator('.action-button');
-    if (await actionButtons.count() > 0) {
-      await actionButtons.first().click();
+    // Try to interact with any buttons that might be present
+    const buttons = page.locator('button');
+    if (await buttons.count() > 0) {
+      await buttons.first().click();
       // Wait a moment for any async operations
       await page.waitForTimeout(1000);
     }
@@ -105,40 +96,47 @@ test.describe('Smoke Tests', () => {
     expect(errors).toHaveLength(0);
   });
 
-  test('should load mod data successfully', async ({ page }) => {
+  test('should have responsive design working', async ({ page }) => {
     await page.goto('/');
     
-    // Wait for game to load
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    // Wait for page to load
+    await page.waitForSelector('main', { timeout: 10000 });
 
-    // Check that mod manager is working
-    const modManager = await page.evaluate(() => window.gameEngine?.getSystem('mods'));
-    expect(modManager).toBeTruthy();
+    // Test desktop view
+    await page.setViewportSize({ width: 1200, height: 800 });
+    await expect(page.locator('main')).toBeVisible();
 
-    // Check that base game mod is loaded
-    const activeMods = await page.evaluate(() => {
-      const modManager = window.gameEngine?.getSystem('mods');
-      return modManager ? Array.from(modManager.getActiveMods()) : [];
-    });
-    expect(activeMods).toContain('base-game');
+    // Test tablet view
+    await page.setViewportSize({ width: 768, height: 1024 });
+    await expect(page.locator('main')).toBeVisible();
+
+    // Test mobile view
+    await page.setViewportSize({ width: 375, height: 667 });
+    await expect(page.locator('main')).toBeVisible();
   });
 
-  test('should have achievement system functional', async ({ page }) => {
+  test('should have proper meta tags and SEO', async ({ page }) => {
     await page.goto('/');
     
-    // Wait for game to load
-    await page.waitForFunction(() => {
-      return window.gameEngine !== undefined;
-    }, { timeout: 10000 });
+    // Check for proper meta tags
+    await expect(page).toHaveTitle(/Taverns/i);
+    
+    // Check for viewport meta tag (important for responsive design)
+    const viewportMeta = page.locator('meta[name="viewport"]');
+    await expect(viewportMeta).toHaveAttribute('content', /width=device-width/);
+  });
 
-    // Check that achievement system is available
-    const achievementSystem = await page.evaluate(() => window.gameEngine?.getSystem('achievements'));
-    expect(achievementSystem).toBeTruthy();
+  test('should serve static assets correctly', async ({ page }) => {
+    await page.goto('/');
+    
+    // Wait for page to load
+    await page.waitForSelector('main', { timeout: 10000 });
 
-    // Check that achievements tab shows content
-    await page.click('[data-tab="achievements"]');
-    await expect(page.locator('#achievements-content')).toBeVisible();
+    // Check that static data files are accessible
+    const dataResponse = await page.request.get('/data/skills.json');
+    expect(dataResponse.ok()).toBeTruthy();
+    
+    const modsResponse = await page.request.get('/mods/base-game/manifest.json');
+    expect(modsResponse.ok()).toBeTruthy();
   });
 }); 

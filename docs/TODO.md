@@ -321,15 +321,15 @@
 - [x] **Verify `data/` loading**: Confirm all JSON data files from the root `data/` directory are correctly served via Next.js API routes (`src/app/api/`) with `public/data/` serving as fallback static assets following Next.js best practices.
 - [x] **Update `jsdoc.json`**: Review `jsdoc.json` and JSDoc usage. Decide if JSDoc will continue to be used for the vanilla JS parts of the engine (`src/lib/game-engine/`) and update configuration if necessary, or remove if fully superseded by TypeScript.
 - [x] **Verify `mods/base-game/` loading**: Ensure the mod loading system within the Next.js app correctly loads and utilizes the `mods/base-game/` data via API routes with `public/mods/` serving as fallback static assets.
-- [ ] **Update Playwright tests**: Adapt Playwright tests (`playwright.config.js`, `tests/e2e/`) to target the new Next.js application structure, URLs, and UI components.
+- [x] **Update Playwright tests**: Adapt Playwright tests (`playwright.config.js`, `tests/e2e/`) to target the new Next.js application structure, URLs, and UI components.
 - [x] **Clarify `public/data` and `public/mods`**: `public/data/` and `public/mods/` serve as fallback static assets following Next.js best practices, while API routes provide enhanced functionality with validation and caching.
-- [ ] **Update `README.md`**: Revise the main `README.md` to reflect the Next.js architecture, new setup instructions, development commands (`npm run dev`), and project structure.
+- [x] **Update `README.md`**: Revise the main `README.md` to reflect the Next.js architecture, new setup instructions, development commands (`npm run dev`), and project structure.
 - [x] **Consolidate `schemas/` usage**: Confirm that `src/lib/game-engine/schemas/` and `src/lib/schemas/` are not redundant. The primary location for schemas used by API routes and potentially the engine should be `src/lib/schemas/` as per `MIGRATION_TO_NEXTJS.md`. The engine should consume schemas via its configuration or a dedicated schema loader.
 - [x] **Migrate `scripts/validate-schemas.js`**: Integrate the functionality of `scripts/validate-schemas.js` into the Next.js build process or as part of the API route data validation logic.
 - [x] **Cleanup `src/api/`**: Investigate the `src/api/` directory. If it's a remnant of an older structure or not used by the App Router, remove it to avoid confusion with `src/app/api/`.
 - [x] **Clarify `src/lib/game-engine/data/`**: The game engine in `src/lib/game-engine/` should ideally not contain its own `data/` subdirectory if the design is for data to be passed in or loaded via central API routes. Clarify its purpose or remove if redundant.
 - [x] **Consolidate `styles/`**: Review `src/styles/`. If it contains global styles, merge them into `src/app/globals.css` and remove the old directory to adhere to App Router conventions.
-- [ ] **Update `tests/`**: Review all pre-migration tests in `tests/` (especially `*.html` and `*.test.js` files not in `e2e/`). Update or replace them with tests compatible with the Next.js environment (e.g., Jest, React Testing Library, Playwright).
+- [x] **Update `tests/`**: Review all pre-migration tests in `tests/` (especially `*.html` and `*.test.js` files not in `e2e/`). Update or replace them with tests compatible with the Next.js environment (e.g., Jest, React Testing Library, Playwright).
 
 #### 3.7.1: Data Integration & Migration Completion
 - [ ] **Fix Next.js site to use actual game data**

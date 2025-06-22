@@ -10,14 +10,20 @@ A text-based adventure game inspired by "A Dark Room" with a 3-column layout, bu
 # Install dependencies
 npm install
 
-# Start development server
+# Start development server (with hot reload)
 npm run dev
+
+# Validate game data schemas
+npm run validate
 
 # Run tests
 npm test
 
 # Run end-to-end tests
 npm run test:e2e
+
+# Generate JSDoc documentation
+npm run docs
 ```
 
 ### Deployment
@@ -58,15 +64,25 @@ npm run deploy:preview
 ```
 src/
 ├── app/                    # Next.js App Router
-│   ├── api/               # API routes
+│   ├── api/               # API routes for game data
+│   ├── globals.css        # Global styles with Tailwind
 │   └── page.tsx           # Main game interface
 ├── components/            # React components
 │   ├── game/             # Game-specific components
 │   └── ui/               # shadcn/ui components
 ├── lib/                  # Utility libraries
-│   ├── game-engine/      # Game engine systems
+│   ├── game-engine/      # Game engine systems (vanilla JS)
+│   ├── schemas/          # JSON schemas for validation
 │   └── types/            # TypeScript type definitions
-└── styles/               # Global styles
+data/                      # Game data (JSON files)
+├── config/               # Game configuration
+├── food/                 # Food category data
+├── skills.json           # Skill definitions
+├── items.json            # Item definitions
+└── ...                   # Other game data
+public/                   # Static assets (Next.js standard)
+├── data/                 # Fallback static data files
+└── mods/                 # Mod system data
 ```
 
 ## 🎮 Game Features
@@ -82,10 +98,12 @@ src/
 ## 🔧 Development
 
 ### Adding New Features
-1. Create components in `src/components/game/`
-2. Add API routes in `src/app/api/`
-3. Update game engine systems in `src/lib/game-engine/`
-4. Add TypeScript types in `src/lib/types/`
+1. Create React components in `src/components/game/`
+2. Add API routes in `src/app/api/` with schema validation
+3. Update game engine systems in `src/lib/game-engine/` (vanilla JS)
+4. Add game data in `data/` directory with corresponding schemas
+5. Add TypeScript types in `src/lib/types/`
+6. Update schemas in `src/lib/schemas/` for data validation
 
 ### Testing
 - **Unit Tests**: Jest with React Testing Library
