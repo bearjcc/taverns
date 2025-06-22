@@ -76,6 +76,27 @@ export class GameEngineWrapper {
     return achievementSystem ? achievementSystem.getAllAchievements() : [];
   }
 
+  // Character vitals system methods
+  getVitals() {
+    const vitalsSystem = this.engine.getSystem('vitals');
+    return vitalsSystem ? vitalsSystem.getAllVitals() : {};
+  }
+
+  getVital(vitalType: string) {
+    const vitalsSystem = this.engine.getSystem('vitals');
+    return vitalsSystem ? vitalsSystem.getVital(vitalType) : null;
+  }
+
+  modifyVital(vitalType: string, amount: number) {
+    const vitalsSystem = this.engine.getSystem('vitals');
+    return vitalsSystem ? vitalsSystem.modifyVital(vitalType, amount) : false;
+  }
+
+  getVitalPercentage(vitalType: string) {
+    const vitalsSystem = this.engine.getSystem('vitals');
+    return vitalsSystem ? vitalsSystem.getVitalPercentage(vitalType) : 0;
+  }
+
   // State persistence
   saveGame() {
     const stateManager = this.engine.getSystem('state');

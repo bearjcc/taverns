@@ -3,6 +3,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { InventoryGrid } from "./InventoryGrid";
+import { VitalsDisplay } from "./VitalsDisplay";
+import type { GameEngineWrapper } from "@/lib/game-engine/GameEngineWrapper";
 
 interface GameState {
   skills?: Record<string, unknown>;
@@ -13,9 +15,10 @@ interface GameState {
 
 interface SidebarPanelProps {
   gameState: GameState | null;
+  engine?: GameEngineWrapper | null;
 }
 
-export function SidebarPanel({ gameState }: SidebarPanelProps) {
+export function SidebarPanel({ gameState, engine }: SidebarPanelProps) {
   // Sample data - in real implementation, this would come from gameState
   const playerStats = {
     name: "Adventurer",
@@ -70,12 +73,41 @@ export function SidebarPanel({ gameState }: SidebarPanelProps) {
           </div>
         </div>
 
-        <Tabs defaultValue="skills" className="flex-1 flex flex-col">
-          <TabsList className="grid w-full grid-cols-3">
+        <Tabs defaultValue="character" className="flex-1 flex flex-col">
+          <TabsList className="grid w-full grid-cols-4">
+            <TabsTrigger value="character">Character</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="inventory">Items</TabsTrigger>
             <TabsTrigger value="achievements">Awards</TabsTrigger>
           </TabsList>
+          
+          <TabsContent value="character" className="flex-1 overflow-y-auto mt-3">
+            <div className="space-y-4">
+              <VitalsDisplay engine={engine || null} />
+              
+              {/* Character info section */}
+              <Card className="p-4 bg-background border border-amber-300/20">
+                <h3 className="text-lg font-bold text-amber-300 mb-3 flex items-center gap-2">
+                  <span>👤</span>
+                  Character Info
+                </h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-amber-300/70">Name:</span>
+                    <span className="text-amber-300">{playerStats.name}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-amber-300/70">Level:</span>
+                    <span className="text-amber-300">{playerStats.level}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-amber-300/70">Location:</span>
+                    <span className="text-amber-300">Village Tavern</span>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </TabsContent>
           
           <TabsContent value="skills" className="flex-1 overflow-y-auto mt-3">
             <div className="space-y-3">

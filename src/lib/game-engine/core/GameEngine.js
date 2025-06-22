@@ -39,6 +39,7 @@ class GameEngine {
         this.encyclopediaSystem = null;
         this.traitManager = null;
         this.uiManager = null;
+        this.characterVitalsSystem = null;
         
         // Game state
         this.isRunning = false;
@@ -175,7 +176,8 @@ class GameEngine {
             locations: this.locationSystem,
             achievements: this.achievementSystem,
             encyclopedia: this.encyclopediaSystem,
-            ui: this.uiManager
+            ui: this.uiManager,
+            vitals: this.characterVitalsSystem
         };
         
         return systems[systemName] || null;
@@ -280,6 +282,12 @@ class GameEngine {
         } catch (error) {
             console.error('UIManager initialization failed:', error);
         }
+
+        try {
+            if (this.characterVitalsSystem && this.characterVitalsSystem.initialize) await this.characterVitalsSystem.initialize();
+        } catch (error) {
+            console.error('CharacterVitalsSystem initialization failed:', error);
+        }
         
         // Load configurations from mod data
         try {
@@ -312,6 +320,14 @@ class GameEngine {
             }
         } catch (error) {
             console.error('ActionManager config loading failed:', error);
+        }
+
+        try {
+            if (this.characterVitalsSystem && this.characterVitalsSystem.loadFromConfig) {
+                this.characterVitalsSystem.loadFromConfig(modData.vitals || {});
+            }
+        } catch (error) {
+            console.error('CharacterVitalsSystem config loading failed:', error);
         }
         
         // Set up cross-system references
@@ -347,6 +363,7 @@ class GameEngine {
             const { EncyclopediaUI } = await import('../ui/EncyclopediaUI.js');
             const { FoodCategoryUI } = await import('../ui/FoodCategoryUI.js');
             const { ModManager } = await import('./ModManager.js');
+            const { CharacterVitalsSystem } = await import('../systems/CharacterVitalsSystem.js');
             
             // Initialize managers with imported classes
             this.skillManager = new SkillManager();
@@ -360,6 +377,7 @@ class GameEngine {
             this.encyclopediaUI = new EncyclopediaUI();
             this.foodCategoryUI = new FoodCategoryUI();
             this.modManager = new ModManager();
+            this.characterVitalsSystem = new CharacterVitalsSystem();
             
             console.log('Successfully loaded all system modules');
             
@@ -412,6 +430,19 @@ class GameEngine {
         
         if (this.skillManager && this.uiManager) {
             this.skillManager.setUIManager(this.uiManager);
+        }
+
+        // Set up character vitals system references
+        if (this.characterVitalsSystem && this.configManager) {
+            this.characterVitalsSystem.setConfigManager(this.configManager);
+        }
+        
+        if (this.characterVitalsSystem && this.eventSystem) {
+            this.characterVitalsSystem.setEventSystem(this.eventSystem);
+        }
+        
+        if (this.characterVitalsSystem && this.stateManager) {
+            this.characterVitalsSystem.setStateManager(this.stateManager);
         }
         
         if (this.skillManager && this.eventSystem) {

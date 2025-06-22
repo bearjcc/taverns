@@ -3,6 +3,9 @@
 import { useState, useEffect, Suspense, lazy } from "react";
 import { Card } from "@/components/ui/card";
 import { GameEngineWrapper } from "@/lib/game-engine/GameEngineWrapper";
+import { GameHeader, AboutModal } from "./GameHeader";
+import { BackgroundAnimation, type LocationType } from "./BackgroundAnimation";
+import { AccountModal } from "./AccountModal";
 
 // Lazy load components for better performance
 const NarrationPanel = lazy(() => import("./NarrationPanel").then(module => ({ default: module.NarrationPanel })));
@@ -41,7 +44,11 @@ export function GameInterface() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
-  const [messages, setMessages] = useState<Array<{id: number, text: string, type: string, timestamp: Date}>>([]);
+  const [messages, setMessages] = useState<GameMessage[]>([]);
+  const [currentLocation, setCurrentLocation] = useState<LocationType>('tavern');
+  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState(false);
+  const [showAccountModal, setShowAccountModal] = useState(false);
 
   // Initialize game engine
   useEffect(() => {
@@ -71,13 +78,13 @@ export function GameInterface() {
         setMessages([
           {
             id: 1,
-            text: "Welcome to Taverns and Treasures! Your adventure begins in a small village tavern.",
+            text: "Welcome to Taverns and Treasures! Your adventure begins in a cozy village tavern.",
             type: 'story' as const,
             timestamp: new Date()
           },
           {
             id: 2,
-            text: "The innkeeper looks at you with curiosity. What will you do?",
+            text: "The warmth of the fireplace fills the room as the innkeeper looks at you with curiosity. What will you do?",
             type: 'story' as const,
             timestamp: new Date()
           }
@@ -93,6 +100,21 @@ export function GameInterface() {
 
     initializeEngine();
   }, []);
+
+  // Handle keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowAboutModal(false);
+        setShowAccountModal(false);
+      } else if (event.key === 'h' || event.key === 'H') {
+        setIsHeaderCollapsed(!isHeaderCollapsed);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [isHeaderCollapsed]);
 
   const updateGameState = (gameEngine: GameEngineWrapper) => {
     try {
@@ -112,7 +134,11 @@ export function GameInterface() {
   if (isLoading) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center bg-background text-foreground font-mono dark">
-        <div>Loading game...</div>
+        <div className="text-center space-y-4">
+          <div className="text-4xl">🏰</div>
+          <div>Loading your adventure...</div>
+          <div className="text-sm text-amber-300/70">Preparing the tavern...</div>
+        </div>
       </div>
     );
   }
@@ -120,28 +146,59 @@ export function GameInterface() {
   if (error) {
     return (
       <div className="w-full min-h-screen flex items-center justify-center bg-background text-foreground font-mono dark">
-        <div className="text-red-500">Error: {error}</div>
+        <div className="text-center space-y-4">
+          <div className="text-4xl">⚠️</div>
+          <div className="text-red-500">Adventure Interrupted</div>
+          <div className="text-sm text-amber-300/70">Error: {error}</div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="w-full min-h-screen flex flex-row bg-background text-foreground font-mono dark">
-      <div className="flex-1 p-2 max-w-xs">
-        <Suspense fallback={<PanelLoading />}>
-          <NarrationPanel gameState={gameState} />
-        </Suspense>
+    <div className="w-full min-h-screen bg-background text-foreground font-mono dark relative overflow-hidden">
+      {/* Background Animation */}
+      <BackgroundAnimation location={currentLocation} />
+      
+      {/* Game Header */}
+      <GameHeader
+        onShowAbout={() => setShowAboutModal(true)}
+        onShowSettings={() => {/* TODO: Implement settings modal */}}
+        onShowAccount={() => setShowAccountModal(true)}
+        isCollapsed={isHeaderCollapsed}
+        onToggleCollapse={() => setIsHeaderCollapsed(!isHeaderCollapsed)}
+      />
+
+      {/* Main Game Content */}
+      <div className={`flex flex-row transition-all duration-500 ${
+        isHeaderCollapsed ? 'pt-12' : 'pt-32'
+      }`}>
+        <div className="flex-1 p-2 max-w-xs">
+          <Suspense fallback={<PanelLoading />}>
+            <NarrationPanel gameState={gameState} />
+          </Suspense>
+        </div>
+        <div className="flex-[2] p-2">
+          <Suspense fallback={<PanelLoading />}>
+            <ActionsPanel engine={engine} gameState={gameState} setGameState={setGameState} />
+          </Suspense>
+        </div>
+        <div className="flex-1 p-2 max-w-xs">
+          <Suspense fallback={<PanelLoading />}>
+            <SidebarPanel gameState={gameState} engine={engine} />
+          </Suspense>
+        </div>
       </div>
-      <div className="flex-[2] p-2">
-        <Suspense fallback={<PanelLoading />}>
-          <ActionsPanel engine={engine} gameState={gameState} setGameState={setGameState} />
-        </Suspense>
-      </div>
-      <div className="flex-1 p-2 max-w-xs">
-        <Suspense fallback={<PanelLoading />}>
-          <SidebarPanel gameState={gameState} />
-        </Suspense>
-      </div>
+
+      {/* Modals */}
+      <AboutModal 
+        isOpen={showAboutModal} 
+        onClose={() => setShowAboutModal(false)} 
+      />
+      <AccountModal 
+        isOpen={showAccountModal} 
+        onClose={() => setShowAccountModal(false)} 
+      />
     </div>
   );
 } 
