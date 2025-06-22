@@ -1,0 +1,9 @@
+Fonts used in this design:
+
+Font: Heavyweight
+Author: Nerfect Type Laboratories
+Url: http://www.fontsquirrel.com/fonts/heavyweight
+
+Font: TrashHand
+Author: Luce Avérous
+Url: http://www.fontsquirrel.com/fonts/trashhand
