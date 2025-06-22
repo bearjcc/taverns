@@ -434,4 +434,6 @@ class SpeciesSystem {
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { Species, SpeciesSystem };
-} 
+}
+
+if (typeof window !== 'undefined') window.SpeciesSystem = SpeciesSystem; 

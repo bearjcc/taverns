@@ -456,4 +456,6 @@ class EncyclopediaSystem {
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = EncyclopediaSystem;
-} 
+}
+
+if (typeof window !== 'undefined') window.EncyclopediaSystem = EncyclopediaSystem; 

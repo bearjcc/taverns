@@ -1,0 +1,362 @@
+/* Species UI Styles - Dark Theme */
+
+/* Species Selector */
+.species-selector {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.species-selector:focus {
+    outline: none;
+    border-color: #666;
+    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2);
+}
+
+.species-selector option {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+/* Species Cards */
+.species-card {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.species-card:hover {
+    border-color: #666;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.species-card.selected {
+    border-color: #888;
+    background-color: #333;
+    box-shadow: 0 0 0 2px rgba(136, 136, 136, 0.3);
+}
+
+.species-name {
+    color: #e0e0e0;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    font-family: 'Courier New', monospace;
+}
+
+.species-description {
+    color: #b0b0b0;
+    font-size: 14px;
+    margin: 0 0 12px 0;
+    font-family: 'Courier New', monospace;
+    line-height: 1.4;
+}
+
+.species-attributes {
+    margin-bottom: 8px;
+}
+
+.species-attributes .attribute {
+    display: inline-block;
+    background-color: #444;
+    color: #e0e0e0;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.species-professions {
+    color: #b0b0b0;
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-family: 'Courier New', monospace;
+}
+
+.species-bonuses {
+    margin-bottom: 12px;
+}
+
+.species-bonuses .bonus {
+    display: inline-block;
+    background-color: #2d4a2d;
+    color: #90ee90;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.select-species-btn {
+    background-color: #444;
+    color: #e0e0e0;
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.select-species-btn:hover {
+    background-color: #555;
+    border-color: #777;
+}
+
+.select-species-btn:active {
+    background-color: #333;
+}
+
+/* Species Info Panel */
+.species-info {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 20px;
+    min-height: 300px;
+}
+
+.species-info h2 {
+    color: #e0e0e0;
+    font-size: 24px;
+    margin: 0 0 12px 0;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+}
+
+.species-info .species-description {
+    color: #b0b0b0;
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.species-details {
+    display: grid;
+    gap: 20px;
+}
+
+.species-details h3 {
+    color: #e0e0e0;
+    font-size: 18px;
+    margin: 0 0 12px 0;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    border-bottom: 1px solid #444;
+    padding-bottom: 6px;
+}
+
+/* Attributes Grid */
+.attributes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+}
+
+.attribute-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+.attribute-name {
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.attribute-range {
+    color: #b0b0b0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Professions List */
+.professions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.profession-tag {
+    background-color: #4a4a2a;
+    color: #f0f0a0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    border: 1px solid #666;
+}
+
+/* Bonuses List */
+.bonuses-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.bonus-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2a4a2a;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+}
+
+.bonus-type {
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.bonus-value {
+    color: #90ee90;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Search Input */
+.species-search {
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #e0e0e0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.species-search:focus {
+    outline: none;
+    border-color: #666;
+    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2);
+}
+
+.species-search::placeholder {
+    color: #888;
+}
+
+/* Randomize Button */
+.randomize-species {
+    background-color: #4a2a4a;
+    color: #e0e0e0;
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 16px;
+}
+
+.randomize-species:hover {
+    background-color: #5a3a5a;
+    border-color: #777;
+}
+
+.randomize-species:active {
+    background-color: #3a2a3a;
+}
+
+/* Error States */
+.error {
+    color: #ff6b6b;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    padding: 12px;
+    background-color: #2a2a2a;
+    border: 1px solid #ff4444;
+    border-radius: 4px;
+}
+
+/* Loading States */
+.loading {
+    color: #b0b0b0;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .species-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .attributes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .species-card {
+        padding: 12px;
+    }
+    
+    .species-info {
+        padding: 16px;
+    }
+}
+
+/* Animation for new species cards */
+.species-card {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effects for interactive elements */
+.species-card:hover .select-species-btn {
+    background-color: #555;
+    border-color: #777;
+}
+
+.attribute-item:hover {
+    background-color: #3a3a3a;
+    border-color: #555;
+}
+
+.bonus-item:hover {
+    background-color: #3a5a3a;
+    border-color: #555;
+}
+
+.profession-tag:hover {
+    background-color: #5a5a3a;
+    border-color: #777;
+} 

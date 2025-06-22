@@ -117,6 +117,13 @@ class LocationSystem {
                 spot: newSpot
             });
             
+            // Emit location visited event for achievement tracking
+            this.eventSystem.emit('location:visited', {
+                locationId: spotId,
+                locationName: newSpot.name,
+                locationPath: this._buildSpotPath()
+            });
+            
             console.log(`Moved to spot: ${spotId}`);
             return true;
             
@@ -449,4 +456,6 @@ class LocationSystem {
         
         return { canAfford: true };
     }
-} 
+}
+
+if (typeof window !== 'undefined') window.LocationSystem = LocationSystem; 

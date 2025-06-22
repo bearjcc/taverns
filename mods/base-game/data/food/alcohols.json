@@ -1,0 +1,29 @@
+{
+  "wines": [
+    { "id": "white_wine", "name": "White Wine", "description": "A bottle of white wine." },
+    { "id": "red_wine", "name": "Red Wine", "description": "A bottle of red wine." },
+    { "id": "muscadine_wine", "name": "Muscadine Wine", "description": "A bottle of muscadine wine." },
+    { "id": "rose", "name": "Rosé", "description": "A bottle of Rosé." }
+  ],
+  "beers_and_ciders": [
+    { "id": "beer", "name": "Beer", "description": "A bottle of beer." },
+    { "id": "cider_apple", "name": "Apple Cider", "description": "A bottle of apple cider." },
+    { "id": "cider_cherry", "name": "Cherry Cider", "description": "A bottle of cherry cider." },
+    { "id": "cider_pear", "name": "Pear Cider", "description": "A bottle of pear cider." }
+  ],
+  "spirits": [
+    { "id": "whiskey", "name": "Whiskey", "description": "A bottle of whiskey." },
+    { "id": "vodka", "name": "Vodka", "description": "A bottle of vodka." },
+    { "id": "rum", "name": "Rum", "description": "A bottle of rum." },
+    { "id": "tequila", "name": "Tequila", "description": "A bottle of tequila." },
+    { "id": "gin", "name": "Gin", "description": "A bottle of gin." },
+    { "id": "brandy", "name": "Brandy", "description": "A bottle of brandy." }
+  ],
+  "mixed_drinks": [
+    { "id": "cocktail", "name": "Cocktail", "description": "A bottle of cocktail." },
+    { "id": "grog", "name": "Grog", "description": "A bottle of grog." }
+  ],
+  "special": [
+    { "id": "devils_blood", "name": "Devil's Blood", "description": "A bottle of devil's blood." }
+  ]
+} 

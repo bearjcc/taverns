@@ -50,13 +50,13 @@
 - [x] Add AchievementSystem to GameEngine
 - [x] Create achievement UI components and styling
 - [x] Add comprehensive unit tests for AchievementSystem
-- [ ] **TODO: Implement achievement tracking and unlocking functionality**
-  - [ ] Connect achievement system to skill level up events
-  - [ ] Connect achievement system to inventory changes
-  - [ ] Implement achievement notification system
-  - [ ] Add achievement progress updates to UI
-  - [ ] Test achievement unlocking in real game scenarios
-  - [ ] Add achievement sound effects and visual feedback
+- [x] **TODO: Implement achievement tracking and unlocking functionality**
+  - [x] Connect achievement system to skill level up events
+  - [x] Connect achievement system to inventory changes
+  - [x] Implement achievement notification system
+  - [x] Add achievement progress updates to UI
+  - [x] Test achievement unlocking in real game scenarios
+  - [x] Add achievement sound effects and visual feedback
 
 ### Encyclopedia System Implementation
 - [x] **EncyclopediaSystem** - Core encyclopedia system with data management
@@ -71,10 +71,10 @@
 
 ### Mod System Foundation
 - [x] Create mod manifest structure
-- [ ] Convert current game data to mod format
-- [ ] Implement mod loading system
-- [ ] Set up asset organization structure
-- [ ] Add localization file structure
+- [x] Convert current game data to mod format
+- [x] Implement mod loading system
+- [x] Set up asset organization structure
+- [x] Add localization file structure
 
 ### Migration Testing
 - [ ] Ensure backward compatibility
@@ -251,6 +251,71 @@
    - Modular architecture interface contracts
    - Configuration hot-reloading
    - Development workflow enhancements
+
+## Phase 3: Next.js Migration (NEW PRIORITY)
+**Status**: 🔄 Planning
+**Objective**: Migrate to Next.js, TypeScript, shadcn/ui, and Vercel for scalability and future features
+
+### Migration Rationale
+- **Current Issues**: 404 errors for data files, static file limitations
+- **Future Requirements**: Subscriptions, microtransactions, large world, multiplayer
+- **Benefits**: Type safety, modern DX, server-side capabilities, professional deployment
+
+### Phase 3.1: Foundation Setup (Days 1-3)
+- [ ] Create Next.js project with TypeScript and Tailwind
+- [ ] Initialize shadcn/ui components
+- [ ] Set up project structure and configuration
+- [ ] Configure development environment
+
+### Phase 3.2: Engine Migration (Days 4-7)
+- [ ] Migrate existing engine files to `src/lib/game-engine/`
+- [ ] Add TypeScript types for game systems
+- [ ] Create engine wrapper for React integration
+- [ ] Update configuration loading to use API routes
+
+### Phase 3.3: UI Component Migration (Days 8-12)
+- [ ] Create React components for 3-column layout
+- [ ] Implement shadcn/ui components (buttons, cards, tabs)
+- [ ] Maintain dark theme and monospace font
+- [ ] Add state management for UI components
+
+### Phase 3.4: API Routes and Data Management (Days 13-15)
+- [ ] Create API routes for game data (`/api/game-config`, `/api/skills`, etc.)
+- [ ] Implement server-side data validation
+- [ ] Add caching for static data
+- [ ] Handle dynamic data loading
+
+### Phase 3.5: Testing and Integration (Days 16-18)
+- [ ] Update test suite for new structure
+- [ ] Test engine integration with React
+- [ ] Verify all functionality works correctly
+- [ ] Performance testing and optimization
+
+### Phase 3.6: Deployment and Optimization (Days 19-21)
+- [ ] Deploy to Vercel
+- [ ] Optimize bundle size and performance
+- [ ] Set up monitoring and analytics
+- [ ] Final testing and validation
+
+### Critical Principles
+- **Preserve Engine Architecture**: Keep engine as vanilla JS, wrap in React
+- **Maintain Configuration-Driven Design**: Keep all game data in JSON
+- **Preserve Separation of Concerns**: Engine, UI, Data, and Config layers
+- **Maintain Backward Compatibility**: All current features must work
+
+### Success Criteria
+- [ ] No 404 errors for data files
+- [ ] All current game functionality preserved
+- [ ] TypeScript types added for key components
+- [ ] Professional UI with shadcn/ui
+- [ ] Deployed and running on Vercel
+- [ ] Ready for future features (auth, payments, multiplayer)
+
+### Documentation
+- [x] **MIGRATION_TO_NEXTJS.md** - Comprehensive migration guide for AI agents
+- [ ] Update all documentation for new structure
+- [ ] Create component documentation
+- [ ] Update development setup instructions
 
 ## Phase 3: Core Gameplay Systems
 ### Quest System

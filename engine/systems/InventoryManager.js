@@ -4,6 +4,7 @@ class InventoryManager {
         this.gameObjects = new Map();
         this.configManager = null;
         this.uiManager = null;
+        this.eventSystem = null;
     }
 
     /**
@@ -20,6 +21,14 @@ class InventoryManager {
      */
     setUIManager(uiManager) {
         this.uiManager = uiManager;
+    }
+
+    /**
+     * Set the event system reference
+     * @param {EventSystem} eventSystem - The event system instance
+     */
+    setEventSystem(eventSystem) {
+        this.eventSystem = eventSystem;
     }
 
     registerGameObject(gameObject) {
@@ -39,6 +48,15 @@ class InventoryManager {
         } else {
             const newItem = new InventoryItem(gameObject, quantity);
             this.items.set(itemId, newItem);
+        }
+
+        // Emit inventory item added event for achievement tracking
+        if (this.eventSystem) {
+            this.eventSystem.emit('inventory:itemAdded', {
+                itemId: itemId,
+                quantity: quantity,
+                totalQuantity: this.getItemCount(itemId)
+            });
         }
 
         return true;
@@ -123,4 +141,6 @@ class InventoryItem {
         }
         return this.gameObject.displayName;
     }
-} 
+}
+
+if (typeof window !== 'undefined') window.InventoryManager = InventoryManager; 

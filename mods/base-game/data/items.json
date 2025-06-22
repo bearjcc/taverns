@@ -1,0 +1,130 @@
+{
+  "oak_logs": {
+    "id": "oak_logs",
+    "name": "oak_logs",
+    "displayName": "Oak Log",
+    "description": "A sturdy oak log, good for building and crafting.",
+    "icon": "🟫",
+    "examineText": "A solid piece of oak wood. The bark is rough and the wood grain is clearly visible. This would make excellent building material or firewood."
+  },
+  "iron_sword": {
+    "id": "iron_sword",
+    "name": "iron_sword",
+    "displayName": "Iron Sword",
+    "description": "A basic iron sword.",
+    "icon": "🗡️",
+    "examineText": "A sturdy sword forged from iron."
+  },
+  "leather_armor": {
+    "id": "leather_armor",
+    "name": "leather_armor",
+    "displayName": "Leather Armor",
+    "description": "Protective armor made from leather.",
+    "icon": "🥋",
+    "examineText": "A set of armor crafted from tough leather."
+  },
+  "enchanted_weapon": {
+    "id": "enchanted_weapon",
+    "name": "enchanted_weapon",
+    "displayName": "Enchanted Weapon",
+    "description": "A weapon imbued with magical power.",
+    "icon": "🔮",
+    "examineText": "A weapon that glows with magical energy."
+  },
+  "willow_logs": {
+    "id": "willow_logs",
+    "name": "willow_logs",
+    "displayName": "Willow Log",
+    "description": "A log from a willow tree.",
+    "icon": "🟩",
+    "examineText": "A flexible log from a willow tree."
+  },
+  "maple_logs": {
+    "id": "maple_logs",
+    "name": "maple_logs",
+    "displayName": "Maple Log",
+    "description": "A log from a maple tree.",
+    "icon": "🟧",
+    "examineText": "A sturdy log from a maple tree."
+  },
+  "yew_logs": {
+    "id": "yew_logs",
+    "name": "yew_logs",
+    "displayName": "Yew Log",
+    "description": "A log from a yew tree.",
+    "icon": "🟪",
+    "examineText": "A rare log from an ancient yew tree."
+  },
+  "magic_logs": {
+    "id": "magic_logs",
+    "name": "magic_logs",
+    "displayName": "Magic Log",
+    "description": "A log from a magical tree.",
+    "icon": "🟦",
+    "examineText": "A log that shimmers with magical energy."
+  },
+  "copper_ore": {
+    "id": "copper_ore",
+    "name": "copper_ore",
+    "displayName": "Copper Ore",
+    "description": "Ore mined from copper veins.",
+    "icon": "🥉",
+    "examineText": "A chunk of copper ore, ready for smelting."
+  },
+  "tin_ore": {
+    "id": "tin_ore",
+    "name": "tin_ore",
+    "displayName": "Tin Ore",
+    "description": "Ore mined from tin veins.",
+    "icon": "🥈",
+    "examineText": "A chunk of tin ore, ready for smelting."
+  },
+  "iron_ore": {
+    "id": "iron_ore",
+    "name": "iron_ore",
+    "displayName": "Iron Ore",
+    "description": "Ore mined from iron veins.",
+    "icon": "⛏️",
+    "examineText": "A chunk of iron ore, ready for smelting."
+  },
+  "coal": {
+    "id": "coal",
+    "name": "coal",
+    "displayName": "Coal",
+    "description": "A lump of coal, useful for smelting.",
+    "icon": "⚫",
+    "examineText": "A black lump of coal."
+  },
+  "gold_ore": {
+    "id": "gold_ore",
+    "name": "gold_ore",
+    "displayName": "Gold Ore",
+    "description": "Ore mined from gold veins.",
+    "icon": "🥇",
+    "examineText": "A chunk of gold ore, ready for smelting."
+  },
+  "mithril_ore": {
+    "id": "mithril_ore",
+    "name": "mithril_ore",
+    "displayName": "Mithril Ore",
+    "description": "A rare, blue-tinted ore.",
+    "icon": "🔷",
+    "examineText": "A chunk of rare mithril ore."
+  },
+  "adamantite_ore": {
+    "id": "adamantite_ore",
+    "name": "adamantite_ore",
+    "displayName": "Adamantite Ore",
+    "description": "A very hard, greenish ore.",
+    "icon": "🟩",
+    "examineText": "A chunk of adamantite ore, extremely tough."
+  },
+  "runite_ore": {
+    "id": "runite_ore",
+    "name": "runite_ore",
+    "displayName": "Runite Ore",
+    "description": "A legendary ore, rare and valuable.",
+    "icon": "🔶",
+    "examineText": "A chunk of runite ore, legendary among smiths."
+  }
+} 

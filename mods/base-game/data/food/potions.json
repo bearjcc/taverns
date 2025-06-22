@@ -1,0 +1,50 @@
+{
+  "healing_restoration": [
+    { "id": "healing", "name": "Healing Potion", "description": "Restores a moderate amount of health." },
+    { "id": "greater_healing", "name": "Greater Healing Potion", "description": "Restores a large amount of health." },
+    { "id": "superior_healing", "name": "Superior Healing Potion", "description": "Restores a very large amount of health." },
+    { "id": "extreme_healing", "name": "Extreme Healing Potion", "description": "Restores a massive amount of health." },
+    { "id": "cure_poison", "name": "Cure Poison Potion", "description": "Cures the effects of poison." },
+    { "id": "cure_disease", "name": "Cure Disease Potion", "description": "Cures the effects of diseases." },
+    { "id": "restoration", "name": "Restoration Potion", "description": "Restores a moderate amount of mana." },
+    { "id": "greater_restoration", "name": "Greater Restoration Potion", "description": "Restores a large amount of mana." }
+  ],
+  "attribute_skill_boosts": [
+    { "id": "strength", "name": "Strength Potion", "description": "Temporarily increases Strength." },
+    { "id": "agility", "name": "Agility Potion", "description": "Temporarily increases Agility." },
+    { "id": "intellect", "name": "Intellect Potion", "description": "Temporarily increases Intellect." },
+    { "id": "stamina", "name": "Stamina Potion", "description": "Temporarily increases Stamina." },
+    { "id": "charisma", "name": "Charisma Potion", "description": "Temporarily increases Charisma." },
+    { "id": "wisdom", "name": "Wisdom Potion", "description": "Temporarily increases Wisdom." },
+    { "id": "luck", "name": "Luck Potion", "description": "Temporarily increases Luck." },
+    { "id": "attack_power", "name": "Attack Power Potion", "description": "Temporarily increases Attack Power." },
+    { "id": "spell_power", "name": "Spell Power Potion", "description": "Temporarily increases Spell Power." }
+  ],
+  "defensive_utility": [
+    { "id": "invisibility", "name": "Invisibility Potion", "description": "Renders the user invisible for a period of time." },
+    { "id": "water_breathing", "name": "Water Breathing Potion", "description": "Allows the user to breathe underwater." },
+    { "id": "fire_resistance", "name": "Fire Resistance Potion", "description": "Provides resistance to fire damage." },
+    { "id": "cold_resistance", "name": "Cold Resistance Potion", "description": "Provides resistance to cold damage." },
+    { "id": "lightning_resistance", "name": "Lightning Resistance Potion", "description": "Provides resistance to lightning damage." },
+    { "id": "poison_resistance", "name": "Poison Resistance Potion", "description": "Provides resistance to poison damage." },
+    { "id": "shadow_resistance", "name": "Shadow Resistance Potion", "description": "Provides resistance to shadow damage." },
+    { "id": "light_resistance", "name": "Light Resistance Potion", "description": "Provides resistance to light damage." },
+    { "id": "levitation", "name": "Levitation Potion", "description": "Allows the user to float above the ground." },
+    { "id": "night_eye", "name": "Night Eye Potion", "description": "Grants the ability to see in the dark." }
+  ],
+  "offensive_transformation": [
+    { "id": "polymorph", "name": "Polymorph Potion", "description": "Transforms the user into another creature." },
+    { "id": "berserker", "name": "Berserker Potion", "description": "Sends the user into a rage, increasing damage dealt and received." },
+    { "id": "giant_strength", "name": "Giant Strength Potion", "description": "Massively increases Strength for a short duration." },
+    { "id": "chameleon", "name": "Chameleon Potion", "description": "Allows the user to blend in with their surroundings." }
+  ],
+  "special_other": [
+    { "id": "growth", "name": "Growth Potion", "description": "Causes the user to grow in size." },
+    { "id": "shrinking", "name": "Shrinking Potion", "description": "Causes the user to shrink in size." },
+    { "id": "love_potion", "name": "Love Potion", "description": "Makes another character infatuated with the user." },
+    { "id": "sleeping_potion", "name": "Sleeping Potion", "description": "Puts the target to sleep." },
+    { "id": "poison", "name": "Poison Potion", "description": "A potion that can be applied to weapons to deal poison damage." },
+    { "id": "oil_of_slipperiness", "name": "Oil of Slipperiness", "description": "Covers a surface, making it difficult to traverse." },
+    { "id": "explosive_potion", "name": "Explosive Potion", "description": "Creates a small explosion on impact." }
+  ]
+} 

@@ -1,0 +1,63 @@
+{
+  "entrees": [
+    { "id": "pancake", "name": "Pancake", "description": "A flat cake, often thin and round, prepared from a starch-based batter." },
+    { "id": "pasta_entree", "name": "Pasta Entree", "description": "A general category for pasta-based main courses." },
+    { "id": "mac_n_cheese", "name": "Mac N Cheese", "description": "A classic dish of macaroni pasta and a cheese sauce." },
+    { "id": "carbonara", "name": "Carbonara", "description": "An Italian pasta dish with egg, hard cheese, and cured pork." },
+    { "id": "beef_stroganoff", "name": "Beef Stroganoff", "description": "A Russian dish of sautéed pieces of beef served in a sauce with smetana (sour cream)." },
+    { "id": "lasagna", "name": "Lasagna", "description": "A wide, flat pasta, and one of the oldest types of pasta." },
+    { "id": "sausage_and_peppers", "name": "Sausage and Peppers", "description": "A dish of Italian sausage and peppers, often with onions." },
+    { "id": "steak_and_potatoes", "name": "Steak and Potatoes", "description": "A hearty and classic meal." },
+    { "id": "ratatouille", "name": "Ratatouille", "description": "A French Provençal stewed vegetable dish." },
+    { "id": "gumbo", "name": "Gumbo", "description": "A heavily seasoned stew popular in Louisiana." },
+    { "id": "stir_fry", "name": "Stir Fry", "description": "A Chinese cooking technique in which ingredients are fried in a small amount of very hot oil while being stirred." },
+    { "id": "steak_and_eggs", "name": "Steak and Eggs", "description": "A classic breakfast dish." },
+    { "id": "ham_and_eggs", "name": "Ham and Eggs", "description": "Another popular breakfast combination." },
+    { "id": "pho", "name": "Pho", "description": "A Vietnamese soup consisting of broth, rice noodles, herbs, and meat." },
+    { "id": "meatloaf", "name": "Meatloaf", "description": "A dish of ground meat that has been combined with other ingredients and formed into the shape of a loaf." },
+    { "id": "fish_and_fungi", "name": "Fish and Fungi", "description": "A simple yet flavorful dish." },
+    { "id": "waffles", "name": "Waffles", "description": "A leavened batter or dough cooked between two plates, patterned to give a characteristic size, shape, and surface impression." },
+    { "id": "quesadilla", "name": "Quesadilla", "description": "A tortilla, usually a corn tortilla, which is filled with cheese and then folded in half to form a half-moon shape." },
+    { "id": "grilled_protein", "name": "Grilled Protein", "description": "A general dish of protein cooked on a grill." },
+    { "id": "fried_protein", "name": "Fried Protein", "description": "A general dish of protein cooked by frying." },
+    { "id": "chicken_pot_pie", "name": "Chicken Pot Pie", "description": "A savory pie with a filling of chicken and vegetables." },
+    { "id": "rice_entree", "name": "Rice Entree", "description": "A general category for rice-based main courses." },
+    { "id": "fried_rice", "name": "Fried Rice", "description": "A dish of cooked rice that has been stir-fried in a wok or a frying pan." },
+    { "id": "caviar", "name": "Caviar", "description": "The processed, salted roe of certain species of fish." },
+    { "id": "steamed_dumplings", "name": "Steamed Dumplings", "description": "Small parcels of dough filled with a savory or sweet filling." },
+    { "id": "fried_dumplings", "name": "Fried Dumplings", "description": "Dumplings that have been fried until crispy." },
+    { "id": "fun_guy_fungi_feast", "name": "Fun Guy Fungi Feast", "description": "A special mushroom-based feast." }
+  ],
+  "soups": [
+    { "id": "clam_chowder", "name": "Clam Chowder", "description": "A rich, creamy soup made with clams and broth." },
+    { "id": "lobster_bisque", "name": "Lobster Bisque", "description": "A smooth, creamy, highly seasoned soup of French origin, based on a strained broth of crustaceans." },
+    { "id": "corn_chowder", "name": "Corn Chowder", "description": "A creamy soup made with corn." },
+    { "id": "chili", "name": "Chili", "description": "A spicy stew containing chili peppers, meat, tomatoes and often beans." },
+    { "id": "chicken_noodle_soup", "name": "Chicken Noodle Soup", "description": "A classic soup made with chicken, noodles, and vegetables." },
+    { "id": "broth", "name": "Broth", "description": "A savory liquid made of water in which bones, meat, or vegetables have been simmered." }
+  ],
+  "sandwiches": [
+    { "id": "blt", "name": "BLT", "description": "A sandwich made with bacon, lettuce, and tomato." },
+    { "id": "burger", "name": "Burger", "description": "A sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun." },
+    { "id": "toasties", "name": "Toasties", "description": "A toasted sandwich, especially one with a cheese filling." },
+    { "id": "pbj", "name": "PBJ", "description": "A sandwich with peanut butter and jelly." },
+    { "id": "lettuce_wrap", "name": "Lettuce Wrap", "description": "A dish where lettuce leaves are used as a wrap instead of bread." }
+  ],
+  "sides": [
+    { "id": "fruit_salad", "name": "Fruit Salad", "description": "A dish consisting of various kinds of fruit, sometimes served in a liquid, either their own juices or a syrup." },
+    { "id": "roasted_vegetables", "name": "Roasted Vegetables", "description": "Vegetables that have been cooked by roasting." },
+    { "id": "bruschetta", "name": "Bruschetta", "description": "An antipasto from Italy consisting of grilled bread rubbed with garlic and topped with olive oil and salt." },
+    { "id": "stuffed_shrooms", "name": "Stuffed Shrooms", "description": "Mushrooms that have been stuffed with various fillings." },
+    { "id": "egg_rolls", "name": "Egg Rolls", "description": "A savory roll with shredded cabbage, chopped pork, and other fillings inside a thinly wrapped cylindrical pastry." },
+    { "id": "egg_salad", "name": "Egg Salad", "description": "A dish made primarily of chopped hard-boiled eggs and mayonnaise." },
+    { "id": "cabbage_rolls", "name": "Cabbage Rolls", "description": "A dish consisting of cooked cabbage leaves wrapped around a variety of fillings." },
+    { "id": "oatmeal", "name": "Oatmeal", "description": "A type of coarse flour made of hulled oat grains that have either been milled or steel-cut." },
+    { "id": "fruit_snack", "name": "Fruit Snack", "description": "A type of sweet that is marketed to parents as a snack for children." },
+    { "id": "avocado_toast", "name": "Avocado Toast", "description": "A type of open sandwich consisting of toast with mashed avocado." },
+    { "id": "coleslaw", "name": "Coleslaw", "description": "A salad consisting primarily of finely-shredded raw cabbage with a salad dressing." }
+  ],
+  "snacks": [
+    { "id": "nuts_n_berries", "name": "Nuts N Berries", "description": "A simple and healthy snack mix." },
+    { "id": "granola", "name": "Granola", "description": "A breakfast food and snack food consisting of rolled oats, nuts, honey or other sweeteners." }
+  ]
+} 

@@ -5,6 +5,7 @@ class SkillManager {
         this.configManager = null;
         this.uiManager = null;
         this.inventoryManager = null;
+        this.eventSystem = null;
     }
 
     /**
@@ -29,6 +30,14 @@ class SkillManager {
      */
     setInventorySystem(inventoryManager) {
         this.inventoryManager = inventoryManager;
+    }
+
+    /**
+     * Set the event system reference
+     * @param {EventSystem} eventSystem - The event system instance
+     */
+    setEventSystem(eventSystem) {
+        this.eventSystem = eventSystem;
     }
 
     loadFromConfig(skillsConfig, gameConfig) {
@@ -82,6 +91,16 @@ class SkillManager {
                     level: skill.level
                 });
                 this.uiManager.addNarrationMessage(message);
+                
+                // Emit skill level up event for achievement tracking
+                if (this.eventSystem) {
+                    this.eventSystem.emit('skill:levelUp', {
+                        skillName: skillName,
+                        oldLevel: fromLevel,
+                        newLevel: skill.level,
+                        levelUps: levelUps
+                    });
+                }
             }
             
             return levelUps;
@@ -131,4 +150,6 @@ class Skill {
         const progressMax = this.configManager ? this.configManager.getConstant('progressMax', 100) : 100;
         return (this.xp / this.xpToNext) * progressMax;
     }
-} 
+}
+
+if (typeof window !== 'undefined') window.SkillManager = SkillManager; 

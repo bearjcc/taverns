@@ -9,6 +9,8 @@ class ActionManager {
         this.inventoryManager = null;
         this.questSystem = null;
         this.npcSystem = null;
+        this.eventSystem = eventSystem;
+        this.stateManager = stateManager;
         
         // Initialize availability engine
         this.availabilityEngine = new ActionAvailabilityEngine(eventSystem, stateManager);
@@ -203,6 +205,15 @@ class ActionManager {
         for (const [itemId, quantity] of Object.entries(action.itemConsumption)) {
             if (this.inventoryManager) {
                 this.inventoryManager.removeItem(itemId, quantity);
+                
+                // Emit item consumed event for achievement tracking
+                if (this.eventSystem) {
+                    this.eventSystem.emit('item:consumed', {
+                        itemId: itemId,
+                        quantity: quantity,
+                        actionName: actionName
+                    });
+                }
             }
         }
 
@@ -218,6 +229,15 @@ class ActionManager {
 
         if (itemReward && this.inventoryManager) {
             this.inventoryManager.addItem(itemReward, itemCount);
+            
+            // Emit crafting completed event for achievement tracking
+            if (this.eventSystem && action.skillType === 'crafting') {
+                this.eventSystem.emit('craft:completed', {
+                    itemId: itemReward,
+                    quantity: itemCount,
+                    actionName: actionName
+                });
+            }
         }
 
         return {
@@ -402,4 +422,6 @@ class Action {
         
         return xpToGain;
     }
-} 
+}
+
+if (typeof window !== 'undefined') window.ActionManager = ActionManager; 

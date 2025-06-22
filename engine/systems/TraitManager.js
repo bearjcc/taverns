@@ -112,4 +112,6 @@ class Trait {
         const progressMax = this.configManager ? this.configManager.getConstant('progressMax', 100) : 100;
         return (this.xp / this.xpToNext) * progressMax;
     }
-} 
+}
+
+if (typeof window !== 'undefined') window.TraitManager = TraitManager; 

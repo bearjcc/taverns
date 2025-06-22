@@ -524,4 +524,6 @@ class AchievementSystem {
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = AchievementSystem;
-} 
+}
+
+if (typeof window !== 'undefined') window.AchievementSystem = AchievementSystem; 

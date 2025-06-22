@@ -1,0 +1,28 @@
+{
+  "traits": {
+    "Strength": {
+      "description": "Physical power and muscle strength",
+      "icon": "💪"
+    },
+    "Dexterity": {
+      "description": "Agility, reflexes, and coordination",
+      "icon": "🏃"
+    },
+    "Stamina": {
+      "description": "Endurance and resistance to fatigue",
+      "icon": "🫁"
+    },
+    "Constitution": {
+      "description": "Health and resistance to disease",
+      "icon": "🛡️"
+    },
+    "Intelligence": {
+      "description": "Mental acuity and problem-solving ability",
+      "icon": "🧠"
+    },
+    "Charisma": {
+      "description": "Social influence and personality",
+      "icon": "✨"
+    }
+  }
+} 

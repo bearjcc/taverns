@@ -1,0 +1,82 @@
+{
+  "id": "base-game",
+  "name": "Taverns - Base Game",
+  "version": "1.0.0",
+  "description": "The original Taverns game with skill-based progression and RPG elements",
+  "author": "Taverns Development Team",
+  "license": "MIT",
+  "engineVersion": "1.0.0",
+  "dependencies": [],
+  "tags": ["fantasy", "rpg", "text-adventure"],
+  
+  "data": {
+    "skills": "data/skills.json",
+    "items": "data/items.json", 
+    "species": "data/species.json",
+    "actions": "data/actions.json",
+    "config": "data/game-config.json",
+    "achievements": "data/achievements.json",
+    "locations": "data/locations.json",
+    "traits": "data/traits.json",
+    "food-categories": "data/food-categories.json",
+    "food": "data/food/"
+  },
+  
+  "assets": {
+    "css": "assets/css/",
+    "js": "assets/js/",
+    "icons": {
+      "skills": "assets/icons/skills/",
+      "items": "assets/icons/items/",
+      "species": "assets/icons/species/"
+    },
+    "images": {
+      "backgrounds": "assets/images/backgrounds/",
+      "ui": "assets/images/ui/"
+    },
+    "audio": {
+      "sfx": "assets/audio/sfx/",
+      "music": "assets/audio/music/"
+    }
+  },
+  
+  "localization": {
+    "default": "en",
+    "supported": ["en", "es", "fr"],
+    "path": "localization/"
+  },
+  
+  "settings": {
+    "autoSaveInterval": 120000,
+    "assetCacheSize": 100,
+    "maxInventorySize": 50,
+    "skillMaxLevel": 100
+  },
+  
+  "features": {
+    "skillSystem": true,
+    "inventorySystem": true,
+    "speciesSystem": true,
+    "actionSystem": true,
+    "achievementSystem": true,
+    "locationSystem": true,
+    "encyclopediaSystem": true,
+    "localization": true,
+    "modding": true
+  },
+  
+  "ui": {
+    "layout": "three-column",
+    "theme": "dark",
+    "font": "Courier New",
+    "responsive": true
+  },
+  
+  "metadata": {
+    "created": "2024-01-01",
+    "lastUpdated": "2024-01-15",
+    "downloads": 0,
+    "rating": 0,
+    "size": "2.5MB"
+  }
+} 
