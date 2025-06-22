@@ -1,5 +1,12 @@
+interface GameState {
+  skills?: Record<string, unknown>;
+  inventory?: Record<string, unknown>;
+  achievements?: unknown[];
+  location?: string;
+}
+
 interface NarrationPanelProps {
-  gameState: any;
+  gameState: GameState | null;
 }
 
 export function NarrationPanel({ gameState }: NarrationPanelProps) {

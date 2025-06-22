@@ -7,11 +7,18 @@ import { ActionsPanel } from "./ActionsPanel";
 import { SidebarPanel } from "./SidebarPanel";
 import { GameEngineWrapper } from "@/lib/game-engine/GameEngineWrapper";
 
+interface GameState {
+  skills?: Record<string, unknown>;
+  inventory?: Record<string, unknown>;
+  achievements?: unknown[];
+  location?: string;
+}
+
 export function GameInterface() {
   const [engine, setEngine] = useState<GameEngineWrapper | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [gameState, setGameState] = useState<any>(null);
+  const [gameState, setGameState] = useState<GameState | null>(null);
 
   useEffect(() => {
     try {

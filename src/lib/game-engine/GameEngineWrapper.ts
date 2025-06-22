@@ -1,12 +1,11 @@
 import { GameEngine as IGameEngine } from "@/lib/types/engine";
-// @ts-ignore: JS import
 import GameEngine from "./core/GameEngine.js";
 
 export class GameEngineWrapper {
   private engine: IGameEngine;
 
   constructor() {
-    // @ts-ignore: JS constructor
+    // @ts-expect-error: JS constructor
     this.engine = new GameEngine();
   }
 
