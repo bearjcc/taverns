@@ -372,4 +372,9 @@ class Localization {
 // Export for use in other modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = Localization;
-} 
+}
+
+if (typeof window !== 'undefined') window.Localization = Localization;
+
+// ES Module exports
+export { Localization }; 
