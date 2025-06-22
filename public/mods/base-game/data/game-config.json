@@ -1,0 +1,94 @@
+{
+  "ui": {
+    "tabs": [
+      {
+        "id": "skills",
+        "displayName": "Skills",
+        "icon": "⚔️"
+      },
+      {
+        "id": "achievements",
+        "displayName": "Achievements",
+        "icon": "🏆"
+      },
+      {
+        "id": "inventory", 
+        "displayName": "Inventory",
+        "icon": "🎒"
+      },
+      {
+        "id": "character",
+        "displayName": "Character", 
+        "icon": "👤"
+      },
+      {
+        "id": "quests",
+        "displayName": "Quests",
+        "icon": "🗺️"
+      }
+    ],
+    "cssClasses": {
+      "skillItem": "skill-item",
+      "skillHeader": "skill-header",
+      "skillName": "skill-name",
+      "skillLevel": "skill-level",
+      "skillProgressContainer": "skill-progress-container",
+      "skillProgressBar": "skill-progress-bar",
+      "skillProgressFill": "skill-progress-fill",
+      "skillXp": "skill-xp",
+      "actionButton": "action-button",
+      "actionIcon": "action-icon",
+      "actionTitle": "action-title",
+      "actionDescription": "action-description",
+      "actionTime": "action-time",
+      "actionVariable": "action-variable",
+      "newUnlock": "new-unlock",
+      "narrationMessage": "narration-message",
+      "tabButton": "tab-button",
+      "tabPanel": "tab-panel",
+      "active": "active",
+      "toast": "toast",
+      "toastContainer": "toast-container"
+    },
+    "elementIds": {
+      "narrationContent": "narration-content",
+      "skillsContent": "skills-content",
+      "actionsContent": "actions-content",
+      "skillsTab": "skills-tab",
+      "inventoryTab": "inventory-tab", 
+      "characterTab": "character-tab",
+      "questsTab": "quests-tab",
+      "toastContainer": "toast-container"
+    }
+  },
+  "constants": {
+    "xpMultiplier": 100,
+    "defaultLevel": 1,
+    "defaultXp": 0,
+    "progressMax": 100
+  },
+  "messages": {
+    "welcome": "Welcome to Taverns and Treasures! Your adventure begins...",
+    "levelUp": "🎉 {skillName} level up! You are now level {level}.",
+    "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
+    "actionCompleted": "You {actionName} and gained {xpReward} XP. ({itemReward}: {itemCount})",
+    "configError": "Error: Could not load game configuration. Please refresh the page.",
+    "configLoaded": "Game configuration loaded successfully",
+    "skillsConfigLoaded": "Skills configuration loaded successfully",
+    "skillsConfigError": "Error: Could not load skills configuration.",
+    "gameSaved": "🔄 Game progress saved",
+    "gameLoaded": "📥 Welcome back! Your progress has been loaded",
+    "noSaveFound": "🆕 No saved game found. Starting a new game",
+    "saveError": "⚠️ Failed to save game progress",
+    "loadError": "⚠️ Failed to load saved game",
+    "actionInsufficientItems": "Insufficient items to perform the action: {itemName}",
+    "actionItemsConsumed": "You consumed {itemCount}x {itemName}",
+    "actionItemsGained": "You gained {itemCount}x {itemName}",
+    "actionTimeRequired": "This action requires {time} {timeUnit} to complete",
+    "encyclopediaOpened": "📚 Encyclopedia opened",
+    "encyclopediaClosed": "📚 Encyclopedia closed"
+  },
+  "gameSettings": {
+    "initialWood": 0
+  }
+} 

@@ -1,0 +1,152 @@
+{
+  "first_skill": {
+    "id": "first_skill",
+    "name": "Getting Started",
+    "description": "Reach level 10 in any skill",
+    "category": "progression",
+    "icon": "⭐",
+    "points": 10,
+    "secret": false,
+    "requirements": {
+      "anySkillLevel": 10
+    }
+  },
+  "skill_diversity": {
+    "id": "skill_diversity",
+    "name": "Jack of All Trades",
+    "description": "Reach level 20 in three different skills",
+    "category": "progression",
+    "icon": "🎭",
+    "points": 25,
+    "secret": false,
+    "requirements": {
+      "multipleSkillLevels": {
+        "count": 3,
+        "level": 20
+      }
+    }
+  },
+  "woodcutting_master": {
+    "id": "woodcutting_master",
+    "name": "Woodcutter's Mastery",
+    "description": "Reach level 50 in Woodcutting",
+    "category": "skills",
+    "icon": "🪓",
+    "points": 50,
+    "secret": false,
+    "requirements": {
+      "skillLevel": {
+        "woodcutting": 50
+      }
+    }
+  },
+  "inventory_collector": {
+    "id": "inventory_collector",
+    "name": "Collector",
+    "description": "Collect 10 different types of items",
+    "category": "collection",
+    "icon": "📦",
+    "points": 15,
+    "secret": false,
+    "requirements": {
+      "uniqueItems": 10
+    }
+  },
+  "everyones_just_so_polite": {
+    "id": "everyones_just_so_polite",
+    "name": "Everyone's Just So Polite, Eh?",
+    "description": "Buy or sell syrup in Maple Run",
+    "category": "trading",
+    "icon": "🍁",
+    "points": 20,
+    "secret": false,
+    "requirements": {
+      "custom": "trade_syrup_maple_run"
+    }
+  },
+  "who_wants_to_go_on_a_trip": {
+    "id": "who_wants_to_go_on_a_trip",
+    "name": "Who wants to go on a trip?",
+    "description": "Eat a red mushroom",
+    "category": "consumption",
+    "icon": "🍄",
+    "points": 30,
+    "secret": false,
+    "requirements": {
+      "custom": "consume_red_mushroom"
+    }
+  },
+  "from_fungi_to_familiar": {
+    "id": "from_fungi_to_familiar",
+    "name": "From Fungi to Familiar",
+    "description": "Use an Animation spell on a mushroom and capture it as a pet",
+    "category": "magic",
+    "icon": "✨",
+    "points": 75,
+    "secret": true,
+    "requirements": {
+      "custom": "animate_mushroom_pet"
+    }
+  },
+  "mossmade": {
+    "id": "mossmade",
+    "name": "Mossmade",
+    "description": "Cook with moss in Mossy Glade",
+    "category": "cooking",
+    "icon": "🌿",
+    "points": 25,
+    "secret": false,
+    "requirements": {
+      "custom": "cook_moss_mossy_glade"
+    }
+  },
+  "secret_discovery": {
+    "id": "secret_discovery",
+    "name": "Hidden Secrets",
+    "description": "Discover a secret achievement",
+    "category": "secrets",
+    "icon": "🔍",
+    "points": 100,
+    "secret": true,
+    "requirements": {
+      "custom": "secret_discovery"
+    }
+  },
+  "first_craft": {
+    "id": "first_craft",
+    "name": "First Steps",
+    "description": "Craft your first item",
+    "category": "crafting",
+    "icon": "🔨",
+    "points": 15,
+    "secret": false,
+    "requirements": {
+      "custom": "first_craft"
+    }
+  },
+  "location_explorer": {
+    "id": "location_explorer",
+    "name": "Explorer",
+    "description": "Visit 5 different locations",
+    "category": "exploration",
+    "icon": "🗺️",
+    "points": 30,
+    "secret": false,
+    "requirements": {
+      "custom": "visit_locations",
+      "locationCount": 5
+    }
+  },
+  "skill_master": {
+    "id": "skill_master",
+    "name": "Skill Master",
+    "description": "Reach level 100 in any skill",
+    "category": "skills",
+    "icon": "🏆",
+    "points": 100,
+    "secret": false,
+    "requirements": {
+      "anySkillLevel": 100
+    }
+  }
+} 

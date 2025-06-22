@@ -1,0 +1,62 @@
+{
+  "messages": {
+    "levelUp": "🎉 {skillName} reached level {level}!",
+    "actionUnlocked": "🔓 New action unlocked: {actionName} (Level {level})",
+    "actionInsufficientItems": "❌ Insufficient {itemName}",
+    "gameSaved": "💾 Game saved successfully",
+    "gameLoaded": "📂 Game loaded successfully",
+    "achievementUnlocked": "🏆 Achievement unlocked: {achievementName} (+{points} points)"
+  },
+  
+  "ui": {
+    "tabs": {
+      "skills": {
+        "name": "Skills",
+        "description": "View and manage your character skills"
+      },
+      "inventory": {
+        "name": "Inventory", 
+        "description": "Manage your items and equipment"
+      },
+      "character": {
+        "name": "Character",
+        "description": "View your character information and traits"
+      },
+      "achievements": {
+        "name": "Achievements",
+        "description": "Track your progress and unlocked achievements"
+      }
+    },
+    
+    "buttons": {
+      "save": "Save Game",
+      "load": "Load Game",
+      "encyclopedia": "Encyclopedia",
+      "settings": "Settings"
+    }
+  },
+  
+  "skills": {
+    "categories": {
+      "combat": "Combat",
+      "crafting": "Crafting", 
+      "magic": "Magic",
+      "survival": "Survival"
+    }
+  },
+  
+  "achievements": {
+    "categories": {
+      "progression": "Progression",
+      "skills": "Skills",
+      "collection": "Collection",
+      "secrets": "Secrets",
+      "trading": "Trading",
+      "consumption": "Consumption",
+      "magic": "Magic",
+      "cooking": "Cooking",
+      "crafting": "Crafting",
+      "exploration": "Exploration"
+    }
+  }
+} 

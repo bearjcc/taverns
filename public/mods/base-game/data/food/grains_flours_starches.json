@@ -1,0 +1,25 @@
+{
+  "grains": [
+    { "id": "rice", "name": "Rice", "description": "A staple food for a large part of the world's population." },
+    { "id": "cornmeal", "name": "Cornmeal", "description": "Coarsely ground dried corn." },
+    { "id": "wheat", "name": "Wheat", "description": "A cereal grain that is a worldwide staple food." },
+    { "id": "oats", "name": "Oats", "description": "A species of cereal grain grown for its seed." },
+    { "id": "barley", "name": "Barley", "description": "A versatile cereal grain with a nutty flavor." },
+    { "id": "rye", "name": "Rye", "description": "A grain used for flour, bread, and animal fodder." },
+    { "id": "buckwheat", "name": "Buckwheat", "description": "A plant cultivated for its grain-like seeds." }
+  ],
+  "flours": [
+    { "id": "rice_flour", "name": "Rice Flour", "description": "Flour made from finely milled rice." },
+    { "id": "wheat_flour", "name": "Wheat Flour", "description": "The most common type of flour for baking." },
+    { "id": "barley_flour", "name": "Barley Flour", "description": "Flour made from ground barley." },
+    { "id": "oats_flour", "name": "Oats Flour", "description": "Flour made from ground oats." },
+    { "id": "rye_flour", "name": "Rye Flour", "description": "Flour made from ground rye grain." },
+    { "id": "buckwheat_flour", "name": "Buckwheat Flour", "description": "A gluten-free flour made from buckwheat." }
+  ],
+  "starches": [
+    { "id": "noodles", "name": "Noodles", "description": "A type of food made from unleavened dough." },
+    { "id": "tortilla", "name": "Tortilla", "description": "A thin, flat flatbread made from corn or wheat." },
+    { "id": "baked_potato", "name": "Baked Potato", "description": "A potato that has been baked for eating." },
+    { "id": "french_fries", "name": "French Fries", "description": "Potatoes that have been deep-fried." }
+  ]
+} 

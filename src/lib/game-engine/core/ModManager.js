@@ -37,7 +37,7 @@ class ModManager {
         try {
             // For now, we'll hardcode the base game mod
             // In the future, this could scan the mods directory
-            const baseGameManifest = await this.loadModManifest('mods/base-game/manifest.json');
+            const baseGameManifest = await this.loadModManifest('/mods/base-game/manifest.json');
             this.modManifests.set('base-game', baseGameManifest);
             
             console.log(`Discovered ${this.modManifests.size} mod(s)`);
