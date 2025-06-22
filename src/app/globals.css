@@ -901,6 +901,64 @@
   }
   
   .grayscale-50 {
-    filter: grayscale(0.5);
+    filter: grayscale(50%);
+  }
+
+  /* Inventory Grid Utilities - migrated from backpack.css */
+  .inventory-grid-container {
+    @apply overflow-y-auto overflow-x-hidden max-h-full;
+    scrollbar-width: thin;
+  }
+
+  .inventory-grid-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .inventory-grid-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .inventory-grid-container::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+
+  .inventory-grid-container::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Semi-transparent overlay utilities - from backpack.css sidebar pattern */
+  .overlay-semi-transparent {
+    background-color: rgba(255, 255, 255, 0.26); /* equivalent to #ffffff42 */
+  }
+
+  .overlay-semi-transparent-active {
+    background-color: rgba(255, 255, 255, 0.38); /* equivalent to #ffffff60 */
+  }
+
+  /* Grid utilities for inventory layouts */
+  .grid-cols-inventory-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-cols-inventory-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid-cols-inventory-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* Inventory item size standards - from backpack.css */
+  .inventory-item-size {
+    @apply w-12 h-12; /* 3rem equivalent */
+  }
+
+  .inventory-item-size-large {
+    @apply w-16 h-16; /* 4rem for larger displays */
+  }
+
+  .inventory-item-size-small {
+    @apply w-8 h-8; /* 2rem for compact displays */
   }
 }

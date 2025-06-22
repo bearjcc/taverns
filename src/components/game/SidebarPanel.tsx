@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { InventoryGrid } from "./InventoryGrid";
 
 interface GameState {
   skills?: Record<string, unknown>;
@@ -33,10 +34,14 @@ export function SidebarPanel({ gameState }: SidebarPanelProps) {
     { name: "Crafting", level: 2, experience: 50, maxExperience: 200 }
   ];
 
+  // Enhanced inventory data with proper structure for InventoryGrid
   const inventory = [
-    { name: "Rusty Sword", quantity: 1, type: "weapon" },
-    { name: "Health Potion", quantity: 3, type: "consumable" },
-    { name: "Copper Coins", quantity: 25, type: "currency" }
+    { id: "rusty-sword", name: "rusty_sword", displayName: "Rusty Sword", icon: "⚔️", quantity: 1, type: "weapon", description: "A weathered blade that's seen better days" },
+    { id: "health-potion", name: "health_potion", displayName: "Health Potion", icon: "🧪", quantity: 3, type: "consumable", description: "Restores health when consumed" },
+    { id: "copper-coins", name: "copper_coins", displayName: "Copper Coins", icon: "🪙", quantity: 25, type: "currency", description: "Basic currency for trading" },
+    { id: "bread", name: "bread", displayName: "Bread", icon: "🍞", quantity: 5, type: "food", description: "Fresh baked bread" },
+    { id: "wooden-bow", name: "wooden_bow", displayName: "Wooden Bow", icon: "🏹", quantity: 1, type: "weapon", description: "A simple bow made of oak wood" },
+    { id: "torch", name: "torch", displayName: "Torch", icon: "🕯️", quantity: 8, type: "tool", description: "Provides light in dark places" }
   ];
 
   const achievements = [
@@ -44,6 +49,11 @@ export function SidebarPanel({ gameState }: SidebarPanelProps) {
     { name: "Skilled Crafter", description: "Reach level 2 in Crafting", unlocked: true },
     { name: "Tavern Regular", description: "Visit 5 different taverns", unlocked: false }
   ];
+
+  const handleItemClick = (item: any) => {
+    console.log("Item clicked:", item);
+    // Handle item interaction (use, equip, etc.)
+  };
 
   return (
     <Card className="h-full">
@@ -87,18 +97,13 @@ export function SidebarPanel({ gameState }: SidebarPanelProps) {
             </div>
           </TabsContent>
           
-          <TabsContent value="inventory" className="flex-1 overflow-y-auto mt-3">
-            <div className="space-y-2">
-              {inventory.map((item, index) => (
-                <div key={index} className="flex justify-between items-center p-2 border rounded">
-                  <div>
-                    <div className="text-sm font-medium">{item.name}</div>
-                    <div className="text-xs text-muted-foreground capitalize">{item.type}</div>
-                  </div>
-                  <Badge variant="outline">{item.quantity}</Badge>
-                </div>
-              ))}
-            </div>
+          <TabsContent value="inventory" className="flex-1 mt-3">
+            <InventoryGrid 
+              items={inventory}
+              onItemClick={handleItemClick}
+              searchable={true}
+              gridColumns={3}
+            />
           </TabsContent>
           
           <TabsContent value="achievements" className="flex-1 overflow-y-auto mt-3">
