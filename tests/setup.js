@@ -1,72 +1,98 @@
-// Jest setup file for Taverns game testing
-// This file runs before each test file
+/**
+ * Test setup file for Next.js migration
+ * Updated for new engine structure and module system
+ */
 
-// Mock localStorage for testing with internal store
-let localStorageStore = {};
+// Mock Next.js environment for tests
+global.window = global.window || {};
+global.document = global.document || {
+    readyState: 'complete',
+    addEventListener: () => {},
+    removeEventListener: () => {}
+};
+
+// Mock fetch for API tests
+global.fetch = global.fetch || jest.fn();
+
+// Mock localStorage with proper Jest functions
 const localStorageMock = {
-  getItem: jest.fn((key) => {
-    return Object.prototype.hasOwnProperty.call(localStorageStore, key)
-      ? localStorageStore[key]
-      : null;
-  }),
-  setItem: jest.fn((key, value) => {
-    localStorageStore[key] = value;
-  }),
-  removeItem: jest.fn((key) => {
-    delete localStorageStore[key];
-  }),
-  clear: jest.fn(() => {
-    localStorageStore = {};
-  })
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+    removeItem: jest.fn(),
+    clear: jest.fn()
 };
 
 Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock
+    value: localStorageMock,
+    writable: true
 });
 
-// Mock DOM elements that the game expects
-document.body.innerHTML = `
-  <div id="narration-content"></div>
-  <div id="skills-content"></div>
-  <div id="actions-content"></div>
-  <div id="inventory-content"></div>
-  <div id="character-content"></div>
-  <div id="toast-container"></div>
-  <div id="skills-tab"></div>
-  <div id="inventory-tab"></div>
-  <div id="character-tab"></div>
-`;
+Object.defineProperty(global, 'localStorage', {
+    value: localStorageMock,
+    writable: true
+});
 
-// Mock console methods to avoid noise in tests
-global.console = {
-  ...console,
-  log: jest.fn(),
-  error: jest.fn(),
-  warn: jest.fn(),
+// Mock sessionStorage
+const sessionStorageMock = {
+    getItem: jest.fn(),
+    setItem: jest.fn(),
+    removeItem: jest.fn(),
+    clear: jest.fn()
 };
 
-// Mock fetch for async operations
-global.fetch = jest.fn();
-
-// Reset all mocks before each test
-beforeEach(() => {
-  jest.clearAllMocks();
-  localStorageMock.getItem.mockClear();
-  localStorageMock.setItem.mockClear();
-  localStorageMock.removeItem.mockClear();
-  localStorageMock.clear.mockClear();
-  localStorageStore = {};
-  // Clear DOM content
-  document.getElementById('narration-content').innerHTML = '';
-  document.getElementById('skills-content').innerHTML = '';
-  document.getElementById('actions-content').innerHTML = '';
-  document.getElementById('inventory-content').innerHTML = '';
-  document.getElementById('character-content').innerHTML = '';
-  document.getElementById('toast-container').innerHTML = '';
+Object.defineProperty(window, 'sessionStorage', {
+    value: sessionStorageMock,
+    writable: true
 });
 
-// Helper function to load game modules for testing
-global.loadGameForTesting = () => {
-  // This will be used to load the game.js file in tests
-  // We'll need to handle the module loading carefully
+Object.defineProperty(global, 'sessionStorage', {
+    value: sessionStorageMock,
+    writable: true
+});
+
+// Mock console methods for cleaner test output
+global.console = {
+    ...console,
+    log: jest.fn(),
+    error: jest.fn(),
+    warn: jest.fn()
+};
+
+// Setup test environment
+beforeEach(() => {
+    // Clear all mocks before each test
+    jest.clearAllMocks();
+});
+
+// Cleanup after tests
+afterEach(() => {
+    // Clean up any remaining mocks
+    jest.clearAllMocks();
+});
+
+// Export test utilities
+module.exports = {
+    testUtils: {
+        mockGameState: () => ({
+            skills: {},
+            inventory: {},
+            achievements: [],
+            location: 'tavern'
+        }),
+        
+        mockGameConfig: () => ({
+            ui: {
+                tabs: [],
+                cssClasses: {},
+                elementIds: {}
+            },
+            constants: {
+                xpMultiplier: 100,
+                defaultLevel: 1,
+                progressMax: 100
+            },
+            skills: {},
+            messages: {}
+        })
+    }
 }; 
