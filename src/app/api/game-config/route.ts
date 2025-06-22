@@ -17,18 +17,25 @@ export async function GET() {
     const schema = JSON.parse(schemaRaw);
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);
-    const validate = ajv.compile(schema);
-    const valid = validate(config);
-    if (!valid) {
+
+    if (!ajv.validate(schema, config)) {
+      console.error('Game config validation failed:', ajv.errors);
       return NextResponse.json(
-        { error: 'Invalid game config', details: validate.errors },
+        { error: 'Invalid game configuration', details: ajv.errors },
         { status: 500 }
       );
     }
-    return NextResponse.json(config);
+
+    // Add caching headers for static configuration data
+    const response = NextResponse.json(config);
+    response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=86400'); // 1 hour client, 24 hours CDN
+    response.headers.set('ETag', `"${Buffer.from(configRaw).toString('base64').slice(0, 8)}"`);
+    
+    return response;
   } catch (error) {
+    console.error('Failed to load game config:', error);
     return NextResponse.json(
-      { error: 'Failed to load game config', details: error instanceof Error ? error.message : error },
+      { error: 'Failed to load game configuration' },
       { status: 500 }
     );
   }
