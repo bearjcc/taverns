@@ -94,16 +94,34 @@ class AchievementSystem {
      * This is the main method that will be called to evaluate achievements
      */
     checkAchievements() {
-        const gameState = this.stateManager.getState();
-        
-        for (const [achievementId, achievement] of Object.entries(this.achievementsData)) {
-            if (this.unlockedAchievements.has(achievementId)) {
-                continue; // Already unlocked
+        try {
+            if (!this.stateManager) {
+                console.warn('AchievementSystem: stateManager not available yet');
+                return;
             }
             
-            if (this._evaluateAchievement(achievement, gameState)) {
-                this._unlockAchievement(achievementId);
+            const gameState = this.stateManager.getState();
+            if (!gameState) {
+                console.warn('AchievementSystem: gameState not available yet');
+                return;
             }
+            
+            if (!this.achievementsData || typeof this.achievementsData !== 'object') {
+                console.warn('AchievementSystem: achievementsData not loaded yet');
+                return;
+            }
+            
+            for (const [achievementId, achievement] of Object.entries(this.achievementsData)) {
+                if (this.unlockedAchievements.has(achievementId)) {
+                    continue; // Already unlocked
+                }
+                
+                if (this._evaluateAchievement(achievement, gameState)) {
+                    this._unlockAchievement(achievementId);
+                }
+            }
+        } catch (error) {
+            console.error('Error checking achievements:', error);
         }
     }
     
@@ -150,13 +168,22 @@ class AchievementSystem {
     // Private methods
     
     _initializeProgress() {
-        // Initialize progress tracking for each achievement
-        for (const achievementId of Object.keys(this.achievementsData)) {
-            this.achievementProgress[achievementId] = {
-                current: 0,
-                required: this._getRequiredValue(this.achievementsData[achievementId]),
-                completed: false
-            };
+        try {
+            // Initialize progress tracking for each achievement
+            if (!this.achievementsData || typeof this.achievementsData !== 'object') {
+                console.warn('AchievementSystem: achievementsData not available for progress initialization');
+                return;
+            }
+            
+            for (const achievementId of Object.keys(this.achievementsData)) {
+                this.achievementProgress[achievementId] = {
+                    current: 0,
+                    required: this._getRequiredValue(this.achievementsData[achievementId]),
+                    completed: false
+                };
+            }
+        } catch (error) {
+            console.error('Error initializing achievement progress:', error);
         }
     }
     
@@ -246,55 +273,65 @@ class AchievementSystem {
     }
     
     _evaluateAchievement(achievement, gameState) {
-        const requirements = achievement.requirements;
-        
-        if (!requirements) {
-            return false;
-        }
-        
-        // Check skill level requirements
-        if (requirements.skillLevel) {
-            for (const [skillName, requiredLevel] of Object.entries(requirements.skillLevel)) {
-                const skill = gameState.skills?.[skillName];
-                if (!skill || skill.level < requiredLevel) {
+        try {
+            if (!achievement) {
+                console.warn('_evaluateAchievement: achievement is null or undefined');
+                return false;
+            }
+            
+            const requirements = achievement.requirements;
+            
+            if (!requirements) {
+                return false;
+            }
+            
+            // Check skill level requirements
+            if (requirements.skillLevel) {
+                for (const [skillName, requiredLevel] of Object.entries(requirements.skillLevel)) {
+                    const skill = gameState.skills?.[skillName];
+                    if (!skill || skill.level < requiredLevel) {
+                        return false;
+                    }
+                }
+            }
+            
+            // Check any skill level requirement
+            if (requirements.anySkillLevel) {
+                const requiredLevel = requirements.anySkillLevel;
+                const hasAnySkillAtLevel = Object.values(gameState.skills || {}).some(skill => skill.level >= requiredLevel);
+                if (!hasAnySkillAtLevel) {
                     return false;
                 }
             }
-        }
-        
-        // Check any skill level requirement
-        if (requirements.anySkillLevel) {
-            const requiredLevel = requirements.anySkillLevel;
-            const hasAnySkillAtLevel = Object.values(gameState.skills || {}).some(skill => skill.level >= requiredLevel);
-            if (!hasAnySkillAtLevel) {
-                return false;
+            
+            // Check multiple skill levels requirement
+            if (requirements.multipleSkillLevels) {
+                const { count, level } = requirements.multipleSkillLevels;
+                const skillsAtLevel = Object.values(gameState.skills || {}).filter(skill => skill.level >= level).length;
+                if (skillsAtLevel < count) {
+                    return false;
+                }
             }
-        }
-        
-        // Check multiple skill levels requirement
-        if (requirements.multipleSkillLevels) {
-            const { count, level } = requirements.multipleSkillLevels;
-            const skillsAtLevel = Object.values(gameState.skills || {}).filter(skill => skill.level >= level).length;
-            if (skillsAtLevel < count) {
-                return false;
+            
+            // Check unique items requirement
+            if (requirements.uniqueItems) {
+                const requiredCount = requirements.uniqueItems;
+                const uniqueItemCount = Object.keys(gameState.inventory || {}).length;
+                if (uniqueItemCount < requiredCount) {
+                    return false;
+                }
             }
-        }
-        
-        // Check unique items requirement
-        if (requirements.uniqueItems) {
-            const requiredCount = requirements.uniqueItems;
-            const uniqueItemCount = Object.keys(gameState.inventory || {}).length;
-            if (uniqueItemCount < requiredCount) {
-                return false;
+            
+            // Check custom requirements
+            if (requirements.custom) {
+                return this._evaluateCustomRequirement(requirements.custom, gameState);
             }
+            
+            return true;
+        } catch (error) {
+            console.error('Error evaluating achievement:', achievement?.id || 'unknown', error);
+            return false;
         }
-        
-        // Check custom requirements
-        if (requirements.custom) {
-            return this._evaluateCustomRequirement(requirements.custom, gameState);
-        }
-        
-        return true;
     }
     
     _evaluateCustomRequirement(requirementType, gameState) {
@@ -338,25 +375,34 @@ class AchievementSystem {
     }
     
     _getRequiredValue(achievement) {
-        const requirements = achievement.requirements;
-        
-        if (requirements.skillLevel) {
-            return Math.max(...Object.values(requirements.skillLevel));
+        try {
+            if (!achievement || !achievement.requirements) {
+                return 1; // Default required value
+            }
+            
+            const requirements = achievement.requirements;
+            
+            if (requirements.skillLevel) {
+                return Math.max(...Object.values(requirements.skillLevel));
+            }
+            
+            if (requirements.anySkillLevel) {
+                return requirements.anySkillLevel;
+            }
+            
+            if (requirements.multipleSkillLevels) {
+                return requirements.multipleSkillLevels.level;
+            }
+            
+            if (requirements.uniqueItems) {
+                return requirements.uniqueItems;
+            }
+            
+            return 1; // Default required value
+        } catch (error) {
+            console.error('Error getting required value for achievement:', achievement?.id || 'unknown', error);
+            return 1; // Default fallback
         }
-        
-        if (requirements.anySkillLevel) {
-            return requirements.anySkillLevel;
-        }
-        
-        if (requirements.multipleSkillLevels) {
-            return requirements.multipleSkillLevels.level;
-        }
-        
-        if (requirements.uniqueItems) {
-            return requirements.uniqueItems;
-        }
-        
-        return 1; // Default required value
     }
     
     _unlockAchievement(achievementId) {
