@@ -4,8 +4,8 @@ import path from 'path';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
-const skillsPath = path.join(process.cwd(), 'src/lib/game-engine/data/skills.json');
-const schemaPath = path.join(process.cwd(), 'src/lib/game-engine/schemas/skills.schema.json');
+  const skillsPath = path.join(process.cwd(), 'data/skills.json');
+  const schemaPath = path.join(process.cwd(), 'src/lib/schemas/skills.schema.json');
 
 export async function GET() {
   try {

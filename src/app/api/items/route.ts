@@ -4,8 +4,8 @@ import path from 'path';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
-const itemsPath = path.join(process.cwd(), 'src/lib/game-engine/data/items.json');
-const schemaPath = path.join(process.cwd(), 'src/lib/game-engine/schemas/items.schema.json');
+  const itemsPath = path.join(process.cwd(), 'data/items.json');
+  const schemaPath = path.join(process.cwd(), 'src/lib/schemas/items.schema.json');
 
 export async function GET() {
   try {

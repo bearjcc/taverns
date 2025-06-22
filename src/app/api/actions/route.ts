@@ -4,8 +4,8 @@ import path from 'path';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
-const actionsPath = path.join(process.cwd(), 'src/lib/game-engine/data/config/actions.json');
-const schemaPath = path.join(process.cwd(), 'src/lib/game-engine/schemas/actions.schema.json');
+  const actionsPath = path.join(process.cwd(), 'data/config/actions.json');
+  const schemaPath = path.join(process.cwd(), 'src/lib/schemas/actions.schema.json');
 
 export async function GET() {
   try {

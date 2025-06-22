@@ -6,7 +6,7 @@
   "source": {
     "include": [
       "assets/js",
-      "engine"
+      "src/lib/game-engine"
     ],
     "includePattern": "\\.js$",
     "excludePattern": "(node_modules/|tests/|docs/)"
@@ -28,7 +28,7 @@
     "readme": "./docs/README.md",
     "template": "node_modules/clean-jsdoc-theme",
     "theme_opts": {
-      "title": "Taverns and Treasures API Documentation",
+      "title": "Taverns and Treasures Game Engine API Documentation",
       "menu": {
         "GitHub repo": {
           "href": "https://github.com/bearjcc/taverns",

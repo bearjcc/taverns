@@ -4,8 +4,8 @@ import path from 'path';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
-const configPath = path.join(process.cwd(), 'src/lib/game-engine/data/config/game-config.json');
-const schemaPath = path.join(process.cwd(), 'src/lib/game-engine/schemas/game-config.schema.json');
+  const configPath = path.join(process.cwd(), 'data/config/game-config.json');
+  const schemaPath = path.join(process.cwd(), 'src/lib/schemas/game-config.schema.json');
 
 export async function GET() {
   try {

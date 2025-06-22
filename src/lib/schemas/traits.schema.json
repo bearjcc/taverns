@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Traits Configuration Schema",
+  "description": "Schema for the traits configuration file",
+  "type": "object",
+  "properties": {
+    "traits": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9\\s]+$": {
+          "type": "object",
+          "properties": {
+            "description": {
+              "type": "string",
+              "minLength": 1
+            },
+            "icon": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": ["description", "icon"],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["traits"],
+  "additionalProperties": false
+} 

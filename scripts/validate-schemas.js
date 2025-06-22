@@ -23,19 +23,19 @@ addFormats(ajv);
  * @type {Object.<string, string>}
  */
 const CONFIG_MAPPING = {
-    'data/config/game-config.json': 'schemas/game-config.schema.json',
-    'data/skills.json': 'schemas/skills.schema.json',
-    'data/items.json': 'schemas/items.schema.json',
-    'data/config/actions.json': 'schemas/actions.schema.json',
-    'data/traits.json': 'schemas/traits.schema.json',
-    'data/species.json': 'schemas/species.schema.json',
-    'data/food-categories.json': 'schemas/food-categories.schema.json',
-    'data/achievements.json': 'schemas/achievements.schema.json'
+    'data/config/game-config.json': 'src/lib/schemas/game-config.schema.json',
+    'data/skills.json': 'src/lib/schemas/skills.schema.json',
+    'data/items.json': 'src/lib/schemas/items.schema.json',
+    'data/config/actions.json': 'src/lib/schemas/actions.schema.json',
+    'data/traits.json': 'src/lib/schemas/traits.schema.json',
+    'data/species.json': 'src/lib/schemas/species.schema.json',
+    'data/food-categories.json': 'src/lib/schemas/food-categories.schema.json',
+    'data/achievements.json': 'src/lib/schemas/achievements.schema.json'
 };
 
 // Add all food category files in data/food/ with the new schema
 const foodDir = path.resolve('data/food');
-const foodCategoryFileSchema = 'schemas/food-category-file.schema.json';
+const foodCategoryFileSchema = 'src/lib/schemas/food-category-file.schema.json';
 if (fs.existsSync(foodDir)) {
     const foodFiles = fs.readdirSync(foodDir).filter(f => f.endsWith('.json'));
     for (const file of foodFiles) {
@@ -164,7 +164,7 @@ function watchFiles() {
     const chokidar = require('chokidar');
     const watcher = chokidar.watch([
         'data/**/*.json',
-        'schemas/**/*.json'
+        'src/lib/schemas/**/*.json'
     ], {
         ignored: /node_modules/,
         persistent: true
