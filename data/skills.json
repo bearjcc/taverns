@@ -17,6 +17,9 @@
     },
     "Stealth": {
       "description": "The ability to move silently and remain unseen, essential for infiltration and ambush."
+    },
+    "Prayer": {
+      "description": "Ability to call upon the assistance of god(s) in battle."
     }
   },
   "magic": {
@@ -37,6 +40,12 @@
     },
     "Enchantment": {
       "description": "The art of imbuing objects with magical properties and effects."
+    },
+    "Combat Magic": {
+      "description": "Ability to use magic to deal damage in combat."
+    },
+    "Survival Magic": {
+      "description": "Ability to use magic to survive the wilderness and the elements."
     }
   },
   "crafting": {
@@ -78,17 +87,20 @@
   },
   "professional": {
     "Pyromancy": {
-      "description": "Advanced fire making techniques.",
+      "description": "Advanced fire making techniques including explosives, pyrotechnics, and combustion.",
       "requires": {
         "skill": "Fire making",
         "level": 25
       },
       "sub_skills": {
-        "Civil Heat": {
-          "description": "Controlled fire techniques for domestic and industrial use."
+        "Demolitions": {
+          "description": "Make bombs and other explosives."
         },
         "Pyrotechnics": {
-          "description": "The art of creating spectacular fire displays and explosions."
+          "description": "Make dazzling light displays."
+        },
+        "Combustion": {
+          "description": "Harness the power of combustion to power mighty machines."
         }
       }
     },
@@ -138,6 +150,13 @@
         }
       }
     },
+    "Distillery": {
+      "description": "Make oil, vinegar, and alcohol, as well as purify water.",
+      "requires": {
+        "skill": "Cooking",
+        "level": 15
+      }
+    },
     "Farming": {
       "description": "The science or practice of farming, including cultivation of the soil for the growing of crops and the rearing of animals to provide food, wool, and other products.",
       "sub_skills": {
@@ -160,6 +179,10 @@
     },
     "Woodworking": {
       "description": "The skill of making items from wood.",
+      "requires": {
+        "skill": "Woodcutting",
+        "level": 25
+      },
       "sub_skills": {
         "Construction": {
           "description": "Building structures and furniture from wood."
@@ -188,6 +211,72 @@
         "Dragons": {
           "description": "The ultimate hunting challenge - tracking and hunting dragons."
         }
+      }
+    },
+    "Fishing": {
+      "description": "Cast your bait and hook things up from underwater, or go whaling."
+    },
+    "Geoworking": {
+      "description": "Prospect, mine, smith, and jewelcraft - working with earth and stone."
+    },
+    "Advanced Crafting": {
+      "description": "Make pottery, create fabrics, and leatherwork.",
+      "requires": {
+        "skill": "Crafting",
+        "level": 25
+      }
+    },
+    "Engineering": {
+      "description": "Design and build toys, siege weapons, walls, buildings, and aqueducts."
+    },
+    "Magecraft": {
+      "description": "Harness the Mystic force with runes, siphons, spells, and potions.",
+      "requires": {
+        "skill": "Magic",
+        "level": 25
+      }
+    },
+    "Seamanship": {
+      "description": "Brave the seas for trade, exploration, country, or piracy."
+    },
+    "Salesmanship": {
+      "description": "Get the best prices whether buying or selling, goods or services."
+    },
+    "Seduction": {
+      "description": "Use your body, words, and movements to have your way with people."
+    },
+    "Athletics": {
+      "description": "Learn to swim, play sports, or become an acrobat."
+    },
+    "Medicinal Arts": {
+      "description": "Craft medicines and heal the sick and dying.",
+      "requires": {
+        "skill": "First Aid",
+        "level": 25
+      }
+    },
+    "Deception": {
+      "description": "Lie, cheat, steal, lock-pick, assassinate, or simply stay hidden.",
+      "requires": {
+        "skill": "Stealth",
+        "level": 25
+      }
+    },
+    "Scholarship": {
+      "description": "Learn history, arcana, languages, or music."
+    },
+    "Spirituality": {
+      "description": "Stay in contact with your inner self and one or more gods.",
+      "requires": {
+        "skill": "Prayer",
+        "level": 25
+      }
+    },
+    "Alchemy": {
+      "description": "Brew potions and unlock the secrets of chemistry and metallurgy.",
+      "requires": {
+        "skill": "Magic",
+        "level": 20
       }
     },
     "Advanced Combat": {
@@ -304,6 +393,11 @@
       "icon": "🤫",
       "description": "The ability to move silently and remain unseen, essential for infiltration and ambush."
     },
+    "Prayer": {
+      "type": "combat",
+      "icon": "🙏",
+      "description": "Ability to call upon the assistance of god(s) in battle."
+    },
     "Magic": {
       "type": "magic",
       "icon": "✨",
@@ -334,6 +428,16 @@
       "icon": "💎",
       "description": "The art of imbuing objects with magical properties and effects."
     },
+    "Combat Magic": {
+      "type": "magic",
+      "icon": "⚡",
+      "description": "Ability to use magic to deal damage in combat."
+    },
+    "Survival Magic": {
+      "type": "magic",
+      "icon": "🌿",
+      "description": "Ability to use magic to survive the wilderness and the elements."
+    },
     "Crafting": {
       "type": "crafting",
       "icon": "🔨",
@@ -341,7 +445,7 @@
     },
     "Blacksmithing": {
       "type": "crafting",
-      "icon": " blacksmithing",
+      "icon": "⚒️",
       "description": "The art of working with metal to create tools, weapons, and armor."
     },
     "Armorsmithing": {
@@ -356,7 +460,7 @@
     },
     "Jewelcrafting": {
       "type": "crafting",
-      "icon": "💍",
+      "icon": "💎",
       "description": "The art of cutting, setting, and working with precious stones and metals."
     },
     "Fire making": {
@@ -392,7 +496,7 @@
     "Pyromancy": {
       "type": "professional",
       "icon": "🔥",
-      "description": "Advanced fire making techniques.",
+      "description": "Advanced fire making techniques including explosives, pyrotechnics, and combustion.",
       "requires": {
         "skill": "Fire making",
         "level": 25
@@ -400,7 +504,7 @@
     },
     "Archeology": {
       "type": "professional",
-      "icon": "��",
+      "icon": "🏺",
       "description": "The study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains.",
       "requires": {
         "skill": "Foraging",
@@ -425,6 +529,15 @@
         "level": 25
       }
     },
+    "Distillery": {
+      "type": "professional",
+      "icon": "🍺",
+      "description": "Make oil, vinegar, and alcohol, as well as purify water.",
+      "requires": {
+        "skill": "Cooking",
+        "level": 15
+      }
+    },
     "Farming": {
       "type": "professional",
       "icon": "🧑‍🌾",
@@ -433,7 +546,11 @@
     "Woodworking": {
       "type": "professional",
       "icon": "🪵",
-      "description": "The skill of making items from wood."
+      "description": "The skill of making items from wood.",
+      "requires": {
+        "skill": "Woodcutting",
+        "level": 25
+      }
     },
     "Advanced Hunting": {
       "type": "professional",
@@ -442,6 +559,100 @@
       "requires": {
         "skill": "Hunting",
         "level": 25
+      }
+    },
+    "Fishing": {
+      "type": "professional",
+      "icon": "🎣",
+      "description": "Cast your bait and hook things up from underwater, or go whaling."
+    },
+    "Geoworking": {
+      "type": "professional",
+      "icon": "⛏️",
+      "description": "Prospect, mine, smith, and jewelcraft - working with earth and stone."
+    },
+    "Advanced Crafting": {
+      "type": "professional",
+      "icon": "🛠️",
+      "description": "Make pottery, create fabrics, and leatherwork.",
+      "requires": {
+        "skill": "Crafting",
+        "level": 25
+      }
+    },
+    "Engineering": {
+      "type": "professional",
+      "icon": "⚙️",
+      "description": "Design and build toys, siege weapons, walls, buildings, and aqueducts."
+    },
+    "Magecraft": {
+      "type": "professional",
+      "icon": "🔮",
+      "description": "Harness the Mystic force with runes, siphons, spells, and potions.",
+      "requires": {
+        "skill": "Magic",
+        "level": 25
+      }
+    },
+    "Seamanship": {
+      "type": "professional",
+      "icon": "⛵",
+      "description": "Brave the seas for trade, exploration, country, or piracy."
+    },
+    "Salesmanship": {
+      "type": "professional",
+      "icon": "💰",
+      "description": "Get the best prices whether buying or selling, goods or services."
+    },
+    "Seduction": {
+      "type": "professional",
+      "icon": "💋",
+      "description": "Use your body, words, and movements to have your way with people."
+    },
+    "Athletics": {
+      "type": "professional",
+      "icon": "🏃",
+      "description": "Learn to swim, play sports, or become an acrobat."
+    },
+    "Medicinal Arts": {
+      "type": "professional",
+      "icon": "⚕️",
+      "description": "Craft medicines and heal the sick and dying.",
+      "requires": {
+        "skill": "First Aid",
+        "level": 25
+      }
+    },
+    "Deception": {
+      "type": "professional",
+      "icon": "🎭",
+      "description": "Lie, cheat, steal, lock-pick, assassinate, or simply stay hidden.",
+      "requires": {
+        "skill": "Stealth",
+        "level": 25
+      }
+    },
+    "Scholarship": {
+      "type": "professional",
+      "icon": "📚",
+      "description": "Learn history, arcana, languages, or music."
+    },
+    "Spirituality": {
+      "type": "professional",
+      "icon": "🕉️",
+      "description": "Stay in contact with your inner self and one or more gods.",
+      "requires": {
+        "skill": "Prayer",
+        "level": 25
+      }
+    },
+    "Alchemy": {
+      "type": "professional",
+      "icon": "🧪",
+      "description": "Brew potions and unlock the secrets of chemistry and metallurgy.",
+      "requires": {
+        "skill": "Magic",
+        "level": 20
       }
     },
     "Advanced Combat": {
