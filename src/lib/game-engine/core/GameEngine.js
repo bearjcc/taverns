@@ -230,7 +230,7 @@ class GameEngine {
         // Initialize systems with mod data (only create the ones that need special initialization)
         this.locationSystem = new LocationSystem(modData.locations || {}, this.stateManager, this.eventSystem);
         this.achievementSystem = new AchievementSystem(modData.achievements || {}, this.stateManager, this.eventSystem);
-        this.encyclopediaSystem = new EncyclopediaSystem(modData, this.eventSystem);
+        this.encyclopediaSystem = new EncyclopediaSystem();
         
         // Initialize systems (only call initialize if the method exists)
         if (this.skillManager.initialize) await this.skillManager.initialize();
@@ -239,7 +239,7 @@ class GameEngine {
         if (this.actionManager.initialize) await this.actionManager.initialize();
         if (this.locationSystem.initialize) await this.locationSystem.initialize();
         if (this.achievementSystem.initialize) await this.achievementSystem.initialize();
-        if (this.encyclopediaSystem.initialize) await this.encyclopediaSystem.initialize();
+        if (this.encyclopediaSystem.initialize) await this.encyclopediaSystem.initialize(modData);
         if (this.uiManager.initialize) await this.uiManager.initialize();
         
         // Load configurations from mod data
@@ -285,9 +285,7 @@ class GameEngine {
             this.actionAvailabilityEngine = new ActionAvailabilityEngine();
             this.actionManager = new ActionManager();
             this.speciesSystem = new SpeciesSystem();
-            this.locationSystem = new LocationSystem();
-            this.achievementSystem = new AchievementSystem();
-            this.encyclopediaSystem = new EncyclopediaSystem();
+            // locationSystem, achievementSystem, and encyclopediaSystem will be initialized in _initializeGameSystems with data
             this.uiManager = new UIManager();
             this.encyclopediaUI = new EncyclopediaUI();
             this.foodCategoryUI = new FoodCategoryUI();
