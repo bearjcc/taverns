@@ -233,23 +233,93 @@ class GameEngine {
         this.encyclopediaSystem = new EncyclopediaSystem();
         
         // Initialize systems (only call initialize if the method exists)
-        if (this.skillManager.initialize) await this.skillManager.initialize();
-        if (this.inventoryManager.initialize) await this.inventoryManager.initialize();
-        if (this.traitManager.initialize) await this.traitManager.initialize();
-        if (this.actionManager.initialize) await this.actionManager.initialize();
-        if (this.locationSystem.initialize) await this.locationSystem.initialize();
-        if (this.achievementSystem.initialize) await this.achievementSystem.initialize();
-        if (this.encyclopediaSystem.initialize) await this.encyclopediaSystem.initialize(modData);
-        if (this.uiManager.initialize) await this.uiManager.initialize();
+        try {
+            if (this.skillManager && this.skillManager.initialize) await this.skillManager.initialize();
+        } catch (error) {
+            console.error('SkillManager initialization failed:', error);
+        }
+        
+        try {
+            if (this.inventoryManager && this.inventoryManager.initialize) await this.inventoryManager.initialize();
+        } catch (error) {
+            console.error('InventoryManager initialization failed:', error);
+        }
+        
+        try {
+            if (this.traitManager && this.traitManager.initialize) await this.traitManager.initialize();
+        } catch (error) {
+            console.error('TraitManager initialization failed:', error);
+        }
+        
+        try {
+            if (this.actionManager && this.actionManager.initialize) await this.actionManager.initialize();
+        } catch (error) {
+            console.error('ActionManager initialization failed:', error);
+        }
+        
+        try {
+            if (this.locationSystem && this.locationSystem.initialize) await this.locationSystem.initialize();
+        } catch (error) {
+            console.error('LocationSystem initialization failed:', error);
+        }
+        
+        try {
+            if (this.achievementSystem && this.achievementSystem.initialize) await this.achievementSystem.initialize();
+        } catch (error) {
+            console.error('AchievementSystem initialization failed:', error);
+        }
+        
+        try {
+            if (this.encyclopediaSystem && this.encyclopediaSystem.initialize) await this.encyclopediaSystem.initialize(modData);
+        } catch (error) {
+            console.error('EncyclopediaSystem initialization failed:', error);
+        }
+        
+        try {
+            if (this.uiManager && this.uiManager.initialize) await this.uiManager.initialize();
+        } catch (error) {
+            console.error('UIManager initialization failed:', error);
+        }
         
         // Load configurations from mod data
-        this.skillManager.loadFromConfig(modData.skills || {}, modData.config || {});
-        this.inventoryManager.loadFromConfig(modData.items || {});
-        this.traitManager.loadFromConfig(modData.traits || {});
-        this.actionManager.loadFromConfig(modData.actions || {});
+        try {
+            if (this.skillManager && this.skillManager.loadFromConfig) {
+                this.skillManager.loadFromConfig(modData.skills || {}, modData.config || {});
+            }
+        } catch (error) {
+            console.error('SkillManager config loading failed:', error);
+        }
+        
+        try {
+            if (this.inventoryManager && this.inventoryManager.loadFromConfig) {
+                this.inventoryManager.loadFromConfig(modData.items || {});
+            }
+        } catch (error) {
+            console.error('InventoryManager config loading failed:', error);
+        }
+        
+        try {
+            if (this.traitManager && this.traitManager.loadFromConfig) {
+                this.traitManager.loadFromConfig(modData.traits || {});
+            }
+        } catch (error) {
+            console.error('TraitManager config loading failed:', error);
+        }
+        
+        try {
+            if (this.actionManager && this.actionManager.loadFromConfig) {
+                this.actionManager.loadFromConfig(modData.actions || {});
+            }
+        } catch (error) {
+            console.error('ActionManager config loading failed:', error);
+        }
         
         // Set up cross-system references
-        this._setupSystemReferences();
+        try {
+            this._setupSystemReferences();
+        } catch (error) {
+            console.error('System references setup failed:', error);
+        }
         
         console.log('Game systems initialized');
     }
