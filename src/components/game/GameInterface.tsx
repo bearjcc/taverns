@@ -9,11 +9,19 @@ const NarrationPanel = lazy(() => import("./NarrationPanel").then(module => ({ d
 const ActionsPanel = lazy(() => import("./ActionsPanel").then(module => ({ default: module.ActionsPanel })));
 const SidebarPanel = lazy(() => import("./SidebarPanel").then(module => ({ default: module.SidebarPanel })));
 
+interface GameMessage {
+  id: number;
+  text: string;
+  type: 'action' | 'story' | 'system' | 'achievement';
+  timestamp: Date;
+}
+
 interface GameState {
   skills?: Record<string, unknown>;
   inventory?: Record<string, unknown>;
   achievements?: unknown[];
   location?: string;
+  messages?: GameMessage[];
 }
 
 // Loading component for lazy-loaded panels
@@ -33,12 +41,48 @@ export function GameInterface() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [gameState, setGameState] = useState<GameState | null>(null);
+  const [messages, setMessages] = useState<Array<{id: number, text: string, type: string, timestamp: Date}>>([]);
 
+  // Initialize game engine
   useEffect(() => {
     const initializeEngine = async () => {
       try {
         const gameEngine = new GameEngineWrapper();
         await gameEngine.init();
+        
+        // Set up event listeners for game state changes
+        gameEngine.on('state:changed', (data: any) => {
+          updateGameState(gameEngine);
+        });
+
+        gameEngine.on('message:add', (message: any) => {
+          setMessages(prev => [...prev, {
+            id: Date.now(),
+            text: message.text,
+            type: (message.type as 'action' | 'story' | 'system' | 'achievement') || 'system',
+            timestamp: new Date()
+          }]);
+        });
+
+        // Load initial game state
+        updateGameState(gameEngine);
+        
+        // Add welcome messages
+        setMessages([
+          {
+            id: 1,
+            text: "Welcome to Taverns and Treasures! Your adventure begins in a small village tavern.",
+            type: 'story' as const,
+            timestamp: new Date()
+          },
+          {
+            id: 2,
+            text: "The innkeeper looks at you with curiosity. What will you do?",
+            type: 'story' as const,
+            timestamp: new Date()
+          }
+        ]);
+
         setEngine(gameEngine);
         setIsLoading(false);
       } catch (err) {
@@ -49,6 +93,21 @@ export function GameInterface() {
 
     initializeEngine();
   }, []);
+
+  const updateGameState = (gameEngine: GameEngineWrapper) => {
+    try {
+      const newState: GameState = {
+        skills: gameEngine.getSkills(),
+        inventory: gameEngine.getInventory(),
+        achievements: gameEngine.getAchievements(),
+        location: 'village_tavern',
+        messages: messages
+      };
+      setGameState(newState);
+    } catch (error) {
+      console.error('Failed to update game state:', error);
+    }
+  };
 
   if (isLoading) {
     return (
