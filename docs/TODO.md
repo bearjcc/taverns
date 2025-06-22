@@ -311,33 +311,149 @@
 - [x] Check build process
 - [x] Validate deployment readiness
 
+### Phase 3.7: Advanced UI & Infrastructure (CURRENT PRIORITY)
+**Status**: 🔄 In Progress
+**Objective**: Complete the migration with advanced UI features, animations, authentication, and database integration
+
+#### 3.7.1: Data Integration & Migration Completion
+- [ ] **Fix Next.js site to use actual game data**
+  - [ ] Remove example/placeholder content from Next.js site
+  - [ ] Connect React components to existing game engine data
+  - [ ] Ensure all data from `/data/` folder is properly loaded
+  - [ ] Verify all existing game mechanics work in Next.js version
+  - [ ] Test skill progression, inventory, achievements in new interface
+
+#### 3.7.2: Layout Enhancement & Animation System
+- [ ] **Split left column into narration and animation**
+  - [ ] Create top half for narration messages (existing functionality)
+  - [ ] Create bottom half for game animations
+  - [ ] Implement responsive sizing between the two halves
+  - [ ] Add resizable divider using shadcn/ui Resizable component
+
+- [ ] **Game Animation Engine**
+  - [ ] Research and choose between SVG and HTML Canvas for scalable animations
+  - [ ] Evaluate React Spring vs GSAP for animation framework
+  - [ ] Create base animation system architecture
+  - [ ] Implement sprite management system for efficient asset reuse
+  - [ ] Create animation composition system (e.g., axe + handle + tree combinations)
+  - [ ] Add animation triggers based on game actions
+  - [ ] Implement simple, comfy animations (flowing river, burning fire, sleeping in bed)
+  - [ ] Create dynamic animation system (steel axe + oak handle + maple tree variations)
+  - [ ] Optimize for minimal sprite creation with maximum reusability
+
+#### 3.7.3: Advanced UI Component System
+- [ ] **Component Library Integration**
+  - [ ] Implement all necessary shadcn/ui components
+  - [ ] Add Framer Motion for advanced animations and transitions
+  - [ ] Evaluate and integrate HeroUI components where shadcn/ui is insufficient
+  - [ ] Create custom UI components for game-specific needs
+  - [ ] Build component library documentation
+
+- [ ] **Responsive & Customizable Layout**
+  - [ ] Implement responsive design for mobile, tablet, desktop
+  - [ ] Add drag-and-drop resizable columns using shadcn/ui Resizable
+  - [ ] Create user customization system for layout preferences
+  - [ ] Store layout preferences in user settings
+  - [ ] Optimize screen real estate like video games (minimize whitespace)
+  - [ ] Create compact, information-dense UI design
+
+#### 3.7.4: Dynamic Theme System
+- [ ] **Time-based Theme System**
+  - [ ] Create day/light theme
+  - [ ] Create night/dark theme
+  - [ ] Create dawn theme (transitional)
+  - [ ] Create dusk theme (transitional)
+  - [ ] Create underground theme
+  - [ ] Implement automatic theme switching based on in-game time
+  - [ ] Add user override option in settings panel
+  - [ ] Create smooth theme transitions with Framer Motion
+
+#### 3.7.5: Encyclopedia Enhancement
+- [ ] **Civilization/Factorio-style Encyclopedia**
+  - [ ] Redesign encyclopedia with game-optimized compact layout
+  - [ ] Implement efficient search functionality
+  - [ ] Add extensive cross-linking between entries
+  - [ ] Create category-based navigation system
+  - [ ] Optimize for information density (minimize whitespace)
+  - [ ] Add quick-access panels and popups
+  - [ ] Ensure mobile-friendly compact design
+
+#### 3.7.6: Authentication System
+- [ ] **Clerk Integration**
+  - [ ] Set up Clerk authentication
+  - [ ] Implement user registration and login
+  - [ ] Add user profile management
+  - [ ] Create protected routes for authenticated users
+  - [ ] Implement session management
+  - [ ] Add social login options (Google, Discord, etc.)
+
+#### 3.7.7: Database Integration
+- [ ] **PostgreSQL Setup**
+  - [ ] Set up local PostgreSQL for development
+  - [ ] Configure Neon PostgreSQL for production/Vercel
+  - [ ] Design user data schema
+  - [ ] Design game state schema
+
+- [ ] **Drizzle ORM Integration**
+  - [ ] Set up Drizzle ORM
+  - [ ] Create database schema definitions
+  - [ ] Implement database migrations
+  - [ ] Add database connection management
+  - [ ] Create data access layer
+
+- [ ] **User Data Management**
+  - [ ] Implement user game state persistence in database
+  - [ ] Add cloud save/load functionality
+  - [ ] Implement sync between local and cloud saves
+  - [ ] Add conflict resolution for save states
+  - [ ] Create backup and recovery system
+
+#### 3.7.8: State Management Enhancement
+- [ ] **Zustand Integration**
+  - [ ] Replace existing state management with Zustand
+  - [ ] Create stores for different game systems
+  - [ ] Implement persistent stores for user data
+  - [ ] Add middleware for logging and debugging
+  - [ ] Integrate with existing game engine state
+
+#### 3.7.9: SVG Graphics System
+- [ ] **SVG Asset Management**
+  - [ ] Research and select open-source icon pack for initial implementation
+  - [ ] Create SVG asset loading system
+  - [ ] Implement SVG optimization and caching
+  - [ ] Plan for future custom SVG replacement
+  - [ ] Create SVG theming system (colors, styles)
+  - [ ] Add SVG animation capabilities
+
+#### 3.7.10: Advanced Data Management
+- [ ] **Dynamic Game Data Loading**
+  - [ ] Plan PostgreSQL schema for game data (skills, items, etc.)
+  - [ ] Create API endpoints for dynamic game data
+  - [ ] Implement data caching strategies
+  - [ ] Add data versioning system
+  - [ ] Create content management interface for game data
+
+### Phase 3.7 Success Criteria
+- [ ] Next.js site displays actual game data (no more example content)
+- [ ] Left column properly split with narration and animations
+- [ ] Animation system functional with basic game action triggers
+- [ ] All UI components built with shadcn/ui + Framer Motion + HeroUI
+- [ ] Dynamic theming based on game time working
+- [ ] Fully responsive and customizable layout
+- [ ] Encyclopedia redesigned with game-optimized compact layout
+- [ ] Clerk authentication fully integrated
+- [ ] PostgreSQL + Drizzle ORM working for user data
+- [ ] Zustand managing all application state
+- [ ] SVG graphics system implemented with open-source icons
+- [ ] Database foundation ready for dynamic game data loading
+
 ### Critical Principles
 - **Preserve Engine Architecture**: Keep engine as vanilla JS, wrap in React
 - **Maintain Configuration-Driven Design**: Keep all game data in JSON
 - **Preserve Separation of Concerns**: Engine, UI, Data, and Config layers
 - **Maintain Backward Compatibility**: All current features must work
-
-### Success Criteria
-- [x] No 404 errors for data files
-- [x] All current game functionality preserved
-- [x] TypeScript types added for key components
-- [x] Professional UI with shadcn/ui
-- [x] Deployed and running on Vercel
-- [x] Ready for future features (auth, payments, multiplayer)
-
-### Documentation
-- [x] **MIGRATION_TO_NEXTJS.md** - Comprehensive migration guide for AI agents
-- [x] Update all documentation for new structure
-- [x] Create component documentation
-- [x] Update development setup instructions
-
-### Integration Complete
-- [x] **Game Engine Integration** - Connected engine to React components
-- [x] **Real-time State Management** - Engine state synchronized with UI
-- [x] **Event-driven Communication** - Proper event handling between systems
-- [x] **API Data Loading** - Game data loaded through Next.js API routes
-- [x] **Professional UI** - Enhanced components with shadcn/ui styling
-- [x] **System Initialization Fixes** - Resolved AchievementSystem and EncyclopediaSystem errors
+- **Optimize Screen Real Estate**: Follow video game UI principles, not modern web whitespace trends
+- **Incremental Development**: Implement features one at a time with thorough testing
 
 ## Phase 4: Core Gameplay Systems (Current Priority)
 ### Quest System
