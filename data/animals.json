@@ -5,7 +5,7 @@
       "animal": {
         "name": "Animal",
         "description": "Non-sentient creatures of the natural world",
-        "subcategories": ["pet", "farm_animal", "fish", "bird", "snake", "mammal"]
+        "subcategories": ["pet", "farm_animal", "fish", "bird", "snake", "mammal", "marine", "reptile"]
       },
       "monster": {
         "name": "Monster", 
@@ -68,6 +68,66 @@
         "rarity": "common",
         "habitat": "varied",
         "diet": "omnivore"
+      },
+      "ferret": {
+        "name": "Ferret",
+        "description": "Playful and curious mustelid",
+        "category": "pet",
+        "plural": "Ferrets",
+        "singular": "Ferret",
+        "rarity": "uncommon",
+        "habitat": "domestic",
+        "diet": "carnivore"
+      },
+      "hedgehog": {
+        "name": "Hedgehog",
+        "description": "Small spiny mammal",
+        "category": "pet",
+        "plural": "Hedgehogs",
+        "singular": "Hedgehog",
+        "rarity": "uncommon",
+        "habitat": "temperate",
+        "diet": "omnivore"
+      },
+      "chameleon": {
+        "name": "Chameleon",
+        "description": "Color-changing lizard",
+        "category": "pet",
+        "plural": "Chameleons",
+        "singular": "Chameleon",
+        "rarity": "exotic",
+        "habitat": "tropical",
+        "diet": "carnivore"
+      },
+      "parrot": {
+        "name": "Parrot",
+        "description": "Intelligent talking bird",
+        "category": "pet",
+        "plural": "Parrots",
+        "singular": "Parrot",
+        "rarity": "uncommon",
+        "habitat": "tropical",
+        "diet": "omnivore"
+      },
+      "canary": {
+        "name": "Canary",
+        "description": "Small melodious songbird",
+        "category": "pet",
+        "plural": "Canaries",
+        "singular": "Canary",
+        "rarity": "common",
+        "habitat": "domestic",
+        "diet": "omnivore"
+      },
+      "peacock": {
+        "name": "Peacock",
+        "description": "Ornate bird with magnificent tail feathers",
+        "category": "pet",
+        "plural": "Peacocks",
+        "singular": "Peacock",
+        "rarity": "exotic",
+        "habitat": "garden",
+        "diet": "omnivore"
       }
     },
     "farm_animals": {
@@ -90,6 +150,116 @@
         "rarity": "common",
         "habitat": "grassland",
         "diet": "herbivore"
+      },
+      "cow": {
+        "name": "Cow",
+        "description": "Domesticated bovine for milk and meat",
+        "category": "farm_animal",
+        "plural": "Cows",
+        "singular": "Cow",
+        "rarity": "common",
+        "habitat": "grassland",
+        "diet": "herbivore"
+      },
+      "pig": {
+        "name": "Pig",
+        "description": "Intelligent farm animal raised for meat",
+        "category": "farm_animal",
+        "plural": "Pigs",
+        "singular": "Pig",
+        "rarity": "common",
+        "habitat": "farm",
+        "diet": "omnivore"
+      },
+      "sheep": {
+        "name": "Sheep",
+        "description": "Woolly farm animal",
+        "category": "farm_animal",
+        "plural": "Sheep",
+        "singular": "Sheep",
+        "rarity": "common",
+        "habitat": "grassland",
+        "diet": "herbivore"
+      },
+      "goat": {
+        "name": "Goat",
+        "description": "Hardy climbing farm animal",
+        "category": "farm_animal",
+        "plural": "Goats",
+        "singular": "Goat",
+        "rarity": "common",
+        "habitat": "mountain",
+        "diet": "herbivore"
+      },
+      "chicken": {
+        "name": "Chicken",
+        "description": "Common domestic fowl",
+        "category": "farm_animal",
+        "plural": "Chickens",
+        "singular": "Chicken",
+        "rarity": "common",
+        "habitat": "farm",
+        "diet": "omnivore"
+      },
+      "duck": {
+        "name": "Duck",
+        "description": "Waterfowl with webbed feet",
+        "category": "farm_animal",
+        "plural": "Ducks",
+        "singular": "Duck",
+        "rarity": "common",
+        "habitat": "pond",
+        "diet": "omnivore"
+      },
+      "turkey": {
+        "name": "Turkey",
+        "description": "Large domestic fowl",
+        "category": "farm_animal",
+        "plural": "Turkeys",
+        "singular": "Turkey",
+        "rarity": "common",
+        "habitat": "farm",
+        "diet": "omnivore"
+      },
+      "donkey": {
+        "name": "Donkey",
+        "description": "Sturdy pack animal",
+        "category": "farm_animal",
+        "plural": "Donkeys",
+        "singular": "Donkey",
+        "rarity": "common",
+        "habitat": "arid",
+        "diet": "herbivore"
+      },
+      "llama": {
+        "name": "Llama",
+        "description": "Woolly pack animal from mountains",
+        "category": "farm_animal",
+        "plural": "Llamas",
+        "singular": "Llama",
+        "rarity": "uncommon",
+        "habitat": "mountain",
+        "diet": "herbivore"
+      },
+      "elephant": {
+        "name": "Elephant",
+        "description": "Massive intelligent pachyderm",
+        "category": "farm_animal",
+        "plural": "Elephants",
+        "singular": "Elephant",
+        "rarity": "exotic",
+        "habitat": "savanna",
+        "diet": "herbivore"
+      },
+      "ostrich": {
+        "name": "Ostrich",
+        "description": "Large flightless bird used for riding",
+        "category": "farm_animal",
+        "plural": "Ostriches",
+        "singular": "Ostrich",
+        "rarity": "rare",
+        "habitat": "desert",
+        "diet": "omnivore"
       }
     },
     "fish": {
@@ -112,6 +282,504 @@
         "rarity": "uncommon",
         "habitat": "marine",
         "diet": "carnivore"
+      },
+      "carp": {
+        "name": "Carp",
+        "description": "Hardy freshwater fish",
+        "category": "fish",
+        "plural": "Carp",
+        "singular": "Carp",
+        "rarity": "common",
+        "habitat": "freshwater",
+        "diet": "omnivore"
+      },
+      "catfish": {
+        "name": "Catfish",
+        "description": "Bottom-dwelling fish with whiskers",
+        "category": "fish",
+        "plural": "Catfish",
+        "singular": "Catfish",
+        "rarity": "common",
+        "habitat": "freshwater",
+        "diet": "omnivore"
+      },
+      "cod": {
+        "name": "Cod",
+        "description": "Important commercial saltwater fish",
+        "category": "fish",
+        "plural": "Cod",
+        "singular": "Cod",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "pike": {
+        "name": "Pike",
+        "description": "Predatory freshwater fish",
+        "category": "fish",
+        "plural": "Pike",
+        "singular": "Pike",
+        "rarity": "uncommon",
+        "habitat": "freshwater",
+        "diet": "carnivore"
+      },
+      "swordfish": {
+        "name": "Swordfish",
+        "description": "Large marine fish with sword-like bill",
+        "category": "fish",
+        "plural": "Swordfish",
+        "singular": "Swordfish",
+        "rarity": "rare",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "barracuda": {
+        "name": "Barracuda",
+        "description": "Fierce predatory marine fish",
+        "category": "fish",
+        "plural": "Barracuda",
+        "singular": "Barracuda",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "eel": {
+        "name": "Eel",
+        "description": "Snake-like fish",
+        "category": "fish",
+        "plural": "Eels",
+        "singular": "Eel",
+        "rarity": "uncommon",
+        "habitat": "freshwater",
+        "diet": "carnivore"
+      },
+      "mahi": {
+        "name": "Mahi-mahi",
+        "description": "Colorful tropical marine fish",
+        "category": "fish",
+        "plural": "Mahi-mahi",
+        "singular": "Mahi-mahi",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "anchovies": {
+        "name": "Anchovies",
+        "description": "Small schooling marine fish",
+        "category": "fish",
+        "plural": "Anchovies",
+        "singular": "Anchovy",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "omnivore"
+      },
+      "shark": {
+        "name": "Shark",
+        "description": "Apex predator of the oceans",
+        "category": "fish",
+        "plural": "Sharks",
+        "singular": "Shark",
+        "rarity": "rare",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "anglerfish": {
+        "name": "Anglerfish",
+        "description": "Deep-sea fish with luminous lure",
+        "category": "fish",
+        "plural": "Anglerfish",
+        "singular": "Anglerfish",
+        "rarity": "rare",
+        "habitat": "deep_sea",
+        "diet": "carnivore"
+      },
+      "jewelfish": {
+        "name": "Jewelfish",
+        "description": "Brilliantly colored tropical fish",
+        "category": "fish",
+        "plural": "Jewelfish",
+        "singular": "Jewelfish",
+        "rarity": "uncommon",
+        "habitat": "tropical",
+        "diet": "omnivore"
+      },
+      "silverling": {
+        "name": "Silverling",
+        "description": "Small silvery schooling fish",
+        "category": "fish",
+        "plural": "Silverlings",
+        "singular": "Silverling",
+        "rarity": "common",
+        "habitat": "freshwater",
+        "diet": "omnivore"
+      }
+    },
+    "marine_life": {
+      "jellyfish": {
+        "name": "Jellyfish",
+        "description": "Gelatinous marine cnidarian",
+        "category": "marine",
+        "plural": "Jellyfish",
+        "singular": "Jellyfish",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "octopus": {
+        "name": "Octopus",
+        "description": "Eight-armed intelligent cephalopod",
+        "category": "marine",
+        "plural": "Octopuses",
+        "singular": "Octopus",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "squid": {
+        "name": "Squid",
+        "description": "Ten-armed cephalopod",
+        "category": "marine",
+        "plural": "Squid",
+        "singular": "Squid",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "lobster": {
+        "name": "Lobster",
+        "description": "Large marine crustacean",
+        "category": "marine",
+        "plural": "Lobsters",
+        "singular": "Lobster",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "omnivore"
+      },
+      "crab": {
+        "name": "Crab",
+        "description": "Crustacean with hard shell and claws",
+        "category": "marine",
+        "plural": "Crabs",
+        "singular": "Crab",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "omnivore"
+      },
+      "shrimp": {
+        "name": "Shrimp",
+        "description": "Small marine crustacean",
+        "category": "marine",
+        "plural": "Shrimp",
+        "singular": "Shrimp",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "omnivore"
+      },
+      "clam": {
+        "name": "Clam",
+        "description": "Bivalve mollusk",
+        "category": "marine",
+        "plural": "Clams",
+        "singular": "Clam",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "filter_feeder"
+      },
+      "crayfish": {
+        "name": "Crayfish",
+        "description": "Freshwater crustacean",
+        "category": "marine",
+        "plural": "Crayfish",
+        "singular": "Crayfish",
+        "rarity": "common",
+        "habitat": "freshwater",
+        "diet": "omnivore"
+      },
+      "starfish": {
+        "name": "Starfish",
+        "description": "Star-shaped marine echinoderm",
+        "category": "marine",
+        "plural": "Starfish",
+        "singular": "Starfish",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "sea_urchin": {
+        "name": "Sea Urchin",
+        "description": "Spiny marine echinoderm",
+        "category": "marine",
+        "plural": "Sea Urchins",
+        "singular": "Sea Urchin",
+        "rarity": "common",
+        "habitat": "marine",
+        "diet": "herbivore"
+      },
+      "dolphin": {
+        "name": "Dolphin",
+        "description": "Intelligent marine mammal",
+        "category": "marine",
+        "plural": "Dolphins",
+        "singular": "Dolphin",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "whale": {
+        "name": "Whale",
+        "description": "Massive marine mammal",
+        "category": "marine",
+        "plural": "Whales",
+        "singular": "Whale",
+        "rarity": "rare",
+        "habitat": "marine",
+        "diet": "varied"
+      },
+      "seal": {
+        "name": "Seal",
+        "description": "Flippered marine mammal",
+        "category": "marine",
+        "plural": "Seals",
+        "singular": "Seal",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      },
+      "walrus": {
+        "name": "Walrus",
+        "description": "Large tusked marine mammal",
+        "category": "marine",
+        "plural": "Walruses",
+        "singular": "Walrus",
+        "rarity": "rare",
+        "habitat": "arctic",
+        "diet": "omnivore"
+      },
+      "ray": {
+        "name": "Ray",
+        "description": "Flat cartilaginous fish",
+        "category": "marine",
+        "plural": "Rays",
+        "singular": "Ray",
+        "rarity": "uncommon",
+        "habitat": "marine",
+        "diet": "carnivore"
+      }
+    },
+    "wild_birds": {
+      "eagle": {
+        "name": "Eagle",
+        "description": "Majestic bird of prey",
+        "category": "bird",
+        "plural": "Eagles",
+        "singular": "Eagle",
+        "rarity": "uncommon",
+        "habitat": "mountain",
+        "diet": "carnivore"
+      },
+      "hawk": {
+        "name": "Hawk",
+        "description": "Sharp-eyed hunting bird",
+        "category": "bird",
+        "plural": "Hawks",
+        "singular": "Hawk",
+        "rarity": "common",
+        "habitat": "forest",
+        "diet": "carnivore"
+      },
+      "owl": {
+        "name": "Owl",
+        "description": "Nocturnal bird of prey",
+        "category": "bird",
+        "plural": "Owls",
+        "singular": "Owl",
+        "rarity": "common",
+        "habitat": "forest",
+        "diet": "carnivore"
+      },
+      "falcon": {
+        "name": "Falcon",
+        "description": "Swift diving predatory bird",
+        "category": "bird",
+        "plural": "Falcons",
+        "singular": "Falcon",
+        "rarity": "uncommon",
+        "habitat": "cliff",
+        "diet": "carnivore"
+      },
+      "raven": {
+        "name": "Raven",
+        "description": "Intelligent black bird",
+        "category": "bird",
+        "plural": "Ravens",
+        "singular": "Raven",
+        "rarity": "common",
+        "habitat": "varied",
+        "diet": "omnivore"
+      },
+      "dove": {
+        "name": "Dove",
+        "description": "Peaceful gray bird",
+        "category": "bird",
+        "plural": "Doves",
+        "singular": "Dove",
+        "rarity": "common",
+        "habitat": "urban",
+        "diet": "herbivore"
+      },
+      "condor": {
+        "name": "Condor",
+        "description": "Massive scavenging bird",
+        "category": "bird",
+        "plural": "Condors",
+        "singular": "Condor",
+        "rarity": "rare",
+        "habitat": "mountain",
+        "diet": "carnivore"
+      },
+      "pheasant": {
+        "name": "Pheasant",
+        "description": "Colorful ground bird",
+        "category": "bird",
+        "plural": "Pheasants",
+        "singular": "Pheasant",
+        "rarity": "uncommon",
+        "habitat": "grassland",
+        "diet": "omnivore"
+      },
+      "songbird": {
+        "name": "Songbird",
+        "description": "Small melodious bird",
+        "category": "bird",
+        "plural": "Songbirds",
+        "singular": "Songbird",
+        "rarity": "common",
+        "habitat": "forest",
+        "diet": "omnivore"
+      }
+    },
+    "wild_mammals": {
+      "fox": {
+        "name": "Fox",
+        "description": "Cunning red-furred canine",
+        "category": "mammal",
+        "plural": "Foxes",
+        "singular": "Fox",
+        "rarity": "common",
+        "habitat": "forest",
+        "diet": "omnivore"
+      },
+      "bear": {
+        "name": "Bear",
+        "description": "Large powerful omnivore",
+        "category": "mammal",
+        "plural": "Bears",
+        "singular": "Bear",
+        "rarity": "uncommon",
+        "habitat": "forest",
+        "diet": "omnivore"
+      },
+      "wolf": {
+        "name": "Wolf",
+        "description": "Pack hunting canine",
+        "category": "mammal",
+        "plural": "Wolves",
+        "singular": "Wolf",
+        "rarity": "uncommon",
+        "habitat": "forest",
+        "diet": "carnivore"
+      },
+      "deer": {
+        "name": "Deer",
+        "description": "Graceful forest herbivore",
+        "category": "mammal",
+        "plural": "Deer",
+        "singular": "Deer",
+        "rarity": "common",
+        "habitat": "forest",
+        "diet": "herbivore"
+      },
+      "badger": {
+        "name": "Badger",
+        "description": "Fierce burrowing mammal",
+        "category": "mammal",
+        "plural": "Badgers",
+        "singular": "Badger",
+        "rarity": "uncommon",
+        "habitat": "burrow",
+        "diet": "omnivore"
+      },
+      "bat": {
+        "name": "Bat",
+        "description": "Flying nocturnal mammal",
+        "category": "mammal",
+        "plural": "Bats",
+        "singular": "Bat",
+        "rarity": "common",
+        "habitat": "cave",
+        "diet": "omnivore"
+      },
+      "ape": {
+        "name": "Ape",
+        "description": "Intelligent primate",
+        "category": "mammal",
+        "plural": "Apes",
+        "singular": "Ape",
+        "rarity": "uncommon",
+        "habitat": "jungle",
+        "diet": "omnivore"
+      },
+      "baboon": {
+        "name": "Baboon",
+        "description": "Social primate with long snout",
+        "category": "mammal",
+        "plural": "Baboons",
+        "singular": "Baboon",
+        "rarity": "uncommon",
+        "habitat": "savanna",
+        "diet": "omnivore"
+      }
+    },
+    "reptiles": {
+      "snake": {
+        "name": "Snake",
+        "description": "Legless reptile",
+        "category": "snake",
+        "plural": "Snakes",
+        "singular": "Snake",
+        "rarity": "common",
+        "habitat": "varied",
+        "diet": "carnivore"
+      },
+      "adder": {
+        "name": "Adder",
+        "description": "Venomous viper",
+        "category": "snake",
+        "plural": "Adders",
+        "singular": "Adder",
+        "rarity": "uncommon",
+        "habitat": "heath",
+        "diet": "carnivore"
+      },
+      "anaconda": {
+        "name": "Anaconda",
+        "description": "Massive constricting snake",
+        "category": "snake",
+        "plural": "Anacondas",
+        "singular": "Anaconda",
+        "rarity": "rare",
+        "habitat": "swamp",
+        "diet": "carnivore"
+      },
+      "lizardmount": {
+        "name": "Lizardmount",
+        "description": "Large rideable lizard",
+        "category": "reptile",
+        "plural": "Lizardmounts",
+        "singular": "Lizardmount",
+        "rarity": "exotic",
+        "habitat": "desert",
+        "diet": "omnivore"
       }
     }
   },
@@ -135,6 +803,188 @@
         "singular": "Minotaur",
         "rarity": "rare",
         "habitat": "labyrinth",
+        "diet": "omnivore"
+      },
+      "gryphon": {
+        "name": "Gryphon",
+        "description": "Majestic creature with eagle head and wings, lion body",
+        "category": "monster",
+        "plural": "Gryphons",
+        "singular": "Gryphon",
+        "rarity": "exotic",
+        "habitat": "mountain",
+        "diet": "carnivore"
+      },
+      "sphinx": {
+        "name": "Sphinx",
+        "description": "Ancient guardian with human head, lion body, and eagle wings",
+        "category": "monster",
+        "plural": "Sphinxes",
+        "singular": "Sphinx",
+        "rarity": "exotic",
+        "habitat": "desert",
+        "diet": "carnivore"
+      },
+      "unicorn": {
+        "name": "Unicorn",
+        "description": "Pure magical horse with a spiral horn",
+        "category": "magical",
+        "plural": "Unicorns",
+        "singular": "Unicorn",
+        "rarity": "exotic",
+        "habitat": "forest",
+        "diet": "herbivore"
+      },
+      "phoenix": {
+        "name": "Phoenix",
+        "description": "Immortal fire bird that rises from its own ashes",
+        "category": "magical",
+        "plural": "Phoenixes",
+        "singular": "Phoenix",
+        "rarity": "exotic",
+        "habitat": "volcanic",
+        "diet": "omnivore"
+      },
+      "hydra": {
+        "name": "Hydra",
+        "description": "Multi-headed serpentine beast",
+        "category": "monster",
+        "plural": "Hydras",
+        "singular": "Hydra",
+        "rarity": "exotic",
+        "habitat": "swamp",
+        "diet": "carnivore"
+      },
+      "kitsune": {
+        "name": "Kitsune",
+        "description": "Intelligent magical fox with multiple tails",
+        "category": "magical",
+        "plural": "Kitsune",
+        "singular": "Kitsune",
+        "rarity": "rare",
+        "habitat": "forest",
+        "diet": "omnivore"
+      }
+    },
+    "lesser": {
+      "goblin": {
+        "name": "Goblin",
+        "description": "Small, mischievous humanoid creature",
+        "category": "monster",
+        "plural": "Goblins",
+        "singular": "Goblin",
+        "rarity": "common",
+        "habitat": "cave",
+        "diet": "omnivore"
+      },
+      "kobold": {
+        "name": "Kobold",
+        "description": "Small lizardfolk, often found in mines",
+        "category": "monster",
+        "plural": "Kobolds",
+        "singular": "Kobold",
+        "rarity": "common",
+        "habitat": "underground",
+        "diet": "omnivore"
+      },
+      "troll": {
+        "name": "Troll",
+        "description": "Large, regenerating humanoid creature",
+        "category": "monster",
+        "plural": "Trolls",
+        "singular": "Troll",
+        "rarity": "uncommon",
+        "habitat": "bridge",
+        "diet": "carnivore"
+      }
+    },
+    "fey": {
+      "fairy": {
+        "name": "Fairy",
+        "description": "Tiny magical being with butterfly wings",
+        "category": "magical",
+        "plural": "Fairies",
+        "singular": "Fairy",
+        "rarity": "uncommon",
+        "habitat": "forest",
+        "diet": "nectar"
+      },
+      "pixie": {
+        "name": "Pixie",
+        "description": "Mischievous tiny fey creature",
+        "category": "magical",
+        "plural": "Pixies",
+        "singular": "Pixie",
+        "rarity": "uncommon",
+        "habitat": "forest",
+        "diet": "nectar"
+      },
+      "leprechaun": {
+        "name": "Leprechaun",
+        "description": "Small fey cobbler known for gold and tricks",
+        "category": "magical",
+        "plural": "Leprechauns",
+        "singular": "Leprechaun",
+        "rarity": "rare",
+        "habitat": "hill",
+        "diet": "omnivore"
+      }
+    },
+    "undead": {
+      "ghost": {
+        "name": "Ghost",
+        "description": "Spirit of the deceased, bound to the mortal realm",
+        "category": "undead",
+        "plural": "Ghosts",
+        "singular": "Ghost",
+        "rarity": "uncommon",
+        "habitat": "haunted",
+        "diet": "none"
+      },
+      "banshee": {
+        "name": "Banshee",
+        "description": "Wailing spirit that foretells death",
+        "category": "undead",
+        "plural": "Banshees",
+        "singular": "Banshee",
+        "rarity": "rare",
+        "habitat": "moor",
+        "diet": "none"
+      }
+    },
+    "fiend": {
+      "imp": {
+        "name": "Imp",
+        "description": "Small mischievous fiend",
+        "category": "fiend",
+        "plural": "Imps",
+        "singular": "Imp",
+        "rarity": "uncommon",
+        "habitat": "infernal",
+        "diet": "omnivore"
+      }
+    },
+    "divine": {
+      "valkyrie": {
+        "name": "Valkyrie",
+        "description": "Divine warrior maiden who escorts souls to Valhalla",
+        "category": "divine",
+        "plural": "Valkyries",
+        "singular": "Valkyrie",
+        "rarity": "exotic",
+        "habitat": "celestial",
+        "diet": "none"
+      }
+    },
+    "aquatic": {
+      "mermaid": {
+        "name": "Mermaid",
+        "description": "Half human, half fish aquatic being",
+        "category": "magical",
+        "plural": "Mermaids",
+        "singular": "Mermaid",
+        "rarity": "rare",
+        "habitat": "ocean",
         "diet": "omnivore"
       }
     }
